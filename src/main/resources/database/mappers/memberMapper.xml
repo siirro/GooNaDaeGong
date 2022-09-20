@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gndg.home.member.MemberDAO">
+<insert id="setJoin" parameterType="MemberDTO">
+INSERT INTO MEMBER
+VALUES(
+	#{user_id},
+	#{user_pw},
+	#{user_name},
+	#{user_email},
+	#{user_phone},
+	#{user_post},
+	#{user_addr},
+	#{user_addr2},
+	1,
+	'Y',
+	#{user_file}
+)
+</insert>
+
+<select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
+SELECT *
+FROM MEMBER
+WHERE USER_ID=#{user_id} AND USER_PW=#{user_pw}
+</select>
+
+<select id="getFindID" parameterType="MemberDTO" resultType="MemberDTO">
+SELECT USER_ID=#{user_id}
+FROM MEMBER
+WHERE USER_NAME=#{user_name} AND USER_PHONE =#{user_phone}
+</select>
+
+</mapper>
