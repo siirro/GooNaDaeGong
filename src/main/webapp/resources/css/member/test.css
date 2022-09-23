@@ -1,0 +1,242 @@
+.css-pculus {
+    min-width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    background-color: rgb(255, 255, 255);
+}
+.css-o5dw7d {
+    margin-bottom: 50px;
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -1px;
+    color: rgb(51, 51, 51);
+}
+.css-mhmtvt {
+    width: 640px;
+    margin: 0px auto;
+}
+.css-rb0i47 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(51, 51, 51);
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    line-height: 17px;
+    text-align: right;
+}
+.css-qq9ke6 {
+    color: rgb(238, 106, 123);
+}
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+.css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+}
+.css-1y8737n {
+    width: 139px;
+    padding-top: 12px;
+}
+.css-82a6rk {
+    flex: 1 1 0%;
+}
+.css-1w0ksfz {
+    width: 120px;
+    margin-left: 8px;
+}
+.css-1obgjqh {
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+}
+.css-1eo0fey {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+div {
+    display: block;
+}
+.css-1bkd15f {
+    width: 100%;
+    height: 46px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+.css-1w0ksfz > button {
+    height: 44px;
+    border-radius: 3px;
+}
+.css-ufulao {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 3px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(95, 0, 128);
+}
+.css-1w0ksfz > button > span {
+    font-weight: 500;
+    font-size: 14px;
+}
+.css-1schgvv {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 44px;
+    border-radius: 4px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(95, 0, 128);
+}
+.css-vukl2m {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(102, 102, 102);
+}
+.css-qihf5m {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.css-nygcgj {
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    padding-top: 4px;
+    padding-left: 36px;
+}
+.css-18r9a6u {
+    /* position: relative; */
+    display: flex;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    /* vertical-align: top; */
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    font-size: 14px;
+}
+.css-7chi73 {
+    padding-right: 22px;
+    color: rgb(95, 0, 128);
+    letter-spacing: 0px;
+}
+.css-18m884r {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(95, 0, 128);
+    border: 0px none;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+.css-137ca2h {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-top: 1px solid rgb(247, 247, 247);
+    padding: 40px 0px;
+}
+.css-2yzr8b {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 0px 10px 20px;
+}
+.css-agvwxo {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0px, 0px, 0px, 0px);
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+}
+input[type="checkbox" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+.css-ov2xfu {
+    display: flex;
+    padding: 8px 0px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.css-ov2xfu:first-of-type {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 12px;
+}
+.css-g5xq45 {
+    padding-left: 5px;
+    color: rgb(153, 153, 153);
+}
+.css-s5xdrg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.css-7chi73::after {
+    content: "";
+    display: inline-block;
+    margin-left: 4px;
+    width: 6px;
+    height: 9px;
+    background: url(/resources/images/member/srrow.svg) 50% 50% / 6px 9px no-repeat;
+}
+.btn-upload {
+    width: 335px;
+    height: 44px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid rgb(95, 0, 128);
+    color: rgb(95, 0, 128);
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+  }
+  
+  #user_file {
+    display: none;
+  }
