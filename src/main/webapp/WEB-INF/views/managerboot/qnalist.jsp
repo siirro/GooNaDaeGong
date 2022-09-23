@@ -17,7 +17,7 @@
 
     <!-- Custom fonts for this template-->
     <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-    <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/resources/vendor/managerboot/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -55,73 +55,90 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight text-primary">1대1 문의 리스트</h6>
+                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                            <!-- 카드 본문  -->
+
+                            <!-- 부트스트랩표 -->
+                            <div id="qnaList">
+                                <section class="col-lg-12 text-center" style="padding: 0px;">
+                                    <table class="table table-hover" width="100%">
+                                      <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th>번호</th>
-                                            <th>카테고리</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>처리상태</th>
-                                            
-                                            <th>Salary</th>
+                                            <th class="col-1">번호</th>
+                                            <th class="col-1">구분</th>
+                                            <th class="col-4">글제목</th>
+                                            <th class="col-2">작성자</th>
+                                            <th class="col-2">등록일</th>
+                                            <th class="col-1">처리</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-                                    <tr>
-                                        <td>Lael Greer</td>
-                                        <td>Systems Administrator</td>
-                                        <td>London</td>
-                                        <td>21</td>
-                                        <td>2009/02/27</td>
-                                        <td>$103,500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jonas Alexander</td>
-                                        <td>Developer</td>
-                                        <td>San Francisco</td>
-                                        <td>30</td>
-                                        <td>2010/07/14</td>
-                                        <td>$86,500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shad Decker</td>
-                                        <td>Regional Director</td>
-                                        <td>Edinburgh</td>
-                                        <td>51</td>
-                                        <td>2008/11/13</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michael Bruce</td>
-                                        <td>Javascript Developer</td>
-                                        <td>Singapore</td>
-                                        <td>29</td>
-                                        <td>2011/06/27</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                </table>
+                                      </thead>
+                                      <tbody style="font-size: 12px;">
+                                          <c:forEach items="${qnalist}" var="nl">
+                                             <tr>
+                                                <td>${nl.qna_num}</td>
+                                                <td>${nl.qna_cate}</td>
+                                                <td><a href="./detail?qna_num=${nl.qna_num}">${nl.qna_title}</a></td>
+                                                <td>${nl.user_id}</td>
+                                                <td>${nl.qna_date}</td>
+                                                <td id="updateStatus">${nl.qna_status}</td>
+                                            </tr>
+                                            </c:forEach>
+                                      </tbody>
+                                    </table>
+                                </section>
                             </div>
+
+
+                            <!-- 페이지 -->
+                            <div class="pagediv" style="display: flex; justify-content: center;">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination paginate_sm">
+
+                                        <c:if test="${pager.pre}">
+                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                                        </c:if>
+                                        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- 내용 Search -->
+                            <div class="col-lg-6 col-sm-4">
+                            <form action="./list" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        
+                                <div class="input-group">
+                                    <div class="search-category" id="search-category" style="padding: 6px 0 6px 0;">
+                                        <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
+                                            <option class="kinds" value="qna_title">제목</option>
+                                            <option class="kinds" value="qna_contents">내용</option>
+                                            <option class="kinds" value="user_id">작성자</option>
+                                        </select>
+                                    </div>
+                                    <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <input type="hidden" name="code" value="${code}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+
+
                         </div>
+                        
                     </div>
 
+                <!-- 페이지 컨텐츠 끝 -->
                 </div>
                     <!-- 본문 끝 -->
-
-                <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
@@ -146,22 +163,28 @@
     <!-- Bootstrap core JavaScript-->
     <!-- <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/vendor/managerboot/jquery/jquery.min.js"></script>
+    <script src="/resources/vendor/managerboot/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/resources/vendor/managerboot/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="/resources/js/managerboot/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/resources/vendor/chart.js/Chart.min.js"></script>
+    <script>
+        let k = '${param.kind}';
+        const kinds = document.getElementsByClassName('kinds');
 
-    <!-- Page level custom scripts -->
-    <script src="/resources/js/managerboot/demo/chart-area-demo.js"></script>
-    <script src="/resources/js/managerboot/demo/chart-pie-demo.js"></script>
+        for(let i=0;i<kinds.length;i++) {
+            if(k==kinds[i].value) {
+                kinds[i].selected=true;
+                break;
+            }
+        }
 
+    </script>
+    <script src="/resources/js/managerboot/qnalist.js"></script>
 
 </body>
 

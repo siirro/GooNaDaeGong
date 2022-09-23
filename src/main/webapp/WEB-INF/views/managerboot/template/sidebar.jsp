@@ -8,7 +8,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../manager">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../manager">
                 <!-- <div class="sidebar-brand-icon">
                     <i class="fa fa-mobile"></i>
                 </div> -->
@@ -37,10 +37,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">뭘넣어야되지</h6>
-                        <a class="collapse-item" href="../manager/itemadd">상품등록</a>
-                        <a class="collapse-item" href="../mamager/itemlist">상품조회</a>
-                        <a class="collapse-item" href="../manager/itemstock">재고관리</a>
-                        <a class="collapse-item" href="../manager/itemreview">리뷰관리</a>
+                        <a class="collapse-item" href="../../manager/item/add">상품등록</a>
+                        <a class="collapse-item" href="../../manager/item/list">상품조회</a>
+                        <a class="collapse-item" href="../../manager/item/stock">재고관리</a>
+                        <a class="collapse-item" href="../manager/item/review">리뷰관리</a>
                     </div>
                 </div>
             </li>
@@ -56,9 +56,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">회원주문내역</a>
-                        <a class="collapse-item" href="utilities-border.html">배송관리</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="../../manager/mall/order">회원주문내역</a>
+                        <a class="collapse-item" href="../../manager/mall/delivery">배송관리</a>
+                        <a class="collapse-item" href="#">Animations</a>
                     </div>
                 </div>
             </li>
@@ -81,7 +81,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">MEMBER</h6>
-                        <a class="collapse-item" href="./manager/member/list">회원조회</a>
+                        <a class="collapse-item" href="../../manager/member/list">회원조회</a>
 
                         <div class="collapse-divider"></div>
                         
@@ -99,21 +99,33 @@
                 <div id="collapseReport" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">신고조회</a>
-                        <a class="collapse-item" href="utilities-border.html">신고처리</a>
+                        <a class="collapse-item" href="../../manager/report/list">신고처리</a>
+                        <a class="collapse-item" href="../../manager/report/member">신고회원</a>
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-2">
+            <hr class="sidebar-divider">
 
+            <div class="sidebar-heading">
+                QNA
+            </div>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="../manager/qna">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQna"
+                    aria-expanded="true" aria-controls="collapseQna">
                     <i class="fas fa-fw fa-comment"></i>
-                    <span>1대1 문의</span></a>
+                    <span>1대1 문의</span>
+                </a>
+                <div id="collapseQna" class="collapse" aria-labelledby="headingQna"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="../../manager/qna/list?code=1">구디나라</a>
+                        <a class="collapse-item" href="../../manager/qna/list?code=2">쇼핑몰</a>
+                    </div>
+                </div>
             </li>
 
 

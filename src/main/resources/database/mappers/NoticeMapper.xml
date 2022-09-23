@@ -6,7 +6,7 @@
 <mapper namespace="com.gndg.home.notice.NoticeDAO">
 
 <select id="getList" resultType="NoticeDTO">
-	SELECT * FROM NOTICE
+	SELECT * FROM NOTICE ORDER BY NT_NUM DESC
 </select>
 	
 

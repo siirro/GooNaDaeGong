@@ -37,18 +37,23 @@ public class HomeController {
 		return "home";
 	}
 	
+	
+	//홈컨트롤러 잠깐 임시로 YR
 	@RequestMapping(value = "/manager", method=RequestMethod.GET)
 	public String managerIndex2()throws Exception{
-		
 		return "managerboot/index";
 	}
 	
 	@RequestMapping(value = "/manager2", method=RequestMethod.GET)
 	public String managerIndex()throws Exception{
-		
 		return "manager/index";
 	}
 	
+	@RequestMapping(value = "/pay", method=RequestMethod.GET)
+	public String managerIndex3()throws Exception{
+		return "pay";
+	}
+	//홈컨트롤러 잠깐 임시로 YR 끝
 
 	
 }

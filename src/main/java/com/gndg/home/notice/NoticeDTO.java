@@ -3,49 +3,48 @@ package com.gndg.home.notice;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private Long nt_Num;
-	private String user_Id;
-	private String nt_Title;
-	private String nt_Contents;
-	private Date nt_Date;
-	private String nt_Yn;
+	private Long nt_num;
+	private String user_id;
+	private String nt_title;
+	private String nt_contents;
+	private Date nt_date;
+	private String nt_yn;
 	private Long code;
-	
-	public Long getNt_Num() {
-		return nt_Num;
+	public Long getNt_num() {
+		return nt_num;
 	}
-	public void setNt_Num(Long nt_Num) {
-		this.nt_Num = nt_Num;
+	public void setNt_num(Long nt_num) {
+		this.nt_num = nt_num;
 	}
-	public String getUser_Id() {
-		return user_Id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUser_Id(String user_Id) {
-		this.user_Id = user_Id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getNt_Title() {
-		return nt_Title;
+	public String getNt_title() {
+		return nt_title;
 	}
-	public void setNt_Title(String nt_Title) {
-		this.nt_Title = nt_Title;
+	public void setNt_title(String nt_title) {
+		this.nt_title = nt_title;
 	}
-	public String getNt_Contents() {
-		return nt_Contents;
+	public String getNt_contents() {
+		return nt_contents;
 	}
-	public void setNt_Contents(String nt_Contents) {
-		this.nt_Contents = nt_Contents;
+	public void setNt_contents(String nt_contents) {
+		this.nt_contents = nt_contents;
 	}
-	public Date getNt_Date() {
-		return nt_Date;
+	public Date getNt_date() {
+		return nt_date;
 	}
-	public void setNt_Date(Date nt_Date) {
-		this.nt_Date = nt_Date;
+	public void setNt_date(Date nt_date) {
+		this.nt_date = nt_date;
 	}
-	public String getNt_Yn() {
-		return nt_Yn;
+	public String getNt_yn() {
+		return nt_yn;
 	}
-	public void setNt_Yn(String nt_Yn) {
-		this.nt_Yn = nt_Yn;
+	public void setNt_yn(String nt_yn) {
+		this.nt_yn = nt_yn;
 	}
 	public Long getCode() {
 		return code;
@@ -53,6 +52,10 @@ public class NoticeDTO {
 	public void setCode(Long code) {
 		this.code = code;
 	}
+	
+	
+	
+	
 	
 	
 	

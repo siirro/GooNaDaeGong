@@ -28,10 +28,10 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
 			  <tbody>
 				  <c:forEach items="${list}" var="nl">
 				     <tr>
-				    	<td>${nl.nt_Num}</td>
-				    	<td><a href="./detail.iu?num=${nl.nt_Num}">${nl.nt_Title}</a> </td>
-				    	<td>${nl.user_Id}</td>
-				    	<td>${nl.nt_Date}</td>
+				    	<td>${nl.nt_num}</td>
+				    	<td><a href="./detail.iu?num=${nl.nt_num}">${nl.nt_title}</a> </td>
+				    	<td>${nl.user_id}</td>
+				    	<td>${nl.nt_date}</td>
 				    </tr>
 				    </c:forEach>
 			  </tbody>
