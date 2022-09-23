@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>구디나라 대기공주</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/resources/css/dg/index.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Wrap Start -->
+	<div class="wrap">
+		<c:import url="./template/header.jsp"></c:import>
+
+		<section>
+			<!-- Carousel Start -->
+			<div id="carouselExampleInterval" class="carousel slide"
+				data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="0" class="active" aria-current="true"
+						aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="10000">
+						<img src="/resources/images/dg/1.jpg" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item" data-bs-interval="2000">
+						<img src="/resources/images/dg/2.jpg" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="/resources/images/dg/3.jpg" class="d-block w-100" alt="...">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+			<!-- Carousel End -->
+
+			<a href="/dgItem/add">상품등록</a>
+			<a href="/dgItem/list">상품목록</a>
+			<div class="products">
+				<h1>Product</h1>
+				<a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+
+
+		</section>
+
+		<c:import url="./template/footer.jsp"></c:import>
+
+	</div>
+	<!-- Wrap End -->
+
+</body>
+</html>
