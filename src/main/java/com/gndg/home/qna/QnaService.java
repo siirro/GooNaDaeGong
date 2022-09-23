@@ -14,6 +14,10 @@ public class QnaService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	public int addQna(QnaDTO qnaDTO)throws Exception{
+		return qnaDAO.addQna(qnaDTO);
+	}
 		
 	public List<QnaDTO> getList(Pager pager, Long code) throws Exception{
 		Long totalCount = qnaDAO.getCount(pager, code);

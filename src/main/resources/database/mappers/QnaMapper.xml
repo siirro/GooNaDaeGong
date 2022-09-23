@@ -5,6 +5,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.qna.QnaDAO">
 
+<insert id="addQna" parameterType="QnaDTO">
+INSERT INTO QNA VALUES(QNA_SEQ.NEXTVAL, #{user_id}, #{qna_cate}, #{qna_title}, #{qna_contents},SYSDATE,'대기','',#{code})
+</insert>
+
 
 <select id="getList" resultType="QnaDTO" parameterType="Map">
 SELECT * FROM

@@ -139,33 +139,34 @@
                 MEMBER
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+
+            <!-- 필요없으면 지우기 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsegg"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>템플릿 나눔</span>
+                    <span>템플릿 나눔 추후삭제</span>
                 </a>
                 <div id="collapsegg" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/resources/vendor/buttons.html">버튼모음</a>
-                        <a class="collapse-item" href="/resources/vendor/tables.html">테이블모음</a>
-                        <a class="collapse-item" href="/resources/vendor/cards.html">카드</a>
-                        <a class="collapse-item" href="/resources/vendor/register.html">회원가입</a>
-                        <a class="collapse-item" href="/resources/vendor/forgot-password.html">비번찾기</a>
-                        <a class="collapse-item" href="/resources/vendor/login.html">로긴</a>
-                        <a class="collapse-item" href="/resources/vendor/404.html">404</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/buttons.html">버튼모음</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/tables.html">테이블모음</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/cards.html">카드</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/register.html">회원가입</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/forgot-password.html">비번찾기</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/login.html">로긴</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/404.html">404</a>
 
-                        <a class="collapse-item" href="/resources/vendor/utilities-color.html">유틸-컬러</a>
-                        <a class="collapse-item" href="/resources/vendor/utilities-border.html">유틸-보더</a>
-                        <a class="collapse-item" href="/resources/vendor/utilities-animation.html">유틸-움직</a>
-                        <a class="collapse-item" href="/resources/vendor/utilities-other.html">유틸-기타</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-color.html">유틸-컬러</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-border.html">유틸-보더</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-animation.html">유틸-움직</a>
+                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-other.html">유틸-기타</a>
                         <div class="collapse-divider"></div>
                         
                     </div>
                 </div>
             </li>
-            <!-- 지우세요 -->
+            <!-- 지우세요 끝-->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

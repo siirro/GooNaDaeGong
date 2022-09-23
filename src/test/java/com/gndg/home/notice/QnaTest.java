@@ -46,7 +46,7 @@ public class QnaTest extends AbstractTest{
 //		assertNotNull(count);
 //	}
 	
-	//업데이트코멘트(답변등록)
+	//답변 수정
 //	@Test
 //	public void updateQnaComment()throws Exception{
 //		QnaDTO qnaDTO = new QnaDTO();
@@ -56,15 +56,34 @@ public class QnaTest extends AbstractTest{
 //		assertEquals(1, result);
 //	}
 	
-	@Test
-	public void getComment()throws Exception{
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setQna_num(168L);
-		
-		qnaDTO = qnaDAO.getComment(qnaDTO);
-		assertEquals("테스트돌리기", qnaDTO.getQna_comment());
-		
-	}
+	//답변 조회
+//	@Test
+//	public void getComment()throws Exception{
+//		QnaDTO qnaDTO = new QnaDTO();
+//		qnaDTO.setQna_num(168L);
+//		
+//		qnaDTO = qnaDAO.getComment(qnaDTO);
+//		assertEquals("테스트돌리기", qnaDTO.getQna_comment());
+//		
+//	}
+	
+	//qna입력 성공
+//	@Test
+//	public void addQna()throws Exception{
+//		QnaDTO qnaDTO = new QnaDTO();
+//		qnaDTO.setUser_id("1");
+//		qnaDTO.setQna_cate("기타");
+//		qnaDTO.setQna_title("제목");
+//		qnaDTO.setQna_contents("내용");
+//		qnaDTO.setCode(1L);
+//		int result = qnaDAO.addQna(qnaDTO);
+//		assertEquals(1, result);
+//	}
+	
+//	@Test
+//	public void getCount()throws Exception{
+//		
+//	}
 	
 //	@Test
 //	public void getCount()throws Exception{
@@ -75,5 +94,6 @@ public class QnaTest extends AbstractTest{
 //	public void getCount()throws Exception{
 //		
 //	}
+	
 	
 }

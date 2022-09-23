@@ -17,6 +17,15 @@ public class QnaDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.qna.QnaDAO.";
+	
+	//==============================================================
+	
+	//qna 입력
+	public int addQna(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addQna", qnaDTO);
+	}
+	
+	
 
 	// qna 전체 리스트 - 관리자메뉴, 코드, 서치, 페이지
 	public List<QnaDTO> getList(Pager pager, Long code)throws Exception{
