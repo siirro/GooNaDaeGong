@@ -14,7 +14,6 @@
 			<typeAlias type="java.util.Map" alias="Map"/>	
 
 			
-			
 			<typeAlias type="com.gndg.home.notice.NoticeDTO" alias="NoticeDTO"/>
 			<typeAlias type="com.gndg.home.qna.QnaDTO" alias="QnaDTO"/>
 				
@@ -22,6 +21,10 @@
 			
 			
 			
+
+			<typeAlias type="com.gndg.home.gnItem.GnItemDTO" alias="GnItemDTO"/>
+			<typeAlias type="com.gndg.home.gnItem.CategoryDTO" alias="CategoryDTO"/>
+
 			
   		</typeAliases>
 	</configuration>

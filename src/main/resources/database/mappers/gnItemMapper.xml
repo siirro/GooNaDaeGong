@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gndg.home.gnItem.GnItemDAO">
+
+	<select id="getCategory" resultType="CategoryDTO">
+		SELECT * FROM CATEGORY ORDER BY CATE_NUM ASC
+	</select>
+	
+	<insert id="setGnItem" parameterType="GnItemDTO">
+		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_DEAL, ITEM_CONDITION, ITEM_YN, CODE)
+		VALUES(ITEM_SEQ.NEXTVAL, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, #{item_deal}, #{item_condition}, 'Y', 1)
+	</insert>
+	
+	<select id="getGnList" resultType="GnItemDTO">
+		SELECT * FROM ITEM ORDER BY ITEM_NUM DESC
+	</select>
+	
+	<select id="getGnDetail" parameterType="GnItemDTO" resultType="GnItemDTO">
+		SELECT * FROM ITEM WHERE ITEM_NUM=#{cate_num}
+	</select>
+	
+	<insert id="">
+	
+	</insert>
+
+</mapper>
