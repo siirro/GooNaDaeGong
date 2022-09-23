@@ -1,22 +1,65 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */
 
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
 }
-.form {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
+.font-center{
+    padding-bottom: 30px;
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+}
+.find{
+    text-decoration: none;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: rgb(51, 51, 51);
+}
+
+.form img {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.naverbtn{
+  display: block;
+  padding: 13px 0;
+  margin-top: 11px;
+  background-color: #19ce60;
+  border: 1px solid #15c654;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.findspan{
+    width: 1px;
+    height: 10px;
+    margin: 3px 6px 0px;
+    background-color: rgb(51, 51, 51);
+}
+.form label{
+    display: inline-block;
+    padding: 8px 0px 11px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: rgb(51, 51, 51);
+}
+
+.form {
+  text-align: left;
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -26,22 +69,34 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
+.btn {
+  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #6667AB;
   width: 100%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
 }
+.btn2 {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #6667AB;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #6667AB;
+}
+
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: #6667AB;
 }
 .form .message {
   margin: 15px 0 0;
@@ -89,6 +144,6 @@
   color: #EF3B3A;
 }
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
   -webkit-font-smoothing: antialiased;  
 }

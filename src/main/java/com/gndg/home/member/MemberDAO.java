@@ -21,8 +21,18 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 	}
 	//아이디 찾기
-	public MemberDTO getFindID(MemberDTO memberDTO)throws Exception{
+	public String getFindID(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getFindID", memberDTO);
+	}
+	//비밀번호 찾기
+	public MemberDTO getFindPWCheck(MemberDTO memberDTO)throws Exception{
+		System.out.println("비밀번호 찾기Check DAO");
+		return sqlSession.selectOne(NAMESPACE+"getFindPWCheck", memberDTO);
+	}
+	//비밀번호 변경
+	public int setUpdatePW(MemberDTO memberDTO)throws Exception{
+		System.out.println("비밀번호 찾기 UPDATE DAO");
+		return sqlSession.update(NAMESPACE+"setUpdatePW", memberDTO);
 	}
 
 }

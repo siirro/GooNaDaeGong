@@ -24,13 +24,31 @@ VALUES(
 <select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
 SELECT *
 FROM MEMBER
-WHERE USER_ID=#{user_id} AND USER_PW=#{user_pw}
+WHERE USER_ID=#{user_id} 
+	  AND 
+	  USER_PW=#{user_pw}
 </select>
 
-<select id="getFindID" parameterType="MemberDTO" resultType="MemberDTO">
-SELECT USER_ID=#{user_id}
+<select id="getFindID" parameterType="MemberDTO" resultType="String">
+SELECT USER_ID
 FROM MEMBER
-WHERE USER_NAME=#{user_name} AND USER_PHONE =#{user_phone}
+WHERE USER_NAME=#{user_name} 
+	  AND 
+	  USER_PHONE = #{user_phone}
 </select>
+
+<select id = "getFindPWCheck" parameterType="MemberDTO" resultType="MemberDTO">
+SELECT *
+FROM MEMBER
+WHERE USER_ID=#{user_id} 
+	  AND 
+	  USER_EMAIL=#{user_email}
+</select>
+
+<update id="setUpdatePW" parameterType="MemberDTO">
+UPDATE MEMBER
+SET USER_PW =#{user_pw}
+WHERE USER_ID=#{user_id} 
+</update>
 
 </mapper>
