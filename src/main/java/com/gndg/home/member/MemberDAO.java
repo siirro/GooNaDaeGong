@@ -11,6 +11,15 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.member.MemberDAO.";
 	
+	//아이디 중복검사
+	public Long getDuplicationID(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDuplicationID", memberDTO);
+	}
+	
+	//이메일 중복검사
+	public Long getDuplicationEmail(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDuplicationEmail", memberDTO);
+	}
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		System.out.println("회원가입DAO");

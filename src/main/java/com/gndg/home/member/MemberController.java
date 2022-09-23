@@ -20,6 +20,26 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
+	//test
+	@RequestMapping(value="test")
+	public String testPage()throws Exception{
+		return "/member/test";
+	}
+	//아이디 중복검사
+	@RequestMapping(value="ajaxID",method = RequestMethod.POST)
+	@ResponseBody
+	public Long ajaxID(MemberDTO memberDTO)throws Exception{
+		Long result = memberService.getDuplicationID(memberDTO);
+		return result;
+	}
+	//이메일 중복검사
+	@RequestMapping(value="ajaxEmail", method = RequestMethod.POST)
+	@ResponseBody
+	public Long ajaxEmail(MemberDTO memberDTO)throws Exception{
+		Long result = memberService.getDuplicationEmail(memberDTO);
+		return result;
+	}
 	//회원가입
 	@RequestMapping(value="join")
 	public String setJoin()throws Exception{
@@ -47,7 +67,6 @@ public class MemberController {
 		
 		return "/member/login";
 	} 
-	//소셜로그인은 진짜 모르겟다..ㅠㅠ
 	
 	//구글 로그인
 	@RequestMapping(value="google")

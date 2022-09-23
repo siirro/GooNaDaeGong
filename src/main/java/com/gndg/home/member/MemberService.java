@@ -25,6 +25,15 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	//아이디 중복검사
+	public Long getDuplicationID(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getDuplicationID(memberDTO);
+	}
+	//email 중복검사
+	public Long getDuplicationEmail(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getDuplicationEmail(memberDTO);
+	}
+	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		System.out.println("회원가입 service");

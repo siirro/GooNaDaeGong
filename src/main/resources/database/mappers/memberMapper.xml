@@ -4,6 +4,21 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.member.MemberDAO">
+<!-- 아이디 중복검사 -->
+<select id="getDuplicationID" parameterType="MemberDTO" resultType="Long">
+SELECT COUNT(USER_ID)
+FROM MEMBER
+WHERE USER_ID=#{user_id}
+</select>
+
+<!-- EMAIL 중복검사 -->
+<select id="getDuplicationEmail" parameterType="MemberDTO" resultType="Long">
+SELECT COUNT(USER_EMAIL)
+FROM MEMBER
+WHERE USER_EMAIL = #{user_email}
+</select>
+
+<!-- 회원가입 -->
 <insert id="setJoin" parameterType="MemberDTO">
 INSERT INTO MEMBER
 VALUES(
@@ -20,7 +35,7 @@ VALUES(
 	#{user_file}
 )
 </insert>
-
+<!-- 로그인 -->
 <select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
 SELECT *
 FROM MEMBER
@@ -28,7 +43,7 @@ WHERE USER_ID=#{user_id}
 	  AND 
 	  USER_PW=#{user_pw}
 </select>
-
+<!-- 아이디 찾기 -->
 <select id="getFindID" parameterType="MemberDTO" resultType="String">
 SELECT USER_ID
 FROM MEMBER
@@ -36,7 +51,7 @@ WHERE USER_NAME=#{user_name}
 	  AND 
 	  USER_PHONE = #{user_phone}
 </select>
-
+<!-- 비밀번호 찾기/ 정보로 모든정보 일단 끌어옴 -->
 <select id = "getFindPWCheck" parameterType="MemberDTO" resultType="MemberDTO">
 SELECT *
 FROM MEMBER
@@ -44,7 +59,7 @@ WHERE USER_ID=#{user_id}
 	  AND 
 	  USER_EMAIL=#{user_email}
 </select>
-
+<!-- 비밀번호 찾기 / 임시비밀번호를 위해 비밀번호 수정해서 담아줌 --> 
 <update id="setUpdatePW" parameterType="MemberDTO">
 UPDATE MEMBER
 SET USER_PW =#{user_pw}
