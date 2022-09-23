@@ -10,7 +10,7 @@
 	  		<!--<typeAlias type="풀패키지명.클래스명" alias="별칭(클래스명)"/>-->
 	  		<typeAlias type="com.gndg.home.member.MemberDTO" alias="MemberDTO"/>
 	  		<typeAlias type="com.gndg.home.dgItem.DgItemDTO" alias="DgItemDTO"/>
-	  		<typeAlias type="com.gndg.home.dgItem.CategoryDTO" alias="CategoryDTO"/>
+
 	  		
 			<typeAlias type="java.lang.String" alias="Sting"/>	
 			<typeAlias type="java.lang.Long" alias="Long"/>	
