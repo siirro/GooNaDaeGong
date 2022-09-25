@@ -83,7 +83,7 @@
 	</section>
 	
 
-	<script src="/resources/js/add.js"></script>
+	<script src="/resources/js/gn/add.js"></script>
 	<script>
 		getCategory1();
 	</script>

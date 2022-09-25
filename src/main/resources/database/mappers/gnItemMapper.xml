@@ -6,7 +6,43 @@
 <mapper namespace="com.gndg.home.gnItem.GnItemDAO">
 
 	<select id="getCategory" resultType="CategoryDTO">
-		SELECT * FROM CATEGORY ORDER BY CATE_NUM ASC
+		SELECT * FROM 
+	    (
+	    	<!-- 1차분류 -->
+			SELECT * FROM CATEGORY
+			WHERE CATE_NUM IN(1000,2000,4000)
+	         
+			UNION
+			
+			<!-- 2차분류 -->
+			SELECT * FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_NUM IN(1000,2000,4000))
+	        
+			UNION
+			
+			<!-- 3차분류 -->
+			SELECT * FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_NUM IN(1000,2000,4000)))
+	        
+			UNION
+			
+			<!-- 4차분류 -->
+			SELECT * FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_REF IN(
+			SELECT CATE_NUM FROM CATEGORY
+			WHERE CATE_NUM IN(1000,2000,4000))))
+	    )
+	    ORDER BY CATE_NUM ASC
 	</select>
 	
 	<insert id="setGnItem" parameterType="GnItemDTO">
@@ -15,7 +51,7 @@
 	</insert>
 	
 	<select id="getGnList" resultType="GnItemDTO">
-		SELECT * FROM ITEM ORDER BY ITEM_NUM DESC
+		SELECT * FROM ITEM ORDER BY ITEM_NUM ASC
 	</select>
 	
 	<select id="getGnDetail" parameterType="GnItemDTO" resultType="GnItemDTO">
