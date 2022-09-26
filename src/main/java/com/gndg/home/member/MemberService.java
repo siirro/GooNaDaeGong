@@ -199,7 +199,9 @@ public class MemberService {
 			//Mail Server 설정
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
+
 			String hostSMTPid = ""; // 보내는사람 이메일
+
 			String hostSMTPpw = ""; // 보내는사람 비밀번호
 			
 			System.out.println("이메일 service 2");
