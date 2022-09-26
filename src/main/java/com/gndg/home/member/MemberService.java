@@ -2,18 +2,22 @@ package com.gndg.home.member;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -35,8 +39,34 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO)throws Exception{
+	public int setJoin(MemberDTO memberDTO, MultipartFile mf,ServletContext servletContext)throws Exception{
 		System.out.println("회원가입 service");
+//		1.HDD에 파일을 저장
+//		파일을 저장시에 경로는 Tomcat기준이 아니라 OS 기준을 설정
+//			1) 파일 저장위치
+//		webapp/resources/images/member
+//			2) 저장할 폴더의 실제경로 반환(OS기준)
+		if(!mf.isEmpty()) {
+			String realPath = servletContext.getRealPath("resources/images/member");
+			System.out.println(realPath);
+//			3) 저장할 폴더의 정보를 가지고 있는 자바 객체를 선언
+			File file = new File(realPath);
+//			4) 만약에 폴더가 없으면 에러가 발생하기 때문에 폴더를 생성
+			if(!file.exists()) {
+				file.mkdir();	
+			}
+//			5) 중복되지 않는 파일명 생성
+//		String oriName = mf.getOriginalFilename();
+			String fileName = UUID.randomUUID().toString();
+			fileName = fileName +"_"+mf.getOriginalFilename();
+//			6)HDD에 파일 저장
+//		file = new File(realPath,fileName);
+			file = new File(file, fileName);
+			mf.transferTo(file);
+//			7)HDD에 저장된 파일정보를 DB에 저장
+			memberDTO.setUser_file(fileName);
+			
+		}
 		return memberDAO.setJoin(memberDTO);
 	}
 	//카카오 로그인 토큰 받아오는 메소드
@@ -171,7 +201,7 @@ public class MemberService {
 			// 비밀번호 변경
 			int result = memberDAO.setUpdatePW(memberDTO);
 			// 비밀번호 변경 메일 발송
-			sendEmail(memberDTO,"findpw");
+//			sendEmail(memberDTO,"findpw");
 			
 	}
 //		response.setContentType("text/html;charset=utf-8");
@@ -204,7 +234,6 @@ public class MemberService {
 
 			String hostSMTPpw = ""; // 보내는사람 비밀번호
 			
-			System.out.println("이메일 service 2");
 			
 			//보내는 사람 Email/보내는사람 이름/제목/내용
 			String fromEmail = "keroro3086@naver.com"; // 보내는 사람 이메일
@@ -219,11 +248,9 @@ public class MemberService {
 				msg += "마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
 			}
 			
-			System.out.println("이메일 service 3");
 			//받는 사람 Email 주소
 			String mail = memberDTO.getUser_email();
 			try {
-			System.out.println("이메일 servicer 4");
 				HtmlEmail email = new HtmlEmail();
 				email.setDebug(true);
 				email.setCharset(charSet);	//encoding 타입
@@ -231,7 +258,6 @@ public class MemberService {
 				email.setHostName(hostSMTP);	//네이버를 쓰겠다는 의지 네이버smtp서버명
 				email.setSmtpPort(587); //네이버 이메일 사용할경우 번호
 				
-				System.out.println("이메일 servicer 5");
 				
 				email.setAuthentication(hostSMTPid, hostSMTPpw);
 				email.setTLS(true);
@@ -241,7 +267,6 @@ public class MemberService {
 				email.setHtmlMsg(msg);
 				email.send();
 				
-				System.out.println("이메일 servicer 6");
 			}catch(Exception e) {
 				System.out.println("메일발송 실패"+ e);
 			}
