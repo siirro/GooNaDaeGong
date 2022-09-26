@@ -40,11 +40,11 @@
 		VALUES(ITEM_SEQ.NEXTVAL, #{cate_num}, 'admin', #{item_name}, #{item_contents}, #{item_price}, sysdate, 0, #{item_stock}, 'Y', 2)
 	</insert>
 
-	<!-- 카테고리 불러오기 -->
-	<select id="getCategory" resultType="CategoryDTO">
-		SELECT *
-		FROM CATEGORY
-		ORDER BY CATE_NUM ASC
-	</select>
+   <!-- 카테고리 불러오기 -->
+   <select id="getCategory" resultType="Category">
+      SELECT *
+      FROM CATEGORY
+      ORDER BY CATE_NUM ASC
+   </select>
 
 </mapper>
