@@ -25,7 +25,7 @@ public class DgItemController {
 		System.out.println("UPDATE GET");
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		DgItemDTO dgItemDTO = dgItemService.getViewItem(item_num);
+		DgItemDTO dgItemDTO = dgItemService.getDetailItem(item_num);
 		
 		model.addAttribute("dgItemDTO", dgItemDTO);
 		
@@ -34,19 +34,23 @@ public class DgItemController {
 		String getCategory = objectMapper.writeValueAsString(list);
 		model.addAttribute("getCategory", getCategory);
 		
+		System.out.println(dgItemDTO.getCate_ref());
+		System.out.println(dgItemDTO.getCate_name());
+		
 		return "/dgItem/update";
 	}
 	
 	/* 상품 조회 */
-	@GetMapping("view")
-	public String view(@RequestParam("num")Long item_num, Model model) throws Exception {
-		System.out.println("VIEW GET");
+	@GetMapping("detail")
+	public String detail(@RequestParam("num")Long item_num, Model model) throws Exception {
+		System.out.println("DETAIL GET");
 		
-		DgItemDTO dgItemDTO = dgItemService.getViewItem(item_num);
+		DgItemDTO dgItemDTO = dgItemService.getDetailItem(item_num);
+
 		
 		model.addAttribute("dgItemDTO", dgItemDTO);
 		
-		return "dgItem/view";
+		return "dgItem/detail";
 	}
 	
 	/* 상품목록 */

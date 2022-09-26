@@ -30,7 +30,7 @@
 					<td>${list.item_num}</td>
 					<td>${list.cate_num}</td>
 					<td>
-						<a href="/dgItem/view?num=${list.item_num}">${list.item_name}</a>
+						<a href="/dgItem/detail?num=${list.item_num}">${list.item_name}</a>
 					</td>
 					<td><fmt:formatNumber value="${list.item_price}" 	pattern="###,###,###" /></td>
 					<td>${list.user_id}</td>

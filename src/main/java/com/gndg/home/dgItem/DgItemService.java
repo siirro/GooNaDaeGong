@@ -11,18 +11,11 @@ public class DgItemService {
 	@Autowired
 	private DgItemDAO dgItemDAO;
 	
-	/* 상품 수정*/
-	public  DgItemDTO setUpdateItem(Long item_num) throws Exception {
-		System.out.println("Service Update");
-		
-		return dgItemDAO.setUpdateItem(item_num);
-	}
-	
 	/* 상품조회 + 카테고리 조인 */
-	public DgItemDTO getViewItem(Long item_num) throws Exception {
-		System.out.println("Service View");
+	public DgItemDTO getDetailItem(Long item_num) throws Exception {
+		System.out.println("Service Detail");
 		
-		return dgItemDAO.getViewItem(item_num);
+		return dgItemDAO.getDetailItem(item_num);
 	}
 	
 	/* 상품목록 */

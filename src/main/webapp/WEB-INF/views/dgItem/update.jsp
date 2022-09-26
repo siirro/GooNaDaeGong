@@ -7,10 +7,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
 	integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
 	crossorigin="anonymous"></script>
-<title>상품등록 || Admin</title>
+<title>상품수정 || Admin</title>
 </head>
 <body>
-	<h2>상품등록</h2>
+	<h2>상품수정</h2>
 
 	<form role="form" action="./update" method="post">
 
@@ -60,9 +60,10 @@
 			
 		</div>
 	</form>
+	
 	<script>
 		$("#back_btn").click(function(){
-			location.href = "./view?num=" + ${dgItemDTO.item_num};
+			location.href = "./detail?num=" + ${dgItemDTO.item_num};
 		});
 		
 		var select_cate_num = '${dgItemDTO.cate_num}';
@@ -81,7 +82,8 @@
 			$(".cate1").val(select_cate_num);
 			$(".cate2").val(select_cate_num);
 			$(".cate3").val(select_cate_num);
-			$(".cate4").val(select_cate_num);
+			/* $(".cate4").val(select_cate_num); */
+			$(".cate4").append("<option value="' + select_cate_num + '" selected='selected'>전체</option>");
 		}
 	</script>
 </body>
