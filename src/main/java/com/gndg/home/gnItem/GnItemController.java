@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gndg.home.util.Category;
 
 @Controller
 @RequestMapping("/gnItem/*")
@@ -20,7 +23,7 @@ public class GnItemController {
 	//카테고리
 	@GetMapping("category")
 	@ResponseBody
-	public List<CategoryDTO> getCategory() throws Exception {
+	public List<Category> getCategory() throws Exception {
 		return gnItemService.getCategory();
 	}
 	
@@ -32,7 +35,7 @@ public class GnItemController {
 	}
 	
 	@PostMapping("add")
-	public String setGnItem(GnItemDTO gnItemDTO) throws Exception {
+	public String setGnItem(GnItemDTO gnItemDTO, MultipartFile [] files) throws Exception {
 		System.out.println("상품등록 실행");
 		int result = gnItemService.setGnItem(gnItemDTO);
 		return "redirect:list";
@@ -58,4 +61,5 @@ public class GnItemController {
 		mv.setViewName("gnItem/detail");
 		return mv;
 	}
+	
 }

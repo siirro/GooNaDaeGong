@@ -1,6 +1,6 @@
-package com.gndg.home.gnItem;
+package com.gndg.home.util;
 
-public class CategoryDTO {
+public class Category {
 	
 	private Long cate_group;
 	private String cate_name;
