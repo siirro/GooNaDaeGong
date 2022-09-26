@@ -5,22 +5,26 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.dgItem.DgItemDAO">
 
-	<!-- 상품 수정 -->
-	<select id="setUpdateItem">
-	SELECT
-		I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE
-		FROM ITEM I
-			INNER JOIN CATEGORY C 
-				ON I.ITEM_NUM = C.CATE_NUM
-		WHERE I.ITEM_NUM = #{item_num};
+	<!--  상품조회 + 카테고리 조인 -->
+<!-- 	<select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
+	<select id="getDetailItem" parameterType="DgItemDTO" resultMap="ItemCateview">
+		SELECT
+    		I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE
+        		FROM ITEM I
+        			INNER JOIN CATEGORY C 
+                		ON I.CATE_NUM = C.CATE_NUM
+                WHERE I.ITEM_NUM = #{item_num}
 	</select>
-
+	<resultMap type="DgItemDTO" id="ItemCateview">
+		<id column="" property=""/>
+		<result/>
+	</resultMap> -->
 	<!-- 상품조회 -->
-	<select id="getViewItem" parameterType="DgItemDTO" resultType="DgItemDTO">
+<!-- 	<select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
 		SELECT  *
     		FROM ITEM
     			WHERE ITEM_NUM = #{item_num}
-	</select>
+	</select> -->
 
 	<!-- 상품목록 -->
 	<select id="getListItem" resultType="DgItemDTO">

@@ -13,14 +13,9 @@ public class DgItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.dgItem.DgItemDAO.";
 	
-	/* 상품 수정 */
-	public DgItemDTO setUpdateItem(Long item_num) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "setUpdateItem", item_num);
-	}
-	
 	/* 상품조회 + 카테고리 조인*/
-	public DgItemDTO getViewItem(Long item_num) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getViewItem", item_num);
+	public DgItemDTO getDetailItem(Long item_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getDetailItem", item_num);
 	}
 	
 	/* 상품목록 */
