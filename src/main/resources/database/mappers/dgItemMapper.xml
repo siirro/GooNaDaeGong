@@ -19,12 +19,13 @@
 		<id column="" property=""/>
 		<result/>
 	</resultMap> -->
+	
 	<!-- 상품조회 -->
-<!-- 	<select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
+	<select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
 		SELECT  *
     		FROM ITEM
     			WHERE ITEM_NUM = #{item_num}
-	</select> -->
+	</select>
 
 	<!-- 상품목록 -->
 	<select id="getListItem" resultType="DgItemDTO">
