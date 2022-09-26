@@ -132,6 +132,7 @@ a {
 
 .css-zjik7 {
     display: flex;
+    margin: 5px 0px -5px;
 }
 
 .css-1a8mkrv {
@@ -336,6 +337,7 @@ img, legend {
 
 .css-1waqr6j input {
     font-size: 14px;
+    color: #6667AB;
 }
 
 .css-n2am0u {
@@ -903,4 +905,24 @@ button[disabled], input[disabled] {
     background-image: url(/resources/images/notice/paging-next-activated.svg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+/* 카테고리 */
+
+.btn-secondary {
+    color: #6667AB;
+    background-color: #FFFFFF;
+    border-color: #6667AB;
+}
+
+.form-control {
+
+    padding: 10px;
+    appearance: auto;
+}
+
+control:read-only {
+    background-color: #FFFFFF;
+    opacity: 1;
 }

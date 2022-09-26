@@ -25,7 +25,15 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// qna 입력폼
+	@GetMapping("detail")
+	public ModelAndView getDetail(NoticeDTO noticeDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		mv.addObject("detail", noticeDTO);
+		mv.setViewName("notice/detail");
+		
+		return mv;
+	}
 	
 	
 
