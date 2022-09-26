@@ -24,5 +24,9 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	// qna 입력폼
+	
+	
 
 }

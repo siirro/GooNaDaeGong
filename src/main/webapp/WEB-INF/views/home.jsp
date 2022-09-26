@@ -35,7 +35,7 @@
 		<a href="./manager">관리자센터</a>
 
 		<br>
-		<!-- 고객센터 링크 (참고:마켓컬리) -->
+		<!-- 고객센터 링크 -->
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle show" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">고객센터</a>
 			<ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="navbarDropdownBlog" data-bs-popper="none">
