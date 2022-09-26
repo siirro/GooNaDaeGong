@@ -33,6 +33,7 @@
                                 <div class="css-jmalg e1uzxhvi6">
                                     <div class="css-176lya2 e1uzxhvi3">
                                         <input data-testid="input-box" id="user_id" name="user_id" placeholder="아이디를 입력해주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                        <div id="id_check"></div>
                                     </div>
                                 </div>
                             </div>
@@ -50,6 +51,7 @@
                                 <div class="css-jmalg e1uzxhvi6">
                                     <div class="css-176lya2 e1uzxhvi3">
                                         <input data-testid="input-box" id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요" type="password" class="css-1bkd15f e1uzxhvi2" value="">
+                                        <div id="pw_check"></div>
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +65,7 @@
                                 <div class="css-jmalg e1uzxhvi6">
                                     <div class="css-176lya2 e1uzxhvi3">
                                         <input data-testid="input-box" id="user_pw2" name="user_pw2" placeholder="비밀번호를 한번 더 입력해주세요" type="password" class="css-1bkd15f e1uzxhvi2" value="">
+                                        <div id="pw2_check"></div>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +79,7 @@
                                     <div class="css-jmalg e1uzxhvi6">
                                         <div class="css-176lya2 e1uzxhvi3">
                                             <input data-testid="input-box" id="user_name" name="user_name" placeholder="이름을 입력해 주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                            <div id="name_check"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -88,6 +92,7 @@
                                         <div class="css-jmalg e1uzxhvi6">
                                             <div class="css-176lya2 e1uzxhvi3">
                                                 <input data-testid="input-box" id="user_email" name="user_email" placeholder="예: marketkurly@kurly.com" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                                <div id="email_check"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -106,6 +111,7 @@
                                         <div class="css-jmalg e1uzxhvi6">
                                             <div class="css-176lya2 e1uzxhvi3">
                                                 <input data-testid="input-box" id="user_phone" name="user_phone" placeholder="숫자만 입력해주세요." type="tel" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                                <div id="phone_check"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +206,7 @@
                                     </div>
 
                                     <div class="css-137ca2h e1utgeno0">
-                                        <button class="css-18m884r e4nu7ef3" type="submit" width="240" height="56" radius="3">
+                                        <button class="css-18m884r e4nu7ef3" type="button" id="joinbtn" width="240" height="56" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">가입하기</span>
                                         </button>
                                     </div>

@@ -24,10 +24,12 @@
                     <div>
                         <label for="user_id" align="left">이름</label>
                         <input type="text" name="user_name" id="user_name" placeholder="Name"/>
+                        <div id="name_check"></div>
                     </div>
                     <div>
                         <label for="user_phone" align="left">핸드폰번호</label>
                         <input type="text" name="user_phone" id="user_phone" placeholder="Phone Number"/>
+                        <div id="phone_check"></div>
                     </div>
                     <!-- Button trigger modal -->
                     <button type="button" data-bs-toggle="modal" data-bs-target="#findIDModal" class="btn" id="findbtn">FIND</button>

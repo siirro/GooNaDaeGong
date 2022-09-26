@@ -20,19 +20,21 @@
         <div class="login-page">
             <div class="form">
                 <div align="center" class="font-center">로그인</div>
-              <form action="login" method="post" class="login-form">
+              <form action="login" method="post" class="login-form" id="frmLogin" enctype="multipart/form-data">
                     <div>
-                        <input type="text" name="user_id" placeholder="ID"/>
+                        <input type="text" name="user_id" id="user_id" placeholder="ID"/>
+                        <div id="id_check"></div>
                     </div>
                     <div>
-                        <input type="text" name="user_pw" placeholder="PASSWORD"/>
+                        <input type="text" name="user_pw" id="user_pw" placeholder="PASSWORD"/>
+                        <div id="pw_check"></div>
                     </div>
                     <div class="find">
                       <a href="./findID" style="text-decoration: none; color: black;" > 아이디찾기 </a>
                       <span class="findspan"></span>
                       <a href="./findPW" style="text-decoration: none; color: black;">비밀번호 찾기</a>
                     </div>
-                    <button class="btn">로그인</button>
+                    <button type="button" class="btn" id="loginbtn">로그인</button>
                     <button type="button" class="btn2" onclick="location.href='/member/join'">회원가입</button>
                     <!--네이버 로그인-->
                     <div style="text-align: center">
@@ -50,6 +52,7 @@
           </div> 
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>	
+    <script src="/resources/js/member/login.js"></script>
     <script>
         function loginWithKakao(){
             $.ajax({
