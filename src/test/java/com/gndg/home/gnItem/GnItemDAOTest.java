@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gndg.home.AbstractTest;
+import com.gndg.home.util.Category;
 
 public class GnItemDAOTest extends AbstractTest {
 
@@ -16,7 +17,7 @@ public class GnItemDAOTest extends AbstractTest {
 	
 	@Test
 	public void getCategoryTest() throws Exception {
-		List<CategoryDTO> ar = gnItemDAO.getCategory();
+		List<Category> ar = gnItemDAO.getCategory();
 		assertEquals(153, ar.size());
 	}
 	

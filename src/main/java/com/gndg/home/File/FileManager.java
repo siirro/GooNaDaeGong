@@ -1,4 +1,4 @@
-package com.gndg.home.itemFile;
+package com.gndg.home.File;
 
 import java.io.File;
 import java.util.UUID;
@@ -39,10 +39,10 @@ public class FileManager {
 	
 	
 	//delete
-	public boolean deleteFile(ServletContext servletContext, String path, ItemFileDTO itemFileDTO) throws Exception {
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO itemFileDTO) throws Exception {
 		String realPath = servletContext.getRealPath(path);
 		System.out.println("RealPath : "+realPath);
-		File file = new File(realPath, itemFileDTO.getIf_fileName());
+		File file = new File(realPath, itemFileDTO.getFileName());
 		
 		return file.delete();
 	}

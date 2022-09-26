@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.gndg.home.util.Category;
+
 @Repository
 public class GnItemDAO {
 
@@ -13,7 +15,7 @@ public class GnItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.gnItem.GnItemDAO.";
 	
-	public List<CategoryDTO> getCategory() throws Exception {
+	public List<Category> getCategory() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}
 	

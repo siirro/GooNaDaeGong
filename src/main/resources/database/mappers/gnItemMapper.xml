@@ -5,7 +5,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.gnItem.GnItemDAO">
 
-	<select id="getCategory" resultType="CategoryDTO">
+	<select id="getCategory" resultType="Category">
 		SELECT * FROM 
 	    (
 	    	<!-- 1차분류 -->
@@ -58,7 +58,7 @@
 		SELECT * FROM ITEM WHERE ITEM_NUM=#{cate_num}
 	</select>
 	
-	<insert id="">
+	<insert id="setAddFile" parameterType="">
 	
 	</insert>
 

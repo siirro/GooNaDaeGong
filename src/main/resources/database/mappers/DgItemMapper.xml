@@ -36,7 +36,7 @@
 	</insert>
 
 	<!-- 카테고리 불러오기 -->
-	<select id="getCategory" resultType="CategoryDTO">
+	<select id="getCategory" resultType="Category">
 		SELECT *
 		FROM CATEGORY
 		ORDER BY CATE_NUM ASC

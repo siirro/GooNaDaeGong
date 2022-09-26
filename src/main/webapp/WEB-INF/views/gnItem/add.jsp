@@ -11,7 +11,7 @@
 	<section class="container-fluid col-lg-3 mt-5">
 		<h1 class="mb-5 fw-normal text-center">상품등록</h1>
 		
-		<form action="add" method="post">
+		<form action="add" method="post" enctype="multipart/form-data">
 			<div name=cate_num>
 				<label>1차 분류</label>
 				<select id="category1">
@@ -41,10 +41,10 @@
 				<input type="text" name="user_id">
 			</div>
 			
-			<div>
-				<label>상품 이미지</label>
+			<label>상품 이미지</label>
+			<div id="addFiles">	
+				<button type="button" id="fileAdd" class="btn btn-outline-dark btn-sm">파일추가</button>
 			</div>
-			
 			
 			<div>
 				<label>상품제목</label>
