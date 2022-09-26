@@ -200,7 +200,7 @@ public class MemberService {
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
 			String hostSMTPid = "keroro3086@naver.com"; // 보내는사람 이메일
-			String hostSMTPpw = "!!wjdtn1130"; // 보내는사람 비밀번호
+			String hostSMTPpw = ""; // 보내는사람 비밀번호
 			
 			System.out.println("이메일 service 2");
 			
