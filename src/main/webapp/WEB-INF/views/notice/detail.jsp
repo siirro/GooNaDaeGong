@@ -7,11 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
-rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/notice/list.css">
-
-
 </head>
 <body>
 <div class="wrap">
@@ -50,24 +46,35 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
             </div>
             
             <!-- 공지사항 본문의 찐본문 -->
-            <div id="title" style="display: flex; flex-direction: row; border-bottom: 1px solid rgb(244, 244, 244);">
-                <div id="titleHead" style="width: 120px; padding: 13px 20px 13px 20px; background-color: #D6D6EA;
-                text-align: center; font-weight: 500;">제목</div>
-                <div id="titleBody" style="padding-left: 25px; align-self: center;">${detail.nt_title}</div>
-            </div>
             <div>
-                <div id="dateHead" style="display: flex; flex-direction: row; border-bottom: 1px solid rgb(244, 244, 244);">
+                <div id="title" style="display: flex; flex-direction: row; border-bottom: 1px solid rgb(244, 244, 244);
+                border-top: 1px solid #D6D6EA;">
                     <div id="titleHead" style="width: 120px; padding: 13px 20px 13px 20px; background-color: #D6D6EA;
-                    text-align: center; font-weight: 500;">등록일</div>
-                <div id="dateValue" style="padding-left: 25px; align-self: center;">${detail.nt_date}</div>
-            </div>
-            <div id="contetns">
-                <div id="contentsValue" style="height: 500px; margin: 30px 10px 50px 10px; border-bottom: 1px solid rgb(128, 128, 128);">${detail.nt_contents}</div>
-            </div>
+                    text-align: center; font-weight: 500;">제목
+                    </div>
+                    <div id="titleBody" style="padding-left: 25px; align-self: center;">${detail.nt_title}
+                    </div>
+                </div>
+                
+                <div id="dateHead" style="display: flex; flex-direction: row; border-bottom: 1px solid #D6D6EA;">
+                    <div id="titleHead" style="width: 120px; padding: 13px 20px 13px 20px; background-color: #D6D6EA;
+                    text-align: center; font-weight: 500;">등록일
+                    </div>
+                    <div id="dateValue" style="padding-left: 25px; align-self: center;">${detail.nt_date}
+                    </div>
+                </div>
 
+                <div id="contetns">
+                    <div id="contentsValue" style="height: 500px; margin: 30px 10px 50px 10px; border-bottom: 1px solid #D6D6EA;">${detail.nt_contents}</div>
+                </div>
+            </div>
 
             
             <!-- 목록으로 -->
+            <div class="css-1spu0j4 ebvrvv11">
+                <a href="./update?num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">수정</button></a>
+                <a href="./delete?num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
+            </div>
 
         </div>
         <!-- 공지사항 본문 끝 -->
@@ -89,8 +96,6 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<script src="/resources/js/notice/list.js"></script>
+
 </body>
 </html>

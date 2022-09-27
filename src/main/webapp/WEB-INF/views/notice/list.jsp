@@ -60,7 +60,17 @@
                     <c:forEach items="${list}" var="nl">
 				     <tr class="css-x2m5rx e15yrn082">
 				    	<td class=" css-1k4d546 e15yrn081">${nl.nt_num}</td>
-				    	<td class=" css-s1v1rc e15yrn081"><a href="./detail?nt_num=${nl.nt_num}">${nl.nt_title}</a> </td>
+				    	<td class=" css-s1v1rc e15yrn081"><a style="color: black;" href="./detail?nt_num=${nl.nt_num}">
+                            <c:if test="${nl.code == 1}">
+                            [구디나라]
+                            </c:if>
+
+                            <c:if test="${nl.code == 2}">
+                            [대기공주]
+                            </c:if>
+
+                            ${nl.nt_title}</a> 
+                        </td>
 				    	
 				    	<td class=" css-vzhbq5 e15yrn081">${nl.nt_date}</td>
 				    </tr>
@@ -70,26 +80,22 @@
                     <tr class="css-x2m5rx e15yrn082">
                         <td class=" css-1k4d546 e15yrn081">공지</td>
                         <td class=" css-s1v1rc e15yrn081">[마켓컬리] 선물하기 서비스 재오픈 공지 (2022. 8. 25 ~ )</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
+                        
                         <td class=" css-vzhbq5 e15yrn081">2022-08-24</td>
                     </tr>
                     <tr class="css-x2m5rx e15yrn082">
                         <td class=" css-1k4d546 e15yrn081">공지</td>
                         <td class=" css-s1v1rc e15yrn081">[마켓컬리] 컬리 소비자 분쟁해결 기준 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
+                        
                         <td class=" css-vzhbq5 e15yrn081">2022-07-27</td>
                     </tr>  
                     <tr class="css-x2m5rx e15yrn082">
                         <td class=" css-1k4d546 e15yrn081">1661</td>
                         <td class=" css-s1v1rc e15yrn081">[마켓컬리] 2022년 9월 럭셔리 뷰티 위크 원데이 브랜드데이 특별 적립금 지급 연기 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
+                        
                         <td class=" css-vzhbq5 e15yrn081">2022-09-23</td>
                     </tr>
-                    <tr class="css-x2m5rx e15yrn082">
-                        <td class=" css-1k4d546 e15yrn081">1660</td>
-                        <td class=" css-s1v1rc e15yrn081">[안내] 태풍영향권의 일부 낮배송 지역 대상 주문 불가 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td><td class=" css-vzhbq5 e15yrn081">2022-09-16</td>
-                    </tr>
+                    
 
 
                 </tbody>
@@ -111,6 +117,7 @@
             min-height: 44px;
             margin-top: 20px;
             text-align: center;">
+                <a href="./add">
                 <button class="css-1g9mj7 e4nu7ef3" type="button" width="120" height="42" radius="0" style="position: absolute;
                 bottom: 0px;
                 right: 0px; 
@@ -126,6 +133,7 @@
                 border: 0px none;">
                     <span class="css-ymwvow e4nu7ef1">공지 등록</span>
                 </button>
+                </a>
             </div>
 
 
@@ -149,6 +157,6 @@
 
 </div>
 
-<script src="/resources/js/notice/list.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.gndg.home.notice;
 
 import java.sql.Date;
+import java.util.List;
 
 public class NoticeDTO {
 	private Long nt_num;
@@ -10,6 +11,17 @@ public class NoticeDTO {
 	private Date nt_date;
 	private String nt_yn;
 	private Long code;
+	private List<NoticeFileDTO> noticeFileDTOs;
+	
+	
+	
+	
+	public List<NoticeFileDTO> getNoticeFileDTOs() {
+		return noticeFileDTOs;
+	}
+	public void setNoticeFileDTOs(List<NoticeFileDTO> noticeFileDTOs) {
+		this.noticeFileDTOs = noticeFileDTOs;
+	}
 	public Long getNt_num() {
 		return nt_num;
 	}

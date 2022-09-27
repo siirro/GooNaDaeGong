@@ -12,6 +12,14 @@ public class NoticeDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.notice.NoticeDAO.";
+	
+	public int addNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addNoticeFile", noticeFileDTO);
+	}
+	
+	public int addNotice(NoticeDTO noticeDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addNotice", noticeDTO);
+	}
 
 	public List<NoticeDTO> getList()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList");

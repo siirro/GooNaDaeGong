@@ -8,31 +8,109 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="/resources/css/notice/list.css">
-
-
 </head>
 <body>
+<div class="wrap">
     <!-- 헤더 임포트 -->
     <c:import url="../template/header.jsp"></c:import>
 
 
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          왜안대
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+<!-- 본문 전체박스 -->
+<div class="css-2b29tl eug5r8l5">
+
+    <!-- 레이아웃 박스 -->
+    <div class="css-luwwab eug5r8l4">
+
+        <!-- sidebar -->
+        <div class="css-833hqy ecbxmj4" id="sidebar">
+
+            <div class="css-1v4whg ecbxmj3">
+                고객센터
+            </div>
+            <ul class="css-1x9bshx ecbxmj2">
+                <li class="css-0 ecbxmj1"><a href="../notice/list" class="active css-nk8664 ecbxmj0">공지사항<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../faq/list" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../qna/inquiry" class=" css-nk8664 ecbxmj0">1:1 문의<span class="css-e41glx e1x0rfoo0"></span></a></li>
+            </ul>
+            
+        </div>
+        <!-- sidebar 끝 -->
+        
+        <!-- FAQ 본문 -->
+        <div class="css-171zbec eug5r8l3">
+
+            <!-- FAQ 본문의 제목 -->
+            <div class="css-1yc2nwy eug5r8l2">
+                <h3 class="css-1ew6v8c eug5r8l1">자주하는 질문</h3>
+                
+            </div>
+            
+            <!-- FAQ 카테고리 박스 -->
+            <div>
+
+
+            </div>
+
+            <!-- FAQ 본문 -->
+            <div>
+
+            </div>
+
+
+            <div class="css-1kbzkwh efhuu1x1">
+                <div class="css-sxxs1g eytury60">
+                    <button disabled="" type="button" class="css-rzcdhr e1hbwyso0">
+                        <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                    </button>
+                    <button type="button" class="css-1jwilit e1pk9060">
+                        <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 등록하기 -->
+            <div class="css-15jhycr e3tf63e0" style="position: relative;
+            min-height: 44px;
+            margin-top: 20px;
+            text-align: center;">
+                <button class="css-1g9mj7 e4nu7ef3" type="button" width="120" height="42" radius="0" style="position: absolute;
+                bottom: 0px;
+                right: 0px; 
+                display: block;
+                padding: 0px 10px;
+                text-align: center;
+                overflow: hidden;
+                width: 120px;
+                height: 42px;
+                border-radius: 0px;
+                color: rgb(255, 255, 255);
+                background-color: #6667AB;
+                border: 0px none;">
+                    <span class="css-ymwvow e4nu7ef1">등록</span>
+                </button>
+            </div>
+
+
+        </div>
+        <!-- 공지사항 본문 끝 -->
+
+
+
     </div>
+    <!-- 레이아웃 박스 끝 -->
     
+    
+</div>
+<!-- 본문 전체 끝 -->
 
-    <!-- 푸터 -->
-    <c:import url="../template/footer.jsp"></c:import>
-</body>
 
+
+
+<!-- 푸터 -->
+<c:import url="../template/footer.jsp"></c:import>
+
+</div>
 
 <script src="/resources/js/notice/list.js"></script>
-
+</body>
 </html>

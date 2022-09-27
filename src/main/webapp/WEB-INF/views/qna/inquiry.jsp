@@ -49,7 +49,7 @@
 
             <!-- 찐본문의 본문 -->
             <div class="css-185m8ch e1153ede0">
-                <form>
+                <form action="inquiry" method="post" enctype="multipart/form-data">
 
                     <!-- 작성자 = ${session.user_id} -->
                     <input type="hidden" name="user_id" value="1">
@@ -67,9 +67,9 @@
                             <div class="css-zjik7 epfrwk70">
 
                                 <div class="search-category" id="search-category">
-                                    <select id="qna_code" name="qna_code" class="custom-select custom-select-sm form-control" style="padding: 10px;
+                                    <select id="qna_code" name="code" class="custom-select custom-select-sm form-control" style="padding: 10px;
                                     appearance: auto; font-size: 14px; color: #6667AB; height: 44px;">
-                                        <option selected disabled>구디나라/대기공주 </option>
+                                        <option selected disabled value="">선택 </option>
                                         <option class="codes" value="1">구디나라</option>
                                         <option class="codes" value="2">대기공주</option>
                                         
@@ -91,9 +91,9 @@
                             <div class="css-zjik7 epfrwk70">
 
                                 <div class="search-category" id="search-category">
-                                    <select name="qna_cate" class="custom-select custom-select-sm form-control" style="padding: 10px;
+                                    <select id="qna_cate" name="qna_cate" class="custom-select custom-select-sm form-control" style="padding: 10px;
                                     appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;">
-                                        <option selected disabled>카테고리를 선택해주세요 </option>
+                                        <option selected disabled value="">카테고리를 선택해주세요 </option>
                                         <option class="cates" value="주문/결제">주문/결제</option>
                                         <option class="cates" value="상품">상품</option>
                                         <option class="cates" value="배송">배송</option>
@@ -165,12 +165,28 @@
                         
                         <div class="css-12l4j2c e1vbjq4w1">
                             <div class="css-mlazth edd8l6o3">
-                                <div class="css-g8ewo8 e9bfpi41">
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" id="inputGroupFile02">
+                                <div class="css-g8ewo8 e9bfpi41" id="fileBox">
+
+                                    <!-- 개빡친다 지워 -->
+                                    <!-- <div class="input-group mb-3" id="file0">
+                                        <input type="file" class="form-control" name="multipartFiles" id="multipartFiles">
+                                        <button class="btn btn-danger del" type="button" title="0">삭제</button>
                                         
                                     </div>
 
+                                    <div id="fileAdd2">
+                                        이 안에 추가 파일추가 창이 뜬다
+                                    </div> -->
+                                    <!-- 개빡친다 지워 -->
+
+                                    
+                                    <!-- 옛날에쓴파일추가 -->
+                                    <div id="addFiles">
+                                        <button class="btn btn-danger mb-3" type="button" id="addFilesb" style="border-color: #6667AB; background-color: #6667AB;">파일 추가</button>
+                                    </div>
+                                    
+
+                                   
                                     <div class="css-sqqcql edd8l6o2">
                                         <div class="css-7n55a5 edd8l6o1">
                                             <span class="css-1xbds45 edd8l6o0"></span>50MB 이하의 이미지만 업로드 가능합니다.
@@ -186,7 +202,7 @@
                     </div>
 
                     
-                    <!-- 답변수신 체크 -->
+                    <!-- 답변수신  -->
                     <div class="css-v3zc4x effwtd5">
                         <div class="css-17bp14q e1vbjq4w3">
 
@@ -225,7 +241,7 @@
 
                     <!-- 등록 버튼 -->
                     <div class="css-1spu0j4 ebvrvv11">
-                    <button type="submit" disabled="" class="css-13kn1it ebvrvv10" id="qnaSubmit">등록</button>
+                    <button type="submit" disabled class="css-13kn1it ebvrvv10" id="qnaSubmit">등록</button>
                     </div>
 
                     
@@ -258,50 +274,6 @@
 
 
 
-<script src="/resources/js/notice/list.js"></script>
-<script>
-
-const qna_code = document.getElementById("qna_code");
-const qna_cate = document.getElementById("qna_cate");
-const qna_title = document.getElementById("qna_title");
-const qna_contents = document.getElementById("qna_contents");
-const qnaSubmit = document.getElementById("qnaSubmit");
-
-let check=false;
-
-if(qna_code.value!=null){
-    check=true;
-    console.log("코드적용.트루");
-} else {
-    check=false;
-}
-
-if(qna_cate.value!=null){
-    check=true;
-    console.log("카테적용.트루");
-} else {
-    check=false;
-}
-
-if(qna_title.value.length>1){
-    check=true;
-    console.log("제목썼음.트루");
-} else {
-    check=false;
-}
-
-if(qna_contents.value.length>1){
-    check=true;
-    console.log("내용썻음.트루");
-} else {
-    check=false;
-}
-
-if(check) {
-    console.log("넷다트루.버튼을 보라색으로");
-    qnaSubmit.setAttribute("disabled","false");
-}
-
-</script>
+<script src="/resources/js/notice/inquiry.js"></script>
 </body>
 </html>

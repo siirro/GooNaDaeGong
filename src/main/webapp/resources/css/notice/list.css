@@ -105,15 +105,9 @@ a {
 
 .css-185m8ch {
     width: 820px;
-    padding: 4px 20px;
+    padding: 10px 20px 30px;
     border-top: 2px solid rgb(51, 51, 51);
-}
-
-.css-17bp14q {
-    display: flex;
-    padding: 12px 0px;
-    -webkit-box-align: start;
-    align-items: start;
+    border-bottom: 2px solid rgb(51, 51, 51);
 }
 
 .css-mm5tap {
@@ -309,13 +303,6 @@ img, legend {
     border-radius: 0px;
 }
 
-.css-17bp14q {
-    display: flex;
-    padding: 12px 0px;
-    -webkit-box-align: start;
-    align-items: start;
-}
-
 .css-mm5tap {
     width: 140px;
     font-size: 14px;
@@ -358,12 +345,6 @@ img, legend {
     padding-bottom: 0px;
 }
 
-.css-17bp14q {
-    display: flex;
-    padding: 12px 0px;
-    -webkit-box-align: start;
-    align-items: start;
-}
 
 .css-rm6te4 > div > div:first-of-type {
     padding-top: 5px;
@@ -457,12 +438,6 @@ b, optgroup, strong {
     color: rgb(153, 153, 153);
 }
 
-.css-17bp14q {
-    display: flex;
-    padding: 12px 0px;
-    -webkit-box-align: start;
-    align-items: start;
-}
 
 .css-mm5tap {
     width: 140px;
@@ -565,7 +540,9 @@ button, input, optgroup, select, textarea {
 }
 
 .css-17bp14q {
+    justify-content: center;
     display: flex;
+    padding: 24px 0px 0px;
     padding: 12px 0px;
     -webkit-box-align: start;
     align-items: start;
@@ -704,10 +681,11 @@ canvas, img, video {
 .css-1spu0j4 {
     display: flex;
     -webkit-box-pack: center;
-    justify-content: center;
+    justify-content: space-around;
     -webkit-box-align: center;
     align-items: center;
     padding-top: 40px;
+    margin: 0px 230px;
 }
 
 button[disabled], input[disabled] {

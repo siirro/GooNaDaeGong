@@ -31,6 +31,9 @@ public class ManagerController {
 		return "managerboot/add";
 	}
 	
+	
+	
+	
 //	==============================QNA 조회=========================
 	@RequestMapping(value = "qna/list", method=RequestMethod.GET)
 	public ModelAndView managerQnaList(Pager pager, Long code)throws Exception{
@@ -78,6 +81,7 @@ public class ManagerController {
 		String jsonResult = "{\"comment\":\""+comment+"\"}";
 		return jsonResult;
 	}
+//	==============================QNA 조회 끝=========================
 	
 
 }

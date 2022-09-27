@@ -73,14 +73,18 @@
                                     <table class="table table-bordered" width="100%">
                                       <tbody class="">
                                             <tr>
-                                                <td class="w-25" style="border-right: 1px;">제목</td>
-                                                <td colspan="3">${qnaDTO.qna_title}</td>
+                                                
+                                                <td>제목</td>
+                                                <td colspan="5">${qnaDTO.qna_title}</td>
+                                                
                                             </tr>
                                             <tr>
-                                                <td class="w-25">작성자</td>
-                                                <td>${qnaDTO.user_id}</td>
-                                                <td class="w-25">작성일</td>
-                                                <td>${qnaDTO.qna_date}</td>
+                                                <td style="width: 100px;">번호</td>
+                                                <td>${qnaDTO.qna_num}</td>
+                                                <td>작성자</td>
+                                                <td class="w-25">${qnaDTO.user_id}</td>
+                                                <td>작성일</td>
+                                                <td class="w-25">${qnaDTO.qna_date}</td>
                                             </tr>
                                             
                                       </tbody>
@@ -121,11 +125,25 @@
                             <div>
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
                                     <table class="table table-bordered" width="100%">
-                                      <tbody>
-                                           <tr style="height: 10px;">
-                                                <td colspan="3">첨부파일</td>
-                                                <td colspan="1"><a href="#">파일.png</a></td>
-                                            </tr>
+                                        <tbody>
+
+                                            <c:choose>
+                                                <c:when test="${not empty qnaDTO.qnaFileDTOs}">
+                                                    <c:forEach items="${qnaDTO.qnaFileDTOs}" var="qnaFileDTOs">
+                                                        <tr style="height: 10px;">
+                                                            <td style="width: 100px;">첨부파일</td>
+                                                            <td><a href="../../resources/upload/qna/${qnaFileDTOs.fileName}">${qnaFileDTOs.oriName}</a></td> 
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                    <tr style="height: 10px;">
+                                                        <td style="width: 100px;">첨부파일</td>
+                                                        <td>없음</td> 
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>
                                       </tbody>
                                     </table>
                                 </section>
@@ -136,7 +154,7 @@
 
                             <!-- 답변내용 -->
                             <div id="commentList">
-                            <c:if test="${not empty qnaDTO.qna_comment}">
+                            <c:if test="${qnaDTO.qna_comment.size > 0}">
                                     <!-- 
                                     <section class="col-lg-12 text-center" style="padding: 0px;">
                                         <table class="table border border-danger" width="100%">
@@ -156,7 +174,8 @@
                             </c:if>
                             </div>
                             
-                            <c:if test="${empty qnaDTO.qna_comment}">
+                            <c:if test="${qnaDTO.qna_comment.size < 1}">
+
                                 <div id="commentNull">
                                     <h3 class="text-center">답변 미등록</h3>
                                 </div>
@@ -165,7 +184,7 @@
 
                             <!-- 답변하기 버튼 (누르면 입력폼이 나온다) -->
                             <c:choose>
-                                <c:when test="${empty qnaDTO.qna_comment}">
+                                <c:when test="${qnaDTO.qna_comment.size < 1}">
                                     <div style="display: flex; justify-content: right;" class="">
                                         <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                             <i class="fas fa-download fa-sm text-white-50"></i> 
@@ -194,6 +213,9 @@
                                     </div>            
                                 </c:otherwise>
                             </c:choose>
+
+
+
 
                         </div>
                         

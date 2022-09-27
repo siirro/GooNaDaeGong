@@ -20,6 +20,12 @@ public class QnaDAO {
 	
 	//==============================================================
 	
+	
+	public int addQnaFile(QnaFileDTO qnaFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"addQnaFile", qnaFileDTO);
+	}
+	
 	//qna 입력
 	public int addQna(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addQna", qnaDTO);
