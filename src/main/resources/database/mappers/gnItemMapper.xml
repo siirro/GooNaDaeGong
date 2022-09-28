@@ -58,8 +58,5 @@
 		SELECT * FROM ITEM WHERE ITEM_NUM=#{cate_num}
 	</select>
 	
-	<insert id="setAddFile" parameterType="">
-	
-	</insert>
 
 </mapper>

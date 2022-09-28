@@ -8,6 +8,8 @@ const pw2_check = document.getElementById("pw2_check");
 const name_check = document.getElementById("name_check");
 const email_check = document.getElementById("email_check");
 const phone_check =document.getElementById("phone_check");
+const joinbtn = document.getElementById("joinbtn");
+const frmjoin = document.getElementById("frmjoin");
 
 
 ajaxID.addEventListener("click",function(){
@@ -65,5 +67,9 @@ ajaxEmail.addEventListener("click",function(){
         }
     }
 
-})
+});
+
+// joinbtn.addEventListener("click",function(){
+//     frmjoin.submit();
+// });
 
