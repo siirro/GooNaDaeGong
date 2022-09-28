@@ -31,8 +31,17 @@ VALUES(
 	#{user_addr},
 	#{user_addr2},
 	1,
-	'Y',
-	#{user_file}
+	'Y'
+)
+</insert>
+<insert id="setAddMemberFile" parameterType="MemberFileDTO">
+INSERT INTO MEMBERFILE
+VALUES(
+	MEMBERFILE_SEQ.NEXTVAL,
+	#{user_id},
+	#{fileName},
+	#{oriName}
+	
 )
 </insert>
 <!-- 로그인 -->
