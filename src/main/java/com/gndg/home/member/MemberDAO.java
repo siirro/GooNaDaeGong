@@ -25,6 +25,10 @@ public class MemberDAO {
 		System.out.println("회원가입DAO");
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
 	}
+	//회원가입 프로필사진
+	public int setAddMemberFile(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddMemberFile", memberFileDTO);
+	}
 	//로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);

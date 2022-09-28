@@ -23,7 +23,6 @@ public class MemberDAOTest extends AbstractTest {
 		memberDTO.setUser_post("12345");
 		memberDTO.setUser_addr("가산동");
 		memberDTO.setUser_addr2("201호");
-		memberDTO.setUser_file("sample.jsp");
 		
 		int result = memberDAO.setJoin(memberDTO); 
 		assertNotEquals(result, result);

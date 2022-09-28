@@ -12,7 +12,8 @@ public class MemberDTO {
 	private String user_addr2;
 	private String user_grade;
 	private String user_yn;
-	private String user_file;	//프로필사진
+	
+	private MemberFileDTO memberFileDTO;
 	
 	public String getUser_id() {
 		return user_id;
@@ -74,11 +75,11 @@ public class MemberDTO {
 	public void setUser_yn(String user_yn) {
 		this.user_yn = user_yn;
 	}
-	public String getUser_file() {
-		return user_file;
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
 	}
-	public void setUser_file(String user_file) {
-		this.user_file = user_file;
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
 	}
 
 }

@@ -2,7 +2,6 @@ package com.gndg.home.member;
 
 import java.util.HashMap;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,26 +21,35 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	//마이페이지
+	@RequestMapping(value="mypage")
+	public String mypage()throws Exception{
+		return "member/mypage";
+	}
+	
 	
 //	//test
-//	@RequestMapping(value="test")
-//	public String testPage()throws Exception{
-//		return "/member/test";
-//	}
-//	//아이디 중복검사
-//	@RequestMapping(value="ajaxID",method = RequestMethod.POST)
-//	@ResponseBody
-//	public Long ajaxID(MemberDTO memberDTO)throws Exception{
-//		Long result = memberService.getDuplicationID(memberDTO);
-//		return result;
-//	}
-//	//이메일 중복검사
-//	@RequestMapping(value="ajaxEmail", method = RequestMethod.POST)
-//	@ResponseBody
-//	public Long ajaxEmail(MemberDTO memberDTO)throws Exception{
-//		Long result = memberService.getDuplicationEmail(memberDTO);
-//		return result;
-//	}
+	@RequestMapping(value="test")
+	public String testPage()throws Exception{
+		return "/member/test";
+	}
+	//아이디 중복검사
+	@RequestMapping(value="ajaxID",method = RequestMethod.POST)
+	@ResponseBody
+	public Long ajaxID(MemberDTO memberDTO)throws Exception{
+		Long result = memberService.getDuplicationID(memberDTO);
+		return result;
+	}
+	//이메일 중복검사
+	@RequestMapping(value="ajaxEmail", method = RequestMethod.POST)
+	@ResponseBody
+	public Long ajaxEmail(MemberDTO memberDTO)throws Exception{
+		Long result = memberService.getDuplicationEmail(memberDTO);
+		return result;
+	}
+	//test
+	
+	
 	//회원가입
 	@RequestMapping(value="join")
 	public String setJoin()throws Exception{
@@ -49,8 +57,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join", method = RequestMethod.POST)
-	public String setJoin(MemberDTO memberDTO, MultipartFile mf,ServletContext servletContext)throws Exception{
-		memberService.setJoin(memberDTO,mf,servletContext);
+	public String setJoin(MemberDTO memberDTO, MultipartFile userfile, HttpSession session)throws Exception{
+		memberService.setJoin(memberDTO,userfile,session.getServletContext());
 		
 		System.out.println("회원가입 controller");
 		
