@@ -144,11 +144,12 @@
 
                                         <span class="content-length-counter css-zgkz6w e1tjt2bn0">
                                         
-                                            <span>
-                                                <span class="css-14kcwq8 e1tjt2bn2">0자 </span>
-                                                <span class="css-14kcwq8 e1tjt2bn3">/ 5000자</span>
+                                            <span id="lengthCheck" class="css-14kcwq8 e1tjt2bn2">
+                                                <!-- <span class="css-14kcwq8 e1tjt2bn2">0자 </span>
+                                                <span class="css-14kcwq8 e1tjt2bn3">/ 5000자</span> -->
                                             </span>
                                         </span>
+                                        
                                     </div>
                                 </div>
                             </div>

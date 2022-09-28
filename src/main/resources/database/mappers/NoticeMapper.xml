@@ -5,6 +5,16 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.notice.NoticeDAO">
 
+<delete id="deleteNotice" parameterType="NoticeDTO">
+DELETE FROM NOTICE WHERE NT_NUM = #{nt_num}
+</delete>
+
+<update id="updateNotice" parameterType="NoticeDTO">
+UPDATE NOTICE 
+SET NT_TITLE=#{nt_title}, NT_CONTENTS=#{nt_contents}, CODE=#{code}, NT_YN=#{nt_yn} 
+WHERE NT_NUM=#{nt_num}
+</update>
+
 <insert id="addNotice" parameterType="NoticeDTO">
 <selectKey order="BEFORE" keyProperty="nt_num" resultType="Long">
 SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
@@ -12,17 +22,66 @@ SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
 INSERT INTO NOTICE VALUES (#{nt_num},#{user_id},#{nt_title},#{nt_contents},SYSDATE,#{nt_yn},#{code})
 </insert>
 
+
+
 <insert id="addNoticeFile" parameterType="NoticeFileDTO">
 INSERT INTO NOTICEFILE
 VALUES(NOTICEFILE_SEQ.NEXTVAL, #{nt_num}, #{fileName}, #{oriName})
 </insert>
 
-<select id="getList" resultType="NoticeDTO">
-	SELECT * FROM NOTICE WHERE NT_YN='Y' ORDER BY NT_NUM DESC
+<select id="getList" resultType="NoticeDTO" parameterType="Map">
+	SELECT * FROM
+	(SELECT ROWNUM R, N.* 
+	FROM
+	(SELECT * FROM NOTICE 
+	WHERE 
+		<choose>
+			<when test="kind == 'nt_title'">NT_TITLE</when>
+			<when test="kind == 'nt_contents'">NT_CONTENTS</when>
+			<otherwise>USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+		
+		AND NT_YN='Y' 
+	ORDER BY NT_NUM DESC) N)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<select id="getCount" parameterType="Map" resultType="Long">
+	SELECT COUNT(NT_NUM) FROM NOTICE
+	WHERE 
+	<choose>
+		<when test="kind == 'nt_title'">NT_TITLE</when>
+		<when test="kind == 'nt_contents'">NT_CONTENTS</when>
+		<otherwise>USER_ID</otherwise>
+	</choose>
+	LIKE '%'||#{search}||'%' 
+		
+		AND NT_YN='Y'
 </select>
 	
-<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-SELECT * FROM NOTICE WHERE NT_NUM=#{nt_num}
+<select id="getDetail" parameterType="NoticeDTO" resultMap="getDetailResult">
+SELECT * 
+FROM NOTICE N
+LEFT JOIN NOTICEFILE NF
+ON N.NT_NUM = NF.NT_NUM
+WHERE N.NT_NUM=#{nt_num}
 </select>
+
+<resultMap type="NoticeDTO" id="getDetailResult">
+	<id column="NT_NUM" property="nt_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="NT_TITLE" property="nt_title"/>
+	<result column="NT_CONTENTS" property="nt_contents"/>
+	<result column="NT_DATE" property="nt_date"/>
+	<result column="NT_YN" property="nt_yn"/>
+	<result column="CODE" property="code"/>
+	
+	<collection property="noticeFileDTOs" javaType="List" ofType="NoticeFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORINAME" property="oriName"/>
+	</collection>
+</resultMap>
 
 </mapper>

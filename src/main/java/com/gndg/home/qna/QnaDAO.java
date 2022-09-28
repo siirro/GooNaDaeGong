@@ -73,5 +73,9 @@ public class QnaDAO {
 	public QnaDTO getComment(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getComment", qnaDTO);
 	}
+	
+	public int statusChange(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"statusChange", qnaDTO);
+	}
 
 }

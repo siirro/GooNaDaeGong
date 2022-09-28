@@ -65,4 +65,8 @@ public class QnaService {
 	public QnaDTO getComment(QnaDTO qnaDTO)throws Exception{
 		return qnaDAO.getComment(qnaDTO);
 	}
+	
+	public int statusChange(QnaDTO qnaDTO)throws Exception{
+		return qnaDAO.statusChange(qnaDTO);
+	}
 }

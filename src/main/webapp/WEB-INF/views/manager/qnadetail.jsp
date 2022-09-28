@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +26,12 @@
 
     <!-- Custom styles for this template-->
     <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
-    <link href="/resources/css/managerboot/sb-admin-2.css" rel="stylesheet">
+    <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
     <style>
         table {
             border: none;
         }
+
     </style>
 
 </head>
@@ -59,8 +62,28 @@
 
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4 mt-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의</h6>
+                        <div class="card-header py-3" style="display: flex">
+                            <h6 class="font-weight" style="color: #6667AB; margin: auto 0px;">1대1 문의</h6>
+
+                            <!-- <div class="mb-3" style="display: flex; justify-content: right;" class=""> -->
+
+                            <c:choose>
+                                <c:when test="${qnaDTO.qna_status == '대기'}">
+                                    <form action="./update?qna_num=${qnaDTO.qna_num}" method="post" style="margin-left: auto;">
+                                        <button type="submit" data-qna-num="${qnaDTO.qna_num}" id="statusChange" 
+                                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                        style ="background-color: rgb(132, 84, 198); border-color: rgb(132, 84, 198); ">
+                                            <i class="fas fa-check fa-sm text-white-50"></i>처리완료
+                                                
+                                        
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    
+
+                                </c:otherwise>
+                            </c:choose>
+                            <!-- </div>     -->
                         </div>
                         <div class="card-body">
                             <!-- 카드 본문  -->
@@ -98,7 +121,13 @@
                                     <table border="2" class="table border border-primary" width="100%">
                                       <tbody>
                                            <tr>
-                                                <td style="height: 150px;">${qnaDTO.qna_contents}</td>
+                                                <td style="height: auto; padding: 30px; white-space: nowrap;">
+                                                    <c:forEach items="${qnaDTO.qnaFileDTOs}" var="file">
+                                                    <img src="../../resources/upload/qna/${file.fileName}" alt="" width="auto"><br></br>
+                                                    </c:forEach>
+                                                    ${fn:replace(qnaDTO.qna_contents, replaceChar, "<br/>")}
+                                                    
+                                                </td>
                                             </tr>
                                       </tbody>
                                     </table>
@@ -150,43 +179,44 @@
                                 
                             </div>
 
-                            
-
                             <!-- 답변내용 -->
                             <div id="commentList">
-                            <c:if test="${qnaDTO.qna_comment.size > 0}">
-                                    <!-- 
-                                    <section class="col-lg-12 text-center" style="padding: 0px;">
-                                        <table class="table border border-danger" width="100%">
-                                        <tbody>
-                                                <tr>
-                                                    <th class="text-center">답변내용</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>${qnaDTO.qna_comment}</td>
-                                                </tr>
-                                                
-                                        </tbody>
-                                        </table>
-                                    </section>
-                                    -->
+                                <input type="hidden" value="${qnaDTO.qna_comment}" id="commenthidden">
                                 
-                            </c:if>
+                                <c:if test="${not empty qnaDTO.qna_comment}">
+                                    
+                                        <!-- 
+                                        <section class="col-lg-12 text-center" style="padding: 0px;">
+                                            <table class="table border border-danger" width="100%">
+                                            <tbody>
+                                                    <tr>
+                                                        <th class="text-center">답변내용</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>${qnaDTO.qna_comment}</td>
+                                                    </tr>
+                                                    
+                                            </tbody>
+                                            </table>
+                                        </section>
+                                        -->
+                                    
+                                </c:if>
                             </div>
                             
-                            <c:if test="${qnaDTO.qna_comment.size < 1}">
-
-                                <div id="commentNull">
-                                    <h3 class="text-center">답변 미등록</h3>
-                                </div>
-                            </c:if> 
-                            
-
                             <!-- 답변하기 버튼 (누르면 입력폼이 나온다) -->
+                            <!-- qnaDTO.qna_comment.size == 0 || empty qnaDTO.qna_comment -->
                             <c:choose>
-                                <c:when test="${qnaDTO.qna_comment.size < 1}">
+                                
+                                <c:when test="${empty qnaDTO.qna_comment}">
+
+                                    <div id="commentNull">
+                                        <h3 class="text-center">답변 미등록</h3>
+                                    </div>
+
                                     <div style="display: flex; justify-content: right;" class="">
-                                        <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" style ="background-color: cornflowerblue; border-color: cornflowerblue;" 
+                                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                             <i class="fas fa-download fa-sm text-white-50"></i> 
                                             
                                                 답변하기
@@ -198,7 +228,9 @@
 
                                 <c:otherwise>
                                     <div class="mb-3" style="display: flex; justify-content: right;" class="">
-                                        <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" 
+                                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                        style ="background-color: cornflowerblue; border-color: cornflowerblue;">
                                             <i class="fas fa-download fa-sm text-white-50"></i> 
                                             
                                                 답변수정
@@ -255,9 +287,9 @@
     <script src="/resources/vendor/managerboot/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/resources/js/managerboot/sb-admin-2.min.js"></script>
+    <script src="/resources/js/manager/sb-admin-2.min.js"></script>
 
-    <script src="/resources/js/managerboot/qnadetail.js"></script>
+    <script src="/resources/js/manager/qnadetail.js"></script>
 
 </body>
 

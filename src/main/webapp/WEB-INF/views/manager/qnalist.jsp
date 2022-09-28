@@ -24,7 +24,7 @@
 
     <!-- Custom styles for this template-->
     <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
-    <link href="/resources/css/managerboot/sb-admin-2.css" rel="stylesheet">
+    <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -55,7 +55,16 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트</h6>
+                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트
+                                <c:if test="${code == 1}">
+                                    [구디나라]
+                                </c:if>
+        
+                                <c:if test="${code == 2}">
+                                    [대기공주]
+                                </c:if>
+                            
+                            </h6>
                         </div>
                         <div class="card-body">
                             <!-- 카드 본문  -->
@@ -108,11 +117,11 @@
                             </div>
 
                             <!-- 내용 Search -->
-                            <div class="col-lg-6 col-sm-4">
+                            <div class="" style="justify-content: center; display: flex;">
                             <form action="./list" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         
                                 <div class="input-group">
-                                    <div class="search-category" id="search-category" style="padding: 6px 0 6px 0;">
+                                    <div class="search-category" id="search-category">
                                         <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
                                             <option class="kinds" value="qna_title">제목</option>
                                             <option class="kinds" value="qna_contents">내용</option>
@@ -170,7 +179,7 @@
     <script src="/resources/vendor/managerboot/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/resources/js/managerboot/sb-admin-2.min.js"></script>
+    <script src="/resources/js/manager/sb-admin-2.min.js"></script>
 
     <script>
         let k = '${param.kind}';
@@ -184,7 +193,7 @@
         }
 
     </script>
-    <script src="/resources/js/managerboot/qnalist.js"></script>
+    <script src="/resources/js/manager/qnalist.js"></script>
 
 </body>
 

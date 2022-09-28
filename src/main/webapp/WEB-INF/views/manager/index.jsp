@@ -22,7 +22,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/resources/css/managerboot/sb-admin-2.css" rel="stylesheet">
+    <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -234,7 +234,7 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                        src="/resources/images/managerboot/undraw_posting_photo.svg" alt="...">
+                                        src="/resources/images/manager/undraw_posting_photo.svg" alt="...">
                                 </div>
                                     <p> 
                                         글글글 
@@ -277,7 +277,7 @@
     <script src="/resources/vendor/managerboot/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/resources/js/managerboot/sb-admin-2.min.js"></script>
+    <script src="/resources/js/manager/sb-admin-2.min.js"></script>
 
 </body>
 

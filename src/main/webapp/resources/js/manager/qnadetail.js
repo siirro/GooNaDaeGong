@@ -77,6 +77,11 @@ qnaComment.addEventListener("click",function(){
     let qnaCommentTAId = document.createAttribute("id");
     qnaCommentTAId.value="contents";
     qnaCommentTA.setAttributeNode(qnaCommentTAId);
+    //textarea에 원래 value값 주기. innerhttl로 고고
+    
+    let ddd = document.getElementById("commenthidden").value;
+    console.log(ddd);
+    qnaCommentTA.value=ddd;
 
     let qnaCommentTAStyle = document.createAttribute("style");
     qnaCommentTAStyle.value="height: 300px;";

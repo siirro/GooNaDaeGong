@@ -60,6 +60,8 @@ WHERE Q.QNA_NUM = #{qna_num}
 	<result column="QNA_TITLE" property="qna_title"/>
 	<result column="QNA_CONTENTS" property="qna_contents"/>
 	<result column="QNA_DATE" property="qna_date"/>
+	<result column="QNA_COMMENT" property="qna_comment"/>
+	<result column="QNA_STATUS" property="qna_status"/>
 	<result column="CODE" property="code"/>
 	
 	<collection property="qnaFileDTOs" javaType="List" ofType="QnaFileDTO">
@@ -76,5 +78,9 @@ UPDATE QNA SET QNA_COMMENT = #{qna_comment} WHERE QNA_NUM = #{qna_num}
 <select id="getComment" parameterType="QnaDTO" resultType="QnaDTO">
 SELECT * FROM QNA WHERE QNA_NUM = #{qna_num}
 </select>
+
+<update id="statusChange" parameterType="QnaDTO">
+UPDATE QNA SET QNA_STATUS = '완료' WHERE QNA_NUM = #{qna_num}
+</update>
 
 </mapper>

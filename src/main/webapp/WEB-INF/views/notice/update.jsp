@@ -42,18 +42,22 @@
 
             <!-- 공지사항 본문의 제목 -->
             <div class="css-1yc2nwy eug5r8l2">
-                <h3 class="css-1ew6v8c eug5r8l1">공지사항</h3>
+                <h3 class="css-1ew6v8c eug5r8l1">공지사항 삭제</h3>
                 
             </div>
             
             <!-- 공지사항 본문의 찐본문 -->
             <div class="css-185m8ch">
 
-                <form action="add" method="post" enctype="multipart/form-data">
+                <form action="update" method="post" enctype="multipart/form-data">
 
-                    <!-- 작성자 = ${session.user_id} -->
+                    <!-- 작성자  -->
                     <input type="hidden" name="user_id" value="1">
                     <!-- value="${session.user_id}" -->
+
+                    <!-- 글번호 -->
+                    <input type="hidden" name="nt_num" value="${detail.nt_num}">
+                    <!--  -->
                     
                     
                     <!-- 코드구분 전체 -->
@@ -69,9 +73,17 @@
                                 <div class="search-category" id="search-category">
                                     <select id="code" name="code" class="custom-select custom-select-sm form-control" style="padding: 10px;
                                     appearance: auto; font-size: 14px; color: #6667AB; height: 44px;">
-                                        <option selected disabled value="">선택 </option>
-                                        <option class="codes" value="1">구디나라</option>
-                                        <option class="codes" value="2">대기공주</option>
+                                        <option disabled value="">선택 </option>
+
+                                        <c:if test="${detail.code == 1}">
+                                            <option selected class="codes" value="1">구디나라</option>
+                                            <option class="codes" value="2">대기공주</option>
+                                        </c:if>
+
+                                        <c:if test="${detail.code == 2}">
+                                            <option class="codes" value="1">구디나라</option>
+                                            <option selected class="codes" value="2">대기공주</option>
+                                        </c:if>
                                         
                                     </select>
                                 </div>
@@ -92,7 +104,7 @@
                             <div class="css-1waqr6j e1uzxhvi6">
                                 <div height="44" class="css-t7kbxx e1uzxhvi3">
                                     <input data-testid="input-box" id="nt_title" name="nt_title" placeholder="제목을 입력해주세요" 
-                                    type="text" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                                    type="text" height="44" class="css-n2am0u e1uzxhvi2" value="${detail.nt_title}">
                                 </div>
                             </div>
                         </div>
@@ -111,9 +123,8 @@
 
                                 <div class="css-0 e1tjt2bn7">
                                     <div class="css-1gua357 e1tjt2bn5">
-                                        <!-- onkeypress="onTestChange();"  -->
-                                        <textarea id="nt_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
-                                        name="nt_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
+                                        <textarea onkeypress="onTestChange();" value="${detail.nt_contents}" id="nt_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
+                                        name="nt_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;">${detail.nt_contents}</textarea>
 
 
                                         
@@ -153,16 +164,31 @@
                                         </div>
                                     </div>
 
-                                    <div id="nt_yncheck" style="margin-top: 30px;">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn1" value="Y" checked>
-                                            <label class="form-check-label" for="inlineRadio1">공지 표시</label>
+                                    <c:if test="${detail.nt_yn == 'Y'}">
+                                        <div id="nt_yncheck" style="margin-top: 30px;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn1" value="Y" checked>
+                                                <label class="form-check-label" for="inlineRadio1">공지 표시</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn2" value="N">
+                                                <label class="form-check-label" for="inlineRadio2">표시하지 않음</label>
+                                            </div>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn2" value="N">
-                                            <label class="form-check-label" for="inlineRadio2">표시하지 않음</label>
+                                    </c:if>
+
+                                    <c:if test="${detail.nt_yn == 'N'}">
+                                        <div id="nt_yncheck" style="margin-top: 30px;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn1" value="Y">
+                                                <label class="form-check-label" for="inlineRadio1">공지 표시</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="nt_yn" id="nt_yn2" value="N" checked>
+                                                <label class="form-check-label" for="inlineRadio2">표시하지 않음</label>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </c:if>
 
                                 </div>
                             </div>
@@ -178,7 +204,7 @@
             
 
             <div class="css-1spu0j4 ebvrvv11">
-                <button type="submit" disabled class="css-13kn1it ebvrvv10" id="ntSubmit">등록</button>
+                <button type="submit" disabled class="css-13kn1it ebvrvv10" id="ntUpdate">등록</button>
             </div>
 
             
@@ -204,6 +230,6 @@
 
 </div>
 
-<script src="/resources/js/notice/add.js"></script>
+<script src="/resources/js/notice/update.js"></script>
 </body>
 </html>

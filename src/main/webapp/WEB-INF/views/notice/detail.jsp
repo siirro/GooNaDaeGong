@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
+
 
 <!DOCTYPE html>
 <html>
@@ -52,7 +55,16 @@
                     <div id="titleHead" style="width: 120px; padding: 13px 20px 13px 20px; background-color: #D6D6EA;
                     text-align: center; font-weight: 500;">제목
                     </div>
-                    <div id="titleBody" style="padding-left: 25px; align-self: center;">${detail.nt_title}
+                    <div id="titleBody" style="padding-left: 25px; align-self: center;">
+                        <c:if test="${detail.code == 1}">
+                            [구디나라]
+                        </c:if>
+
+                        <c:if test="${detail.code == 2}">
+                            [대기공주]
+                        </c:if>
+
+                        ${detail.nt_title}
                     </div>
                 </div>
                 
@@ -60,20 +72,38 @@
                     <div id="titleHead" style="width: 120px; padding: 13px 20px 13px 20px; background-color: #D6D6EA;
                     text-align: center; font-weight: 500;">등록일
                     </div>
-                    <div id="dateValue" style="padding-left: 25px; align-self: center;">${detail.nt_date}
+                    <div id="dateValue" style="padding-left: 25px; align-self: center;">
+                        ${detail.nt_date}
                     </div>
                 </div>
 
-                <div id="contetns">
-                    <div id="contentsValue" style="height: 500px; margin: 30px 10px 50px 10px; border-bottom: 1px solid #D6D6EA;">${detail.nt_contents}</div>
+                <div id="contetns" style="border-bottom: 1px solid #D6D6EA; margin-bottom: 30px;">
+                    <div id="contentsValue" style="height: auto; margin: 30px 10px 50px 10px; ">
+                        <c:forEach items="${detail.noticeFileDTOs}" var="file">
+                        <img src="../../resources/upload/notice/${file.fileName}" alt="" width="auto">
+                        <br></br>
+                        </c:forEach>
+                        
+                        <br>
+                        
+                        ${fn:replace(detail.nt_contents, replaceChar, "<br/>")}
+                    </div>
                 </div>
+
+                <c:forEach items="${detail.noticeFileDTOs}" var="file">
+                    <tr style="height: 10px; ">
+                        <td style="width: 100px;">첨부파일</td>
+                        <td><a href="../../resources/upload/notice/${file.fileName}">${file.oriName}</a></td> 
+                        <br>
+                    </tr>
+                </c:forEach>
             </div>
 
             
             <!-- 목록으로 -->
-            <div class="css-1spu0j4 ebvrvv11">
-                <a href="./update?num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">수정</button></a>
-                <a href="./delete?num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
+            <div class="css-1spu0j4 ebvrvv11" style="padding: 0px; margin-top: 30px;">
+                <a href="./update?nt_num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">수정</button></a>
+                <a href="./delete?nt_num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
             </div>
 
         </div>

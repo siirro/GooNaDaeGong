@@ -13,7 +13,7 @@
                     <i class="fa fa-mobile"></i>
                 </div> -->
                 <div class="sidebar-brand-text mx-3">
-                    <!-- <img src="/resources/images/managerboot/logo.jpg" alt="" 
+                    <!-- <img src="/resources/images/manager/logo.jpg" alt="" 
                     style="width: 60%; height: 60%;"> -->
                     구디나라
                     <sup>관리자센터</sup></div>

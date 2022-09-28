@@ -12,12 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.util.Pager;
+
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@GetMapping("delete")
+	public String deleteNotice(NoticeDTO noticeDTO)throws Exception{
+		int result = noticeService.deleteNotice(noticeDTO);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("update")
+	public ModelAndView updateNotice(NoticeDTO noticeDTO, ModelAndView mv)throws Exception{
+
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		mv.addObject("detail", noticeDTO);
+		mv.setViewName("notice/update");
+		return mv;
+		
+	}
+	
+	@PostMapping("update")
+	public String updateNotice(NoticeDTO noticeDTO)throws Exception{
+		int result = noticeService.updateNotice(noticeDTO);
+		return "redirect:./detail?nt_num="+noticeDTO.getNt_num();
+		
+	}
 	
 	
 	@GetMapping("add")
@@ -32,10 +57,12 @@ public class NoticeController {
 	}
 	
 	@GetMapping("list")
-	public ModelAndView getList()throws Exception{
+	public ModelAndView getList(Pager pager, Long code)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<NoticeDTO> ar = noticeService.getList();
+		List<NoticeDTO> ar = noticeService.getList(pager, code);
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.addObject("code", code);
 		mv.setViewName("notice/list");
 		
 		return mv;

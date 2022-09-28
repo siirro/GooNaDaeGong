@@ -3,7 +3,7 @@ const code = document.getElementById("code");
 const nt_yn = document.getElementById("nt_yn");
 const nt_title = document.getElementById("nt_title");
 const nt_contents = document.getElementById("nt_contents");
-const ntSubmit = document.getElementById("ntSubmit");
+const ntUpdate = document.getElementById("ntUpdate");
 
 let check1=false;
 let check2=true;
@@ -75,8 +75,8 @@ nt_contents.addEventListener("keyup",function(){
     } if(nt_contents.value.length=="") {
         check4=false;
 		console.log("내용비엇음.4는false");
-		ntSubmit.setAttribute("disabled","");
-        ntSubmit.style.backgroundColor = "rgb(221, 221, 221)";
+		ntUpdate.setAttribute("disabled","");
+        ntUpdate.style.backgroundColor = "rgb(221, 221, 221)";
     }
     ntSubmit1();
 });
@@ -88,12 +88,12 @@ function ntSubmit1(){
     if(check1&&check2&&check3&&check4) {
 		console.log("넷다트루.버튼을 보라색으로");
 		// qnaSubmit.setAttribute("disabled","false");
-		ntSubmit.removeAttribute("disabled");
-		ntSubmit.style.backgroundColor = "#6667AB";
+		ntUpdate.removeAttribute("disabled");
+		ntUpdate.style.backgroundColor = "#6667AB";
     } else {
 		console.log("False가생겼다");
-		ntSubmit.setAttribute("disabled","");
-        ntSubmit.style.backgroundColor = "rgb(221, 221, 221)";
+		ntUpdate.setAttribute("disabled","");
+        ntUpdate.style.backgroundColor = "rgb(221, 221, 221)";
 	}
 };
 
@@ -110,9 +110,9 @@ function ntSubmit1(){
 // qnaSubmit.disabled = check==false;
 
 
-ntSubmit.addEventListener("click",function(){
+ntUpdate.addEventListener("click",function(){
     
-    alert("클릭을 누름 ")
+    alert("공지가 수정되었습니다")
     //qnaSubmit.submit();
     
 });
@@ -227,14 +227,10 @@ function onTestChange() {
 
     // If the user has pressed enter
     if (key === 13) {
-        // document.getElementById("nt_contents").value = document.getElementById("nt_contents").value + "\n";
-		document.getElementById("nt_contents").value = document.getElementById("nt_contents").value + "<bn>";
+        document.getElementById("nt_contents").value = document.getElementById("nt_contents").value + "\n";
         return false;
     }
     else {
         return true;
     }
 }
-
-
-

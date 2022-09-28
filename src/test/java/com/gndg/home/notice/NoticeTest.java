@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.gndg.home.AbstractTest;
 import com.gndg.home.qna.QnaDAO;
 import com.gndg.home.qna.QnaDTO;
+import com.gndg.home.util.Pager;
 
 public class NoticeTest extends AbstractTest{
 	
@@ -25,12 +26,24 @@ public class NoticeTest extends AbstractTest{
 //		//assertNotNull(ar);
 //	}
 	
+//	@Test
+//	public void getDetail()throws Exception{
+//		NoticeDTO noticeDTO = new NoticeDTO();
+//		noticeDTO.setNt_num(1L);
+//		noticeDAO.getDetail(noticeDTO);
+//		assertNotNull(noticeDTO);
+//	}
+	
 	@Test
-	public void getDetail()throws Exception{
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNt_num(1L);
-		noticeDAO.getDetail(noticeDTO);
-		assertNotNull(noticeDTO);
+	public void getCount()throws Exception{
+		
+		Long code = 2L;
+		Pager pager = new Pager();
+		
+		pager.setSearch("");
+		Long result = noticeDAO.getCount(pager, code);
+		//assertEquals(3L, result);
+		assertNotNull(result);
 	}
 
 

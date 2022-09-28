@@ -28,7 +28,7 @@ public class ManagerController {
 	@RequestMapping(value = "item/add", method=RequestMethod.GET)
 	public String managerIndex2()throws Exception{
 		
-		return "managerboot/add";
+		return "manager/add";
 	}
 	
 	
@@ -45,7 +45,7 @@ public class ManagerController {
 		
 		mv.addObject("pager", pager);
 		mv.addObject("code", code);
-		mv.setViewName("managerboot/qnalist");
+		mv.setViewName("manager/qnalist");
 		return mv;
 	}
 	
@@ -54,7 +54,7 @@ public class ManagerController {
 		ModelAndView mv = new ModelAndView();
 		qnaDTO = qnaService.getDetail(qnaDTO);
 		mv.addObject("qnaDTO", qnaDTO);
-		mv.setViewName("managerboot/qnadetail");
+		mv.setViewName("manager/qnadetail");
 		
 		return mv;
 	}
@@ -80,6 +80,12 @@ public class ManagerController {
 		//mv.addObject("qnaDTO", qnaDTO);
 		String jsonResult = "{\"comment\":\""+comment+"\"}";
 		return jsonResult;
+	}
+	
+	@PostMapping("qna/update")
+	public String statusChange(QnaDTO qnaDTO)throws Exception{
+		int result = qnaService.statusChange(qnaDTO);
+		return "redirect:./list?code="+qnaDTO.getCode();
 	}
 //	==============================QNA 조회 끝=========================
 	
