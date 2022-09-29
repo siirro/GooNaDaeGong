@@ -135,6 +135,8 @@
 
                     </div>
                     <!-- 내용입력 끝 -->
+
+                    
                     
                     <!-- 파일첨부 -->
                     <div class="css-17bp14q e1vbjq4w3">
@@ -145,6 +147,18 @@
                         <div class="css-12l4j2c e1vbjq4w1">
                             <div class="css-mlazth edd8l6o3">
                                 <div class="css-g8ewo8 e9bfpi41" id="fileBox">
+
+                                    
+                                    <!-- 현재 첨부되어있는 파일 확인, 삭제 -->
+                                    <c:forEach items="${detail.noticeFileDTOs}" var="file">
+                                        <div style="display: flex;">
+                                            <a style="width: 250px; margin: auto 0px;" href="../../resources/upload/notice/${file.fileName}">${file.oriName}</a> 
+                                            <button type="button" class="fileDelete btn btn-danger" data-file-num="${file.fileNum}">삭제</button>
+
+                                        </div>
+                                        <br>
+                                    </c:forEach>
+                                    
 
                                     
                                     

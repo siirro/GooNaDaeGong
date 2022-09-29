@@ -17,8 +17,13 @@ public class NoticeDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.notice.NoticeDAO.";
 	
-	public int deleteNotice(NoticeDTO noticeDTO)throws Exception{
-		return sqlSession.delete(NAMESPACE+"deleteNotice", noticeDTO);
+	public int deleteNotice(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteNotice", noticeFileDTO);
+	}
+	
+	public NoticeFileDTO detailNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailNoticeFile", noticeFileDTO);
+
 	}
 	
 	public int updateNotice(NoticeDTO noticeDTO)throws Exception{
@@ -42,6 +47,27 @@ public class NoticeDAO {
 		map.put("search", pager.getSearch());
 		
 		return sqlSession.selectList(NAMESPACE+"getList", map);
+		
+	}
+	
+	public List<NoticeDTO> getListHidden(Pager pager, Long code)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("startRow", pager.getStartRow());
+		map.put("lastRow", pager.getLastRow());
+		map.put("code", code);
+		map.put("kind", pager.getKind());
+		map.put("search", pager.getSearch());
+		
+		return sqlSession.selectList(NAMESPACE+"getListHidden", map);
+	}
+	
+	public Long getCountHidden(Pager pager, Long code)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("search", pager.getSearch());
+		
+		return sqlSession.selectOne(NAMESPACE+"getCountHidden", map);
 		
 	}
 	

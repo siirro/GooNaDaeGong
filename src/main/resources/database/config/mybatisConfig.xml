@@ -29,6 +29,9 @@
 			<typeAlias type="com.gndg.home.qna.QnaDTO" alias="QnaDTO"/>
 			<typeAlias type="com.gndg.home.qna.QnaFileDTO" alias="QnaFileDTO"/>
 			
+			<typeAlias type="com.gndg.home.faq.FaqDTO" alias="FaqDTO"/>
+
+			
 				
 			<typeAlias type="com.gndg.home.util.Category" alias="Category"/>
 			<typeAlias type="com.gndg.home.util.Pager" alias="Pager"/>	

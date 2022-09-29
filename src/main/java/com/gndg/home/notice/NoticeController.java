@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,10 +22,25 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@GetMapping("delete")
-	public String deleteNotice(NoticeDTO noticeDTO)throws Exception{
-		int result = noticeService.deleteNotice(noticeDTO);
-		return "redirect:./list";
+	
+	@GetMapping("hidden")
+	public ModelAndView getListHidden(Pager pager, Long code)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<NoticeDTO> ar = noticeService.getListHidden(pager, code);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.addObject("code", code);
+		mv.setViewName("notice/hiddenlist");
+		
+		return mv;
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public String deleteNotice(NoticeFileDTO noticeFileDTO, HttpSession session)throws Exception{
+		int result = noticeService.deleteNotice(noticeFileDTO, session.getServletContext());
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
 	}
 	
 	@GetMapping("update")
@@ -38,8 +54,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update")
-	public String updateNotice(NoticeDTO noticeDTO)throws Exception{
-		int result = noticeService.updateNotice(noticeDTO);
+	public String updateNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+		int result = noticeService.updateNotice(noticeDTO, multipartFiles, session.getServletContext());
 		return "redirect:./detail?nt_num="+noticeDTO.getNt_num();
 		
 	}
@@ -67,6 +83,8 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	
 	
 	@GetMapping("detail")
 	public ModelAndView getDetail(NoticeDTO noticeDTO)throws Exception{

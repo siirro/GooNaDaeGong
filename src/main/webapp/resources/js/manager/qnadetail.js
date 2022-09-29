@@ -135,6 +135,7 @@ qnaComment.addEventListener("click",function(){
         
         const contents = document.getElementById("contents");
         let qna_comment = contents.value;
+  
 
         //답변제출,수정 ajax 
         //1. XMLHTTPRequest 생성 2.준비 3.enctype 4.전송
@@ -200,10 +201,16 @@ function getCommentList(qn){
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200){
             let result = xhttp.responseText.trim();
-            console.log(result);
+            console.log("responseText : "+result);
+
+            
+            result = result.replace(/\n/gi,"\\r\\n");        
+            // str의 모든 \n을 \\r\\n으로 교체한다.JSON.parse(str);
+
+            console.log("responseText 처리후 : "+result);
 
             result = JSON.parse(result)
-            console.log("글내용파스후"+result.comment);
+            console.log("글내용파스후 : "+result.comment);
             let comment = result.comment;
 
             let cldiv = document.createElement("div");
@@ -212,10 +219,25 @@ function getCommentList(qn){
             cldiv.setAttributeNode(cldivid);
 
 
-            let clh3 = document.createElement("h3");
+            let cltitle = document.createElement("div");
+            let cltitles = document.createAttribute("style");
+            cltitles.value="margin-bottom: 10px;"
+            cltitle.setAttributeNode(cltitles);
 
-            let clh3t = document.createTextNode("답변 : "+result.comment);
-            clh3.appendChild(clh3t);
+            cltitle.innerHTML="답변";
+
+            let clh3 = document.createElement("div");
+            let clh3s = document.createAttribute("style");
+            clh3s.value="border: 1px solid;";
+            clh3.setAttributeNode(clh3s);
+            
+            comment = comment.replace(/\r\n/g, "</br>");
+            
+            console.log(comment);
+
+            clh3.innerHTML= comment;
+            
+            cldiv.appendChild(cltitle);
             cldiv.appendChild(clh3);
 
             if(comment=='null') {

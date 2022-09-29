@@ -5,9 +5,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.notice.NoticeDAO">
 
-<delete id="deleteNotice" parameterType="NoticeDTO">
-DELETE FROM NOTICE WHERE NT_NUM = #{nt_num}
+<delete id="deleteNotice" parameterType="NoticeFileDTO">
+DELETE FROM NOTICEFILE WHERE NT_NUM = #{nt_num}
 </delete>
+
+<select id="detailNoticeFile" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+SELECT * FROM NOTICEFILE WHERE FILENUM = #{fileNum}
+</select>
 
 <update id="updateNotice" parameterType="NoticeDTO">
 UPDATE NOTICE 
@@ -47,6 +51,24 @@ VALUES(NOTICEFILE_SEQ.NEXTVAL, #{nt_num}, #{fileName}, #{oriName})
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
 
+<select id="getListHidden" resultType="NoticeDTO" parameterType="Map">
+	SELECT * FROM
+	(SELECT ROWNUM R, N.* 
+	FROM
+	(SELECT * FROM NOTICE 
+	WHERE 
+		<choose>
+			<when test="kind == 'nt_title'">NT_TITLE</when>
+			<when test="kind == 'nt_contents'">NT_CONTENTS</when>
+			<otherwise>USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+		
+		AND NT_YN='N' 
+	ORDER BY NT_NUM DESC) N)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
 <select id="getCount" parameterType="Map" resultType="Long">
 	SELECT COUNT(NT_NUM) FROM NOTICE
 	WHERE 
@@ -58,6 +80,19 @@ VALUES(NOTICEFILE_SEQ.NEXTVAL, #{nt_num}, #{fileName}, #{oriName})
 	LIKE '%'||#{search}||'%' 
 		
 		AND NT_YN='Y'
+</select>
+
+<select id="getCountHidden" parameterType="Map" resultType="Long">
+	SELECT COUNT(NT_NUM) FROM NOTICE
+	WHERE 
+	<choose>
+		<when test="kind == 'nt_title'">NT_TITLE</when>
+		<when test="kind == 'nt_contents'">NT_CONTENTS</when>
+		<otherwise>USER_ID</otherwise>
+	</choose>
+	LIKE '%'||#{search}||'%' 
+		
+		AND NT_YN='N'
 </select>
 	
 <select id="getDetail" parameterType="NoticeDTO" resultMap="getDetailResult">

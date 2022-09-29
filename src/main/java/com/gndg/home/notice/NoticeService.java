@@ -20,12 +20,40 @@ public class NoticeService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public int deleteNotice(NoticeDTO noticeDTO)throws Exception{
-		return noticeDAO.deleteNotice(noticeDTO);
+	public int deleteNotice(NoticeFileDTO noticeFileDTO, ServletContext servletContext)throws Exception{
+		noticeFileDTO = noticeDAO.detailNoticeFile(noticeFileDTO);
+		int result = noticeDAO.deleteNotice(noticeFileDTO);
+		String path="resources/upload/notice";
+		
+		if(result>0) {
+			fileManager.deleteFile(servletContext, path, noticeFileDTO);
+		}
+		
+		return result;
 	}
 	
-	public int updateNotice(NoticeDTO noticeDTO)throws Exception{
-		return noticeDAO.updateNotice(noticeDTO);
+	public int updateNotice(NoticeDTO noticeDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
+		int result = noticeDAO.updateNotice(noticeDTO);
+		String path = "resources/upload/notice";
+		
+		for(MultipartFile multipartFile : files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+			noticeFileDTO.setFileName(fileName);
+			noticeFileDTO.setOriName(multipartFile.getOriginalFilename());
+			noticeFileDTO.setNt_num(noticeDTO.getNt_num());
+			
+			noticeDAO.addNoticeFile(noticeFileDTO);
+			
+		}
+		
+		
+		
+		return result;
 	}
 	
 	public int addNotice(NoticeDTO noticeDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
@@ -60,6 +88,15 @@ public class NoticeService {
 		return ar;
 	}
 	
+	public List<NoticeDTO> getListHidden(Pager pager, Long code)throws Exception {
+			
+		Long totalCount = noticeDAO.getCountHidden(pager, code);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		List<NoticeDTO> ar = noticeDAO.getListHidden(pager, code);
+		return ar;
+	}
+
 	public NoticeDTO getDetail(NoticeDTO noticeDTO)throws Exception{
 		return noticeDAO.getDetail(noticeDTO);
 	}

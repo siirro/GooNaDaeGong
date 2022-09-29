@@ -67,6 +67,7 @@ public class QnaService {
 	}
 	
 	public int statusChange(QnaDTO qnaDTO)throws Exception{
+		qnaDTO = qnaDAO.getDetail(qnaDTO);
 		return qnaDAO.statusChange(qnaDTO);
 	}
 }

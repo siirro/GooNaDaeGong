@@ -4,6 +4,7 @@ const nt_yn = document.getElementById("nt_yn");
 const nt_title = document.getElementById("nt_title");
 const nt_contents = document.getElementById("nt_contents");
 const ntUpdate = document.getElementById("ntUpdate");
+const fileDelete = document.querySelectorAll(".fileDelete")
 
 let check1=false;
 let check2=true;
@@ -136,10 +137,13 @@ function setCount(c){
 	}
 }
 
+count=fileDelete.length;
+
 try{
 
 addFilesb.addEventListener("click", function(){
 	
+	console.log(fileDelete.length);
 	
 	if(count>4) {
 		alert("파일 첨부는 최대 5개만 가능합니다")
@@ -233,4 +237,50 @@ function onTestChange() {
     else {
         return true;
     }
+}
+
+
+
+
+
+
+try {
+fileDelete.forEach(function(f){
+	f.addEventListener("click",function(){
+		let check = window.confirm("파일을 삭제하시겠습니까?");
+		if(!check){
+			return;
+		}
+
+		console.log("fileDelete"+check);
+		
+		let fileNum = f.getAttribute("data-file-num");
+		
+		//에이작스
+		const xhttp = new XMLHttpRequest();
+
+		xhttp.open("POST","./fileDelete");
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("fileNum="+fileNum);
+		xhttp.onreadystatechange=function(){
+			if(xhttp.readyState==4&&xhttp.status==200){
+				let result = xhttp.responseText.trim();
+				
+				result = JSON.parse(result)
+				
+				if(result.result==1){
+					console.log(result);
+					f.parentNode.remove();
+					count--;
+
+				}else{
+					console.log("너는실패함 result = "+result);
+				}
+			}
+		};
+
+	});
+});
+}catch(e){
+	console.log(e);
 }

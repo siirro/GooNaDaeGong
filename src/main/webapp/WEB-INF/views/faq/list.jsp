@@ -29,7 +29,7 @@
             </div>
             <ul class="css-1x9bshx ecbxmj2">
                 <li class="css-0 ecbxmj1"><a href="../notice/list" class="active css-nk8664 ecbxmj0">공지사항<span class="css-e41glx e1x0rfoo0"></span></a></li>
-                <li class="css-0 ecbxmj1"><a href="../faq/list" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../faq/main" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
                 <li class="css-0 ecbxmj1"><a href="../qna/inquiry" class=" css-nk8664 ecbxmj0">1:1 문의<span class="css-e41glx e1x0rfoo0"></span></a></li>
             </ul>
             
@@ -46,10 +46,63 @@
             </div>
             
             <!-- FAQ 카테고리 박스 -->
-            <div>
-
-
+            <div class="faqBtnArea">
+                <ul class="faqBtn">
+                    <li class="active">
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=26&amp;QnaCtgrNm=회원가입/신청서작성&amp;FaqSno=');">
+                                회원가입/신청서작성</a>
+                    /li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=27&amp;QnaCtgrNm=입/출고 진행상황&amp;FaqSno=');">
+                        입/출고 진행상황</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=31&amp;QnaCtgrNm=운송료 결제/확인&amp;FaqSno=');">
+                        운송료 결제/확인</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=28&amp;QnaCtgrNm=입고보류/출고보류&amp;FaqSno=');">
+                        입고보류/출고보류</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=30&amp;QnaCtgrNm=반품&amp;FaqSno=');">
+                        반품</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=48&amp;QnaCtgrNm=THE빠른 서비스&amp;FaqSno=');">
+                        THE빠른 서비스</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=13&amp;QnaCtgrNm=시스템 문제/용어&amp;FaqSno=');">
+                        시스템 문제/용어</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=49&amp;QnaCtgrNm=보상 (해외 출고후 문제)&amp;FaqSno=');">
+                        보상 (해외 출고후 문제)</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=50&amp;QnaCtgrNm=보상 (해외 출고전 문제)&amp;FaqSno=');">
+                        보상 (해외 출고전 문제)</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=32&amp;QnaCtgrNm=보상증빙 접수&amp;FaqSno=');">
+                        보상증빙 접수</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=34&amp;QnaCtgrNm=등급/포인트/할인(쿠폰, 카드)&amp;FaqSno=');">
+                        등급/포인트/할인(쿠폰, 카드)</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=47&amp;QnaCtgrNm=이벤트 당첨 문의&amp;FaqSno=');">
+                        이벤트 당첨 문의</a>
+                    </li>
+                    <li>
+                        <a href="javascript:searchCtgr('/cscenter/FO_FAQSearchRM.jsp?QnaSno=11&amp;QnaCtgrNm=통관/한국 내 배송&amp;FaqSno=');">
+                        통관/한국 내 배송</a>
+                    </li>
+                </ul>
             </div>
+            <!-- FAQ 카테고리 박스 -->
 
             <!-- FAQ 본문 -->
             <div>

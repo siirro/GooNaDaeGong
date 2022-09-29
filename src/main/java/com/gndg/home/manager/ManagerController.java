@@ -85,7 +85,8 @@ public class ManagerController {
 	@PostMapping("qna/update")
 	public String statusChange(QnaDTO qnaDTO)throws Exception{
 		int result = qnaService.statusChange(qnaDTO);
-		return "redirect:./list?code="+qnaDTO.getCode();
+		
+		return "redirect:./detail?qna_num="+qnaDTO.getQna_num();
 	}
 //	==============================QNA 조회 끝=========================
 	
