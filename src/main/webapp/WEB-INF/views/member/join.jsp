@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- jQuery -->
-	<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script> -->
 	<!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
     <!--css-->
     <link rel="stylesheet" href="/resources/css/member/test.css">
 </head>
@@ -102,52 +102,52 @@
                                         </button>
                                     </div>
                             </div>
-                                <div class="css-1pjgd36 e744wfw6">
-                                    <div class="css-1y8737n e744wfw5">
-                                        <label class="css-1obgjqh e744wfw4">휴대폰<span class="css-qq9ke6 e744wfw0">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="css-82a6rk e744wfw3">
-                                        <div class="css-jmalg e1uzxhvi6">
-                                            <div class="css-176lya2 e1uzxhvi3">
-                                                <input data-testid="input-box" id="user_phone" name="user_phone" placeholder="숫자만 입력해주세요." type="tel" required="" class="css-1bkd15f e1uzxhvi2" value="">
-                                                <div id="phone_check"></div>
-                                            </div>
+                            <div class="css-1pjgd36 e744wfw6">
+                                <div class="css-1y8737n e744wfw5">
+                                    <label class="css-1obgjqh e744wfw4">휴대폰<span class="css-qq9ke6 e744wfw0">*</span>
+                                    </label>
+                                </div>
+                                <div class="css-82a6rk e744wfw3">
+                                    <div class="css-jmalg e1uzxhvi6">
+                                        <div class="css-176lya2 e1uzxhvi3">
+                                            <input data-testid="input-box" id="user_phone" name="user_phone" placeholder="숫자만 입력해주세요." type="tel" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                            <div id="phone_check"></div>
                                         </div>
-                                    </div>
-                                    <div class="css-1w0ksfz e744wfw2">
-                                        <button class="css-ufulao e4nu7ef3" type="button" disabled="">
-                                            <span class="css-ymwvow e4nu7ef1">인증번호 받기</span>
-                                        </button>
                                     </div>
                                 </div>
-                                <div class="css-1pjgd36 e744wfw6">
-                                    <div class="css-1y8737n e744wfw5">
-                                        <label class="css-1obgjqh e744wfw4">우편번호<span class="css-qq9ke6 e744wfw0">*</span></label>
-                                    </div>
-                                    <div class="css-82a6rk e744wfw3">
-                                        <div class="css-jmalg e1uzxhvi6">
-                                            <div class="css-176lya2 e1uzxhvi3">
-                                                <input data-testid="input-box" id="user_post" name="user_post" placeholder="우편번호 입력" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
-                                                <div id="name_check"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="css-1w0ksfz e744wfw2"></div>
+                                <div class="css-1w0ksfz e744wfw2">
+                                    <button class="css-ufulao e4nu7ef3" type="button" disabled="">
+                                        <span class="css-ymwvow e4nu7ef1">인증번호 받기</span>
+                                    </button>
                                 </div>
-                                <div class="css-1pjgd36 e744wfw6">
-                                    <div class="css-1y8737n e744wfw5">
-                                        <label class="css-1obgjqh e744wfw4">주소<span class="css-qq9ke6 e744wfw0">*</span></label>
-                                    </div>
-                                    <div class="css-82a6rk e744wfw3">
-                                        <div class="css-jmalg e1uzxhvi6">
-                                            <div class="css-176lya2 e1uzxhvi3">
-                                                <input data-testid="input-box" id="user_addr" name="user_addr" placeholder="주소검색 버튼을 눌러주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
-                                                <div id="name_check"></div>
-                                            </div>
+                            </div>
+                            <div class="css-1pjgd36 e744wfw6">
+                                <div class="css-1y8737n e744wfw5">
+                                    <label class="css-1obgjqh e744wfw4">우편번호<span class="css-qq9ke6 e744wfw0">*</span></label>
+                                </div>
+                                <div class="css-82a6rk e744wfw3">
+                                    <div class="css-jmalg e1uzxhvi6">
+                                        <div class="css-176lya2 e1uzxhvi3">
+                                            <input data-testid="input-box" id="user_post" name="user_post" placeholder="우편번호 입력" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                            <div id="name_check"></div>
                                         </div>
                                     </div>
-                                    <div class="css-1w0ksfz e744wfw2"></div>
+                                </div>
+                                <div class="css-1w0ksfz e744wfw2"></div>
+                            </div>
+                            <div class="css-1pjgd36 e744wfw6">
+                                <div class="css-1y8737n e744wfw5">
+                                    <label class="css-1obgjqh e744wfw4">주소<span class="css-qq9ke6 e744wfw0">*</span></label>
+                                </div>
+                                <div class="css-82a6rk e744wfw3">
+                                    <div class="css-jmalg e1uzxhvi6">
+                                        <div class="css-176lya2 e1uzxhvi3">
+                                            <input data-testid="input-box" id="user_addr" name="user_addr" placeholder="주소검색 버튼을 눌러주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="">
+                                            <div id="name_check"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="css-1w0ksfz e744wfw2"></div>
                                 </div>
                                 <div class="css-1pjgd36 e744wfw6">
                                     <div class="css-1y8737n e744wfw5">
@@ -190,62 +190,84 @@
                                         <!-- </div> -->
                                     </div>
                                     <div class="css-1w0ksfz e744wfw2"></div>
-                                </div>
-                            
+                                </div>               
                     </div>
-                                    <!-- <div class="css-1eo0fey e1j7jtti0"></div>
+                                    <div class="css-1eo0fey e1j7jtti0"></div>
                                     <div class="css-y8aj3r e1k9oeg10">
                                         <div class="css-2yzr8b e744wfw6">
                                             <div class="css-1y8737n e744wfw5">
                                                 <label class="css-1obgjqh e744wfw4">이용약관동의<span class="css-qq9ke6 e744wfw0">*</span></label>
                                             </div>
-                                            <div class="css-82a6rk e744wfw3">
-                                                <div class="css-ov2xfu e1sjmfnv7">
-                                                    <label class="css-qihf5m e1dcessg1" for="TermsAgreeAll">
-                                                        <input id="TermsAgreeAll" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                        <img src="/resources/images/member/button.svg" alt="" class="css-1wfsi82 e31wziv0">전체 동의합니다.</label>
+                                            <div class="css-82a6rk agrees">
+                                                <div class="css-ov2xfu ">
+                                                    <label class="css-qihf5m e1dcessg1" for="all">
+                                                    <input id="all" type="checkbox" class="css-agvwxo ">
+                                                    <!-- <img src="/resources/images/member/check.svg" alt="" class="css-1wfsi82 allAgree"> -->
+                                                    <div class="allAgree"></div>
+                                                    전체 동의합니다.
+                                                    </label>
                                                         <p class="css-nygcgj e1sjmfnv6">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
                                                 </div>
+
                                                 <div class="css-ov2xfu e1sjmfnv7">
-                                                    <div class="css-s5xdrg e1sjmfnv4">
+                                                    <div class="css-s5xdrg ">
+                                                        <input id="RequiredTermsCondition" type="checkbox" class="css-agvwxo req agrees">
                                                         <label class="css-18r9a6u e1dcessg1" for="RequiredTermsCondition">
-                                                            <input id="RequiredTermsCondition" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">이용약관 동의</label><span class="css-g5xq45 e1sjmfnv5">(필수)</span>
+                                                            <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">-->
+                                                            이용약관 동의
+                                                        </label>
+                                                        <span class="css-g5xq45 e1sjmfnv5">(필수)</span> 
                                                     </div>
                                                     <a class="css-7chi73 e1sjmfnv3">약관보기</a>
                                                 </div>
+
                                                 <div class="css-ov2xfu e1sjmfnv7">
-                                                    <div class="css-s5xdrg e1sjmfnv4"><label class="css-18r9a6u e1dcessg1" for="RequiredTermsOfPrivacy">
-                                                        <input id="RequiredTermsOfPrivacy" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">개인정보 수집∙이용 동의</label><span class="css-g5xq45 e1sjmfnv5">(필수)</span>
+                                                    <div class="css-s5xdrg ">
+                                                        <input id="RequiredTermsOfPrivacy" type="checkbox" class="css-agvwxo req agrees" >
+                                                        <label class="css-18r9a6u e1dcessg1" for="RequiredTermsOfPrivacy">
+                                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                                            개인정보 수집∙이용 동의
+                                                        </label>
+                                                        <span class="css-g5xq45 e1sjmfnv5">(필수)</span>
                                                     </div>
                                                         <a class="css-7chi73 e1sjmfnv3">약관보기</a>
                                                 </div>
+
                                                 <div class="css-ov2xfu e1sjmfnv7">
+                                                    <div class="css-s5xdrg ">
+                                                        <input id="OptionalTermsOfPrivacy" type="checkbox" class="css-agvwxo agrees">
+                                                        <label class="css-18r9a6u " for="OptionalTermsOfPrivacy">
+                                                            <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                                                개인정보 수집∙이용 동의
+                                                        </label>
+                                                            <span class="css-g5xq45 e1sjmfnv5">(선택)</span>
+                                                    </div>
+                                                        <a class="css-7chi73 e1sjmfnv3">약관보기</a>
+                                                </div>
+
+                                                <!-- <div class="css-ob6kg2 e1sjmfnv7">
                                                     <div class="css-s5xdrg e1sjmfnv4">
-                                                        <label class="css-18r9a6u e1dcessg1" for="OptionalTermsOfPrivacy">
-                                                            <input id="OptionalTermsOfPrivacy" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">개인정보 수집∙이용 동의</label><span class="css-g5xq45 e1sjmfnv5">(선택)</span>
-                                                        </div>
-                                                        <a class="css-7chi73 e1sjmfnv3">약관보기</a>
+                                                        <input id="SignupEventAll" type="checkbox" class="css-agvwxo e1dcessg0 ">
+                                                        <label class="css-18r9a6u " for="SignupEventAll">
+                                                             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">
+                                                                무료배송 등 혜택/정보 수신 동의
+                                                        </label>
+                                                            <span class="css-g5xq45 e1sjmfnv5">(선택)</span>
                                                     </div>
-                                                    <div class="css-ob6kg2 e1sjmfnv7">
-                                                        <div class="css-s5xdrg e1sjmfnv4">
-                                                            <label class="css-18r9a6u e1dcessg1" for="SignupEventAll">
-                                                                <input id="SignupEventAll" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">무료배송, 할인쿠폰 등 혜택/정보 수신 동의</label><span class="css-g5xq45 e1sjmfnv5">(선택)</span>
-                                                            </div>
-                                                    </div>
-                                                    <div class="css-ov2xfu e1sjmfnv7">
-                                                        <div class="css-s5xdrg e1sjmfnv4">
-                                                            <label class="css-18r9a6u e1dcessg1" for="RequiredSignupAge">
-                                                                <input id="RequiredSignupAge" type="checkbox" class="css-agvwxo e1dcessg0">
-                                                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">본인은 만 14세 이상입니다.</label><span class="css-g5xq45 e1sjmfnv5">(필수)</span>
-                                                        </div>
+                                                </div> -->
+                                                <div class="css-ov2xfu e1sjmfnv7">
+                                                    <div class="css-s5xdrg ">
+                                                        <input id="RequiredSignupAge" type="checkbox" class="css-agvwxo req agrees">
+                                                        <label class="css-18r9a6u " for="RequiredSignupAge">
+                                                            <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                                                본인은 만 14세 이상입니다.
+                                                        </label>
+                                                            <span class="css-g5xq45 e1sjmfnv5">(필수)</span>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <div class="css-137ca2h e1utgeno0">
                                         <button class="css-18m884r e4nu7ef3" id="joinbtn" width="240" height="56" radius="3">
@@ -273,6 +295,6 @@
 		}).open();
 	}
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>		
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>		 -->
 </body>
 </html>
