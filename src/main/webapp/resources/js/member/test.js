@@ -101,10 +101,24 @@ for(let a=0; a<agrees.length; a++){
     });
 }
 
+//필수약관만 선택해서 동의
+
+
+
 joinbtn.addEventListener("click",function(){
     let no = true;
     for(let i= 0; i<req.length; i++){
-
+        console.log(req.length);
+        console.log(req[i].checked);
+        if(!req[i].checked){
+            no =false;
+            break;
+        }
+    }
+    if(no){
+        //form submit해주기
+    }else{
+        alert("필수약관 동의 해주세요.")
     }
 });
 
