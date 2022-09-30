@@ -2,6 +2,30 @@
     box-sizing: border-box;
 }
 
+/* 헤더 카테고리*/
+ul ul {
+	display: none;
+	
+}
+ul li:hover > ul {
+    display: block;
+}
+
+ul ul ul {
+	display: none;
+}
+ul ul li:hover > ul {
+    display: block;
+}
+
+ul ul ul ul {
+	display: none;
+}
+ul ul ul li:hover > ul {
+    display: block;
+}
+
+
 body {
     margin: 0;
     min-width: 992px;
@@ -10,7 +34,7 @@ body {
 
 body h1 {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 100px;
     margin-bottom: 60px;
     font-size: 24px;
     font-style: bold;
@@ -21,15 +45,16 @@ body h1 {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: 740px;
-    text-align: center;
+    width: 1100px;
+    text-align: center; 
 }
 
 .products img {
-    width: 225px;
-    height: 225px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    width: 250px;
+    height: 250px;
+    margin-left:13px;
+    margin-right:10px;
+    margin-bottom: 10px;
 }
 
 .products a {

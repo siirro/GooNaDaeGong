@@ -10,26 +10,26 @@
 <body>
 	<h2>상품등록</h2>
 	
-	<form role="form" action="./add" method="post">
+	<form role="form" action="./add" method="post" enctype="multipart/form-data">
 
 		<span>1그룹</span>
 		<select class="cate1">
-			<option value="none">전체</option>
+			<option value="none">선택</option>
 		</select>
 
 		<span>2그룹</span>
 		<select class="cate2">
-			<option value="none">전체</option>
+			<option value="none">선택</option>
 		</select>	
 	
 		<span>3그룹</span>
 		<select class="cate3">
-			<option value="none">전체</option>
+			<option value="none">선택</option>
 		</select>
 	
 		<span>4그룹</span>
 		<select class="cate4" name="cate_num">
-			<option value="none">전체</option>
+			<option value="none">선택</option>
 		</select>
 	
 	<div class="inputArea">
@@ -51,6 +51,15 @@
 		<label for="item_contents">상품내용</label>
 		<textarea rows="5" cols="50" name="item_contents"></textarea>
 	</div>
+	
+	<div class="inputArea">
+		<label for="item_file">상품이미지</label>
+		<input type="file" id="item_file" name="files">
+	</div >
+	<div class="inputArea">
+		<label for="item_file">상품이미지2</label>
+		<input type="file" id="item_file2" name="files">
+	</div >
 	
 	<div class="inputArea">
 		<button type="submit" id="add_btn">등록</button>
@@ -114,8 +123,8 @@
 			cateSelect2.children().remove();
 			cateSelect3.children().remove()
 
-			cateSelect2.append("<option value='none'>전체</option>");
-			cateSelect3.append("<option value='none'>전체</option>");
+			cateSelect2.append("<option value='none'>선택</option>");
+			cateSelect3.append("<option value='none'>선택</option>");
 			
 			for (let i = 0; i < cate2Array.length; i++) {
 				if (selectVal1 === cate2Array[i].cate_ref) {
@@ -131,8 +140,10 @@
 			cateSelect3.children().remove();
 			cateSelect4.children().remove();
 			
-			cateSelect3.append("<option value='none'>전체</option>");
-			cateSelect4.append("<option value='none'>전체</option>");
+			cateSelect3.append("<option value='none'>선택</option>");
+			cateSelect4.append("<option value='none'>선택</option>");
+			
+			cateSelect3.append("<option value='" + selectVal2 +  "'>전체</option>");
 			
 			for (let i = 0; i < cate3Array.length; i++) {
 				if (selectVal2 === cate3Array[i].cate_ref) {
@@ -146,6 +157,7 @@
 			let selectVal3 = $(this).find("option:selected").val();
 			
 			cateSelect4.children().remove();
+
 			cateSelect4.append("<option value='" + selectVal3 +  "'>전체</option>");
 
 			for (let i = 0; i < cate4Array.length; i++) {
