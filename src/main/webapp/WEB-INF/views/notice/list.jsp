@@ -7,12 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
-rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/notice/list.css">
 </head>
-<body>
+<!-- <style>
+    .form-control {
+    
+    appearance: auto;
+    padding: 0px;
+    
+}
 
+</style> -->
+<body>
+<div class="wrap">
+    <!-- 헤더 임포트 -->
+    <c:import url="../template/header.jsp"></c:import>
 
 
 <!-- 본문 전체박스 -->
@@ -21,9 +30,20 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
     <!-- 레이아웃 박스 -->
     <div class="css-luwwab eug5r8l4">
 
-        <!-- sidebar import -->
-        <c:import url="./nsidebar.jsp"></c:import>
-        
+        <!-- sidebar -->
+        <div class="css-833hqy ecbxmj4" id="sidebar">
+
+            <div class="css-1v4whg ecbxmj3">
+                고객센터
+            </div>
+            <ul class="css-1x9bshx ecbxmj2">
+                <li class="css-0 ecbxmj1"><a href="../notice/list" class="active css-nk8664 ecbxmj0">공지사항<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../faq/list" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../qna/inquiry" class=" css-nk8664 ecbxmj0">1:1 문의<span class="css-e41glx e1x0rfoo0"></span></a></li>
+            </ul>
+            
+        </div>
+        <!-- sidebar 끝 -->
         
         <!-- 공지사항 본문 -->
         <div class="css-171zbec eug5r8l3">
@@ -37,47 +57,88 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
             <!-- 공지사항 본문의 찐본문 -->
             <table class="css-r5t16v e1ehwelz4">
                 <thead class="css-0 e1ehwelz3">
-                    <tr class="css-etygac e1ehwelz0">
+                    <tr class="css-etygac e1ehwelz0" style="border-bottom: 1px solid #ACACD5;
+                    border-top: 1px solid #ACACD5;">
                         <th width="50" class="css-hyew2s e1ehwelz2">번호</th>
                         <th class="css-1k9dp5l e1ehwelz2">제목</th>
-                        <th width="100" class="css-135p6jy e1ehwelz2">작성자</th>
-                        <th width="100" class="css-135p6jy e1ehwelz2">작성일</th>
+                        
+                        <th width="100" class="css-135p6jy e1ehwelz2">등록일</th>
                     </tr>
                 </thead>
                 <tbody class="css-bjn8wh e1ehwelz1">
                     <!--  -->
+                    
+                    <c:forEach items="${list}" var="nl">
+                        <!-- <a style="color: black;" href="./detail?nt_num=${nl.nt_num}"> -->
+                            <tr class="css-x2m5rx e15yrn082" onclick="location.href='./detail?nt_num=${nl.nt_num}'">
+                                <td class=" css-1k4d546 e15yrn081">${nl.nt_num}</td>
+                                <td class=" css-s1v1rc e15yrn081">
+                                    <c:if test="${nl.code == 1}">
+                                    [구디나라]
+                                    </c:if>
 
+                                    <c:if test="${nl.code == 2}">
+                                    [대기공주]
+                                    </c:if>
 
-                    <!-- 더미 -->
-                    <tr class="css-x2m5rx e15yrn082">
-                        <td class=" css-1k4d546 e15yrn081">공지</td>
-                        <td class=" css-s1v1rc e15yrn081">[마켓컬리] 선물하기 서비스 재오픈 공지 (2022. 8. 25 ~ )</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
-                        <td class=" css-vzhbq5 e15yrn081">2022-08-24</td>
-                    </tr>
-                    <tr class="css-x2m5rx e15yrn082">
-                        <td class=" css-1k4d546 e15yrn081">공지</td>
-                        <td class=" css-s1v1rc e15yrn081">[마켓컬리] 컬리 소비자 분쟁해결 기준 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
-                        <td class=" css-vzhbq5 e15yrn081">2022-07-27</td>
-                    </tr>  
-                    <tr class="css-x2m5rx e15yrn082">
-                        <td class=" css-1k4d546 e15yrn081">1661</td>
-                        <td class=" css-s1v1rc e15yrn081">[마켓컬리] 2022년 9월 럭셔리 뷰티 위크 원데이 브랜드데이 특별 적립금 지급 연기 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td>
-                        <td class=" css-vzhbq5 e15yrn081">2022-09-23</td>
-                    </tr>
-                    <tr class="css-x2m5rx e15yrn082">
-                        <td class=" css-1k4d546 e15yrn081">1660</td>
-                        <td class=" css-s1v1rc e15yrn081">[안내] 태풍영향권의 일부 낮배송 지역 대상 주문 불가 안내</td>
-                        <td class=" css-1k4d546 e15yrn081">MarketKurly</td><td class=" css-vzhbq5 e15yrn081">2022-09-16</td>
-                    </tr>
+                                    ${nl.nt_title}
+                                </td>
+                                
+                                <td class=" css-vzhbq5 e15yrn081">${nl.nt_date}</td>
+				            </tr>
+                        <!-- </a> -->
+				    </c:forEach>
+                    
+
+                    
 
 
                 </tbody>
             </table>
 
-            <div class="css-1kbzkwh efhuu1x1">
+            <!-- 페이지 -->
+            <div class="pagediv mt-3" style="display: flex; justify-content: center; ">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination paginate_sm">
+
+                        <c:if test="${pager.pre}">
+                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                        </c:if>
+                        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                        </c:forEach>
+                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 내용 Search -->
+            <div class="" style="justify-content: center;
+            display: flex;">
+            <form action="./list" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        
+                <div class="input-group">
+                    <div class="search-category" id="search-category" style="margin-right: 5px;">
+                        <!-- 클래스에서 custom-select-sm form-control-sm 뺌 -->
+                        <select name="kind" class="custom-select form-control" style="appearance: auto; padding: d; height: 37px;">
+                            <option class="kinds" value="nt_title">제목</option>
+                            <option class="kinds" value="nt_contents">내용</option>
+                            <option class="kinds" value="user_id">작성자</option>
+                        </select>
+                    </div>
+                    <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small w-10" placeholder="Search"
+                        aria-label="Search" aria-describedby="basic-addon2" style="border-radius: 8px;">
+                    <input type="hidden" name="code" value="${code}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+            <!-- <div class="css-1kbzkwh efhuu1x1">
                 <div class="css-sxxs1g eytury60">
                     <button disabled="" type="button" class="css-rzcdhr e1hbwyso0">
                         <div class="css-7qb0sc e1ilyb3p0">이전</div>
@@ -86,7 +147,49 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
                         <div class="css-7qb0sc e1ilyb3p0">다음</div>
                     </button>
                 </div>
+            </div> -->
+
+            
+            <!-- 기존 등록하기 버튼 혹시몰라서남겨두기 -->
+            <!-- <div class="css-15jhycr e3tf63e0" style="position: relative;
+            min-height: 44px;
+            margin-top: 20px;
+            text-align: center;">
+                <a href="./add">
+                <button class="css-1g9mj7 e4nu7ef3" type="button" width="120" height="42" radius="0" style="position: absolute;
+                bottom: 0px; right: 0px; display: block; padding: 0px 10px; text-align: center;
+                overflow: hidden; width: 120px; height: 42px; border-radius: 0px; color: rgb(255, 255, 255);
+                background-color: #6667AB; border: 0px none;">
+                    <span class="css-ymwvow e4nu7ef1">공지 등록</span>
+                </button>
+                </a>
+            </div> -->
+
+            <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+            <div class="mb-3" style="display: flex; justify-content: right; margin-top: 30px;">
+                <a href="./hidden">
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                style ="width: 120px;
+                height: 42px; 
+                background-color: cornflowerblue; border-color: cornflowerblue;">
+                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                    
+                        숨긴글 조회
+                </button>        
+                </a>
+
+                <a href="./add">
+                <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
+                style ="width: 120px;
+                height: 42px; background-color: #6667AB; border: 0px none; margin-left: 10px;">
+                    <i class="fas fa-wrench fa-sm text-white-50"></i> 
+                    
+                        공지 등록
+                </button>   
+                </a>
             </div>
+            <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+
 
         </div>
         <!-- 공지사항 본문 끝 -->
@@ -103,12 +206,11 @@ rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5
 
 
 
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<!-- 푸터 -->
+<c:import url="../template/footer.jsp"></c:import>
 <script src="/resources/js/notice/list.js"></script>
+</div>
+
+
 </body>
 </html>

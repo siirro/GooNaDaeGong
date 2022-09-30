@@ -63,7 +63,7 @@ public class Pager {
 			this.lastNum=totalPage;
 		}
 		
-		//?? 검색결과가 0개면 라스트넘도 0이 되는 식 (제가 임의로 추가한거라 에러뜨면 지워주세요)
+		//?? 검색결과가 0개면 라스트넘도 0이 되는 식 (제가 임의로 추가한거라 에러뜨면 사용x)
 		if(totalBlock==0) {
 			//this.lastNum=totalPage;
 			this.lastNum=0L;

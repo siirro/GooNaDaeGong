@@ -16,6 +16,7 @@
 		<c:import url="./template/header.jsp"></c:import>
 
 		<section>
+			
 			<!-- Carousel Start -->
 			<div id="carouselExampleInterval" class="carousel slide"
 				data-bs-ride="carousel">
@@ -63,32 +64,74 @@
 			<a href="/member/google">구글 로그인</a><br>
 			
 			<div class="products">
-				<h1>Product</h1>
-				<a href="#"> <img src="/resources/images/sample.jpg">
+				<h1>이 상품 어때요?</h1>
+				<a href="#"> 
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				 <a href="#">
+				 	<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="products">
+				<h1>놓치면 후회할 가격</h1>
+				<a href="#"> 
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				 <a href="#">
+				 	<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
-				</a> <a href="#"> <img src="/resources/images/sample.jpg">
+				</a>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="products">
+				<h1>이거 살려고 가입함ㅅㄱ</h1>
+				<a href="#"> 
+					<img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a>
+				<a href="#">
+					<img src="/resources/images/sample.jpg">
+					<p>상품명</p>
+					<p class="price">100,000</p>
+				</a>
+				 <a href="#">
+				 	<img src="/resources/images/sample.jpg">
 					<p>상품명</p>
 					<p class="price">100,000</p>
 				</a>

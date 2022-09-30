@@ -91,6 +91,7 @@
 		ORDER BY FILENUM ASC
 	</select>
 	
+
 	<resultMap type="GnItemDTO" id="getDetailResult">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="CATE_NUM" property="cate_num"/>
@@ -123,5 +124,6 @@
 	<delete id="setDelete" parameterType="GnItemDTO">
 		DELETE ITEM WHERE ITEM_NUM=#{item_num}
 	</delete>
+
 
 </mapper>

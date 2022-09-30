@@ -1,8 +1,9 @@
 package com.gndg.home.dgItem;
 
 import java.sql.Date;
+import java.util.List;
 
-public class DgItemDTO extends CategoryDTO{
+public class DgItemDTO {
 	
 	private Long item_num;
 	private String cate_num;

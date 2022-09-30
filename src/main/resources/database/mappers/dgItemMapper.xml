@@ -5,46 +5,101 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.dgItem.DgItemDAO">
 
-   <!--  상품조회 + 카테고리 조인 -->
-<!--    <select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
-   <select id="getDetailItem" parameterType="DgItemDTO" resultMap="ItemCateview">
-      SELECT
-          I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE
-              FROM ITEM I
-                 INNER JOIN CATEGORY C 
-                      ON I.CATE_NUM = C.CATE_NUM
-                WHERE I.ITEM_NUM = #{item_num}
-   </select>
-   <resultMap type="DgItemDTO" id="ItemCateview">
-      <id column="" property=""/>
-      <result/>
-   </resultMap> -->
-   
-   <!-- 상품조회 -->
-   <select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO">
-      SELECT  *
-          FROM ITEM
-             WHERE ITEM_NUM = #{item_num}
-   </select>
+	<!-- 상품 이미지 -->
+	<insert id="setAddFile" parameterType="DgItemFileDTO">
+		INSERT INTO ITEMFILE (FILENUM, ITEM_NUM, FILENAME, ORINAME)
+    		VALUES(FILENUM_SEQ.NEXTVAL, #{item_num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<!-- 상품수정 -->
+	<update id="setUpdateItem" parameterType="DgItemDTO">
+		UPDATE ITEM
+			SET
+				ITEM_NAME = #{item_name},
+				ITEM_PRICE = #{item_price},
+				ITEM_STOCK = #{item_stock},
+				ITEM_CONTENTS = #{item_contents}
+		
+		WHERE ITEM_NUM = #{item_num}
+	</update>
 
-   <!-- 상품목록 -->
-   <select id="getListItem" resultType="DgItemDTO">
-      SELECT ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, CODE
-         FROM ITEM
-              ORDER BY ITEM_NUM DESC   
-   </select>
-   
-   <!-- 상품등록 -->
-   <insert id="setAddItem" parameterType="DgItemDTO">
-      INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, CODE)
-      VALUES(ITEM_SEQ.NEXTVAL, #{cate_num}, 'admin', #{item_name}, #{item_contents}, #{item_price}, sysdate, 0, #{item_stock}, 'Y', 2)
-   </insert>
+	<!-- 상품조회 + 카테고리 조인 -->
+<!-- 	<select id="getDetailItem" parameterType="DgItemDetailDTO" resultType="DgItemDetailDTO">
+		SELECT
+			I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE
+				FROM ITEM I
+					INNER JOIN CATEGORY C
+						ON I.CATE_NUM = C.CATE_NUM
+			WHERE I.ITEM_NUM = #{item_num}
+	</select> -->
+	
+	<!-- 상품조회 + 카테고리 조인 + 이미지 조인 -->
+	<select id="getDetailItem" parameterType="DgItemDetailDTO" resultMap="getDetailItemResult">
+		SELECT
+    		I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE, IF.ITEM_NUM, IF.FILENAME, IF.ORINAME
+    			FROM ITEM I
+            		INNER JOIN CATEGORY C 
+                		ON I.CATE_NUM = C.CATE_NUM
+            
+            		LEFT JOIN ITEMFILE IF
+                		ON I.ITEM_NUM = IF.ITEM_NUM
+                
+        		WHERE I.ITEM_NUM = #{item_num}
+        </select>
+        
+        <resultMap type="DgItemDetailDTO" id="getDetailItemResult">
+			<id column="ITEM_NUM" property="item_num" />
+			<result column="ITEM_NAME" property="item_name"/>
+			<result column="CATE_NUM" property="cate_num"/>
+			<result column="ITEM_PRICE" property="item_price"/>
+			<result column="ITEM_STOCK" property="item_stock"/>
+			<result column="ITEM_CONTENTS" property="item_contents"/>
+			<result column="ITEM_DATE" property="item_date"/>
 
-   <!-- 카테고리 불러오기 -->
-   <select id="getCategory" resultType="Category">
-      SELECT *
-      FROM CATEGORY
-      ORDER BY CATE_NUM ASC
-   </select>
+ 			<association property="category" javaType="Category">
+				<id column="CATE_REF" property="cate_ref" />
+				<result column="CATE_NAME" property="cate_name"/>
+			</association>
+
+			<collection property="dgItemFileDTOs" javaType="List" ofType="DgItemFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+      			<result column="FILENAME" property="fileName"/>
+      			<result column="ORINAME" property="oriName"/>
+			</collection>
+	</resultMap>
+
+	<!-- 상품조회 -->
+	<!-- <select id="getDetailItem" parameterType="DgItemDTO" resultType="DgItemDTO"> 
+		SELECT * FROM ITEM WHERE ITEM_NUM = #{item_num} </select> -->
+		
+	<!-- 상품삭제 -->
+	<delete id="deleteItem">
+		DELETE
+			ITEM
+		WHERE ITEM_NUM = #{item_num}
+	</delete>
+
+	<!-- 상품목록 -->
+	<select id="getListItem" resultType="DgItemDTO">
+		SELECT ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, CODE
+			FROM ITEM
+				ORDER BY ITEM_NUM DESC
+	</select>
+
+	<!-- 상품등록 -->
+	<insert id="setAddItem" parameterType="DgItemDTO">
+		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
+			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, CODE)
+		VALUES(#{item_num}, #{cate_num}, 'admin', #{item_name}, #{item_contents}, #{item_price}, sysdate, 0, #{item_stock}, 'Y', 2)
+	</insert>
+
+	<!-- 카테고리 불러오기 -->
+	<select id="getCategory" resultType="Category">
+		SELECT *
+			FROM CATEGORY
+				ORDER  BY CATE_NUM ASC
+	</select>
 
 </mapper>
