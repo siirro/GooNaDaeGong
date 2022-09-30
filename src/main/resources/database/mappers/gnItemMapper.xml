@@ -45,18 +45,85 @@
 	    ORDER BY CATE_NUM ASC
 	</select>
 	
-	<insert id="setGnItem" parameterType="GnItemDTO">
+	<insert id="setAdd" parameterType="GnItemDTO">
+		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
+			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_DEAL, ITEM_CONDITION, ITEM_YN, CODE)
-		VALUES(ITEM_SEQ.NEXTVAL, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, #{item_deal}, #{item_condition}, 'Y', 1)
+		VALUES(#{item_num}, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, #{item_deal}, #{item_condition}, 'Y', 1)
 	</insert>
 	
-	<select id="getGnList" resultType="GnItemDTO">
-		SELECT * FROM ITEM ORDER BY ITEM_NUM ASC
+	<insert id="setAddFile" parameterType="GnItemFileDTO">
+		INSERT INTO ITEMFILE VALUES(FILENUM_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
+	</insert> 
+	
+	<select id="getList" resultType="GnItemDTO" resultMap="getListResult">
+		SELECT ITEM_NUM, I.ITEM_NAME, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+		FROM ITEM I
+		LEFT JOIN 
+		ITEMFILE F
+		USING (ITEM_NUM)
+		WHERE CODE=1
+		ORDER BY ITEM_NUM DESC, FILENUM ASC
 	</select>
 	
-	<select id="getGnDetail" parameterType="GnItemDTO" resultType="GnItemDTO">
-		SELECT * FROM ITEM WHERE ITEM_NUM=#{cate_num}
+	<resultMap type="GnItemDTO" id="getListResult">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+		<result column="ITEM_DATE" property="item_date"/>
+		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
+	
+	<select id="getDetail" parameterType="GnItemDTO" resultMap="getDetailResult">
+		SELECT * 
+		FROM ITEM I
+		
+		LEFT JOIN ITEMFILE F
+		USING (ITEM_NUM)
+		
+		LEFT JOIN CATEGORY C
+		USING (CATE_NUM)
+		
+		WHERE ITEM_NUM=#{item_num}
+		ORDER BY FILENUM ASC
 	</select>
 	
+
+	<resultMap type="GnItemDTO" id="getDetailResult">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="CATE_NUM" property="cate_num"/>
+		<result column="USER_ID" property="user_id"/>
+		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_CONTENTS" property="item_contents"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+		<result column="ITEM_DATE" property="item_date"/>
+		<result column="ITEM_HIT" property="item_hit"/>
+		<result column="ITEM_DEAL" property="item_deal"/>
+		<result column="ITEM_CONDITION" property="item_condition"/>
+		<result column="ITEM_YN" property="item_yn"/>
+		<result column="CODE" property="code"/>
+		
+		<association property="category" javaType="Category">
+			<id column="CATE_NUM" property="cate_num"/>
+			<result column="CATE_NAME" property="cate_name"/>
+			<result column="CATE_REF" property="cate_ref"/>
+		</association>
+		
+		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
+	
+	<update id="setUpdate" parameterType="GnItemDTO">
+		UPDATE ITEM SET CATE_NUM=#{cate_num}, ITEM_NAME=#{item_name}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_DEAL=#{item_deal}, ITEM_CONDITION=#{item_condition} WHERE ITEM_NUM=#{item_num}
+	</update>
+	
+	<delete id="setDelete" parameterType="GnItemDTO">
+		DELETE ITEM WHERE ITEM_NUM=#{item_num}
+	</delete>
+
 
 </mapper>

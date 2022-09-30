@@ -22,6 +22,7 @@ public class FileManager {
 		//2.폴더(directory) 체크
 		//저장할 폴더의 정보를 가지는 자바 객체 생성
 		File file = new File(realPath);
+		
 		if(!file.exists()) {
 			file.mkdirs();
 		}
@@ -31,7 +32,7 @@ public class FileManager {
 		fileName = fileName + "_" + multipartFile.getOriginalFilename();
 		
 		//4.HDD에 저장
-		file = new File(file, fileName); //부모, 자식
+		file = new File(file, fileName); //(폴더, 저장할파일명)
 		multipartFile.transferTo(file);
 		
 		return fileName;
@@ -39,10 +40,10 @@ public class FileManager {
 	
 	
 	//delete
-	public boolean deleteFile(ServletContext servletContext, String path, FileDTO itemFileDTO) throws Exception {
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO) throws Exception {
 		String realPath = servletContext.getRealPath(path);
 		System.out.println("RealPath : "+realPath);
-		File file = new File(realPath, itemFileDTO.getFileName());
+		File file = new File(realPath, fileDTO.getFileName());
 		
 		return file.delete();
 	}

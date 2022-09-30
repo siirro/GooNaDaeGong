@@ -1,6 +1,9 @@
 package com.gndg.home.gnItem;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.gndg.home.util.Category;
 
 public class GnItemDTO {
 	
@@ -17,7 +20,21 @@ public class GnItemDTO {
 	private String item_condition;
 	private String item_yn;
 	private Long code;
+	private List<GnItemFileDTO> gnItemFileDTOs;
+	private Category category;
 	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public List<GnItemFileDTO> getGnItemFileDTOs() {
+		return gnItemFileDTOs;
+	}
+	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
+		this.gnItemFileDTOs = gnItemFileDTOs;
+	}
 	public Long getItem_num() {
 		return item_num;
 	}

@@ -18,7 +18,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">구디나라</a>
+                <a class="navbar-brand" href="/">구디나라</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
@@ -54,7 +54,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <h1 class="display-4 fw-bolder">GOODEENARA</h1>
                     <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
                 </div>
             </div>
@@ -63,18 +63,18 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <c:forEach items="${list }" var="dto">
+                    <c:forEach items="${list}" var="dto">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                        <a href="detail?num=${dto.item_num }"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."></a>
+                        	<a href="detail?item_num=${dto.item_num }"><img class="card-img-top" src="/resources/upload/gnItem/${dto.gnItemFileDTOs[0].fileName }" width="450" height="200"></a>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">${dto.item_name }</h5>
                                     <!-- Product price-->
-                                    ${dto.item_price }원
+                                   	${dto.item_price }원
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,5 @@
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
     </body>
     </html>

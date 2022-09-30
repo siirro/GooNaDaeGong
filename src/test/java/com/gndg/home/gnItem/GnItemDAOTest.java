@@ -15,23 +15,60 @@ public class GnItemDAOTest extends AbstractTest {
 	@Autowired
 	public GnItemDAO gnItemDAO;
 	
-	@Test
+	//@Test
 	public void getCategoryTest() throws Exception {
 		List<Category> ar = gnItemDAO.getCategory();
 		assertEquals(153, ar.size());
 	}
 	
-	@Test
-	public void setGnItemTest() throws Exception {
-		GnItemDTO gnItemDTO = new GnItemDTO();
-		gnItemDTO.setItem_num(2L);
-		gnItemDTO.setCate_num("1111");
-		gnItemDTO.setUser_id("ㅇㅅㅇ");
-		gnItemDTO.setItem_name("아이폰12pro");
-		gnItemDTO.setItem_contents("아이폰12pro A급 판매합니다");
-		gnItemDTO.setItem_price(500000L);
-		gnItemDTO.setItem_deal("안전거래");
-		int result = gnItemDAO.setGnItem(gnItemDTO);
+	//@Test
+	public void setAddTest() throws Exception {
+		
+		for(int i=1; i<60; i++) {
+			GnItemDTO gnItemDTO = new GnItemDTO();
+			gnItemDTO.setCate_num("1234");
+			gnItemDTO.setUser_id("11");
+			gnItemDTO.setItem_name("아이폰"+i+" Pro Max");
+			gnItemDTO.setItem_contents("상품내용");
+			gnItemDTO.setItem_price(10000000L+i);
+			gnItemDTO.setItem_deal("안전거래");
+			gnItemDTO.setItem_condition("새상품(미개봉)");
+			int result = gnItemDAO.setAdd(gnItemDTO);
+		}
+		System.out.println("Finish");
+	}
+	
+	//@Test
+	public void setAddFileTest() throws Exception {
+		GnItemFileDTO gnItemFileDTO = new GnItemFileDTO();
+		gnItemFileDTO.setFileNum(4L);
+		gnItemFileDTO.setItem_num(83L);
+		gnItemFileDTO.setFileName("123456789_img2.jpg");
+		gnItemFileDTO.setOriName("img2.jpg");
+		int result = gnItemDAO.setAddFile(gnItemFileDTO);
 		assertEquals(1, result);
 	}
+	
+	//@Test
+	public void setUpdateTest() throws Exception {
+		GnItemDTO gnItemDTO = new GnItemDTO();
+		gnItemDTO.setCate_num("1234");
+		gnItemDTO.setItem_name("test");
+		gnItemDTO.setItem_contents("test");
+		gnItemDTO.setItem_price(1234L);
+		gnItemDTO.setItem_deal("test");
+		gnItemDTO.setItem_condition("test");
+		gnItemDTO.setItem_num(121L);
+		int result = gnItemDAO.setUpdate(gnItemDTO);
+		assertEquals(1, result);
+	}
+	
+	@Test
+	public void setDeleteTest() throws Exception {
+		GnItemDTO gnItemDTO = new GnItemDTO();
+		gnItemDTO.setItem_num(489L);
+		int result = gnItemDAO.setDelete(gnItemDTO);
+		assertEquals(1, result);
+	}
+	
 }
