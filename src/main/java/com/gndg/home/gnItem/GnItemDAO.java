@@ -19,15 +19,27 @@ public class GnItemDAO {
 		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}
 	
-	public int setGnItem(GnItemDTO gnItemDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setGnItem", gnItemDTO);
+	public int setAdd(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAdd", gnItemDTO);
 	}
 	
-	public List<GnItemDTO> getGnList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getGnList");
+	public int setAddFile(GnItemFileDTO gnItemFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAddFile", gnItemFileDTO);
 	}
 	
-	public GnItemDTO getGnDetail(GnItemDTO gnItemDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getGnDetail", gnItemDTO);
+	public List<GnItemDTO> getList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList");
+	}
+	
+	public GnItemDTO getDetail(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getDetail", gnItemDTO);
+	}
+	
+	public int setUpdate(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setUpdate", gnItemDTO);
+	}
+	
+	public int setDelete(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setDelete", gnItemDTO);
 	}
 }

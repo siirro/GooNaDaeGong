@@ -12,7 +12,7 @@
 			<typeAlias type="com.gndg.home.gnItem.GnItemDTO" alias="GnItemDTO"/>
 	  		<typeAlias type="com.gndg.home.dgItem.DgItemDTO" alias="DgItemDTO"/>
 
-
+			<typeAlias type="com.gndg.home.gnItem.GnItemFileDTO" alias="GnItemFileDTO"/>
 
 
 

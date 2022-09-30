@@ -1,174 +1,76 @@
-const category1 = document.querySelector('#category1');
-const category2 = document.querySelector('#category2');
-const category3 = document.querySelector('#category3');
-const category4 = document.querySelector('#category4');
-const cate_num = document.querySelector('#cate_num');
+const fileAdd = document.querySelector("#fileAdd");
+const button = document.querySelector("#button");
+const container = document.querySelector("#container");
 
-category1.addEventListener('change',function(){
-    let cate2Child = document.getElementsByClassName("cate2Child");
-    for(let i=0; cate2Child.length;){
-        category2.removeChild(cate2Child[0]);
-    } 
 
-    let cate3Child = document.getElementsByClassName("cate3Child");
-    for(let i=0; cate3Child.length;){
-        category3.removeChild(cate3Child[0]);
+//--------------------파일추가--------------------
+let count = 0;
+let idx = 0;
+
+function setCount(c) { //update.jsp
+    if (c >= 0) {
+        count = c;
+    }
+}
+
+button.addEventListener("click", function () {
+
+    if (count > 4) {
+        alert('최대 업로드파일 수를 초과 했습니다. 최대업로드 파일 갯수 : 5');
+        return;
     }
 
-    let cate4Child = document.getElementsByClassName("cate4Child");
-    for(let i=0; cate4Child.length;){
-        category4.removeChild(cate4Child[0]);
-    }
-    getCategory2();
+    //<div id="file0">
+    //<input type="file" id="files" name="files" accept="image/*" onchange="setThumbnail(event);"/>
+//<img class="image" src="data:image/jpe">
+    //<button type="button" class="del" title="0">삭제</button>
+    //</div>
+    let div = document.createElement("div");
+    div.setAttribute("id", "file" + idx);
+    container.appendChild(div);
 
-    let value = document.createAttribute("value");
-	value.value=category1.value;
-	cate_num.setAttributeNode(value);
-});
+    let input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("id", "files");
+    input.setAttribute("name", "files");
+    input.setAttribute("accept", "image/*");
+    input.setAttribute("onchange", "setThumbnail(event);");
+    div.appendChild(input);
 
+    div.setAttribute
 
-category2.addEventListener('change',function(){
-    let cate3Child = document.getElementsByClassName("cate3Child");
-    for(let i=0; cate3Child.length;){
-        category3.removeChild(cate3Child[0]);
-    }
+    let btn = document.createElement('button');
+    btn.setAttribute("type", "button");
+    btn.setAttribute("class", "del");
+    btn.setAttribute("title", idx);
+    let btntxt = document.createTextNode('삭제');
+    btn.appendChild(btntxt);
+    div.append(btn);
+})
 
-    let cate4Child = document.getElementsByClassName("cate4Child");
-    for(let i=0; cate4Child.length;){
-        category4.removeChild(cate4Child[0]);
-    }
-    getCategory3();
+function setThumbnail(event) {
 
-    let value = document.createAttribute("value");
-    value.value=category2.value;
-    cate_num.setAttributeNode(value);
-});
-
-
-category3.addEventListener('change',function(){
-    let cate4Child = document.getElementsByClassName("cate4Child");
-    for(let i=0; cate4Child.length;){
-        category4.removeChild(cate4Child[0]);
-    }
-    getCategory4();
-
-    let value = document.createAttribute("value");
-    value.value=category3.value;
-    cate_num.setAttributeNode(value);
-});
-
-
-category4.addEventListener('change',function(){
-    let value = document.createAttribute("value");
-    value.value=category4.value;
-    cate_num.setAttributeNode(value);
-});
-
-
-function getCategory1() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET','./category');
-    xhttp.send();
-    xhttp.onreadystatechange=function(){
-        if(this.readyState==4 && this.status==200){
-            let jsonData = JSON.parse(this.responseText.trim());
-
-            //1차 분류 셀렉트 박스에 데이터 삽입
-            for(let i=0; jsonData.length; i++) {
-                if(jsonData[i].cate_group==1) {
-                    let option = document.createElement("option");  
-                    let contents = document.createTextNode(jsonData[i].cate_name);
-                    let attribute = document.createAttribute("value");
-                    attribute.value = jsonData[i].cate_num;
-                    option.setAttributeNode(attribute);
-                    option.appendChild(contents);
-                    category1.append(option);
-                }
-            }
-        }
+    for (let image of event.target.files) {
+        let reader = new FileReader();
+        reader.onload = function (event) {
+            
+            let img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            img.setAttribute("style", "width: 120px; height: 90px;");
+            container.appendChild(img);
+            
+            count++;
+            idx++;
+        };
+        reader.readAsDataURL(image);
     }
 }
 
 
-function getCategory2() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET','./category');
-    xhttp.send();
-    xhttp.onreadystatechange=function(){
-        if(this.readyState==4 && this.status==200){
-            let jsonData = JSON.parse(this.responseText.trim());
-
-            //2차 분류 셀렉트 박스에 데이터 삽입
-            for(let i=0; i<jsonData.length; i++) {
-                if(jsonData[i].cate_ref==category1.value) {
-                    let option = document.createElement("option");  
-                    let contents = document.createTextNode(jsonData[i].cate_name);
-                    let attribute1 = document.createAttribute("value");
-                    let attribute2 = document.createAttribute("class");
-                    attribute1.value = jsonData[i].cate_num;
-                    attribute2.value = 'cate2Child';
-                    option.setAttributeNode(attribute1);
-                    option.setAttributeNode(attribute2);
-                    option.appendChild(contents);
-                    category2.append(option);
-                }
-            }
-        }
+//--------------------파일삭제--------------------
+container.addEventListener("click", function (event) {
+    if (event.target.className = "del") {
+        const idxNum = document.getElementById('file' + event.target.title);
+        idxNum.remove();
     }
-}
-
-
-function getCategory3() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET','./category');
-    xhttp.send();
-    xhttp.onreadystatechange=function(){
-        if(this.readyState==4 && this.status==200){
-            let jsonData = JSON.parse(this.responseText.trim());
-
-            //3차 분류 셀렉트 박스에 데이터 삽입
-            for(let i=0; i<jsonData.length; i++) {
-                if(jsonData[i].cate_ref==category2.value) {
-                    let option = document.createElement("option");  
-                    let contents = document.createTextNode(jsonData[i].cate_name);
-                    let attribute1 = document.createAttribute("value");
-                    let attribute2 = document.createAttribute("class");
-                    attribute1.value = jsonData[i].cate_num;
-                    attribute2.value = 'cate3Child';
-                    option.setAttributeNode(attribute1);
-                    option.setAttributeNode(attribute2);
-                    option.appendChild(contents);
-                    category3.append(option);
-                }
-            }
-        }
-    }
-}
-
-
-function getCategory4() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET','./category');
-    xhttp.send();
-    xhttp.onreadystatechange=function(){
-        if(this.readyState==4 && this.status==200){
-            let jsonData = JSON.parse(this.responseText.trim());
-
-            //4차 분류 셀렉트 박스에 데이터 삽입
-            for(let i=0; i<jsonData.length; i++) {
-                if(jsonData[i].cate_ref==category3.value) {
-                    let option = document.createElement("option");  
-                    let contents = document.createTextNode(jsonData[i].cate_name);
-                    let attribute1 = document.createAttribute("value");
-                    let attribute2 = document.createAttribute("class");
-                    attribute1.value = jsonData[i].cate_num;
-                    attribute2.value = 'cate4Child';
-                    option.setAttributeNode(attribute1);
-                    option.setAttributeNode(attribute2);
-                    option.appendChild(contents);
-                    category4.append(option);
-                }
-            } 
-        }
-    }
-}
+})
