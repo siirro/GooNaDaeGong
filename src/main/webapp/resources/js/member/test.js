@@ -8,6 +8,11 @@ const pw2_check = document.getElementById("pw2_check");
 const name_check = document.getElementById("name_check");
 const email_check = document.getElementById("email_check");
 const phone_check =document.getElementById("phone_check");
+const joinbtn = document.getElementById("joinbtn");
+const frmjoin = document.getElementById("frmjoin");
+const all = document.querySelector("#all");
+const agrees = document.querySelectorAll(".agrees");
+const req = document.getElementsByClassName("req");
 
 
 ajaxID.addEventListener("click",function(){
@@ -65,5 +70,55 @@ ajaxEmail.addEventListener("click",function(){
         }
     }
 
-})
+});
+
+// joinbtn.addEventListener("click",function(){
+//     frmjoin.submit();
+// });
+
+//----------------------------약관동의--------------
+//전체동의
+all.addEventListener("click",function(){
+    console.log("전체동의 체크 되나?")
+    console.log(all.checked);
+    for(let i=0; i<agrees.length; i++){
+        agrees[i].checked = all.checked
+    }
+});
+//일반동의
+for(let a=0; a<agrees.length; a++){
+    agrees[a].addEventListener("click",function(){
+        console.log(agrees[a].checked)
+        let result = true;
+        for(let y=0; y<agrees.length; y++){
+            console.log(agrees[y].checked)
+            if(!agrees[y].checked){
+                result = false;
+                break;
+            }
+        }
+        all.checked = result;
+    });
+}
+
+//필수약관만 선택해서 동의
+
+
+
+joinbtn.addEventListener("click",function(){
+    let no = true;
+    for(let i= 0; i<req.length; i++){
+        console.log(req.length);
+        console.log(req[i].checked);
+        if(!req[i].checked){
+            no =false;
+            break;
+        }
+    }
+    if(no){
+        //form submit해주기
+    }else{
+        alert("필수약관 동의 해주세요.")
+    }
+});
 

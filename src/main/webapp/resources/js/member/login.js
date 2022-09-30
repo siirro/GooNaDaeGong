@@ -13,6 +13,8 @@ loginbtn.addEventListener("click",function(){
     }else if(user_pw.value ==""){
         pw_check.innerHTML="비밀번호를 입력해주세요.";
         user_pw.focus();
+    }else{
+        frmLogin.submit();
     }
 
     user_id.addEventListener("blur",function(){
@@ -32,7 +34,7 @@ loginbtn.addEventListener("click",function(){
         }
     })
 
-
+    
       
     
 });

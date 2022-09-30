@@ -2,6 +2,125 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gndg.home.CartDAO">
+<mapper namespace="com.gndg.home.cart.CartDAO">
+
+<!-- 카트 추가 -->
+<insert id="setAddCart" parameterType="CartDTO">
+INSERT INTO CART
+VALUES(
+	CART_SEQ.NEXTVAL,
+	#{item_num},
+	#{user_id},
+	#{item_count}
+)
+</insert>
+
+<!-- 카트 목록 -->
+<!-- <select id="getCartList" parameterType="CartDTO" resultMap="cartListResult">
+SELECT C.CART_NUM, C.USER_ID,C.ITEM_COUNT, I.ITEM_NUM, I.ITEM_NAME, I.ITEM_PRICE
+FROM 
+    CART C
+	LEFT JOIN
+	ITEM I
+	ON C.ITEM_NUM = I.ITEM_NUM
+WHERE C.USER_ID = #{user_id} AND ITEM_NUM=#{item_num}
+</select>
+   <resultMap type="CartDTO" id="cartListResult">
+	<id column="CART_NUM" property="cart_num"/>
+	<result column="ITEM_NUM" property="item_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column= "ITEM_COUNT" property="item_count"/>
+	<collection property="dgItemDTOs" javaType="List" ofType="DgItemDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_PRICE" property="item_price" />
+			<association property="MemberDTO" javaType="MemberDTO">
+				<id column="USER_ID" property="user_id"/>
+				<result column="USER_POST" property="user_post"/>
+				<result column="USER_ADDR" property="user_addr"/>
+				<result column="USER_ADDR2" property="user_addr2"/>
+			</association>
+	</collection> 
+	<collection property="memberDTOs" javaType="List" ofType="MemberDTO">
+		<id column="USER_ID" property="user_id"/>
+		<result column="USER_POST" property="user_post"/>
+		<result column="USER_ADDR" property="user_addr"/>
+		<result column="USER_ADDR2" property="user_addr2"/>
+	</collection>
+
+</resultMap> -->
+
+<!-- 카트 상품목록 출력 -->
+<select id="getItemList" parameterType="CartDTO" resultMap="CartListResult">
+SELECT C.*,I.ITEM_NAME,I.ITEM_PRICE,I.ITEM_PRICE*C.ITEM_COUNT AS TOTALPRICE, M.USER_POST,M.USER_ADDR,M.USER_ADDR2
+FROM MEMBER M
+	LEFT JOIN
+	CART C 
+	ON M.USER_ID = C.USER_ID
+    LEFT JOIN
+    ITEM I
+    ON C.ITEM_NUM = I.ITEM_NUM
+WHERE M.USER_ID= #{user_id}
+</select>
+<resultMap type="CartDTO" id="CartListResult">
+<id column="CART_NUM"  property="cart_num" />
+<result column="ITEM_NUM" property="item_num"/>
+<result column="ITEM_COUNT" property="item_count" />
+<result column="TOTALPRICE" property="totalPrice" />
+	<association property="dgItemDTO" javaType="DgItemDTO" >
+		<id column="ITEM_NUM" property="item_num" />
+		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_PRICE" property="item_price" />
+	</association>
+	<association property="memberDTO" javaType="MemberDTO">
+		<id column="USER_ID" property="user_id" />
+		<result column="USER_POST" property="user_post" />
+		<result column="USER_ADDR" property="user_addr" />
+		<result column="USER_ADDR2" property="user_addr2"  />
+	</association>
+</resultMap>
+
+<!-- 카트 회원 정보 불러오기 -->
+<select id="getMemberCart" parameterType="CartDTO" resultMap="CartMemberResult">
+SELECT C.USER_ID, M.USER_POST, M.USER_ADDR, M.USER_ADDR2
+FROM MEMBER M
+	 JOIN
+	 CART C
+	 ON M.USER_ID = C.USER_ID
+WHERE M.USER_ID = #{user_id}	 
+</select>
+<resultMap type="CartDTO" id="CartMemberResult">
+<id column="CART_NUM" property="cart_num"/>
+<result column="USER_ID" property="user_id" />
+	<association property="memberDTO" javaType="MemberDTO">
+		<id column="USER_ID" property="user_id" />
+		<result column="USER_POST" property="user_post"/>
+		<result column="USER_ADDR" property="user_addr"/>
+		<result column="USER_ADDR2" property="user_addr2"/>
+	</association>
+
+</resultMap>
+
+<!-- 카트수량체크 -->
+<select id="getCountCart" parameterType="CartDTO" resultType="Long">
+SELECT COUNT(CART_NUM)
+FROM CART
+WHERE USER_ID =#{user_id}
+</select>
+
+<!-- 카트 슈량 수정 -->
+<update id="setUpdateCart" parameterType="CartDTO">
+UPDATE CART
+SET ITEM_COUNT = #{item_count}
+WHERE CART_NUM =#{cart_num}
+</update>
+
+
+<!-- 카트삭제 -->
+<delete id="setDeleteCart" parameterType="CartDTO">
+DELETE 
+FROM CART
+WHERE CART_NUM = #{cart_num}
+</delete>
 
 </mapper>

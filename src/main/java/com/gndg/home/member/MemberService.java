@@ -39,35 +39,40 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO, MultipartFile mf,ServletContext servletContext)throws Exception{
+	public int setJoin(MemberDTO memberDTO,MultipartFile userfile,ServletContext servletContext)throws Exception{
 		System.out.println("회원가입 service");
+		int result = memberDAO.setJoin(memberDTO);
 //		1.HDD에 파일을 저장
-//		파일을 저장시에 경로는 Tomcat기준이 아니라 OS 기준을 설정
-//			1) 파일 저장위치
-//		webapp/resources/images/member
+//			파일을 저장시에 경로는 TOMCAT기준이 아니라 OS의 기준을 설정
+//			1) 파일저장 위치
+//			webapp/resources/images/member
 //			2) 저장할 폴더의 실제경로 반환(OS기준)
-		if(!mf.isEmpty()) {
-			String realPath = servletContext.getRealPath("resources/images/member");
-			System.out.println(realPath);
-//			3) 저장할 폴더의 정보를 가지고 있는 자바 객체를 선언
-			File file = new File(realPath);
-//			4) 만약에 폴더가 없으면 에러가 발생하기 때문에 폴더를 생성
-			if(!file.exists()) {
-				file.mkdir();	
-			}
-//			5) 중복되지 않는 파일명 생성
-//		String oriName = mf.getOriginalFilename();
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName +"_"+mf.getOriginalFilename();
-//			6)HDD에 파일 저장
-//		file = new File(realPath,fileName);
-			file = new File(file, fileName);
-			mf.transferTo(file);
-//			7)HDD에 저장된 파일정보를 DB에 저장
-			memberDTO.setUser_file(fileName);
-			
+		String realPath = servletContext.getRealPath("resources/upload/member");
+		System.out.println(realPath);
+		System.out.println("아이디"+memberDTO.getUser_id());
+//		3.저장할 폴더의 정보를 가지고 있는 자바 객체를 선언
+		File file = new File(realPath);
+//		4.만약에 폴더가 없으면 에러가 발생하기 때문에 폴더를 생성
+		if(!file.exists()) {
+			file.mkdirs();
 		}
-		return memberDAO.setJoin(memberDTO);
+//		5.중복되지 않는 파일명 생성
+		String fileName = UUID.randomUUID().toString();
+		fileName = fileName+"_"+userfile.getOriginalFilename();
+		System.out.println("너왜 널뜸?=="+userfile.getOriginalFilename());
+		
+//		6.HDD에 파일 저장
+		file = new File(file, fileName);
+		userfile.transferTo(file);
+		
+//		7.HDD에 저장된 파일정보를 DB에 저장
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setUser_id(memberDTO.getUser_id());
+		memberFileDTO.setFileName(fileName);
+		memberFileDTO.setOriName(userfile.getOriginalFilename());
+		memberDAO.setAddMemberFile(memberFileDTO);
+		
+		return result;
 	}
 	//카카오 로그인 토큰 받아오는 메소드
 	public String getAccessToken(String authorize_code) {

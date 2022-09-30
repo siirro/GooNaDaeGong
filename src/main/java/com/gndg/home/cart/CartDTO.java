@@ -1,11 +1,25 @@
 package com.gndg.home.cart;
 
-public class CartDTO {
+import com.gndg.home.dgItem.DgItemDTO;
+import com.gndg.home.member.MemberDTO;
+
+public class CartDTO{
 
 	private Long cart_num;
 	private Long item_num;
 	private String user_id;
 	private Long item_count;
+	
+	//join용
+	private DgItemDTO dgItemDTO;
+	private MemberDTO memberDTO;
+	
+	//추가
+	private String item_name;
+	private	Long item_price;
+	private Long totalPrice;
+	private Long totalSum;
+	
 	
 	public Long getCart_num() {
 		return cart_num;
@@ -30,5 +44,41 @@ public class CartDTO {
 	}
 	public void setItem_count(Long item_count) {
 		this.item_count = item_count;
+	}
+	public Long getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(Long totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public Long getTotalSum() {
+		return totalSum;
+	}
+	public void setTotalSum(Long totalSum) {
+		this.totalSum = totalSum;
+	}
+	public DgItemDTO getDgItemDTO() {
+		return dgItemDTO;
+	}
+	public void setDgItemDTO(DgItemDTO dgItemDTO) {
+		this.dgItemDTO = dgItemDTO;
+	}
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public Long getItem_price() {
+		return item_price;
+	}
+	public void setItem_price(Long item_price) {
+		this.item_price = item_price;
 	}
 }
