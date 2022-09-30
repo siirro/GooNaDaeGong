@@ -1,6 +1,8 @@
 package com.gndg.home.faq;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,28 @@ public class FaqDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.faq.FaqDAO.";
 	
-	public List<FaqDTO> getAllList(Pager pager)throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getAllList", pager);
+	public int deleteFaq(FaqDTO faqDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteFaq", faqDTO);
 	}
 	
-	public Long getAllListCount()throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getAllListCount");
+	public int updateFaq(FaqDTO faqDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"updateFaq", faqDTO);
+	}
+	
+	public int addFaq(FaqDTO faqDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addFaq", faqDTO);
+	}
+	
+	public List<FaqDTO> getList(Pager pager, Long faq_cate)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pager.getStartRow());
+		map.put("lastRow", pager.getLastRow());
+		map.put("faq_cate", faq_cate);
+		return sqlSession.selectList(NAMESPACE+"getList", map);
+	}
+	
+	public Long getListCount(Long faq_cate)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", faq_cate);
 	}
 	
 	

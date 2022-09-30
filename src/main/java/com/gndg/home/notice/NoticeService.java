@@ -20,9 +20,9 @@ public class NoticeService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public int deleteNotice(NoticeFileDTO noticeFileDTO, ServletContext servletContext)throws Exception{
+	public int deleteNoticeFile(NoticeFileDTO noticeFileDTO, ServletContext servletContext)throws Exception{
 		noticeFileDTO = noticeDAO.detailNoticeFile(noticeFileDTO);
-		int result = noticeDAO.deleteNotice(noticeFileDTO);
+		int result = noticeDAO.deleteNoticeFile(noticeFileDTO);
 		String path="resources/upload/notice";
 		
 		if(result>0) {
@@ -48,12 +48,26 @@ public class NoticeService {
 			noticeFileDTO.setNt_num(noticeDTO.getNt_num());
 			
 			noticeDAO.addNoticeFile(noticeFileDTO);
-			
 		}
-		
-		
-		
+
 		return result;
+	}
+	
+	public int deleteNotice(NoticeDTO noticeDTO, ServletContext servletContext)throws Exception{
+		NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+		noticeFileDTO.setNt_num(noticeDTO.getNt_num());
+		List<NoticeFileDTO> ar = noticeDAO.detailNoticeFileAll(noticeFileDTO);
+		
+		int result = noticeDAO.deleteNoticeFileAll(noticeFileDTO);
+		//찐파일삭제
+		for(int i=0; i<ar.size();i++) {
+			String path = "resources/upload/notice";
+			if(result>0) {
+				fileManager.deleteFile(servletContext, path, ar.get(i));
+			}
+		}
+
+		return noticeDAO.deleteNotice(noticeDTO);
 	}
 	
 	public int addNotice(NoticeDTO noticeDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{

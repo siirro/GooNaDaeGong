@@ -13,13 +13,27 @@ public class FaqService {
 	@Autowired
 	private FaqDAO faqDAO;
 	
-	public List<FaqDTO> getAllList(Pager pager)throws Exception{
+	public int deleteFaq(FaqDTO faqDTO)throws Exception{
+		return faqDAO.deleteFaq(faqDTO);
+	}
+	
+	public int updateFaq(FaqDTO faqDTO)throws Exception{
+		return faqDAO.updateFaq(faqDTO);
+	}
+	
+	public int addFaq(FaqDTO faqDTO)throws Exception{
+		return faqDAO.addFaq(faqDTO);
+	}
+	
+	public List<FaqDTO> getList(Pager pager, Long faq_cate)throws Exception{
 		
-		Long totalCount = faqDAO.getAllListCount();
+		Long totalCount = faqDAO.getListCount(faq_cate);
+		pager.setPerPage(5L);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
-		List<FaqDTO> ar = faqDAO.getAllList(pager);
+		
+		List<FaqDTO> ar = faqDAO.getList(pager, faq_cate);
 		return ar;
 	}
 	

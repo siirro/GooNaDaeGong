@@ -106,8 +106,8 @@ a {
 .css-185m8ch {
     width: 820px;
     padding: 10px 20px 30px;
-    border-top: 2px solid rgb(51, 51, 51);
-    border-bottom: 2px solid rgb(51, 51, 51);
+    border-top: 2px solid #ACACD5;
+    border-bottom: 2px solid #ACACD5;
 }
 
 .css-mm5tap {
@@ -772,8 +772,7 @@ thead {
 .css-etygac {
     width: 100%;
     table-layout: fixed;
-    border-bottom: 2px solid rgb(51, 51, 51);
-    border-top: 1px solid rgb(51, 51, 51);
+    
 }
 
 .css-hyew2s {

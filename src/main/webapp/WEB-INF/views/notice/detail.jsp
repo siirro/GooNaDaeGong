@@ -103,8 +103,9 @@
             <!-- 목록으로 -->
             <div class="css-1spu0j4 ebvrvv11" style="padding: 0px; margin-top: 30px;">
                 <a href="./update?nt_num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">수정</button></a>
-                <a href="./delete?nt_num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
+                <a href="javascript:goDelete()"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
             </div>
+            
 
         </div>
         <!-- 공지사항 본문 끝 -->
@@ -127,5 +128,20 @@
 </div>
 
 
+
+
+
+<script>
+
+// 삭제전 확인 함수
+function goDelete() {
+    if (confirm("정말 삭제하시겠습니까?")) {
+        location.href = "./delete?nt_num=${detail.nt_num}";
+    }
+}
+
+</script>
+
+ 
 </body>
 </html>

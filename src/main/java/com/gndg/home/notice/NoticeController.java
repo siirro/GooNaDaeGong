@@ -37,8 +37,8 @@ public class NoticeController {
 	
 	@PostMapping("fileDelete")
 	@ResponseBody
-	public String deleteNotice(NoticeFileDTO noticeFileDTO, HttpSession session)throws Exception{
-		int result = noticeService.deleteNotice(noticeFileDTO, session.getServletContext());
+	public String deleteNoticeFile(NoticeFileDTO noticeFileDTO, HttpSession session)throws Exception{
+		int result = noticeService.deleteNoticeFile(noticeFileDTO, session.getServletContext());
 		String jsonResult = "{\"result\":\""+result+"\"}";
 		return jsonResult;
 	}
@@ -57,7 +57,12 @@ public class NoticeController {
 	public String updateNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = noticeService.updateNotice(noticeDTO, multipartFiles, session.getServletContext());
 		return "redirect:./detail?nt_num="+noticeDTO.getNt_num();
-		
+	}
+	
+	@GetMapping("delete")
+	public String deleteNotice(NoticeDTO noticeDTO, HttpSession session)throws Exception{
+		int result = noticeService.deleteNotice(noticeDTO, session.getServletContext());
+		return "redirect:./list";
 	}
 	
 	

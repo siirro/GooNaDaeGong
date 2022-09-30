@@ -28,7 +28,9 @@ SELECT * FROM
 					<when test="kind == 'qna_contents'">QNA_CONTENTS</when>
 					<otherwise>USER_ID</otherwise>
 				</choose>
-			LIKE '%'||#{search}||'%' AND CODE = #{code}
+			LIKE '%'||#{search}||'%' 
+			
+			AND CODE LIKE '%'||#{code,jdbcType=NUMERIC}||'%'
 			ORDER BY QNA_NUM DESC)
 		N)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -42,7 +44,8 @@ SELECT * FROM
 		<when test="kind == 'qna_contents'">QNA_CONTENTS</when>
 		<otherwise>USER_ID</otherwise>
 	</choose>
-	LIKE '%'||#{search}||'%' AND CODE = #{code}
+	LIKE '%'||#{search}||'%' 
+	AND CODE LIKE '%'||#{code,jdbcType=NUMERIC}||'%'
 </select>
 	
 <select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">

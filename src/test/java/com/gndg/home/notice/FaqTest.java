@@ -20,14 +20,15 @@ public class FaqTest extends AbstractTest{
 	private FaqDAO faqDAO;
 
 	//겟리스트 성공
-//	@Test
-//	public void getAllList()throws Exception{
-//		Pager pager = new Pager();
-//		pager.setStartRow(1L);
-//		pager.setLastRow(10L);
-//		List<FaqDTO> ar = faqDAO.getAllList(pager);
-//		assertEquals(1, ar.size());
-//	}
+	@Test
+	public void getList()throws Exception{
+		Pager pager = new Pager();
+		pager.setStartRow(1L);
+		pager.setLastRow(10L);
+		Long faq_cate = 7L;
+		List<FaqDTO> ar = faqDAO.getList(pager, faq_cate);
+		assertEquals(4, ar.size());
+	}
 	
 //	@Test
 //	public void getAllListCount()throws Exception{

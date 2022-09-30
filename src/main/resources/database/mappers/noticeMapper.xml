@@ -5,8 +5,16 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.notice.NoticeDAO">
 
-<delete id="deleteNotice" parameterType="NoticeFileDTO">
+<select id="detailNoticeFileAll" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+SELECT * FROM NOTICEFILE WHERE NT_NUM = #{nt_num}
+</select>
+
+<delete id="deleteNoticeFileAll" parameterType="NoticeFileDTO">
 DELETE FROM NOTICEFILE WHERE NT_NUM = #{nt_num}
+</delete>
+
+<delete id="deleteNoticeFile" parameterType="NoticeFileDTO">
+DELETE FROM NOTICEFILE WHERE FILENUM = #{fileNum}
 </delete>
 
 <select id="detailNoticeFile" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
@@ -18,6 +26,10 @@ UPDATE NOTICE
 SET NT_TITLE=#{nt_title}, NT_CONTENTS=#{nt_contents}, CODE=#{code}, NT_YN=#{nt_yn} 
 WHERE NT_NUM=#{nt_num}
 </update>
+
+<delete id="deleteNotice" parameterType="NoticeDTO">
+DELETE FROM NOTICE WHERE NT_NUM = #{nt_num}
+</delete>
 
 <insert id="addNotice" parameterType="NoticeDTO">
 <selectKey order="BEFORE" keyProperty="nt_num" resultType="Long">

@@ -38,7 +38,7 @@
             </div>
             <ul class="css-1x9bshx ecbxmj2">
                 <li class="css-0 ecbxmj1"><a href="../notice/list" class="active css-nk8664 ecbxmj0">공지사항<span class="css-e41glx e1x0rfoo0"></span></a></li>
-                <li class="css-0 ecbxmj1"><a href="../faq/main" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
+                <li class="css-0 ecbxmj1"><a href="../faq/list" class=" css-nk8664 ecbxmj0">자주하는 질문<span class="css-e41glx e1x0rfoo0"></span></a></li>
                 <li class="css-0 ecbxmj1"><a href="../qna/inquiry" class=" css-nk8664 ecbxmj0">1:1 문의<span class="css-e41glx e1x0rfoo0"></span></a></li>
             </ul>
             
@@ -57,7 +57,8 @@
             <!-- 공지사항 본문의 찐본문 -->
             <table class="css-r5t16v e1ehwelz4">
                 <thead class="css-0 e1ehwelz3">
-                    <tr class="css-etygac e1ehwelz0">
+                    <tr class="css-etygac e1ehwelz0" style="border-bottom: 1px solid #ACACD5;
+                    border-top: 1px solid #ACACD5;">
                         <th width="50" class="css-hyew2s e1ehwelz2">번호</th>
                         <th class="css-1k9dp5l e1ehwelz2">제목</th>
                         
@@ -167,8 +168,7 @@
             <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
             <div class="mb-3" style="display: flex; justify-content: right; margin-top: 30px;">
                 <a href="./hidden">
-                <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" 
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                 style ="width: 120px;
                 height: 42px; 
                 background-color: cornflowerblue; border-color: cornflowerblue;">
@@ -179,8 +179,7 @@
                 </a>
 
                 <a href="./add">
-                <button data-qna-num="${qnaDTO.qna_num}" id="qnaCommentDelete" 
-                class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
+                <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
                 style ="width: 120px;
                 height: 42px; background-color: #6667AB; border: 0px none; margin-left: 10px;">
                     <i class="fas fa-wrench fa-sm text-white-50"></i> 

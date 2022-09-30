@@ -17,17 +17,28 @@ public class NoticeDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.notice.NoticeDAO.";
 	
-	public int deleteNotice(NoticeFileDTO noticeFileDTO)throws Exception{
-		return sqlSession.delete(NAMESPACE+"deleteNotice", noticeFileDTO);
+	public List<NoticeFileDTO> detailNoticeFileAll(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"detailNoticeFileAll", noticeFileDTO);
+	}
+	
+	public int deleteNoticeFileAll(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteNoticeFileAll", noticeFileDTO);
+	}
+	
+	public int deleteNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteNoticeFile", noticeFileDTO);
 	}
 	
 	public NoticeFileDTO detailNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"detailNoticeFile", noticeFileDTO);
-
 	}
 	
 	public int updateNotice(NoticeDTO noticeDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"updateNotice", noticeDTO);
+	}
+	
+	public int deleteNotice(NoticeDTO noticeDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteNotice", noticeDTO);
 	}
 	
 	public int addNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
