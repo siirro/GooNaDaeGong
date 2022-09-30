@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gndg.home.faq.FaqDAO">
+
+<delete id="deleteFaq" parameterType="FaqDTO">
+DELETE FROM FAQ WHERE FAQ_NUM = #{faq_num}
+</delete>
+
+<update id="updateFaq" parameterType="FaqDTO">
+UPDATE FAQ
+SET FAQ_TITLE=#{faq_title}, FAQ_CONTENTS=#{faq_contents}, FAQ_CATE=#{faq_cate}
+WHERE FAQ_NUM=#{faq_num}
+</update>
+
+<insert id="addFaq" parameterType="FaqDTO">
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL,#{user_id},#{faq_cate},#{faq_title},#{faq_contents},SYSDATE)
+</insert>
+
+<select id="getList" parameterType="Map" resultType="FaqDTO">
+SELECT * FROM
+		(SELECT ROWNUM R, F.* 
+		FROM 
+		(SELECT * FROM FAQ 
+			WHERE FAQ_CATE LIKE '%'||#{faq_cate,jdbcType=NUMERIC}||'%'
+			ORDER BY FAQ_NUM DESC) F)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<select id="getListCount" parameterType="FaqDTO" resultType="Long">
+	SELECT COUNT(FAQ_NUM) FROM FAQ WHERE FAQ_CATE LIKE '%'||#{faq_cate,jdbcType=NUMERIC}||'%'
+</select>
+
+
+
+
+</mapper>

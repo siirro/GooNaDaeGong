@@ -1,6 +1,7 @@
 package com.gndg.home.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 public class QnaDTO {
 	
@@ -13,6 +14,14 @@ public class QnaDTO {
 	private String qna_status;
 	private String qna_comment;
 	private Long code;
+	private List<QnaFileDTO> qnaFileDTOs;
+	
+	public List<QnaFileDTO> getQnaFileDTOs() {
+		return qnaFileDTOs;
+	}
+	public void setQnaFileDTOs(List<QnaFileDTO> qnaFileDTOs) {
+		this.qnaFileDTOs = qnaFileDTOs;
+	}
 	public Long getQna_num() {
 		return qna_num;
 	}

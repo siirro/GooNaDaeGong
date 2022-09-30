@@ -50,15 +50,14 @@
 
             <!-- 공지사항 본문의 제목 -->
             <div class="css-1yc2nwy eug5r8l2">
-                <h3 class="css-1ew6v8c eug5r8l1">공지사항</h3>
+                <h3 class="css-1ew6v8c eug5r8l1">공지사항 [숨긴글 목록]</h3>
                 
             </div>
             
             <!-- 공지사항 본문의 찐본문 -->
             <table class="css-r5t16v e1ehwelz4">
                 <thead class="css-0 e1ehwelz3">
-                    <tr class="css-etygac e1ehwelz0" style="border-bottom: 1px solid #ACACD5;
-                    border-top: 1px solid #ACACD5;">
+                    <tr class="css-etygac e1ehwelz0">
                         <th width="50" class="css-hyew2s e1ehwelz2">번호</th>
                         <th class="css-1k9dp5l e1ehwelz2">제목</th>
                         
@@ -67,7 +66,6 @@
                 </thead>
                 <tbody class="css-bjn8wh e1ehwelz1">
                     <!--  -->
-                    
                     <c:forEach items="${list}" var="nl">
                         <!-- <a style="color: black;" href="./detail?nt_num=${nl.nt_num}"> -->
                             <tr class="css-x2m5rx e15yrn082" onclick="location.href='./detail?nt_num=${nl.nt_num}'">
@@ -88,7 +86,6 @@
 				            </tr>
                         <!-- </a> -->
 				    </c:forEach>
-                    
 
                     
 
@@ -168,7 +165,8 @@
             <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
             <div class="mb-3" style="display: flex; justify-content: right; margin-top: 30px;">
                 <a href="./hidden">
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" 
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                 style ="width: 120px;
                 height: 42px; 
                 background-color: cornflowerblue; border-color: cornflowerblue;">
@@ -179,7 +177,8 @@
                 </a>
 
                 <a href="./add">
-                <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
+                <button data-qna-num="${qnaDTO.qna_num}" id="qnaCommentDelete" 
+                class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
                 style ="width: 120px;
                 height: 42px; background-color: #6667AB; border: 0px none; margin-left: 10px;">
                     <i class="fas fa-wrench fa-sm text-white-50"></i> 

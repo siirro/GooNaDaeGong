@@ -20,6 +20,12 @@ public class QnaDAO {
 	
 	//==============================================================
 	
+	
+	public int addQnaFile(QnaFileDTO qnaFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"addQnaFile", qnaFileDTO);
+	}
+	
 	//qna 입력
 	public int addQna(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addQna", qnaDTO);
@@ -66,6 +72,10 @@ public class QnaDAO {
 	// qna 답변 조회
 	public QnaDTO getComment(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getComment", qnaDTO);
+	}
+	
+	public int statusChange(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"statusChange", qnaDTO);
 	}
 
 }

@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.gndg.home.File.FileManager;
 import com.gndg.home.util.Pager;
 
 @Service
@@ -15,8 +19,31 @@ public class QnaService {
 	@Autowired
 	private QnaDAO qnaDAO;
 	
-	public int addQna(QnaDTO qnaDTO)throws Exception{
-		return qnaDAO.addQna(qnaDTO);
+	@Autowired
+	private FileManager fileManager;
+	
+	public int addQna(QnaDTO qnaDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
+		int result = qnaDAO.addQna(qnaDTO);
+		String path = "resources/upload/qna";
+		
+		for(MultipartFile multipartFile : files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+			qnaFileDTO.setFileName(fileName);
+			qnaFileDTO.setOriName(multipartFile.getOriginalFilename());
+			
+			qnaFileDTO.setQna_num(qnaDTO.getQna_num());
+			qnaDAO.addQnaFile(qnaFileDTO);
+		}
+		
+		
+		
+		return result;
+
 	}
 		
 	public List<QnaDTO> getList(Pager pager, Long code) throws Exception{
@@ -37,5 +64,10 @@ public class QnaService {
 	
 	public QnaDTO getComment(QnaDTO qnaDTO)throws Exception{
 		return qnaDAO.getComment(qnaDTO);
+	}
+	
+	public int statusChange(QnaDTO qnaDTO)throws Exception{
+		qnaDTO = qnaDAO.getDetail(qnaDTO);
+		return qnaDAO.statusChange(qnaDTO);
 	}
 }
