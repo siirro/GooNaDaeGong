@@ -14,23 +14,25 @@
     <section>
         <div class="css-luwwab eug5r8l4">
             <div class="css-833hqy ecbxmj4">
-                <div class="css-1v4whg ecbxmj3">마이컬리</div>
+                <div class="css-1v4whg ecbxmj3">마이페이지</div>
                 <ul class="css-1x9bshx ecbxmj2">
                     <li class="css-0 ecbxmj1">
                         <a class="active css-nk8664 ecbxmj0">주문 내역<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                     <li class="css-0 ecbxmj1">
-                        <a class="active css-nk8664 ecbxmj0" href="./mySale">판매 내역<span class="css-e41glx e1x0rfoo0"></span></a>
+                        <a class="css-nk8664 ecbxmj0" href="./mySale">판매 내역<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                     <li class="css-0 ecbxmj1">
                         <a class=" css-nk8664 ecbxmj0" href="./myHeart">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
-                    <li class="css-0 ecbxmj1"><a class=" css-nk8664 ecbxmj0" href="./myReview">상품 후기<span class="css-e41glx e1x0rfoo0"></span></a>
+                    <li class="css-0 ecbxmj1">
+                        <a class=" css-nk8664 ecbxmj0" href="./myReview">상품 후기<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
-
-                    <li class="css-0 ecbxmj1"><a class=" css-nk8664 ecbxmj0" href="./myQNA">상품 문의<span class="css-e41glx e1x0rfoo0"></span></a>
+                    <li class="css-0 ecbxmj1">
+                        <a class=" css-nk8664 ecbxmj0" href="./myQNA">상품 문의<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
-                    <li class="css-0 ecbxmj1"><a class=" css-nk8664 ecbxmj0" href="./myUpdate">개인 정보 수정<span class="css-e41glx e1x0rfoo0"></span></a>
+                    <li class="css-0 ecbxmj1">
+                        <a class=" css-nk8664 ecbxmj0" href="./myUpdate">개인 정보 수정<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                 </ul>
                 <a href="/mypage/inquiry/form" class="css-17gln34 e19l01ug3">

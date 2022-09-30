@@ -63,6 +63,7 @@ body {
     background-color: rgb(250, 250, 250);
     color: rgb(95, 0, 128);
     font-weight: 500;
+    text-decoration: none;
 }
 .css-j0lifa {
     display: flex;
@@ -257,9 +258,8 @@ a {
     color: inherit;
 }
 a:-webkit-any-link {
-    color: -webkit-link;
+    color:  rgb(95, 0, 128);
     cursor: pointer;
-    text-decoration: underline;
 }
 .css-tzsjye {
     display: inline-flex;
@@ -490,4 +490,256 @@ ol, ul {
     font-size: 12px;
     color: #333;
     line-height: 20px;
+}
+.css-nk8664.active > span, .css-nk8664:hover > span {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjExIiB2aWV3Qm94PSIwIDAgNiAxMSI+CiAgICA8cGF0aCBmaWxsPSIjNUYwMDgwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xIDExTDYgNS41IDEgMCAwIDEuMSA0IDUuNSAwIDkuOXoiLz4KPC9zdmc+Cg==);
+}
+/* 여기서 부턴가? 내 개인정보 수정 */
+.css-ya8of1 {
+    width: 820px;
+    margin: 0px auto;
+    padding: 7px 60px 7px 120px;
+    border-top: 2px solid rgb(51, 51, 51);
+}
+.css-1yc2nwy {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 10px 0px 37px;
+}
+.css-1ew6v8c {
+    font-weight: 500;
+    font-size: 24px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.5px;
+}
+.css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+}.css-1y8737n {
+    width: 139px;
+    padding-top: 12px;
+}
+.css-14332pf {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 40px;
+    border-top: 1px solid rgb(244, 244, 244);
+}
+.css-14332pf > button {
+    width: 120px;
+    height: 44px;
+    margin: 0px 3px;
+    border-radius: 3px;
+}
+.css-ufulao {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 3px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(95, 0, 128);
+}
+.css-1qirdbn {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(95, 0, 128);
+    border: 0px none;
+}
+/* 여기서부턴 상품문의 css */
+.board-container {
+    height: 100%;
+}
+.page_aticle.aticle_type2 .page_section {
+    float: right;
+    width: 820px;
+}
+.page_aticle button, .page_aticle input, .page_aticle select, .page_aticle * {
+    font-family: noto sans;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.section_review .head_aticle {
+    padding-bottom: 20px;
+}
+.page_aticle .head_aticle .tit {
+    height: 36px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #333;
+    letter-spacing: -.5px;
+}
+.board-header-container {
+    padding-bottom: 38px;
+    font-family: Noto Sans;
+    margin-top: 20px;
+}
+.list-description {
+    font-family: Noto Sans;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #999;
+}
+.board-item-container.my_kurly {
+    width: 820px;
+}
+.board-item-container {
+    position: relative;
+    font-family: Noto Sans;
+    border-top: 2px solid #333;
+}
+.board-item-container .board-list>li.inquiry-empty, .board-item-container .inquiry-notice-list>li.inquiry-empty {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    padding: 117px 0;
+    text-align: center;
+    cursor: default;
+}
+.board-item-container .board-list>li, .board-item-container .inquiry-notice-list>li {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding: 16px 0;
+    font-family: Noto Sans;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f4f4f4;
+}
+.board-item-container.my_kurly .inquiry-board-header div:nth-child(2) {
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.board-item-container .inquiry-board-header>div {
+    display: table-cell;
+    text-align: center;
+    padding: 18px 0 20px;
+    width: 100px;
+    font-family: Noto Sans;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    color: #333;
+}
+.board-item-container .board-list>li.inquiry-empty, .board-item-container .inquiry-notice-list>li.inquiry-empty {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    padding: 117px 0;
+    text-align: center;
+    cursor: default;
+}
+.board-item-container .board-list>li, .board-item-container .inquiry-notice-list>li {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding: 16px 0;
+    font-family: Noto Sans;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f4f4f4;
+}
+.board-inquiry-area {
+    position: relative;
+}
+.paging-navigation {
+    padding-top: 20px;
+    text-align: center;
+}
+.paging-navigation>button:disabled.paging-prev {
+    margin-right: 12px;
+    background-image: url(https://res.kurly.com/kurly/img/2021/direction_prev_disabled_24_44_gray.svg);
+}
+.paging-navigation>button.paging-prev {
+    margin-right: 12px;
+    background: url(https://res.kurly.com/kurly/img/2021/direction_prev_24_44_black.svg) 50% 0 no-repeat;
+}
+.paging-navigation>button:disabled {
+    border-color: #eee;
+    cursor: default;
+}
+.paging-navigation>button {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    background: 0;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    cursor: pointer;
+}
+ol, ul {
+    list-style-type: none;
+}
+/* 여기서 부터는 리뷰 */
+.section_review .review_notice {
+    font-size: 14px;
+    color: #999;
+    line-height: 22px;
+    letter-spacing: -.3px;
+}
+div, th, td, li, dt, dd, p {
+    word-break: break-all;
+}
+.section_review .tab_menu {
+    overflow: hidden;
+    padding-top: 30px;
+}
+.section_review .tab_menu li {
+    float: left;
+    width: 410px;
+    height: 50px;
+    background-color: #fff;
+}
+.section_review .tab_menu .on a {
+    border-bottom: 2px solid #5f0080;
+    font-weight: 700;
+    color: #5f0080;
+}
+.section_review .tab_menu a {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dddfe1;
+    font-size: 14px;
+    color: #666;
+    line-height: 44px;
+    text-align: center;
+}
+.page_aticle.aticle_type2 .page_section {
+    float: right;
+    width: 820px;
+}
+.section_review .list_after li.no_data, .section_review .list_before .no_data {
+    padding: 150px 0 0;
+    border: 0;
+}
+.section_review .list_after li {
+    border-bottom: 2px solid #ddd;
+}
+.page_aticle .no_data {
+    padding: 50px 0;
+    font-size: 13px;
+    color: #757575;
+    text-align: center;
 }

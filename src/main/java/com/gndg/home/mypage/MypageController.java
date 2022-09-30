@@ -35,5 +35,9 @@ public class MypageController {
 	public String mySale()throws Exception{
 		return "/mypage/mySale";
 	}
+	@RequestMapping(value="myUpdate")
+	public String myUpdate()throws Exception{
+		return "/mypage/myUpdate";
+	}
 
 }
