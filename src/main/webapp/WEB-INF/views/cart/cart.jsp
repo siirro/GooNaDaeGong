@@ -22,32 +22,30 @@
            <div class="css-1n2hipb">장바구니</div>
            <form action="cart" method="post">
             <input type="hidden" name="user_id" value="${member.user_id}">
-               <div class="css-a6t9xs er0tf673">
-                   <div class="css-8wfj4z er0tf672">
-                       <div class="css-20o6z0 e149z643">
-                           <div class="css-zbxehx e149z642">
-                               <label class="css-1j5mumb e1dcessg1">
-                                   <input type="checkbox" class="css-agvwxo e1dcessg0">
-                                   <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">전체선택 </label>
-                                   <span class="css-454d5e e149z641"></span>
-                                   <button class="css-0 e149z640">선택삭제</button>
-                           </div>
-                       </div>
-                           <div class="css-2lvxh7 ej77nku0">
+            <div class="css-a6t9xs er0tf673">
+                <div class="css-8wfj4z er0tf672">
+                    <div class="css-20o6z0 e149z643">
+                        <div class="css-zbxehx e149z642">
+                            <label class="css-1j5mumb e1dcessg1">
+                                <input type="checkbox" class="css-agvwxo e1dcessg0">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">전체선택 </label>
+                                (??/${result})
+                                <span class="css-454d5e e149z641"></span>
+                                <button class="css-0 e149z640">선택삭제</button>
+                            </div>
+                        </div>
+                        <div class="css-2lvxh7 ej77nku0">
                             <div>
-                               <h4 class="css-td54hr e1w1cmkx0">
-                                   <span class="css-1nzj0g2 e6yclqm1">
-                                       <!-- <span class="css-12dwhid e6yclqm0">
-                                           <span class="css-1791hip e1i6zhfu0"></span>
-                                       </span>냉동 상품 -->
-                                    </span>
-                                       <button class="css-lvqq7y e17cst861">
-                                           <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" class="css-hvzkdq e17cst860">
-                                        </button>
+                                <h4 class="css-td54hr e1w1cmkx0">
+                                    <span class="css-1nzj0g2 e6yclqm1"></span>
+                                    <button class="css-lvqq7y e17cst861" id="accordion">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" class="css-hvzkdq e17cst860">
+                                    </button>
                                 </h4>
                                 
-                                    <ul>
-                                        <c:forEach items="${cart}" var="list">
+                                <ul>
+                                    <c:forEach items="${cart}" var="list">
+                                        <input type="hidden" name="cart_num" id="cart_num" value="${list.cart_num}">
                                         <li class="css-1d6kgf6 esoayg811">
                                         <label class="css-dar8hv e1dcessg1">
                                             <input type="checkbox" class="css-agvwxo e1dcessg0" checked="">
@@ -63,14 +61,23 @@
                                             <div class="css-ar9i78 esoayg82"></div>
                                             </div>
                                             <div class="css-1gueo66 e1cqr3m40">
-                                                <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0" id="minusbtn"></button>
-                                                <div class="count css-6m57y0 e1cqr3m41">${list.item_count}</div>
+                                            	<c:choose>
+                                            		<c:when test="${list.item_count eq 1 }">
+                                                		<button type="button" aria-label="수량내리기" disabled class="css-1e90glc " id="minusbtn"></button>
+                                            		</c:when>
+	                                            	<c:otherwise>
+	                                                	<button type="button" aria-label="수량내리기" class="css-8azp8 " id="minusbtn"></button>
+	                                            	</c:otherwise>
+                                            	</c:choose>
+                                                <div class="count css-6m57y0 e1cqr3m41" id="count">${list.item_count}</div>
                                                 <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0" id="plusbtn"></button>
                                             </div>
                                             <div class="css-5w3ssu esoayg84">
                                                 <span aria-label="판매 가격" data-testid="product-price" class="css-zq4evb e2qzex51">${list.totalPrice}</span>
                                             </div>
-                                            <button class="css-h5zdhc eudrkjx0" type="button" data-testid="delete"><span class="css-6mgkir e5h3i930"></span></button>
+                                            <button class="css-h5zdhc eudrkjx0" type="button" data-testid="delete" id="delbtn">
+                                                <span class="css-6mgkir e5h3i930"></span>
+                                            </button>
                                         </li>
                                         </c:forEach>
                                     </ul>
@@ -135,6 +142,7 @@
        </div> 
 
     </section>
+    <script src="/resources/js/cart/cart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>		
 </body>
 </html>

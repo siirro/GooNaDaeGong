@@ -23,6 +23,10 @@ public class CartService {
 	public CartDTO getMemberCart(CartDTO cartDTO)throws Exception{
 		return cartDAO.getMemberCart(cartDTO);
 	}
+	//카트 수량 체크
+	public Long getCountCart(CartDTO cartDTO)throws Exception{
+		return cartDAO.getCountCart(cartDTO);
+	}
 	
 	//카트 수량 수정
 	public int setUpdateCart(CartDTO cartDTO)throws Exception{

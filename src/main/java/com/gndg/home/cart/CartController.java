@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.member.MemberDTO;
@@ -47,26 +49,31 @@ public class CartController {
 		cartDTO.setUser_id(member.getUser_id());
 		System.out.println("아이디 이씨=="+cartDTO.getUser_id());
 		List<CartDTO> cart = cartService.getItemList(cartDTO);
+		Long result = cartService.getCountCart(cartDTO);
 		
 		mv.addObject("cart", cart);
+		mv.addObject("result", result);
 		mv.setViewName("/cart/cart");
 		
 		return mv;
 	}
 	//카트 수량 수정 AJAX처리 해줘야 함
-	@RequestMapping(value="UpdateCart")
+	@RequestMapping(value="UpdateCart", method = RequestMethod.POST)
+	@ResponseBody
 	public int setUpdateCart(CartDTO cartDTO)throws Exception{
 		int result = cartService.setUpdateCart(cartDTO);
+		
 		return result;
 	}
 	
 	
 	//카트 삭제 AJAX처리 해줘야함
-	@RequestMapping(value="DeleteCart")
+	@RequestMapping(value="DeleteCart", method = RequestMethod.POST)
+	@ResponseBody
 	public int setDeleteCart(CartDTO cartDTO)throws Exception{
 		int result = cartService.setDeleteCart(cartDTO);
-		return result;
 		
+		return result;
 	}
 	
 	

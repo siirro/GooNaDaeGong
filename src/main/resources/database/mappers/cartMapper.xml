@@ -101,6 +101,13 @@ WHERE M.USER_ID = #{user_id}
 
 </resultMap>
 
+<!-- 카트수량체크 -->
+<select id="getCountCart" parameterType="CartDTO" resultType="Long">
+SELECT COUNT(CART_NUM)
+FROM CART
+WHERE USER_ID =#{user_id}
+</select>
+
 <!-- 카트 슈량 수정 -->
 <update id="setUpdateCart" parameterType="CartDTO">
 UPDATE CART

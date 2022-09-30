@@ -26,6 +26,10 @@ public class CartDAO {
 	public CartDTO getMemberCart(CartDTO cartDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getMemberCart", cartDTO);
 	}
+	//카트 수량 체크
+	public Long getCountCart(CartDTO cartDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCountCart", cartDTO); 
+	}
 	
 	//카트 수량 수정
 	public int setUpdateCart(CartDTO cartDTO)throws Exception{
