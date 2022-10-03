@@ -90,5 +90,18 @@ public class ManagerController {
 	}
 //	==============================QNA 조회 끝=========================
 	
+	
+	
+//	============================= 회원 조회 =========================
+	@GetMapping("member/list")
+	public String getMemberList()throws Exception{
+		
+		
+		return "manager/memberlist";
+	}
+	
+//	============================= 회원 조회 끝=========================
+	
+	
 
 }

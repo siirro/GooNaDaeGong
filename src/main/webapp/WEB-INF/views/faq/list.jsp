@@ -69,7 +69,6 @@
             <!-- FAQ 본문의 제목 -->
             <div class="css-1yc2nwy eug5r8l2" style="padding: 10px 0px 20px;">
                 <h3 class="css-1ew6v8c eug5r8l1">자주하는 질문</h3>
-                
             </div>
             
             <!-- FAQ 카테고리 박스 -->
