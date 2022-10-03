@@ -5,17 +5,61 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.mypage.MypageDAO">
 
+<!-- 마이페이지 메인 프로필 사진 출력 -->
+<!-- <select id="getMyFile" parameterType="MemberDTO" resultMap="getMyFileResult">
+SELECT *
+FROM MEMBER M
+	LEFT JOIN
+	MEMBERFILE MF
+	ON M.USER_ID = MF.USER_ID
+WHERE M.USER_ID =#{user_id}	
+</select>
+<resultMap type="MemberDTO" id="getMyFileResult">
+	<id column="USER_ID" property="user_id"/>
+</resultMap>
+ -->
+
 <!-- 회원정보 수정 -->
-<!-- <update id="setMyupdate" parameterType="MemberDTO">
+<update id="setMyUpdate" parameterType="MemberDTO">
 UPDATE MEMBER
 SET
-USER_PW =#{user_pw} AND
-USER_NAME =#{user_name} AND
-USER_EMAIL =#{user_email} AND
-USER_PHONE = #{user_phone} AND
-USER_POST = #{user_post} AND
-USER_ADDR = #{user_addr} AND
+USER_PW =#{user_pw},
+USER_NAME =#{user_name},
+USER_EMAIL =#{user_email},
+USER_PHONE = #{user_phone},
+USER_POST = #{user_post},
+USER_ADDR = #{user_addr},
 USER_ADDR2 = #{user_addr2} 
 WHERE USER_ID = #{user_id}
-</update> -->
+</update>
+<!-- 회원 프로필 사진 수정 -->
+<update id="setMyFileUpdate" parameterType="MemberFileDTO">
+UPDATE MEMBERFILE
+SET 
+FILENAME =#{fileName},
+ORINAME= #{oriName}
+
+WHERE USER_ID =#{user_id}
+</update>
+
+<!-- 로그인 회원정보 -->
+<select id="getMyInfo" parameterType="MemberDTO" resultType="MemberDTO"> 
+SELECT * 
+FROM MEMBER
+WHERE USER_ID = #{user_id}
+</select>
+<!-- 로그인 회원 프로필정보 -->
+<select id="getMyInfoFile" parameterType="MemberFileDTO" resultType="MemberFileDTO">
+SELECT FILENAME
+FROM MEMBERFILE
+WHERE USER_ID =#{user_id}
+</select>
+
+<update id="setMyDelete" parameterType="MemberDTO">
+UPDATE MEMBER
+SET USER_YN ='N'
+WHERE USER_ID =#{user_id}
+</update>
+
+
 </mapper>
