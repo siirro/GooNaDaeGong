@@ -1,6 +1,8 @@
 package com.gndg.home.cart;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,6 +45,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="cart")
+	@ResponseBody
 	public ModelAndView getItemList(CartDTO cartDTO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberDTO member  = (MemberDTO)session.getAttribute("member");
@@ -51,6 +54,7 @@ public class CartController {
 		List<CartDTO> cart = cartService.getItemList(cartDTO);
 		Long result = cartService.getCountCart(cartDTO);
 		
+		Map<String, Object> map = new HashMap<String,Object>();
 		mv.addObject("cart", cart);
 		mv.addObject("result", result);
 		mv.setViewName("/cart/cart");
