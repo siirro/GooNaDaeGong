@@ -10,15 +10,16 @@ const minusbutton = document.querySelectorAll(".minusbutton");
 const count = document.querySelectorAll(".count");
 const acc = document.getElementById("accordion");
 const cartList = document.getElementById("cartList");
-const test = document.querySelectorAll(".check");
+const test = document.querySelectorAll(".checks");
+const allcheck = document.querySelector("#allcheck");
 
-//체크박스 시발
+
+// const checkbox = document.getElementsByClassName("css-agvwxo");
+//체크박스 시발이미지 변경
 for(let i = 0; i<test.length ; i++){
-
+    
     test[i].addEventListener("click",function(){
         console.log(test[i])
-        const checkbox = document.getElementsByClassName("css-agvwxo");
-    
         const img = document.getElementsByClassName("css-1wfsi82");
     
         let checked = {
@@ -30,8 +31,65 @@ for(let i = 0; i<test.length ; i++){
     })
 }
 
-//카트 목록
-// const cartNum = 
+//체크박스 전체선택 아닌선택
+allcheck.addEventListener("click",function(){
+    console.log("전체선택 체크");
+    console.log(allcheck.checked);
+    const img2 = document.getElementsByClassName("css-1wfsi82all");
+    const img = document.getElementsByClassName("css-1wfsi82");
+    if(allcheck.checked){
+        img2[0].setAttribute("src","/resources/images/member/checked.svg")
+        for(let x=0; x<test.length; x++){
+            img[x].setAttribute("src","/resources/images/member/checked.svg");
+        }
+    }else if(!allcheck.checked){
+        img2[0].setAttribute("src","/resources/images/member/check.svg");
+        for(let t=0; t<test.length; t++){
+            img[t].setAttribute("src","/resources/images/member/check.svg");
+        }
+    }else{
+        console.log("뭐야 왜안되는거임 시발");
+    }
+    for(let i=0; i<test.length; i++){
+        test[i].checked = allcheck.checked
+    }
+});
+//리스트 선택
+for(let a=0; a<test.length; a++){
+    let cartNum = test[a].getAttribute("data-cart-num");
+    if(test[a].checked){
+        console.log(cartNum);
+      }
+    test[a].addEventListener("click",function(){
+        let all = document.getElementsByClassName("css-1wfsi82all");
+        console.log(test[a].checked)
+        let result = true;
+        for(let y=0; y<test.length; y++){
+            console.log(test[y].checked)
+            if(!test[y].checked){
+                img[y].setAttribute("src","/resources/images/member/check.svg");
+                all[0].setAttribute("src","/resources/images/member/check.svg");
+                result = false;
+                break;
+            }else{
+                all[0].setAttribute("src","/resources/images/member/checked.svg");
+            }
+        }
+        allcheck.checked = result;
+    });
+}
+
+//체크된 체크박스들의 cart_num 뽑아야 됨
+//cat_num을 뽑아서 그것들의 price들을 더해서..주문예상금액으로 써줘야함
+// for(let i=0; i<test.length; i++){
+//     if(test[i].checked){
+//       console.log(test[i].getAttribute("data-cart-num"));
+//     }
+// }
+
+
+
+ 
 
 let userID = user_id.value;
 function getCartList(){
