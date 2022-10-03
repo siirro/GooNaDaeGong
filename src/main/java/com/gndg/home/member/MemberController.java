@@ -21,10 +21,15 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//마이페이지
-	@RequestMapping(value="mypage")
-	public String mypage()throws Exception{
-		return "member/mypage";
+	//find페이지 css 갈아엎은 후 test
+	@RequestMapping(value="findtest")
+	public String findtest()throws Exception{
+		return "member/findtest";
+	}
+	//login페이지 css 갈아엎은 후 test
+	@RequestMapping(value="logintest")
+	public String logintest()throws Exception{
+		return "member/logintest";
 	}
 	
 	
@@ -47,9 +52,7 @@ public class MemberController {
 		Long result = memberService.getDuplicationEmail(memberDTO);
 		return result;
 	}
-	//test
-	
-	
+
 	//회원가입
 	@RequestMapping(value="join")
 	public String setJoin()throws Exception{

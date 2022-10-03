@@ -42,7 +42,7 @@ public class MemberDAO {
 		System.out.println("비밀번호 찾기Check DAO");
 		return sqlSession.selectOne(NAMESPACE+"getFindPWCheck", memberDTO);
 	}
-	//비밀번호 변경
+	//비밀번호 임시비밀번호로 변경
 	public int setUpdatePW(MemberDTO memberDTO)throws Exception{
 		System.out.println("비밀번호 찾기 UPDATE DAO");
 		return sqlSession.update(NAMESPACE+"setUpdatePW", memberDTO);

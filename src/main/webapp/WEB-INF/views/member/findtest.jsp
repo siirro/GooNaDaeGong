@@ -17,7 +17,7 @@
         <div class="css-140915z e13dlrpy2">
             <div class="css-7500ra e13dlrpy0">아이디 찾기</div>
             <div class="css-u3y03b e13dlrpy1">
-                <form class="css-s3iz85 e1mnvs534" action="">
+                <form class="css-s3iz85 e1mnvs534">
                     <div class="css-1blp8ou e1mnvs533">
                         <div class="css-1yjqrpx e1uzxhvi6">
                             <label for="user_name" class="css-c3g9of e1uzxhvi4">이름</label>

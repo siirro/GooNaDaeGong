@@ -69,7 +69,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.btn {
+.id_btn {
   font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -110,7 +110,7 @@
 .form .register-form {
   display: none;
 }
-.container {
+/* .container {
   position: relative;
   z-index: 1;
   max-width: 300px;
@@ -120,7 +120,7 @@
   content: "";
   display: block;
   clear: both;
-}
+} */
 .container .info {
   margin: 50px auto;
   text-align: center;
@@ -146,4 +146,22 @@
 body {
   font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
   -webkit-font-smoothing: antialiased;  
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 45px;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+}
+.modal.show .modal-dialog {
+  transform: none;
+  margin-top: 190px;
 }

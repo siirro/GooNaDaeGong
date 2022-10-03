@@ -241,7 +241,7 @@ public class MemberService {
 			
 			
 			//보내는 사람 Email/보내는사람 이름/제목/내용
-			String fromEmail = "keroro3086@naver.com"; // 보내는 사람 이메일
+			String fromEmail = ""; // 보내는 사람 이메일
 			String fromName ="GNDG";
 			String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
 			String msg ="";
@@ -276,4 +276,7 @@ public class MemberService {
 				System.out.println("메일발송 실패"+ e);
 			}
 		}
+		
+//		//회원 탈퇴
+//		public int setMyDelete(MemberDTO memberDTO)throws Exception
 }
