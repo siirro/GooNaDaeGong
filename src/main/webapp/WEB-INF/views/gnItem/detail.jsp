@@ -10,7 +10,13 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop Item - Start Bootstrap Template</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <!-- Bootstrap icons-->
@@ -62,65 +68,75 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
-				
-						<div id="carouselExampleIndicators" class="carousel slide"
-							data-bs-ride="carousel">
-							<div class="carousel-indicators">
-								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
-									data-bs-slide-to="0" class="active" aria-current="true"
-									aria-label="Slide 1"></button>
-								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
-									data-bs-slide-to="1" aria-label="Slide 2"></button>
-								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
-									data-bs-slide-to="2" aria-label="Slide 3"></button>
-							</div>
-							<div class="carousel-inner">
+
+					<div id="carouselExampleControls" class="carousel slide"
+						data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
 								<div class="carousel-item active">
 									<img class="card-img-top mb-5 mb-md-0"
-										src="/resources/upload/gnItem/${dto.gnItemFileDTOs[0].fileName }" width="600" height="700"
-										alt="...">
+										src="/resources/upload/gnItem/${fileDTO.fileName }"
+										width="600" height="700" alt="...">
 								</div>
-							</div>
-							<button class="carousel-control-prev" type="button"
-								data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button"
-								data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
+							</c:forEach>
 						</div>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
 
 				</div>
 				<div class="col-md-6">
-					<div class="small mb-1" id="category">
+					<div class="small mb-4" id="category">
 						<div id="category1"></div>
 						<div id="category2"></div>
 						<div id="category3"></div>
-						<div id="category4">${dto.category.cate_name }</div>
+						<div id="category">${dto.category.cate_name }</div>
 					</div>
-					<h1 class="display-5 fw-bolder">${dto.item_name }</h1>
-					<div class="fs-5 mb-5">${price }원</div>
-					<p class="lead">${dto.item_deal }</p>
-					<p class="lead">${dto.item_condition }</p>
-					<p class="lead">${dto.item_contents }</p>
+					<h1 class="fs-4">${dto.item_name }</h1>
+					<div class="fs-2 mb-5 fw-bolder">${price }원</div>
 
-					<div class="d-flex">
-						<input class="form-control text-center me-3" id="inputQuantity"
-							type="num" value="1" style="max-width: 3rem">
-						<button class="btn btn-outline-dark flex-shrink-0" type="button">
-							<i class="bi-cart-fill me-1"></i> Add to cart
-						</button>
+					<table class="table table-borderless fs-5">
+						<tbody>
+							<tr>
+								<td style="width: 20%">거래방법</td>
+								<td>${dto.item_deal }</td>
+							</tr>
+							<tr>
+								<td>제품상태</td>
+								<td>${dto.item_condition }</td>
+							</tr>
+						</tbody>
+					</table>
+
+					
+					<div class="alert alert-secondary text-center">
+						<div class="fw-bold" style="color: #6667AB;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+  							<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+							거래 전 주의사항 안내
+						</div>
+						<div>
+							판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
+							유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br> 
+							구디나라 고객센터로 신고해주시기 바랍니다.
+						</div>
 					</div>
+
 					<a class="btn" style="background-color: #6667AB; color: white;"
 						href="update?item_num=${dto.item_num }">수정</a> <a class="btn"
 						style="background-color: #6667AB; color: white;"
 						href="delete?item_num=${dto.item_num }">삭제</a>
+				</div>
+				<div class="mt-5">
+				${dto.item_contents }
 				</div>
 			</div>
 		</div>
@@ -166,7 +182,13 @@
 			</div>
 		</div>
 	</section>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
 	<script src="/resources/js/gn/detail.js"></script>
-	<script>getCategory()</script>
+	<script>
+		getCategory()
+	</script>
 </body>
 </html>

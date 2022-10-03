@@ -15,7 +15,7 @@
 				<label>제목</label>
 				<input type="text" name="item_name">
 			</div>
-			<div name="cate_num">
+			<div>
 				<select id="category1">
 					<option hidden>선택</option>
 				</select>
@@ -58,11 +58,8 @@
 					placeholder="제품의 하자(흠집/잔상/파손부위 등)등을 실제 판매제품의 사진과 함께 내용에 명시해야 합니다. 상단 제품상태 체크와 상태가 불일치 시 판매자 과실로 처리됩니다."></textarea>
 			</div>
 
-			<div id="fileAdd">
-				<label>상품 이미지</label>
-				<button type="button" id="button">파일추가</button>
-				<div id="container"></div>
-			</div>
+			<button type="button" id="button">이미지추가</button>
+			<div id="fileAdd"></div>
 
 			<button type="submit">상품등록</button>
 		</form>

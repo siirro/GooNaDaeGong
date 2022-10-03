@@ -49,8 +49,8 @@
 		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
 			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_DEAL, ITEM_CONDITION, ITEM_YN, CODE)
-		VALUES(#{item_num}, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, #{item_deal}, #{item_condition}, 'Y', 1)
+		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_DEAL, ITEM_CONDITION, ITEM_YN, CODE)
+		VALUES(#{item_num}, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, 0, #{item_deal}, #{item_condition}, 'Y', 1)
 	</insert>
 	
 	<insert id="setAddFile" parameterType="GnItemFileDTO">
