@@ -80,7 +80,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">MEMBER</h6>
+                        <!-- <h6 class="collapse-header">MEMBER</h6> -->
                         <a class="collapse-item" href="../../manager/member/list">회원조회</a>
 
                         <div class="collapse-divider"></div>
@@ -99,8 +99,8 @@
                 <div id="collapseReport" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../manager/report/list">신고처리</a>
-                        <a class="collapse-item" href="../../manager/report/member">신고회원</a>
+                        <a class="collapse-item" href="../../manager/report/list">신고조회</a>
+                        <!-- <a class="collapse-item" href="../../manager/report/member">신고회원</a> -->
                     </div>
                 </div>
             </li>

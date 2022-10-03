@@ -55,7 +55,7 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight" style="color: #6667AB;">회원 목록
+                            <h6 class="m-0 font-weight" style="color: #6667AB;">신고 목록
                                 
                             
                             </h6>
@@ -69,59 +69,53 @@
                                     <table class="table table-hover" width="100%">
                                       <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th class="col-2">ID</th>
-                                            <th class="col-1">이름</th>
-                                            <th class="col-2">이메일</th>
-                                            <th class="col-2">전화번호</th>
-                                            <th class="col-4">주소</th>
-                                            
-                                            <th class="col-1">상태</th>
+                                            <th class="col-2">번호</th>
+                                            <th class="col-2">신고자ID</th>
+                                            <th class="col-1">카테고리</th>
+                                            <th class="col-2">피신고ID</th>
+
+                                            <th class="col-1">처리</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
                                              <tr>
+                                                <td>${nl.rp_num}</td>
                                                 <td>${nl.user_id}</td>
-                                                <td>${nl.user_name}</td>
-                                                <td>${nl.user_email}</td>
-                                                <td>${nl.user_phone}</a></td>
-                                                <td>${nl.user_addr}</td>
-                                                
+                                                <td>${nl.rp_cate}</td>
+                                                <td>${nl.rp_id}</a></td>
                                                 <td id="updateStatus">
-                                              
-                                                    <form action="./updateYN" method="get" class="updateSubmit">
-                                                        <div class="search-category" id="search-category">
-                                                            <select onchange="gogo(this.form)" class="updateStatus" name="user_yn" class="custom-select custom-select-sm form-control form-control-sm">
-                                                                
-                                                                <c:choose>
-                                                                <c:when test="${nl.user_yn == '정상'}">
-                                                                <option selected class="kindss" value="정상">정상</option>
-                                                                <option class="kindss" value="탈퇴">탈퇴</option>
-                                                                <option class="kindss" value="정지">정지</option>
-                                                                </c:when>
-                                                                <c:when test="${nl.user_yn == '탈퇴'}">
-                                                                <option class="kindss" value="정상">정상</option>
-                                                                <option selected class="kindss" value="탈퇴">탈퇴</option>
-                                                                <option class="kindss" value="정지">정지</option>
-                                                                </c:when>
-                                                                <c:when test="${nl.user_yn == '정지'}">
-                                                                <option class="kindss" value="정상">정상</option>
-                                                                <option class="kindss" value="탈퇴">탈퇴</option>
-                                                                <option selected class="kindss" value="정지">정지</option>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                <option class="kindss" value="정상">정상</option>
-                                                                <option class="kindss" value="탈퇴">탈퇴</option>
-                                                                <option class="kindss" value="정지">정지</option>
-                                                                </c:otherwise>
-                                                                </c:choose>
+                                                    
+                                                    
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${nl.rp_status == '대기'}">
+                                                            <form action="./update" method="get" class="updateSubmit">
+                                                                <div class="search-category" id="search-category">
+                                                                    <select class="updateStatus" name="rp_status" class="custom-select custom-select-sm form-control form-control-sm">
+                                                                        <option selected class="kinds" value="대기">대기</option>
+                                                                        <option class="kinds" value="완료">완료</option>
+                                                                        
+                                                                </div>
+                                                                <input type="hidden" name="user_id" value="${nl.user_id}">
+                                                            </form>
+                                                        </c:when>
+                                                       
+                                                        <c:otherwise>
+                                                            <form action="./update" method="get" class="updateSubmit">
+                                                                <div class="search-category" id="search-category">
+                                                                    <select class="updateStatus" name="rp_status" class="custom-select custom-select-sm form-control form-control-sm">
+                                                                        <option class="kinds" value="대기">대기</option>
+                                                                        <option selected class="kinds" value="완료">완료</option>
+                                                                    </select>
+                                                                </div>
+                                                                <input type="hidden" name="user_id" value="${nl.user_id}">
+                                                            </form>
+                                                        </c:otherwise>
+                                                    </c:choose>
 
-                                                                
-                                                            </select>
-                                                        </div>
-                                                        <input type="hidden" name="user_id" value="${nl.user_id}">
-                                                    </form>
-                                                   </td>
+                                                    
+                                                </td>
                                             </tr>
                                             </c:forEach>
                                       </tbody>
@@ -222,40 +216,20 @@
             }
         }
 
-        
 
-        // function updateyn() {
-            
+        const updateStatus = document.getElementsByClassName("updateStatus");
+        const updateSubmit = document.getElementsByClassName("updateSubmit");
 
-        //     let check = confirm("상태를 변경하시겠습니까?");
-        //     if(check) {
-        //         console.log("바꿀게");
-        //         this.frm.submit();
-                
-        //     };
-        // }
-        
-        // document.getElementsByClassName("updateSubmit").item(i).submit();
-
-
-        // const updateStatus = document.getElementsByClassName("updateStatus");
-
-        // for(let i=0;i<updateStatus.length;i++){
-        //     updateStatus[i].addEventListener("change",function(){
-        //         this.form.submit();
-        //         return;
-        //     });
-        // };
-                
-
-        function gogo(d){
-            let check = confirm("상태를 변경하시겠습니까?")
-            if(check){
-                d.submit();
-            } else{
-
+        for(let i=0;i<updateStatus.length;i++) {
+        updateStatus.item(i).addEventListener("change",function(){
+            let check = confirm("상태를 변경하시겠습니까?");
+            if(check) {
+                console.log("바꿀게");
+                updateSubmit.item(i).submit();
             };
+        })
         };
+
     </script>
 
 

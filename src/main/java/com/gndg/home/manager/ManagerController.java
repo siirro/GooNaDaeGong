@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.member.MemberDTO;
+import com.gndg.home.member.MemberService;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.qna.QnaService;
+import com.gndg.home.report.ReportDTO;
+import com.gndg.home.report.ReportService;
 import com.gndg.home.util.Pager;
 
 @Controller
@@ -22,6 +26,12 @@ public class ManagerController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private ReportService reportService;
 	
 	//============================================================
 	
@@ -94,14 +104,38 @@ public class ManagerController {
 	
 //	============================= 회원 조회 =========================
 	@GetMapping("member/list")
-	public String getMemberList()throws Exception{
+	public ModelAndView getMemberList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<MemberDTO> ar = memberService.getMemberList(pager);
 		
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("manager/memberlist");
 		
-		return "manager/memberlist";
+		return mv;
 	}
 	
+	@GetMapping("member/updateYN")
+	public String updateYN(MemberDTO memberDTO)throws Exception{
+		int result = memberService.updateYN(memberDTO);
+		return "redirect:./list";
+	}
 //	============================= 회원 조회 끝=========================
+
+	
+//	============================= 신고 조회=========================
+	@GetMapping("report/list")
+	public ModelAndView getReportList()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ReportDTO> ar = reportService.getReportList();
+		mv.addObject("list", ar);
+		mv.setViewName("manager/reportlist");
+		
+		return mv;
+	}
+	
 	
 	
 
+//	============================= 신고 조회 끝=========================
 }
