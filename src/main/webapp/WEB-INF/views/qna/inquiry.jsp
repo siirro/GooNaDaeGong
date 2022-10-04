@@ -104,6 +104,29 @@
                         </div>
                     </div>
                     <!-- 카테고리 전체 디브 -->
+
+                    <!-- 주문내역 선택 디브 -->
+                    <div class="css-17bp14q e1vbjq4w3">
+
+                        <div class="css-mm5tap e1vbjq4w2">
+                            <label data-testid="label-text">주문내역</label>
+                        </div>
+
+                        <div class="css-12l4j2c e1vbjq4w1">
+                            <div class="css-zjik7 epfrwk70">
+
+                                <div class="search-category" id="search-category">
+                                    <select id="qna_cate" name="qna_cate" class="custom-select custom-select-sm form-control" style="padding: 10px;
+                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;">
+                                        <option selected disabled value="">주문내역을 선택해주세요 </option>
+                                        <option class="cates" value="주문/결제">주문/결제</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 카테고리 전체 디브 -->
                             
                             
                             
