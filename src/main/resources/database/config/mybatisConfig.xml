@@ -36,6 +36,8 @@
 			<typeAlias type="com.gndg.home.qna.QnaFileDTO" alias="QnaFileDTO"/>
 			
 			<typeAlias type="com.gndg.home.faq.FaqDTO" alias="FaqDTO"/>
+			<typeAlias type="com.gndg.home.faq.FaqFileDTO" alias="FaqFileDTO"/>
+			
 			<typeAlias type="com.gndg.home.report.ReportDTO" alias="ReportDTO"/>
 
 			

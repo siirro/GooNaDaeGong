@@ -125,15 +125,36 @@ public class ManagerController {
 	
 //	============================= 신고 조회=========================
 	@GetMapping("report/list")
-	public ModelAndView getReportList()throws Exception{
+	public ModelAndView getReportList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<ReportDTO> ar = reportService.getReportList();
+		List<ReportDTO> ar = reportService.getReportList(pager);
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		mv.setViewName("manager/reportlist");
 		
 		return mv;
 	}
 	
+	@GetMapping("report/detail")
+	public ModelAndView getReportDetail(ReportDTO reportDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		reportDTO = reportService.getReportDetail(reportDTO);
+		mv.addObject("detail", reportDTO);
+		mv.setViewName("manager/reportdetail");
+		return mv;
+	}
+	
+	@GetMapping("report/updateStatus")
+	public String updateStatus(ReportDTO reportDTO)throws Exception{
+		int result = reportService.updateStatus(reportDTO);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("report/updateYN")
+	public String updateYN(ReportDTO reportDTO)throws Exception{
+		int result = reportService.updateYN(reportDTO);
+		return "redirect:./list";
+	}
 	
 	
 

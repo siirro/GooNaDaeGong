@@ -26,6 +26,12 @@
     <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
 
+    <style>
+        .reporttr:hover {
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -69,53 +75,84 @@
                                     <table class="table table-hover" width="100%">
                                       <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th class="col-2">번호</th>
-                                            <th class="col-2">신고자ID</th>
-                                            <th class="col-1">카테고리</th>
-                                            <th class="col-2">피신고ID</th>
-
+                                            <th class="col-2">신고번호</th>
+                                            <th class="col-3">신고자ID</th>
+                                            <th class="col-2">카테고리</th>
+                                            <th class="col-3">피신고ID</th>
                                             <th class="col-1">처리</th>
+                                            <th class="col-1">유효</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
-                                             <tr>
+                                             <tr class="reporttr" onclick="location.href='./detail?rp_num=${nl.rp_num}'">
                                                 <td>${nl.rp_num}</td>
                                                 <td>${nl.user_id}</td>
                                                 <td>${nl.rp_cate}</td>
                                                 <td>${nl.rp_id}</a></td>
-                                                <td id="updateStatus">
-                                                    
-                                                    
-                                                    
-                                                    <c:choose>
-                                                        <c:when test="${nl.rp_status == '대기'}">
-                                                            <form action="./update" method="get" class="updateSubmit">
-                                                                <div class="search-category" id="search-category">
-                                                                    <select class="updateStatus" name="rp_status" class="custom-select custom-select-sm form-control form-control-sm">
-                                                                        <option selected class="kinds" value="대기">대기</option>
-                                                                        <option class="kinds" value="완료">완료</option>
-                                                                        
-                                                                </div>
-                                                                <input type="hidden" name="user_id" value="${nl.user_id}">
-                                                            </form>
-                                                        </c:when>
-                                                       
-                                                        <c:otherwise>
-                                                            <form action="./update" method="get" class="updateSubmit">
-                                                                <div class="search-category" id="search-category">
-                                                                    <select class="updateStatus" name="rp_status" class="custom-select custom-select-sm form-control form-control-sm">
-                                                                        <option class="kinds" value="대기">대기</option>
-                                                                        <option selected class="kinds" value="완료">완료</option>
-                                                                    </select>
-                                                                </div>
-                                                                <input type="hidden" name="user_id" value="${nl.user_id}">
-                                                            </form>
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                <td id="updateStatus" onclick="event.stopPropagation()">
+                                              
+                                                    <form action="./updateStatus" method="get" class="updateSubmit">
+                                                        <div class="search-category" id="search-category">
+                                                            <select onchange="gogo(this.form)" class="updateStatus" name="rp_status" class="custom-select custom-select-sm form-control form-control-sm">
+                                                                
+                                                                <c:choose>
+                                                                <c:when test="${nl.rp_status == '대기'}">
+                                                                <option selected class="kindss" value="대기">대기</option>
+                                                                <option class="kindss" value="완료">완료</option>
+                                                                
+                                                                </c:when>
+                                                                <c:when test="${nl.rp_status == '완료'}">
+                                                                <option class="kindss" value="대기">대기</option>
+                                                                <option selected class="kindss" value="완료">완료</option>
+                                                                </c:when>
+                                                                
+                                                                <c:otherwise>
+                                                                <option class="kindss" value="대기">대기</option>
+                                                                <option class="kindss" value="완료">완료</option>
+                                                                </c:otherwise>
 
-                                                    
-                                                </td>
+                                                                </c:choose>
+
+                                                                
+                                                            </select>
+                                                        </div>
+                                                        <input type="hidden" name="rp_num" value="${nl.rp_num}">
+                                                    </form>
+                                                   </td>
+
+                                                   <!-- 유효상태변경 -->
+                                                   <td id="updateYN" onclick="event.stopPropagation()">
+                                              
+                                                    <form action="./updateYN" method="get" class="updateSubmit">
+                                                        <div class="search-category" id="search-category">
+                                                            <select onchange="gogoo(this.form)" class="updateYN" name="rp_yn" class="custom-select custom-select-sm form-control form-control-sm">
+                                                                
+                                                                <c:choose>
+                                                                <c:when test="${nl.rp_yn == 'Y'}">
+                                                                <option selected class="kindss" value="Y">Y</option>
+                                                                <option class="kindss" value="N">N</option>
+                                                                
+                                                                </c:when>
+                                                                <c:when test="${nl.rp_yn == 'N'}">
+                                                                <option class="kindss" value="Y">Y</option>
+                                                                <option selected class="kindss" value="N">N</option>
+                                                                </c:when>
+                                                                
+                                                                <c:otherwise>
+                                                                <option class="kindss" value="Y">Y</option>
+                                                                <option class="kindss" value="N">N</option>
+                                                                </c:otherwise>
+
+                                                                </c:choose>
+
+                                                                
+                                                            </select>
+                                                        </div>
+                                                        <input type="hidden" name="rp_num" value="${nl.rp_num}">
+                                                    </form>
+                                                   </td>
+
                                             </tr>
                                             </c:forEach>
                                       </tbody>
@@ -147,9 +184,12 @@
                                 <div class="input-group">
                                     <div class="search-category" id="search-category">
                                         <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option class="kinds" value="user_id">아이디</option>
-                                            <option class="kinds" value="user_name">이름</option>
-                                            <option class="kinds" value="user_yn">상태</option>
+                                            <option class="kinds" value="user_id">신고자ID</option>
+                                            <option class="kinds" value="rp_id">피신고ID</option>
+                                            <option class="kinds" value="rp_phone">전화번호</option>
+                                            <option class="kinds" value="rp_email">이메일</option>
+                                            <option class="kinds" value="rp_status">처리상태</option>
+                                            <option class="kinds" value="rp_yn">유효여부</option>
                                         </select>
                                     </div>
                                     <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
@@ -217,17 +257,22 @@
         }
 
 
-        const updateStatus = document.getElementsByClassName("updateStatus");
-        const updateSubmit = document.getElementsByClassName("updateSubmit");
+        function gogo(d){
+            let check = confirm("상태를 변경하시겠습니까?")
+            if(check){
+                d.submit();
+            } else{
 
-        for(let i=0;i<updateStatus.length;i++) {
-        updateStatus.item(i).addEventListener("change",function(){
-            let check = confirm("상태를 변경하시겠습니까?");
-            if(check) {
-                console.log("바꿀게");
-                updateSubmit.item(i).submit();
             };
-        })
+        };
+
+        function gogoo(d){
+            let check = confirm("상태를 변경하시겠습니까?")
+            if(check){
+                d.submit();
+            } else{
+
+            };
         };
 
     </script>

@@ -52,7 +52,7 @@
                 <form action="inquiry" method="post" enctype="multipart/form-data">
 
                     <!-- 작성자 = ${session.user_id} -->
-                    <input type="hidden" name="user_id" value="1">
+                    <input type="hidden" name="user_id" value="${member.user_id}">
                     <!-- value="${session.user_id}" -->
                     
                     
@@ -217,7 +217,7 @@
                                         <div class="css-bg7ww1 e1uzxhvi6">
                                             <div height="44" class="css-t7kbxx e1uzxhvi3">
                                                 <input data-testid="input-box" id="inquiryAllowsNotificationCheck" disabled="" type="text" height="44" 
-                                                class="css-n2am0u e1uzxhvi2" value="010-9292-****">
+                                                class="css-n2am0u e1uzxhvi2" value="${member.user_phone}">
                                                 <!-- value= ${session.user_phone} -->
                                             </div>
 

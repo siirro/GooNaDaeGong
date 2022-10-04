@@ -80,7 +80,14 @@
                                     </form>
                                 </c:when>
                                 <c:otherwise>
-                                    
+                                    <form action="./update?rp_num=${detail.rp_num}" method="post" style="margin-left: auto;">
+                                        <button disabled type="submit" data-qna-num="${detail.rp_num}" id="statusChange" 
+                                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                        style ="background-color: rgb(126, 107, 155); border-color: rgb(126, 107, 155); ">
+                                            <i class="fas fa-check fa-sm text-white-50"></i>처리완료
+                                                
+                                        
+                                    </form>
 
                                 </c:otherwise>
                             </c:choose>

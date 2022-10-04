@@ -10,6 +10,16 @@ public class ReportDTO {
 	private String rp_phone;
 	private String rp_email;
 	private String rp_status;
+	private String rp_yn;
+	
+	
+	
+	public String getRp_yn() {
+		return rp_yn;
+	}
+	public void setRp_yn(String rp_yn) {
+		this.rp_yn = rp_yn;
+	}
 	public Long getRp_num() {
 		return rp_num;
 	}
