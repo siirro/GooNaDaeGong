@@ -88,6 +88,7 @@ public class ManagerController {
 		System.out.println(qnaDTO.getQna_comment());
 		String comment = qnaDTO.getQna_comment();
 		//mv.addObject("qnaDTO", qnaDTO);
+		
 		String jsonResult = "{\"comment\":\""+comment+"\"}";
 		return jsonResult;
 	}
