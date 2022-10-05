@@ -2,7 +2,7 @@ const fileAdd = document.querySelector("#fileAdd");
 const button = document.querySelector("#button");
 
 
-//--------------------파일추가--------------------
+//----------------------------파일추가----------------------------
 let count = 0;
 let idx = 0;
 
@@ -13,18 +13,16 @@ function setCount(c) { //update.jsp
 }
 
 button.addEventListener("click", function () {
-
     if (count > 4) {
         alert('최대 업로드파일 수를 초과 했습니다. 최대업로드 파일 갯수 : 5');
         return;
     }
 
     //<div id="file0">
-    //<input type="file" id="files0" name="files" onchange="thumbnail(this);" style="display:none;"> 
-	//<label for="files0"><img id="preview" style="width: 120px; height: 90px;"></label>
+    //<input type="file" id="files0" name="files" accept="image/*" onchange="thumbnail(this);" style="display:none;"> 
+    //<label for="files0"><img id="files0img" style="width: 120px; height: 90px;" src="></label>
     //<button type="button" class="del" title="0">삭제</button>
     //</div>
-
     let div = document.createElement("div");
     div.setAttribute("id", "file" + idx);
     fileAdd.appendChild(div);
@@ -43,7 +41,7 @@ button.addEventListener("click", function () {
     div.appendChild(label);
 
     let img = document.createElement("img");
-    img.setAttribute("id", "files"+idx+"img");
+    img.setAttribute("id", "files" + idx + "img");
     img.setAttribute("style", "width: 120px; height: 90px;");
     label.appendChild(img);
 
@@ -64,14 +62,14 @@ function thumbnail(input) {
     if (input.files && input.files[0]) {
         let reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById(input.id+"img").src = e.target.result;
+            document.getElementById(input.id + "img").src = e.target.result;
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
 
 
-//--------------------파일삭제--------------------
+//----------------------------파일삭제----------------------------
 fileAdd.addEventListener("click", function (event) {
     if (event.target.className = "del") {
         const idxNum = document.getElementById('file' + event.target.title);
