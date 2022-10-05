@@ -6,8 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,36 +68,42 @@
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
 
-					<div id="carouselExampleControls" class="carousel slide"
-						data-bs-ride="carousel">
-						<div class="carousel-inner">
-							<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
-								<div class="carousel-item active">
-									<img class="card-img-top mb-5 mb-md-0"
-										src="/resources/upload/gnItem/${fileDTO.fileName }"
-										width="600" height="700" alt="...">
-								</div>
-							</c:forEach>
-						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+					<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
+					
+					<c:choose>
+						<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
+						    <div class="carousel-item active" data-bs-interval="5000">
+						      <img src="/resources/upload/gnItem/${fileDTO.fileName }" class="d-block w-100" width="600" height="700" alt="...">
+						    </div>
+						</c:when>
+						<c:otherwise>
+						    <div class="carousel-item" data-bs-interval="2000">
+						      <img src="/resources/upload/gnItem/${fileDTO.fileName }" class="d-block w-100" width="600" height="700" alt="...">
+						    </div>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
 					</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 
 				</div>
 				<div class="col-md-6">
-					<div class="small mb-4" id="category">
-						<div id="category1"></div>
-						<div id="category2"></div>
-						<div id="category3"></div>
-						<div id="category">${dto.category.cate_name }</div>
+					<div id="json" style="display: none;">${json}</div>
+					<div class="small mb-4">
+						<span id="category1"></span>
+						<span id="category2"></span>
+						<span id="category3"></span>
+						<span id="category4"></span>
 					</div>
 					<h1 class="fs-4">${dto.item_name }</h1>
 					<div class="fs-2 mb-5 fw-bolder">${price }원</div>
@@ -116,17 +121,19 @@
 						</tbody>
 					</table>
 
-					
+
 					<div class="alert alert-secondary text-center">
 						<div class="fw-bold" style="color: #6667AB;">
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-  							<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+								fill="currentColor" class="bi bi-exclamation-triangle-fill"
+								viewBox="0 0 16 16">
+  							<path
+									d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>
 							거래 전 주의사항 안내
 						</div>
 						<div>
-							판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
-							유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br> 
-							구디나라 고객센터로 신고해주시기 바랍니다.
+							판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br> 유도하는 경우 사기일 가능성이 높으니
+							거래를 자제해 주시고<br> 구디나라 고객센터로 신고해주시기 바랍니다.
 						</div>
 					</div>
 
@@ -135,9 +142,7 @@
 						style="background-color: #6667AB; color: white;"
 						href="delete?item_num=${dto.item_num }">삭제</a>
 				</div>
-				<div class="mt-5">
-				${dto.item_contents }
-				</div>
+				<div class="mt-5">${dto.item_contents }</div>
 			</div>
 		</div>
 	</section>
@@ -189,6 +194,9 @@
 	<script src="/resources/js/gn/detail.js"></script>
 	<script>
 		getCategory()
+	</script>
+</body>
+</html>()
 	</script>
 </body>
 </html>
