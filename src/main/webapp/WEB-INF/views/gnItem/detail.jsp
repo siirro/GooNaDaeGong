@@ -6,7 +6,8 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,44 +69,60 @@
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
 
-			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-inner">
-					<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
-					
-					<c:choose>
-						<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
-						    <div class="carousel-item active" data-bs-interval="5000">
-						      <img src="/resources/upload/gnItem/${fileDTO.fileName }" class="d-block w-100" width="600" height="700" alt="...">
-						    </div>
-						</c:when>
-						<c:otherwise>
-						    <div class="carousel-item" data-bs-interval="2000">
-						      <img src="/resources/upload/gnItem/${fileDTO.fileName }" class="d-block w-100" width="600" height="700" alt="...">
-						    </div>
-						</c:otherwise>
-					</c:choose>
-					</c:forEach>
+					<div id="carouselExampleControls" class="carousel slide"
+						data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
+
+								<c:choose>
+									<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
+										<div class="carousel-item active" data-bs-interval="5000">
+											<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+												class="d-block w-100" width="600" height="700" alt="...">
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="carousel-item" data-bs-interval="2000">
+											<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+												class="d-block w-100" width="600" height="700" alt="...">
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
 					</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
 
 				</div>
 				<div class="col-md-6">
 					<div id="json" style="display: none;">${json}</div>
-					<div class="small mb-4">
-						<span id="category1"></span>
-						<span id="category2"></span>
-						<span id="category3"></span>
+					<div id="item_num" style="display: none;">${dto.item_num}</div>
+					<div id="user_id" style="display: none;">${dto.user_id}</div>
+					
+					<div class="small mb-2">
+						<span id="category1"></span> 
+						<span id="category2"></span> 
+						<span id="category3"></span> 
 						<span id="category4"></span>
 					</div>
-					<h1 class="fs-4">${dto.item_name }</h1>
+					
+					<div>
+					<i class="bi bi-heart-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
+					<span id="likeUpDown"></span>
+					<i class="bi bi-eye-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
+					<i class="bi bi-clock-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
+					</div>
+					
+					<h1 class="fs-3 mt-5">${dto.item_name }</h1>
 					<div class="fs-2 mb-5 fw-bolder">${price }원</div>
 
 					<table class="table table-borderless fs-5">
@@ -136,11 +153,29 @@
 							거래를 자제해 주시고<br> 구디나라 고객센터로 신고해주시기 바랍니다.
 						</div>
 					</div>
-
-					<a class="btn" style="background-color: #6667AB; color: white;"
-						href="update?item_num=${dto.item_num }">수정</a> <a class="btn"
-						style="background-color: #6667AB; color: white;"
-						href="delete?item_num=${dto.item_num }">삭제</a>
+					<div>
+						<c:choose>
+						<c:when test="${like eq null }">
+							<svg id="likeButton" style="color:black;" xmlns="http://www.w3.org/2000/svg"
+								width="30" height="30" fill="currentColor"
+								class="bi bi-heart-fill" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+						  </svg>
+						</c:when>
+						<c:otherwise>
+							<svg id="likeButton" style="color:red;" xmlns="http://www.w3.org/2000/svg"
+								width="30" height="30" fill="currentColor"
+								class="bi bi-heart-fill" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+						  </svg>
+						</c:otherwise>
+						</c:choose>
+						<a class="btn" style="background-color: #6667AB; color: white;"
+							href="update?item_num=${dto.item_num }">수정</a> 
+						<a class="btn"
+							style="background-color: #6667AB; color: white;"
+							href="delete?item_num=${dto.item_num }">삭제</a>
+					</div>
 				</div>
 				<div class="mt-5">${dto.item_contents }</div>
 			</div>
@@ -194,9 +229,10 @@
 	<script src="/resources/js/gn/detail.js"></script>
 	<script>
 		getCategory()
+		getlikeCount()
 	</script>
 </body>
-</html>()
-	</script>
+</html>
+</script>
 </body>
 </html>

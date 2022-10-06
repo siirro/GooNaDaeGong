@@ -30,7 +30,7 @@ fileDelete.forEach(function(e) {
 
         //ajax
         const xhttp = new XMLHttpRequest();
-        xhttp.open('POST', './fileDelete');
+        xhttp.open('POST', 'fileDelete');
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send('fileNum=' + fileNum);
         xhttp.onreadystatechange = function () {

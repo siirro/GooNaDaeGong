@@ -49,12 +49,12 @@
 		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
 			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO ITEM(ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_DEAL, ITEM_CONDITION, ITEM_YN, CODE)
-		VALUES(#{item_num}, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 1, 0, #{item_deal}, #{item_condition}, 'Y', 1)
+		INSERT INTO ITEM
+		VALUES(#{item_num}, #{cate1}, #{cate2}, #{cate3}, #{cate4}, #{cate_num}, #{user_id}, #{item_name}, #{item_contents}, #{item_price}, SYSDATE, 0, 0, #{item_deal}, #{item_condition}, 'Y', 1)
 	</insert>
 	
 	<insert id="setAddFile" parameterType="GnItemFileDTO">
-		INSERT INTO ITEMFILE VALUES(FILENUM_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
+		INSERT INTO ITEMFILE VALUES(ITEMFILE_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
 	</insert> 
 	
 	<select id="getList" resultType="GnItemDTO" resultMap="getListResult">
@@ -77,15 +77,13 @@
 		</collection>
 	</resultMap>
 	
+	
 	<select id="getDetail" parameterType="GnItemDTO" resultMap="getDetailResult">
 		SELECT * 
 		FROM ITEM I
 		
 		LEFT JOIN ITEMFILE F
 		USING (ITEM_NUM)
-		
-		LEFT JOIN CATEGORY C
-		USING (CATE_NUM)
 		
 		WHERE ITEM_NUM=#{item_num}
 		ORDER BY FILENUM ASC
@@ -94,6 +92,10 @@
 
 	<resultMap type="GnItemDTO" id="getDetailResult">
 		<id column="ITEM_NUM" property="item_num"/>
+		<result column="CATE1" property="cate1"/>
+		<result column="CATE2" property="cate2"/>
+		<result column="CATE3" property="cate3"/>
+		<result column="CATE4" property="cate4"/>
 		<result column="CATE_NUM" property="cate_num"/>
 		<result column="USER_ID" property="user_id"/>
 		<result column="ITEM_NAME" property="item_name"/>
@@ -106,24 +108,58 @@
 		<result column="ITEM_YN" property="item_yn"/>
 		<result column="CODE" property="code"/>
 		
-		<association property="category" javaType="Category">
-			<id column="CATE_NUM" property="cate_num"/>
-			<result column="CATE_NAME" property="cate_name"/>
-			<result column="CATE_REF" property="cate_ref"/>
-		</association>
-		
 		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+			<id column="FILENUM" property="fileNum"/> 
 			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
 		</collection>
 	</resultMap>
 	
 	<update id="setUpdate" parameterType="GnItemDTO">
-		UPDATE ITEM SET CATE_NUM=#{cate_num}, ITEM_NAME=#{item_name}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_DEAL=#{item_deal}, ITEM_CONDITION=#{item_condition} WHERE ITEM_NUM=#{item_num}
+		UPDATE ITEM SET 
+		CATE1=#{cate1}, CATE2=#{cate2}, CATE3=#{cate3}, CATE4=#{cate4}, CATE_NUM=#{cate_num}, ITEM_NAME=#{item_name}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_DEAL=#{item_deal}, ITEM_CONDITION=#{item_condition} WHERE ITEM_NUM=#{item_num}
 	</update>
 	
 	<delete id="setDelete" parameterType="GnItemDTO">
 		DELETE ITEM WHERE ITEM_NUM=#{item_num}
 	</delete>
+	
+	
+	<!-- 글수정할때 이미지파일 삭제 -->
+	<delete id="setFileDelete" parameterType="GnItemFileDTO">
+		DELETE ITEMFILE WHERE FILENUM=#{fileNum}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="GnItemFileDTO" resultType="GnItemFileDTO">
+		SELECT * FROM ITEMFILE WHERE FILENUM=#{fileNum}
+	</select>
 
+	
+	<!-- 좋아요 등록 -->
+	<insert id="setLikeAdd" parameterType="GnItemLikeDTO">
+		INSERT INTO ITEMLIKE VALUES (LIKE_SEQ.NEXTVAL, #{item_num}, #{user_id})
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="setLikeDelete" parameterType="GnItemLikeDTO">
+		DELETE ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
+	</delete>
+	
+	<!-- 유저당 해당 게시글 좋아요 조회 -->
+	<select id="getLikeUser" parameterType="GnItemLikeDTO" resultType="GnItemLikeDTO">
+		SELECT * FROM ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
+	</select>
+	
+	<!-- 게시글당 좋아요수 조회 -->
+	<select id="getLikeItem" parameterType="GnItemLikeDTO" resultType="Long">
+		SELECT COUNT(ITEM_NUM) FROM ITEMLIKE WHERE ITEM_NUM=#{item_num}
+	</select>
 
+	
+	
+	
+	<!-- 조회수 -->
+	<update id="setHit" parameterType="GnItemDTO">
+		UPDATE ITEM SET ITEM_HIT=ITEM_HIT+1 WHERE ITEM_NUM=#{item_num}
+	</update>
 </mapper>

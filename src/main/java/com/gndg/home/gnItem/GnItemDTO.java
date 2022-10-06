@@ -8,6 +8,10 @@ import com.gndg.home.util.Category;
 public class GnItemDTO {
 	
 	private Long item_num;
+	private String cate1;
+	private String cate2;
+	private String cate3;
+	private String cate4;
 	private String cate_num;
 	private String user_id;
 	private String item_name;
@@ -21,25 +25,37 @@ public class GnItemDTO {
 	private String item_yn;
 	private Long code;
 	private List<GnItemFileDTO> gnItemFileDTOs;
-	private Category category;
 	
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-	public List<GnItemFileDTO> getGnItemFileDTOs() {
-		return gnItemFileDTOs;
-	}
-	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
-		this.gnItemFileDTOs = gnItemFileDTOs;
-	}
+	
 	public Long getItem_num() {
 		return item_num;
 	}
 	public void setItem_num(Long item_num) {
 		this.item_num = item_num;
+	}
+	public String getCate1() {
+		return cate1;
+	}
+	public void setCate1(String cate1) {
+		this.cate1 = cate1;
+	}
+	public String getCate2() {
+		return cate2;
+	}
+	public void setCate2(String cate2) {
+		this.cate2 = cate2;
+	}
+	public String getCate3() {
+		return cate3;
+	}
+	public void setCate3(String cate3) {
+		this.cate3 = cate3;
+	}
+	public String getCate4() {
+		return cate4;
+	}
+	public void setCate4(String cate4) {
+		this.cate4 = cate4;
 	}
 	public String getCate_num() {
 		return cate_num;
@@ -113,5 +129,10 @@ public class GnItemDTO {
 	public void setCode(Long code) {
 		this.code = code;
 	}
-	
+	public List<GnItemFileDTO> getGnItemFileDTOs() {
+		return gnItemFileDTOs;
+	}
+	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
+		this.gnItemFileDTOs = gnItemFileDTOs;
+	}
 }
