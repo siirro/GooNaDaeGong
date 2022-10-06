@@ -19,7 +19,12 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">??</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+
+                                    <!-- 여기에 글씨넣어도된다 -->
+
+
+                                </span>
                                 <i class="fas fa-bars"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -31,10 +36,14 @@
                                 </a>
                                 
                                 <!-- <div class="dropdown-divider"></div> -->
+
+                                
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     로그아웃
                                 </a>
+                                
+                                
                             </div>
                         </li>
 
@@ -50,15 +59,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">알림</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">관리자 계정을 로그아웃 합니다.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="login.html">로그아웃</a>
                 </div>
             </div>
         </div>

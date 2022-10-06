@@ -55,10 +55,16 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="../../manager/mall/order">회원주문내역</a>
+                        
+                        <a class="collapse-item" href="../../manager/mall/order">주문내역</a>
                         <a class="collapse-item" href="../../manager/mall/delivery">배송관리</a>
-                        <a class="collapse-item" href="#">Animations</a>
+                        <h6 class="collapse-header">CS</h6>
+                        <a class="collapse-item" href="../../manager/mall/order">주문취소</a>
+                        <a class="collapse-item" href="../../manager/mall/order">교환관리</a>
+                        <a class="collapse-item" href="../../manager/mall/order">반품관리</a>
+                        
+                        
+                        
                     </div>
                 </div>
             </li>

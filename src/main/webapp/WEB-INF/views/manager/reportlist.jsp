@@ -89,7 +89,7 @@
                                                 <td>${nl.rp_num}</td>
                                                 <td>${nl.user_id}</td>
                                                 <td>${nl.rp_cate}</td>
-                                                <td>${nl.rp_id}</a></td>
+                                                <td>${nl.rp_id}</td>
                                                 <td id="updateStatus" onclick="event.stopPropagation()">
                                               
                                                     <form action="./updateStatus" method="get" class="updateSubmit">

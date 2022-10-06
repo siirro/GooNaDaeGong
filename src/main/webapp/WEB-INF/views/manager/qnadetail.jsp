@@ -222,7 +222,7 @@
                                         <h3 class="text-center">답변 미등록</h3>
                                     </div>
 
-                                    <div style="display: flex; justify-content: right;" class="">
+                                    <div style="display: flex; justify-content: right; margin-top: 50px;" class="">
                                         <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" style ="background-color: cornflowerblue; border-color: cornflowerblue;" 
                                         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                             <i class="fas fa-download fa-sm text-white-50"></i> 
@@ -235,7 +235,7 @@
                             
 
                                 <c:otherwise>
-                                    <div class="mb-3" style="display: flex; justify-content: right;" class="">
+                                    <div class="mb-3" style="display: flex; justify-content: right; margin-top: 50px;" class="">
                                         <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" 
                                         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         style ="background-color: cornflowerblue; border-color: cornflowerblue;">

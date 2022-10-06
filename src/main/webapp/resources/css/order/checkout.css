@@ -1,6 +1,5 @@
-div {
-    display: block;
-}
+
+
 body, button, input, select, textarea {
     font-size: 14px;
     color: #333;
@@ -96,7 +95,8 @@ html {
     display: inline-flex;
     width: 60px;
     height: 78px;
-    background-image: url(상품섬네일);
+    /* background-image: url(#); */
+    /* url=상품섬네일 */
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;

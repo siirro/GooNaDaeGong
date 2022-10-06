@@ -18,7 +18,9 @@ public class OrdersDTO {
 	private String ord_addr2;
 	private String ord_phone;
 	private String ord_memo;
+	private Long code;
 	
+
 	public Long getMerchant_uid() {
 		return merchant_uid;
 	}
@@ -103,6 +105,13 @@ public class OrdersDTO {
 	public void setOrd_memo(String ord_memo) {
 		this.ord_memo = ord_memo;
 	}
+	public Long getCode() {
+		return code;
+	}
+	public void setCode(Long code) {
+		this.code = code;
+	}
+
 	
 	
 	

@@ -19,6 +19,7 @@
     <div class="css-1ykiyus e146m4rf2">
         <div class="css-1uom1od e146m4rf0">
             <h2 class="css-10owlr e146m4rf1">주문</h2>
+            
             <!-- 본문 전체박스 -->
             <div class="css-ixlb9s epvroj94">
 
@@ -69,7 +70,7 @@
 
                                     <!-- 아이폰 14 지우고 ${l.item_name} -->
                                     <span class="css-10nl60h e17a7yib7">
-                                        <span class="css-1f86gv6 e17a7yib6">아이폰 14</span>
+                                        <span class="css-1f86gv6 e17a7yib6">갤럭시 14</span>
                                     </span>
                                     <input type="hidden" name="item_name" class="item_name" value="갤럭시 14">
 
@@ -104,6 +105,7 @@
                                     <div class="css-82a6rk e150alo80">
                                         <div class="css-t6o2y8 e1vfdada2">${member.user_name}</div>
                                         <input type="hidden" name="user_name" id="user_name" value="${member.user_name}">
+                                        <input type="hidden" name="user_id" id="user_id" value="${member.user_id}">
                                     </div>
                                 </div>
 
@@ -196,7 +198,7 @@
                                     <div class="css-k3lqzi e150alo82">
                                         <span class="css-ln1csn e150alo81">배송 요청</span>
                                         <div class="css-82a6rk e150alo80">
-                                            <input data-testid="input-box" style="width: 70%;" id="receiver-memo" name="ord_memo" placeholder="메세지를 입력해 주세요" type="tel" required="" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                                            <input data-testid="input-box" style="width: 70%;" id="ord_memo" name="ord_memo" placeholder="메세지를 입력해 주세요" type="tel" required="" height="44" class="css-n2am0u e1uzxhvi2" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -334,6 +336,9 @@
 
 <script>
 
+    
+
+
     //=======우편번호, 주소 Daum API
 	function openDaumPostcode() {
 		new daum.Postcode({
@@ -423,7 +428,7 @@
     }
    
         
-
+   
 
     
 

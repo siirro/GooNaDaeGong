@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1대1 문의</title>
+    <title>구디나라 관리자센터</title>
 
     <!-- Custom fonts for this template-->
     <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -25,8 +25,9 @@
     <!-- Custom styles for this template-->
     <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
+
     <style>
-        .hovv:hover {
+        .reporttr:hover {
             cursor: pointer;
         }
 
@@ -60,19 +61,40 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트
-                                <c:if test="${code == 1}">
-                                    [구디나라]
-                                </c:if>
-        
-                                <c:if test="${code == 2}">
-                                    [대기공주]
-                                </c:if>
+                            <h6 class="m-0 font-weight" style="color: #6667AB;">신고 목록
+                                
                             
                             </h6>
                         </div>
                         <div class="card-body">
                             <!-- 카드 본문  -->
+
+                            <!-- 내용 Search -->
+                            <div class="" style="justify-content: center; display: flex;">
+                                <form action="./list" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            
+                                    <div class="input-group">
+                                        <div class="search-category" id="search-category">
+                                            <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
+                                                <option class="kinds" value="user_id">신고자ID</option>
+                                                <option class="kinds" value="rp_id">피신고ID</option>
+                                                <option class="kinds" value="rp_phone">전화번호</option>
+                                                <option class="kinds" value="rp_email">이메일</option>
+                                                <option class="kinds" value="rp_status">처리상태</option>
+                                                <option class="kinds" value="rp_yn">유효여부</option>
+                                            </select>
+                                        </div>
+                                        <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
                             <!-- 부트스트랩표 -->
                             <div id="qnaList">
@@ -80,23 +102,25 @@
                                     <table class="table table-hover" width="100%">
                                       <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th class="col-1">번호</th>
-                                            <th class="col-1">구분</th>
-                                            <th class="col-4">글제목</th>
-                                            <th class="col-2">작성자</th>
-                                            <th class="col-2">등록일</th>
+                                            <th class="col-2">신고번호</th>
+                                            <th class="col-3">신고자ID</th>
+                                            <th class="col-2">카테고리</th>
+                                            <th class="col-3">피신고ID</th>
                                             <th class="col-1">처리</th>
+                                            <th class="col-1">유효</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
-                                          <c:forEach items="${qnalist}" var="nl">
-                                             <tr class="hovv" onclick="location.href='./detail?qna_num=${nl.qna_num}'">
-                                                <td>${nl.qna_num}</td>
-                                                <td>${nl.qna_cate}</td>
-                                                <td>${nl.qna_title}</td>
+                                          <c:forEach items="${list}" var="nl">
+                                             <tr class="reporttr" onclick="location.href='#'">
+                                                <td>${nl.rp_num}</td>
                                                 <td>${nl.user_id}</td>
-                                                <td>${nl.qna_date}</td>
-                                                <td id="updateStatus">${nl.qna_status}</td>
+                                                <td>${nl.rp_cate}</td>
+                                                <td>${nl.rp_id}</td>
+                                                <td>${nl.rp_id}</td>
+                                                <td>${nl.rp_id}</td>
+                                                   
+
                                             </tr>
                                             </c:forEach>
                                       </tbody>
@@ -111,39 +135,17 @@
                                     <ul class="pagination paginate_sm">
 
                                         <c:if test="${pager.pre}">
-                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                                            <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                                         </c:if>
                                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                            <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                                         </c:forEach>
-                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                                     </ul>
                                 </nav>
                             </div>
 
-                            <!-- 내용 Search -->
-                            <div class="" style="justify-content: center; display: flex;">
-                            <form action="./list" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        
-                                <div class="input-group">
-                                    <div class="search-category" id="search-category">
-                                        <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option class="kinds" value="qna_title">제목</option>
-                                            <option class="kinds" value="qna_contents">내용</option>
-                                            <option class="kinds" value="user_id">작성자</option>
-                                        </select>
-                                    </div>
-                                    <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <input type="hidden" name="code" value="${code}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
+                            
 
 
                         </div>
@@ -197,8 +199,11 @@
             }
         }
 
+
+        
+
     </script>
-    <script src="/resources/js/manager/qnalist.js"></script>
+
 
 </body>
 
