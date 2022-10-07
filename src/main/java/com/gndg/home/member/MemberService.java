@@ -243,7 +243,7 @@ public class MemberService {
 			
 			
 			//보내는 사람 Email/보내는사람 이름/제목/내용
-			String fromEmail = "";// 보내는 사람 이메일
+			String fromEmail = ""; // 보내는 사람 이메일
 			String fromName ="GNDG";
 			String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
 			String msg ="";
@@ -279,6 +279,8 @@ public class MemberService {
 			}
 		}
 		
+//		//회원 탈퇴
+//		public int setMyDelete(MemberDTO memberDTO)throws Exception
 	//멤버 조회
 	public List<MemberDTO> getMemberList(Pager pager)throws Exception{
 		Long totalCount = memberDAO.getMemberListCount(pager);

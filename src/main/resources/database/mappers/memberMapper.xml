@@ -31,7 +31,7 @@ VALUES(
 	#{user_addr},
 	#{user_addr2},
 	1,
-	'Y'
+	'정상'
 )
 </insert>
 <insert id="setAddMemberFile" parameterType="MemberFileDTO">
@@ -51,6 +51,8 @@ FROM MEMBER
 WHERE USER_ID=#{user_id} 
 	  AND 
 	  USER_PW=#{user_pw}
+	  AND
+	  USER_YN='정상'
 </select>
 <!-- 아이디 찾기 -->
 <select id="getFindID" parameterType="MemberDTO" resultType="String">

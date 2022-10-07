@@ -15,6 +15,7 @@
     line-height: 35px;
     color: rgb(51, 51, 51);
     letter-spacing: -1px;
+    margin-left: 25px;
 }
 .css-fhxb3m {
     display: flex;
@@ -64,14 +65,6 @@ body {
     color: rgb(95, 0, 128);
     font-weight: 500;
     text-decoration: none;
-}
-.css-j0lifa {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding-bottom: 27px;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
 }
 .css-1c8nox {
     padding-top: 20px;
@@ -152,8 +145,8 @@ a {
     color: inherit;
 }
 .css-1fdt947 {
-    width: 100px;
-    font-size: 16px;
+    width: 70px;
+    font-size: 12px;
     font-weight: 500;
     text-align: right;
     color: rgb(51, 51, 51);
@@ -181,9 +174,17 @@ a {
     font-weight: 500;
 }
 .css-1oc1pau {
-    width: 60px;
-    height: 78px;
+    width: 100px;
+    height: 100px;
     margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(245, 245, 245);
+}
+.css-1oc1pausale {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
     background-color: rgb(245, 245, 245);
 }
 img, legend {
@@ -216,7 +217,7 @@ canvas, img, video {
 .css-4wlxei {
     width: 100%;
     padding: 16px 20px;
-    margin-bottom: 14px;
+    /* margin-bottom: 14px; */
 }
 .css-fhxb3m {
     display: flex;
@@ -224,7 +225,7 @@ canvas, img, video {
     -webkit-box-align: center;
     align-items: center;
 }.css-1fttcpj {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
 }
 .css-1x9bshx {
@@ -411,7 +412,7 @@ html {
 }
 .css-1ccl3pq {
     display: flex;
-    padding-top: 6px;
+    /* padding-top: 6px; */
     flex-direction: row;
     color: rgb(0, 0, 0);
     line-height: 20px;
@@ -560,12 +561,234 @@ ol, ul {
     border: 0px none;
 }
 /* 여기서부턴 상품문의 css */
-.board-container {
-    height: 100%;
+/* table css */
+.css-1d3w5wq {
+    width: 100%;
 }
+.css-10utwlq {
+    width: 820px;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.css-etygac {
+    width: 100%;
+    table-layout: fixed;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    border-top: 2px solid rgb(51, 51, 51);
+}
+.css-bja6kz th:first-of-type {
+    width: 620px;
+}
+.css-1soyerh {
+    width: 100px;
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(76, 76, 76);
+}
+.css-shpvex td:first-of-type {
+    width: 620px;
+    padding: 20px;
+    text-align: left;
+}
+.css-shpvex td {
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 22px;
+}
+.css-14e35e {
+    overflow: hidden;
+    display: block;
+    width: 580px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: black;
+}
+.css-14kcwq8 {
+    color: rgb(153, 153, 153);
+}
+/* table css end */
+/* 상품문의 페이징 부분 */
+.css-15jhycr {
+    position: relative;
+    min-height: 44px;
+    margin-top: 20px;
+    text-align: center;
+}
+.css-rzcdhr:disabled {
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-disabled.svg);
+    cursor: default;
+}
+.css-rzcdhr {
+    width: 44px;
+    height: 44px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.css-7qb0sc {
+    overflow: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+}
+.css-1jwilit:disabled {
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-disabled.svg);
+    cursor: default;
+}
+.css-1jwilit {
+    width: 44px;
+    height: 44px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* 상품문의 페이징 부분 end */
+/* 상품문의 질문 아코디언 */
+.css-1v42wu9 {
+    padding: 20px 20px 30px;
+    border-top: 1px solid rgb(244, 244, 244);
+    background-color: rgb(250, 250, 250);
+}
+.css-1yz3xab {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 20px;
+    letter-spacing: -0.075em;
+}
+.css-aq9a2j {
+    font-size: 13px;
+    font-family: "Noto Sans", serif;
+    color: rgb(153, 153, 153);
+}
+.css-1voj7e4 {
+    display: flex;
+    margin-top: 20px;
+}
+.css-17k1x22 {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQ0NSAtODc2KSB0cmFuc2xhdGUoNDIzIDI3NikgdHJhbnNsYXRlKDIgMzE2KSB0cmFuc2xhdGUoMjAgMjg0KSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEyIiBmaWxsPSIjQTg2NEQ4Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMS45NDYgNy41YzIuNDU2IDAgNC40NDYgMS45OSA0LjQ0NiA0LjQ0NiAwIC45MDctLjI3MSAxLjc1LS43MzcgMi40NTNsLjg0NS44NDMtMS4yNTggMS4yNTgtLjg0My0uODQ1Yy0uNzAzLjQ2Ni0xLjU0Ni43MzctMi40NTMuNzM3LTIuNDU1IDAtNC40NDYtMS45OS00LjQ0Ni00LjQ0NkM3LjUgOS40OTEgOS40OSA3LjUgMTEuOTQ2IDcuNXptMCAxLjc3OGMtMS40NzMgMC0yLjY2OCAxLjE5NS0yLjY2OCAyLjY2OHMxLjE5NSAyLjY2OCAyLjY2OCAyLjY2OGMuNDEyIDAgLjgwMi0uMDk0IDEuMTUtLjI2bC0uMzY5LS4zNyAxLjI1OC0xLjI1Ny4zNjkuMzY5Yy4xNjYtLjM0OC4yNi0uNzM4LjI2LTEuMTUgMC0xLjQ3My0xLjE5NS0yLjY2OC0yLjY2OC0yLjY2OHoiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+}
+.css-145c1ga {
+    width: 744px;
+    margin-top: 3px;
+    margin-left: 12px;
+}
+.css-430usl {
+    font-size: 12px;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+}
+.css-10zritj {
+    margin: 10px 0px 30px;
+    max-width: 744px;
+}
+.css-4l2co {
+    overflow: hidden;
+    display: block;
+    width: 580px;
+    cursor: pointer;
+}
+.css-1v42wu9 {
+    padding: 20px 20px 30px;
+    border-top: 1px solid rgb(244, 244, 244);
+    background-color: rgb(250, 250, 250);
+}
+.css-1yz3xab {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 20px;
+    letter-spacing: -0.075em;
+}
+.css-c0oq5k {
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 5px;
+}
+.css-qv4hdm {
+    padding: 6px 10px;
+    border: none;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    background-color: transparent;
+}
+.css-ord49b {
+    width: 1px;
+    height: 12px;
+    background-color: rgb(238, 238, 238);
+}
+.css-a5dfz6 {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0wIDBIMTZWMTZIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMzkgLTEzNTUpIHRyYW5zbGF0ZSgwIDY0KSB0cmFuc2xhdGUoMCAxMjcxKSB0cmFuc2xhdGUoMzM5IDIwKSIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiM5OTkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTQgNUwxMCA1IDEwIDExIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzM5IC0xMzU1KSB0cmFuc2xhdGUoMCA2NCkgdHJhbnNsYXRlKDAgMTI3MSkgdHJhbnNsYXRlKDMzOSAyMCkgcm90YXRlKDQ1IDcgOCkiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    margin: 0px 5px;
+}
+/* 아코디언 end */
+/* 상품문의 답변 아코디언 */
+.css-b41fnw {
+    width: 100%;
+    padding-bottom: 0px;
+    margin-top: 0.75rem;
+    display: flex;
+}
+.css-1non6l6 {
+    width: 28px;
+    height: 28px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQ0NSAtMTkxOCkgdHJhbnNsYXRlKDQyMyAyNzYpIHRyYW5zbGF0ZSgyIDE2MjIpIHRyYW5zbGF0ZSgyMCAyMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik05Ljc2IDE1LjcwOGwuNTQtMS40MDRoMy40NTZsLjU1MiAxLjQwNGgyLjE0OEwxMyA3LjVoLTEuOTMyTDcuNiAxNS43MDhoMi4xNnptMy4zMjQtMy4xMzJoLTIuMTEybDEuMDU2LTIuNzEyIDEuMDU2IDIuNzEyeiIvPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.css-1i2xt0r span {
+    width: 24px;
+    height: 24px;
+    top: -2px;
+    display: block;
+}
+.css-wm215i {
+    width: 100%;
+    margin-left: 9px;
+    padding-top: 2px;
+    word-break: break-all;
+}
+.css-kfh61x {
+    font-size: 14px;
+    line-height: 23px;
+    color: rgb(102, 102, 102);
+}
+/* 답변 아코디언 end */
 .page_aticle.aticle_type2 .page_section {
     float: right;
     width: 820px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 .page_aticle button, .page_aticle input, .page_aticle select, .page_aticle * {
     font-family: noto sans;
@@ -687,9 +910,6 @@ ol, ul {
     border-radius: 3px;
     cursor: pointer;
 }
-ol, ul {
-    list-style-type: none;
-}
 /* 여기서 부터는 리뷰 */
 .section_review .review_notice {
     font-size: 14px;
@@ -742,4 +962,199 @@ div, th, td, li, dt, dd, p {
     font-size: 13px;
     color: #757575;
     text-align: center;
+} */
+/* 주문상세 페이지 */
+.css-171zbec {
+    width: 820px;
+}
+.css-j0lifa {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* padding-bottom: 27px; */
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.css-fhxb3m {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.css-xr9nhh {
+    font-weight: 500;
+    font-size: 24px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.5px;
+    line-height: 48px;
+}
+.css-1bsokvi {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(51, 51, 51);
+}
+.css-yi2ox5 {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.43px;
+}
+.css-mrxscg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0px 20px;
+    padding: 24px 0px;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.css-1ixzt3f {
+    width: 60px;
+    height: 78px;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: rgb(245, 245, 245);
+}
+.css-1t5xcqm {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    margin-right: 20px;
+}
+.css-15vlnp {
+    margin-bottom: 8px;
+    padding-bottom: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.css-s5xdrg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.css-1ngn8p4 {
+    margin-right: 6px;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: -0.22px;
+    color: rgb(51, 51, 51);
+}
+.css-1ekh7sh {
+    letter-spacing: -0.22px;
+    color: rgb(51, 51, 51);
+}
+.css-l71t3l {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+}
+.css-ojh52s {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-left: 40px;
+    gap: 6px;
+}
+.css-15leche {
+    display: block;
+    margin-bottom: 60px;
+    line-height: 1.43;
+    text-align: center;
+    color: rgb(102, 102, 102);
+}
+.css-yi2ox5 {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.43px;
+}
+.css-hig5bx li:first-of-type {
+    padding-top: 24px;
+}
+.css-hvdq8h {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    font-size: 16px;
+}
+.css-11h8hn9 {
+    flex: 1 1 0%;
+    color: rgb(102, 102, 102);
+}
+.css-l5tyq9 {
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+}
+.css-1u0jk3a {
+    padding-left: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: bottom;
+}
+.css-8homh5 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 12px 0px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.css-9i2eur {
+    min-width: 160px;
+    margin-right: 16px;
+    flex-shrink: 1;
+    color: rgb(102, 102, 102);
+}
+.css-thgwm0 {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    color: rgb(51, 51, 51);
+    word-break: break-all;
+    text-align: right;
+}
+.css-hig5bx li:last-of-type {
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.css-6j27uj {
+    display: flex;
+    padding: 12px 0px;
+    font-size: 16px;
+}
+ul {
+    display: block;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+/* 주문 */
+.css-1fttcpj {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+/* 주문상세  */
+.css-454d5e {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: #ddd;
+    margin: 6px 21px 0 22px;
+    vertical-align: top;
 }
