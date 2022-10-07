@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+         <style>
+        ol, ul {
+            padding-left: 0rem !important;
+        }
+    </style>
     <link rel="stylesheet" href="/resources/css/member/mypage.css">
     <link rel="stylesheet" href="/resources/css/member/test.css">
 </head>
 <body>
-    
+    <div class="wrap">
+    <c:import url="../template/header.jsp"></c:import>
     <section>
         <div class="css-luwwab eug5r8l4">
             <div class="css-833hqy ecbxmj4">
@@ -34,10 +41,10 @@
                         <a class=" css-nk8664 ecbxmj0" href="./myQNA">상품 문의<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                     <li class=" css-0 ecbxmj1">
-                        <a class="active css-nk8664 ecbxmj0">개인 정보 수정<span class="css-e41glx e1x0rfoo0"></span></a>
+                        <a class="active css-nk8664 ecbxmj0" href="./myUpdate">개인 정보 수정<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                 </ul>
-                <a href="/mypage/inquiry/form" class="css-17gln34 e19l01ug3">
+                <a href="../qna/inquiry" class="css-17gln34 e19l01ug3">
                     <div class="css-1niy3no e19l01ug2">
                         <span class="css-1sdidca e19l01ug1">도움이 필요하신가요 ?</span>
                         <span class="css-rnnx2x e19l01ug0">1:1 문의하기</span>
@@ -210,7 +217,7 @@
                                             </div>               
                                 </div>
                                 <div class="css-14332pf e1m8ervv0">
-                                    <button class="css-ufulao e4nu7ef3" type="button" onClick="del(${update.user_id})" >
+                                    <button class="css-ufulao " type="button" id="delbtn">
                                         <span class="css-ymwvow e4nu7ef1">탈퇴하기</span>
                                     </button>
                                     <button class="css-1qirdbn e4nu7ef3" type="submit">
@@ -221,7 +228,9 @@
                         </div>           
                     </div>
     </section>
-    
+    <c:import url="../template/footer.jsp"></c:import>
+    </div>
+  <script src="/resources/js/mypage/mypage.js"></script>  
  <!-- 다음 우편주소api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -236,8 +245,6 @@
 			}
 		}).open();
 	}
-	//회원탈퇴
-	function del(user_id)
 </script>
 </body>
 </html>

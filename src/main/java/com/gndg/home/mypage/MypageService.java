@@ -1,6 +1,7 @@
 package com.gndg.home.mypage;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gndg.home.gnItem.GnItemDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
+import com.gndg.home.order.OrderDTO;
+import com.gndg.home.qna.QnaDTO;
 
 @Service
 public class MypageService {
@@ -18,6 +22,26 @@ public class MypageService {
 	@Autowired
 	private MypageDAO mypageDAO;
 
+	//내 주문내역
+	public List<OrderDTO> getMyOrder(OrderDTO orderDTO)throws Exception{
+	    return mypageDAO.getMyOrder(orderDTO);
+	}
+	
+	//내 주문 상세페이지
+	public OrderDTO getMyOrderDetail(OrderDTO orderDTO)throws Exception{
+	    return mypageDAO.getMyOrderDetail(orderDTO);
+	}
+	
+	//내 판매내역
+	public List<GnItemDTO> getMySale(GnItemDTO gnItemDTO)throws Exception{
+	    return mypageDAO.getMySale(gnItemDTO);
+	}
+	
+	//내 문의 내역
+	public List<QnaDTO> getMyQna(QnaDTO qnaDTO)throws Exception{
+	    return mypageDAO.getMyQna(qnaDTO);
+	}
+	
 	//회원정보 수정
 	public int setMyUpdate(MemberDTO memberDTO, MultipartFile userfile,ServletContext servletContext)throws Exception{
 		int result = mypageDAO.setMyUpdate(memberDTO);
