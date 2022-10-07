@@ -66,5 +66,13 @@ public class GnItemDAO {
 	public Long getLikeItem(GnItemLikeDTO gnItemLikeDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getLikeItem", gnItemLikeDTO);
 	}
+	
+	public int setHit(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setHit", gnItemDTO);
+	}
+	
+	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStateUpdate", gnItemDTO);
+	}
 
 }

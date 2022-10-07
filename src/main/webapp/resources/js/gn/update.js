@@ -18,7 +18,7 @@ condition.forEach(function(e) {
 })
 
 
-//----------------------------수정시 파일삭제----------------------------
+//----------------------------수정시 이미지파일삭제----------------------------
 fileDelete.forEach(function(e) {
     e.addEventListener("click", function () {
         let check = window.confirm('삭제하면 되돌릴 수 없습니다. 삭제하시겠습니까?');

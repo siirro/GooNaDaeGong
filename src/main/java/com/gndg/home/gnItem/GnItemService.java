@@ -27,7 +27,6 @@ public class GnItemService {
 	public int setAdd(GnItemDTO gnItemDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		int result = gnItemDAO.setAdd(gnItemDTO);
 		String path = "resources/upload/gnItem";
-		System.out.println(path);
 
 		for(MultipartFile multipartFile:files) {
 			if(multipartFile.isEmpty()) {
@@ -49,6 +48,8 @@ public class GnItemService {
 	}
 	
 	public GnItemDTO getDetail(GnItemDTO gnItemDTO) throws Exception {
+		//조회수
+		gnItemDAO.setHit(gnItemDTO);
 		return gnItemDAO.getDetail(gnItemDTO);
 	}
 	
@@ -103,5 +104,13 @@ public class GnItemService {
 	
 	public Long getLikeItem(GnItemLikeDTO gnItemLikeDTO) throws Exception {
 		return gnItemDAO.getLikeItem(gnItemLikeDTO);
+	}
+	
+	public int setHit(GnItemDTO gnItemDTO) throws Exception {
+		return gnItemDAO.setHit(gnItemDTO);
+	}
+	
+	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
+		return gnItemDAO.setStateUpdate(gnItemDTO);
 	}
 }

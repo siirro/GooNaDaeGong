@@ -1,7 +1,9 @@
 package com.gndg.home.gnItem;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -58,6 +60,17 @@ public class GnItemController {
 	public ModelAndView getList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<GnItemDTO> ar = gnItemService.getList();
+		ArrayList<Long> counts = new ArrayList<Long>();
+		
+		//좋아요수
+		for(int i=0; i<ar.size(); i++) {
+			GnItemLikeDTO gnItemLikeDTO = new GnItemLikeDTO();
+			gnItemLikeDTO.setItem_num(ar.get(i).getItem_num());
+			Long count = gnItemService.getLikeItem(gnItemLikeDTO);
+			counts.add(count);
+		}
+		
+		mv.addObject("count", counts);
 		mv.addObject("list", ar);
 		mv.setViewName("gnItem/list");
 		return mv;
@@ -86,7 +99,7 @@ public class GnItemController {
 		gnItemLikeDTO.setUser_id(gnItemDTO.getUser_id());
 		gnItemLikeDTO = gnItemService.getLikeUser(gnItemLikeDTO);
 		mv.addObject("like", gnItemLikeDTO);
-		
+				
 		mv.setViewName("gnItem/detail");
 		return mv;
 	}
@@ -142,5 +155,14 @@ public class GnItemController {
 	public Long getLikeItem(GnItemLikeDTO gnItemLikeDTO) throws Exception {
 		Long count = gnItemService.getLikeItem(gnItemLikeDTO);
 		return count;
+	}
+	
+	@PostMapping("stateUpdate")
+	@ResponseBody
+	//상품판매상태 변경
+	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
+		int result = gnItemService.setStateUpdate(gnItemDTO);
+		System.out.println(gnItemDTO.getItem_state());
+		return result;
 	}
 }

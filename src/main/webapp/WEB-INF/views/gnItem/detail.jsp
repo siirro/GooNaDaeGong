@@ -105,26 +105,33 @@
 				</div>
 				<div class="col-md-6">
 					<div id="json" style="display: none;">${json}</div>
-					<div id="item_num" style="display: none;">${dto.item_num}</div>
-					<div id="user_id" style="display: none;">${dto.user_id}</div>
-					
+					<input type="hidden" name="item_num" id="item_num" value="${dto.item_num }">
+					<input type="hidden" name="user_id" id="user_id" value="${dto.user_id}">
+
 					<div class="small mb-2">
 						<span id="category1"></span> 
 						<span id="category2"></span> 
 						<span id="category3"></span> 
 						<span id="category4"></span>
 					</div>
-					
+
 					<div>
-					<i class="bi bi-heart-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
-					<span id="likeUpDown"></span>
-					<i class="bi bi-eye-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
-					<i class="bi bi-clock-fill mx-2" style="color: gainsboro; font-size: 20px;"></i>
+						<span class=" mx-2"> 
+							<span class="bi bi-suit-heart-fill" style="color: gainsboro; font-size: 20px;"></span> 
+							<span id="likeUpDown"></span>
+						</span> 
+						<span class=" mx-2"> 
+							<span class="bi bi-eye-fill" style="color: gainsboro; font-size: 20px;"></span>
+							<span>${dto.item_hit }</span>
+						</span> 
+						<span class=" mx-2"> 
+							<span class="bi bi-clock-fill" style="color: gainsboro; font-size: 20px;"></span>
+							<span id="item_date">${dto.item_date}</span>
+						</span>
 					</div>
-					
+
 					<h1 class="fs-3 mt-5">${dto.item_name }</h1>
 					<div class="fs-2 mb-5 fw-bolder">${price }원</div>
-
 					<table class="table table-borderless fs-5">
 						<tbody>
 							<tr>
@@ -153,29 +160,54 @@
 							거래를 자제해 주시고<br> 구디나라 고객센터로 신고해주시기 바랍니다.
 						</div>
 					</div>
+					
 					<div>
-						<c:choose>
-						<c:when test="${like eq null }">
-							<svg id="likeButton" style="color:black;" xmlns="http://www.w3.org/2000/svg"
-								width="30" height="30" fill="currentColor"
-								class="bi bi-heart-fill" viewBox="0 0 16 16">
-							<path fill-rule="evenodd"d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-						  </svg>
-						</c:when>
-						<c:otherwise>
-							<svg id="likeButton" style="color:red;" xmlns="http://www.w3.org/2000/svg"
-								width="30" height="30" fill="currentColor"
-								class="bi bi-heart-fill" viewBox="0 0 16 16">
-							<path fill-rule="evenodd"d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-						  </svg>
-						</c:otherwise>
-						</c:choose>
+						<span>
+							<c:choose>
+								<c:when test="${like eq null }">
+									<svg id="likeButton" style="color: black;"
+										xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+										fill="currentColor" class="bi bi-heart-fill"
+										viewBox="0 0 16 16">
+								<path fill-rule="evenodd"
+											d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+							  </svg>
+								</c:when>
+								<c:otherwise>
+									<svg id="likeButton" style="color: red;"
+										xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+										fill="currentColor" class="bi bi-heart-fill"
+										viewBox="0 0 16 16">
+								<path fill-rule="evenodd"
+											d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+							  </svg>
+								</c:otherwise>
+							</c:choose>
+							</span>
+						<span class="mx-3">
 						<a class="btn" style="background-color: #6667AB; color: white;"
 							href="update?item_num=${dto.item_num }">수정</a> 
+						<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white;"
+						href="delete?item_num=${dto.item_num }">삭제</a>
 						<a class="btn"
-							style="background-color: #6667AB; color: white;"
-							href="delete?item_num=${dto.item_num }">삭제</a>
+							style="background-color: #6667AB; color: white;" href="list">목록보기</a>
+						</span>
+						<span class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="item_state" id="item_state1" value="판매중" autocomplete="off" checked>
+							<label class="btn btn-outline-primary" for="item_state1">판매중</label>
+						  
+							<input type="radio" class="btn-check" name="item_state" id="item_state2" value="예약중" autocomplete="off">
+							<label class="btn btn-outline-primary" for="item_state2">예약중</label>
+						  
+							<input type="radio" class="btn-check" name="item_state" id="item_state3" value="예약완료" autocomplete="off">
+							<label class="btn btn-outline-primary" for="item_state3">판매완료</label>
+						  </span>
 					</div>
+					<div class="d-grid gap-2 col-6 mx-auto my-3">
+						<button class="btn btn-primary" type="button">채팅하기</button>
+						<button class="btn btn-primary" type="button">구디페이 구매</button>
+					</div>
+					
 				</div>
 				<div class="mt-5">${dto.item_contents }</div>
 			</div>
@@ -227,12 +259,10 @@
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
 		crossorigin="anonymous"></script>
 	<script src="/resources/js/gn/detail.js"></script>
+	<script src="/resources/js/gn/state.js"></script>
 	<script>
-		getCategory()
-		getlikeCount()
+		getLikeCount();
+		getCategory();
 	</script>
-</body>
-</html>
-</script>
 </body>
 </html>

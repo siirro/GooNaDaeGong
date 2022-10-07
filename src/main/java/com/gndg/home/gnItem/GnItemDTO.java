@@ -3,7 +3,8 @@ package com.gndg.home.gnItem;
 import java.sql.Date;
 import java.util.List;
 
-import com.gndg.home.util.Category;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class GnItemDTO {
 	
@@ -17,15 +18,15 @@ public class GnItemDTO {
 	private String item_name;
 	private String item_contents;
 	private Long item_price;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date item_date;
 	private Long item_hit;
 	private Long item_stock;
 	private String item_deal;
 	private String item_condition;
-	private String item_yn;
+	private String item_state;
 	private Long code;
 	private List<GnItemFileDTO> gnItemFileDTOs;
-	
 	
 	public Long getItem_num() {
 		return item_num;
@@ -117,11 +118,11 @@ public class GnItemDTO {
 	public void setItem_condition(String item_condition) {
 		this.item_condition = item_condition;
 	}
-	public String getItem_yn() {
-		return item_yn;
+	public String getItem_state() {
+		return item_state;
 	}
-	public void setItem_yn(String item_yn) {
-		this.item_yn = item_yn;
+	public void setItem_state(String item_state) {
+		this.item_state = item_state;
 	}
 	public Long getCode() {
 		return code;

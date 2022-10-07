@@ -1,7 +1,7 @@
 const likeButton = document.querySelector("#likeButton");
-const likeUpDown = document.getElementById("likeUpDown");
-const item_num = document.querySelector("#item_num").innerHTML;
-const user_id = document.querySelector("#user_id").innerHTML;
+const likeUpDown = document.querySelector("#likeUpDown");
+const item_num = document.querySelector("#item_num").value;
+const user_id = document.querySelector("#user_id").value;
 const category1 = document.querySelector("#category1");
 const category2 = document.querySelector("#category2");
 const category3 = document.querySelector("#category3");
@@ -9,8 +9,6 @@ const category4 = document.querySelector("#category4");
 let json = JSON.parse(document.querySelector('#json').innerHTML);
 
 
-console.log(item_num)
-console.log(user_id)
 
 //----------------------------좋아요(찜하기)----------------------------
 likeButton.addEventListener('click', function () {
@@ -24,10 +22,10 @@ likeButton.addEventListener('click', function () {
             let result = xhttp.responseText.trim();
             if (result == 1) {
                 likeButton.setAttribute("style", "color:red");
-                likeUpDown.innerHTML = count+1;
+                likeUpDown.innerHTML = count + 1;
             } else {
                 likeButton.setAttribute("style", "color:black");
-                likeUpDown.innerHTML = count-1;
+                likeUpDown.innerHTML = count - 1;
             }
         }
     }
@@ -35,7 +33,7 @@ likeButton.addEventListener('click', function () {
 
 
 //----------------------------좋아요수 조회----------------------------
-function getlikeCount() {
+function getLikeCount() {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "likeCount?item_num=" + item_num);
     xhttp.send();
@@ -84,8 +82,6 @@ function getCategory() {
                 if (c4 == c.cate_num) {
                     category4.innerHTML = c.cate_name;
                 }
-
-
             }
         }
     }

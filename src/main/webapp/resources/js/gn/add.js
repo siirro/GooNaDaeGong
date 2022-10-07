@@ -2,7 +2,7 @@ const fileAdd = document.querySelector("#fileAdd");
 const button = document.querySelector("#button");
 
 
-//----------------------------파일추가----------------------------
+//----------------------------이미지파일추가----------------------------
 let count = 0;
 let idx = 0;
 
@@ -69,7 +69,7 @@ function thumbnail(input) {
 }
 
 
-//----------------------------파일삭제----------------------------
+//----------------------------이미지파일삭제----------------------------
 fileAdd.addEventListener("click", function (event) {
     if (event.target.className = "del") {
         const idxNum = document.getElementById('file' + event.target.title);
