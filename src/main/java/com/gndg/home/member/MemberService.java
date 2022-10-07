@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gndg.home.util.Pager;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -241,7 +243,7 @@ public class MemberService {
 			
 			
 			//보내는 사람 Email/보내는사람 이름/제목/내용
-			String fromEmail = "keroro3086@naver.com"; // 보내는 사람 이메일
+			String fromEmail = "";// 보내는 사람 이메일
 			String fromName ="GNDG";
 			String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
 			String msg ="";
@@ -276,4 +278,20 @@ public class MemberService {
 				System.out.println("메일발송 실패"+ e);
 			}
 		}
+		
+	//멤버 조회
+	public List<MemberDTO> getMemberList(Pager pager)throws Exception{
+		Long totalCount = memberDAO.getMemberListCount(pager);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		List<MemberDTO> ar = memberDAO.getMemberList(pager);
+		return ar;
+	}
+	
+	//멤버 상태변경
+	public int updateYN(MemberDTO memberDTO)throws Exception{
+		int result = memberDAO.updateYN(memberDTO);
+		return result;
+	}
+		
 }

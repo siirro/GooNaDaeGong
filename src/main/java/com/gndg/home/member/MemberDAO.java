@@ -1,8 +1,12 @@
 package com.gndg.home.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.gndg.home.util.Pager;
 
 @Repository
 public class MemberDAO {
@@ -46,6 +50,21 @@ public class MemberDAO {
 	public int setUpdatePW(MemberDTO memberDTO)throws Exception{
 		System.out.println("비밀번호 찾기 UPDATE DAO");
 		return sqlSession.update(NAMESPACE+"setUpdatePW", memberDTO);
+	}
+	
+	//멤버조회
+	public List<MemberDTO> getMemberList(Pager pager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getMemberList", pager);
+	}
+	
+	//멤버조회카운트
+	public Long getMemberListCount(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberListCount", pager);
+	}
+	
+	//멤버 상태 변경
+	public int updateYN(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"updateYN", memberDTO);
 	}
 
 }

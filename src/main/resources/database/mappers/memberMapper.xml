@@ -75,4 +75,38 @@ SET USER_PW =#{user_pw}
 WHERE USER_ID=#{user_id} 
 </update>
 
+
+<!-- 회원 조회! 기본 order by 안걸어놓음-->
+<select id="getMemberList" parameterType="Pager" resultType="MemberDTO">
+SELECT * FROM
+(SELECT ROWNUM R, M.* 
+FROM(
+SELECT * FROM MEMBER
+WHERE
+	<choose>
+		<when test="kind == 'user_id'">USER_ID</when>
+		<when test="kind == 'user_name'">USER_NAME</when>
+		<otherwise>USER_YN</otherwise>
+	</choose>
+	LIKE '%'||#{search}||'%') M)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<!-- 회원조회 카운트 -->
+<select id="getMemberListCount" parameterType="Pager" resultType="Long">
+SELECT COUNT(USER_ID) FROM MEMBER
+WHERE
+	<choose>
+		<when test="kind == 'user_id'">USER_ID</when>
+		<when test="kind == 'user_name'">USER_NAME</when>
+		<otherwise>USER_YN</otherwise>
+	</choose>
+	LIKE '%'||#{search}||'%'
+</select>
+
+<!-- 회원 상태변경 -->
+<update id="updateYN" parameterType="MemberDTO">
+UPDATE MEMBER SET USER_YN=#{user_yn} WHERE USER_ID = #{user_id}
+</update>
+
 </mapper>

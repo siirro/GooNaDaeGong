@@ -83,8 +83,7 @@ function qnaSubmit1(){
 
 qnaSubmit.addEventListener("click",function(){
     
-    alert("성공적으로 접수되었습니다. ")
-    //qnaSubmit.submit();
+   
     
 });
 

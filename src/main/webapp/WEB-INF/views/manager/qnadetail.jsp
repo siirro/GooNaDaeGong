@@ -80,13 +80,20 @@
                                     </form>
                                 </c:when>
                                 <c:otherwise>
-                                    
+                                    <form action="./update?rp_num=${detail.rp_num}" method="post" style="margin-left: auto;">
+                                        <button disabled type="submit" data-qna-num="${detail.rp_num}" id="statusChange" 
+                                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                        style ="background-color: rgb(126, 107, 155); border-color: rgb(126, 107, 155); ">
+                                            <i class="fas fa-check fa-sm text-white-50"></i>처리완료
+                                                
+                                        
+                                    </form>
 
                                 </c:otherwise>
                             </c:choose>
                             <!-- </div>     -->
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
 
                             
@@ -215,7 +222,7 @@
                                         <h3 class="text-center">답변 미등록</h3>
                                     </div>
 
-                                    <div style="display: flex; justify-content: right;" class="">
+                                    <div style="display: flex; justify-content: right; margin-top: 50px;" class="">
                                         <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" style ="background-color: cornflowerblue; border-color: cornflowerblue;" 
                                         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                             <i class="fas fa-download fa-sm text-white-50"></i> 
@@ -228,7 +235,7 @@
                             
 
                                 <c:otherwise>
-                                    <div class="mb-3" style="display: flex; justify-content: right;" class="">
+                                    <div class="mb-3" style="display: flex; justify-content: right; margin-top: 50px;" class="">
                                         <button data-qna-num="${qnaDTO.qna_num}" id="qnaComment" 
                                         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         style ="background-color: cornflowerblue; border-color: cornflowerblue;">

@@ -25,7 +25,12 @@
     <!-- Custom styles for this template-->
     <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
+    <style>
+        .hovv:hover {
+            cursor: pointer;
+        }
 
+    </style>
 </head>
 
 <body id="page-top">
@@ -66,7 +71,7 @@
                             
                             </h6>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
 
                             <!-- 부트스트랩표 -->
@@ -85,10 +90,10 @@
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${qnalist}" var="nl">
-                                             <tr>
+                                             <tr class="hovv" onclick="location.href='./detail?qna_num=${nl.qna_num}'">
                                                 <td>${nl.qna_num}</td>
                                                 <td>${nl.qna_cate}</td>
-                                                <td><a href="./detail?qna_num=${nl.qna_num}">${nl.qna_title}</a></td>
+                                                <td>${nl.qna_title}</td>
                                                 <td>${nl.user_id}</td>
                                                 <td>${nl.qna_date}</td>
                                                 <td id="updateStatus">${nl.qna_status}</td>

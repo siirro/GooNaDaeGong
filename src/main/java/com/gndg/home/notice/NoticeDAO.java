@@ -76,6 +76,8 @@ public class NoticeDAO {
 	public Long getCountHidden(Pager pager, Long code)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);
+		map.put("kind", pager.getKind());
+
 		map.put("search", pager.getSearch());
 		
 		return sqlSession.selectOne(NAMESPACE+"getCountHidden", map);
@@ -85,6 +87,8 @@ public class NoticeDAO {
 	public Long getCount(Pager pager, Long code)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);
+		map.put("kind", pager.getKind());
+
 		map.put("search", pager.getSearch());
 		
 		return sqlSession.selectOne(NAMESPACE+"getCount", map);

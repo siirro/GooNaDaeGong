@@ -17,6 +17,26 @@ public class FaqDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.faq.FaqDAO.";
 	
+	public int deleteFaqFileAll(FaqFileDTO faqFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteFaqFileAll", faqFileDTO);
+	}
+	
+	public List<FaqFileDTO> detailFaqFileAll(FaqFileDTO faqFileDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"detailFaqFileAll", faqFileDTO);
+	}
+	
+	public int deleteFaqFile(FaqFileDTO faqFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteFaqFile", faqFileDTO);
+	}
+	
+	public FaqFileDTO detailFaqFile(FaqFileDTO faqFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFaqFile", faqFileDTO);
+	}
+	
+	public int addFaqFile(FaqFileDTO faqFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addFaqFile", faqFileDTO);
+	}
+	
 	public int deleteFaq(FaqDTO faqDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"deleteFaq", faqDTO);
 	}
@@ -39,6 +59,10 @@ public class FaqDAO {
 	
 	public Long getListCount(Long faq_cate)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getListCount", faq_cate);
+	}
+	
+	public FaqDTO getDetail(FaqDTO faqDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDetail", faqDTO);
 	}
 	
 	

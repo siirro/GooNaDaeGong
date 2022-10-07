@@ -42,7 +42,7 @@
 
             <!-- 공지사항 본문의 제목 -->
             <div class="css-1yc2nwy eug5r8l2">
-                <h3 class="css-1ew6v8c eug5r8l1">공지사항 삭제</h3>
+                <h3 class="css-1ew6v8c eug5r8l1">공지사항</h3>
                 
             </div>
             

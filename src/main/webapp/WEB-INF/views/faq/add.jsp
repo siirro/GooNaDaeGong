@@ -74,11 +74,11 @@
                                         <option class="codes" value="2">상품</option>
                                         <option class="codes" value="3">서비스 이용</option>
                                         <option class="codes" value="4">시스템 오류</option>
-                                        <option class="codes" value="5">대기공주</option>
-                                        <option class="codes" value="6">대기공주</option>
-                                        <option class="codes" value="7">대기공주</option>
-                                        <option class="codes" value="8">대기공주</option>
-                                        <option class="codes" value="9">대기공주</option>
+                                        <option class="codes" value="5">신고</option>
+                                        <option class="codes" value="6">이벤트</option>
+                                        <option class="codes" value="7">주문/결제</option>
+                                        <option class="codes" value="8">취소/교환/환불</option>
+                                        <option class="codes" value="9">회원</option>
                                     </select>
                                 </div>
                             </div>

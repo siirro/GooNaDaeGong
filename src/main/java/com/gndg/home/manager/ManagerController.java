@@ -12,8 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.cancel.CancelDTO;
+import com.gndg.home.cancel.CancelService;
+import com.gndg.home.member.MemberDTO;
+import com.gndg.home.member.MemberService;
+import com.gndg.home.orders.OrdersDTO;
+import com.gndg.home.orders.OrdersService;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.qna.QnaService;
+import com.gndg.home.report.ReportDTO;
+import com.gndg.home.report.ReportService;
+import com.gndg.home.util.OrderPager;
 import com.gndg.home.util.Pager;
 
 @Controller
@@ -22,6 +31,14 @@ public class ManagerController {
 	
 	@Autowired
 	private QnaService qnaService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private ReportService reportService;
+	@Autowired
+	private OrdersService ordersService;
+	@Autowired
+	private CancelService cancelService;
 	
 	//============================================================
 	
@@ -78,6 +95,7 @@ public class ManagerController {
 		System.out.println(qnaDTO.getQna_comment());
 		String comment = qnaDTO.getQna_comment();
 		//mv.addObject("qnaDTO", qnaDTO);
+		
 		String jsonResult = "{\"comment\":\""+comment+"\"}";
 		return jsonResult;
 	}
@@ -90,5 +108,103 @@ public class ManagerController {
 	}
 //	==============================QNA 조회 끝=========================
 	
+	
+	
+//	============================= 회원 조회 =========================
+	@GetMapping("member/list")
+	public ModelAndView getMemberList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<MemberDTO> ar = memberService.getMemberList(pager);
+		
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("manager/memberlist");
+		
+		return mv;
+	}
+	
+	@GetMapping("member/updateYN")
+	public String updateYN(MemberDTO memberDTO)throws Exception{
+		int result = memberService.updateYN(memberDTO);
+		return "redirect:./list";
+	}
+//	============================= 회원 조회 끝=========================
 
+	
+//	============================= 신고 조회=========================
+	@GetMapping("report/list")
+	public ModelAndView getReportList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ReportDTO> ar = reportService.getReportList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("manager/reportlist");
+		
+		return mv;
+	}
+	
+	@GetMapping("report/detail")
+	public ModelAndView getReportDetail(ReportDTO reportDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		reportDTO = reportService.getReportDetail(reportDTO);
+		mv.addObject("detail", reportDTO);
+		mv.setViewName("manager/reportdetail");
+		return mv;
+	}
+	
+	@GetMapping("report/updateStatus")
+	public String updateStatus(ReportDTO reportDTO)throws Exception{
+		int result = reportService.updateStatus(reportDTO);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("report/updateYN")
+	public String updateYN(ReportDTO reportDTO)throws Exception{
+		int result = reportService.updateYN(reportDTO);
+		return "redirect:./list";
+	}
+	
+	
+
+//	============================= 신고 조회 끝=========================
+	
+	
+//	============================= 주문내역 조회 =========================
+	@GetMapping("mall/order")
+	public ModelAndView getList(OrdersDTO ordersDTO, OrderPager orderPager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = ordersService.getList(orderPager, ordersDTO);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+		mv.addObject("code", ordersDTO.getCode());
+		mv.setViewName("manager/order/list");
+		return mv;
+	}
+	@GetMapping("mall/detail")
+	public ModelAndView getDetail(OrdersDTO ordersDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+		
+	}
+//	============================= 주문내역 조회 끝 =========================
+
+//	============================= 취소내역 조회 =========================
+	@GetMapping("mall/cancel")
+	public ModelAndView getList(OrderPager orderPager, CancelDTO cancelDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getList(orderPager);
+		System.out.println(ar);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/cancellist");
+		return mv;
+	}
+
+	
+	
+	
+	
+	
 }

@@ -5,6 +5,27 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.faq.FaqDAO">
 
+<select id="detailFaqFileAll" parameterType="FaqFileDTO" resultType="FaqFileDTO">
+SELECT * FROM FAQFILE WHERE FAQ_NUM = #{faq_num}
+</select>
+
+<delete id="deleteFaqFileAll" parameterType="FaqFileDTO">
+DELETE FROM FAQFILE WHERE FAQ_NUM = #{faq_num}
+</delete>
+
+<delete id="deleteFaqFile" parameterType="FaqFileDTO">
+DELETE FROM FAQFILE WHERE FILENUM = #{fileNum}
+</delete>
+
+<select id="detailFaqFile" parameterType="FaqFileDTO" resultType="FaqFileDTO">
+SELECT * FROM FAQFILE WHERE FILENUM = #{fileNum}
+</select>
+
+<insert id="addFaqFile" parameterType="FaqFileDTO">
+INSERT INTO FAQFILE
+VALUES(FAQFILE_SEQ.NEXTVAL, #{faq_num}, #{fileName}, #{oriName})
+</insert>
+
 <delete id="deleteFaq" parameterType="FaqDTO">
 DELETE FROM FAQ WHERE FAQ_NUM = #{faq_num}
 </delete>
@@ -16,7 +37,10 @@ WHERE FAQ_NUM=#{faq_num}
 </update>
 
 <insert id="addFaq" parameterType="FaqDTO">
-INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL,#{user_id},#{faq_cate},#{faq_title},#{faq_contents},SYSDATE)
+<selectKey order="BEFORE" keyProperty="faq_num" resultType="Long">
+SELECT FAQ_SEQ.NEXTVAL FROM DUAL
+</selectKey>
+INSERT INTO FAQ VALUES (#{faq_num},#{user_id},#{faq_cate},#{faq_title},#{faq_contents},SYSDATE)
 </insert>
 
 <select id="getList" parameterType="Map" resultType="FaqDTO">
@@ -32,6 +56,29 @@ SELECT * FROM
 <select id="getListCount" parameterType="FaqDTO" resultType="Long">
 	SELECT COUNT(FAQ_NUM) FROM FAQ WHERE FAQ_CATE LIKE '%'||#{faq_cate,jdbcType=NUMERIC}||'%'
 </select>
+
+<select id="getDetail" parameterType="FaqDTO" resultMap="getDetailResult">
+SELECT * 
+FROM FAQ F
+LEFT JOIN FAQFILE FF
+ON F.FAQ_NUM = FF.FAQ_NUM
+WHERE F.FAQ_NUM = #{faq_num}
+</select>
+
+<resultMap type="FaqDTO" id="getDetailResult">
+	<id column="FAQ_NUM" property="faq_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="FAQ_CATE" property="faq_cate"/>
+	<result column="FAQ_TITLE" property="faq_title"/>
+	<result column="FAQ_CONTENTS" property="faq_contents"/>
+	<result column="FAQ_DATE" property="faq_date"/>
+	
+	<collection property="faqFileDTOs" javaType="List" ofType="FaqFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORINAME" property="oriName"/>
+	</collection>
+</resultMap>
 
 
 

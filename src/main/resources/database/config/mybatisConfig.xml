@@ -33,16 +33,22 @@
 			
 			<typeAlias type="com.gndg.home.notice.NoticeDTO" alias="NoticeDTO"/>
 			<typeAlias type="com.gndg.home.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
-			
 			<typeAlias type="com.gndg.home.qna.QnaDTO" alias="QnaDTO"/>
 			<typeAlias type="com.gndg.home.qna.QnaFileDTO" alias="QnaFileDTO"/>
-			
 			<typeAlias type="com.gndg.home.faq.FaqDTO" alias="FaqDTO"/>
+			<typeAlias type="com.gndg.home.faq.FaqFileDTO" alias="FaqFileDTO"/>
+			<typeAlias type="com.gndg.home.report.ReportDTO" alias="ReportDTO"/>
+			
+			<typeAlias type="com.gndg.home.pay.PayDTO" alias="PayDTO"/>
+			<typeAlias type="com.gndg.home.orders.OrdersDTO" alias="OrdersDTO"/>
+			<typeAlias type="com.gndg.home.cancel.CancelDTO" alias="CancelDTO"/>
+			
 
 			
 				
 			<typeAlias type="com.gndg.home.util.Category" alias="Category"/>
 			<typeAlias type="com.gndg.home.util.Pager" alias="Pager"/>	
+			<typeAlias type="com.gndg.home.util.Pager" alias="OrderPager"/>	
 			
   		</typeAliases>
 	</configuration>
