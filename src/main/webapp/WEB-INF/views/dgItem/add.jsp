@@ -60,6 +60,18 @@
 		<label for="item_file">상품이미지2</label>
 		<input type="file" id="item_file2" name="files">
 	</div >
+		<div class="inputArea">
+		<label for="item_file">상품이미지3</label>
+		<input type="file" id="item_file3" name="files">
+	</div >
+		<div class="inputArea">
+		<label for="item_file">상품이미지4</label>
+		<input type="file" id="item_file4" name="files">
+	</div >
+		<div class="inputArea">
+		<label for="item_file">상품이미지5</label>
+		<input type="file" id="item_file5" name="files">
+	</div >
 	
 	<div class="inputArea">
 		<button type="submit" id="add_btn">등록</button>

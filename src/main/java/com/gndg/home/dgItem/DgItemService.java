@@ -20,6 +20,19 @@ public class DgItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	/* 후기 가져오기 */
+	public List<DgItemReviewDTO> getReply(Long item_num) throws Exception {
+		
+		return dgItemDAO.getReply(item_num);
+	}
+	
+	/* 후기 작성 */
+	public int setAddReply(DgItemReviewDTO dgItemReviewDTO) throws Exception {
+		System.out.println("Service Reply");
+		
+		return dgItemDAO.setAddReply(dgItemReviewDTO);
+	}
+	
 	/* 상품삭제 */
 	public int deleteItem(Long item_num) throws Exception {
 		System.out.println("Service Delete");

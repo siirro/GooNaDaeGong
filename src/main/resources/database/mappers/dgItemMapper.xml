@@ -5,6 +5,20 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.dgItem.DgItemDAO">
 
+	<!-- 후기 가져오기 -->
+	<select id="getReply" resultType="DgItemReviewDTO">
+		SELECT *
+    		FROM REVIEW
+		        WHERE ITEM_NUM = #{item_num}
+		        	ORDER BY RV_NUM DESC
+	</select>
+
+	<!-- 후기 작성 -->
+	<insert id="setAddReply" parameterType="DgItemReviewDTO">
+		INSERT INTO REVIEW (RV_NUM, ITEM_NUM, USER_ID, RV_TITLE, RV_CONTENTS, RV_DATE, RV_FILE, CODE)
+			VALUES (REVIEW_SEQ.NEXTVAL, #{item_num}, #{user_id}, #{rv_title}, #{rv_contents}, sysdate, #{rv_file}, 2)
+	</insert>
+
 	<!-- 상품 이미지 -->
 	<insert id="setAddFile" parameterType="DgItemFileDTO">
 		INSERT INTO ITEMFILE (FILENUM, ITEM_NUM, FILENAME, ORINAME)
@@ -47,6 +61,7 @@
         		WHERE I.ITEM_NUM = #{item_num}
         </select>
         
+ 
         <resultMap type="DgItemDetailDTO" id="getDetailItemResult">
 			<id column="ITEM_NUM" property="item_num" />
 			<result column="ITEM_NAME" property="item_name"/>
