@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.gndg.home.File.FileDTO;
 import com.gndg.home.util.Category;
 
 @Repository
@@ -15,6 +14,16 @@ public class DgItemDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.dgItem.DgItemDAO.";
+	
+	/* 후기 가져오기 */
+	public List<DgItemReviewDTO> getReply(Long item_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getReply", item_num);
+	}
+	
+	/* 후기 작성 */
+	public int setAddReply(DgItemReviewDTO dgItemReviewDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "setAddReply", dgItemReviewDTO);
+	}
 	
 	/* 상품이미지 */
 	public int setAddFile(DgItemFileDTO dgItemFileDTO) throws Exception { 

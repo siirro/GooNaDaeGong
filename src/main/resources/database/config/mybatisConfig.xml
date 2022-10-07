@@ -18,6 +18,8 @@
 			<typeAlias type="com.gndg.home.gnItem.GnItemFileDTO" alias="GnItemFileDTO"/>
 	  		<typeAlias type="com.gndg.home.dgItem.DgItemDetailDTO" alias="DgItemDetailDTO"/>
 	  		<typeAlias type="com.gndg.home.dgItem.DgItemFileDTO" alias="DgItemFileDTO"/>
+	  		<typeAlias type="com.gndg.home.dgItem.DgItemReviewDTO" alias="DgItemReviewDTO"/>
+	  		
 
 
 

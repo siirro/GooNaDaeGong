@@ -1,0 +1,684 @@
+.add_content {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+}
+
+.itemStatus_description {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    font-weight: 600;
+    color: #333d4b;
+    margin-bottom: 14px;
+}
+
+.item_status_list {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    list-style: none;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.item_status {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    float: left;
+    width: 173px;
+    text-align: center;
+    line-height: 51px;
+    font-size: 14px;
+    letter-spacing: -.8px;
+    margin-right: 8px;
+}
+
+.text_wrapper {
+    list-style: none;
+    text-align: center;
+    line-height: 51px;
+    font-size: 13px;
+    letter-spacing: -.8px;
+    margin: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    border: 1px solid #e8ebed;
+    color: #454c53;
+    cursor: pointer;
+    height: 54px;
+    border-radius: 12px;
+    padding: 2px 7px;
+}
+
+.sell_method_box {
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 0 0 43px;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+.box_area {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.kRLBoR {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+
+}
+
+.hmGxRu {
+    margin: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 298px;
+    height: 58px;
+    border-radius: 8px;
+    position: relative;
+    padding: 0px 14px 6px;
+    border: 1px solid rgb(229, 232, 235);
+}
+
+.dHybRK {
+    border: 0;
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 58px;
+}
+
+.text_area {
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 0 0 43px;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+.introduce {
+    margin: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    -webkit-appearance: none;
+    outline: none;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 2px;
+    color: #454c53;
+    width: 100%;
+    height: 168px;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: #f9fafb;
+    border: 1px solid #e8ebed;
+}
+
+/* .parcel_box {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 85%;
+    float: left;
+    position: relative;
+
+}
+
+.parcel_info_intro {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    height: auto;
+    cursor: pointer;
+    font-size: 20px;
+} */
+
+.regist_main_area {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 990px;
+    margin: 40px auto;
+}
+
+.regist_top {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.regist_box_top {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.regist_box_sub {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    float: right;
+    font-size: 14px;
+    padding: 0px 2px 0 0;
+    letter-spacing: -.02500000037252903px;
+}
+
+.regist_box_sub span {
+	color: rgb(255, 96, 0);
+	font-weight: bold;
+}
+
+.regist_box {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    border-top: 2px solid #333d4b;
+    border-bottom: 1px solid #333d4b;
+    margin-bottom: 32px;
+}
+
+.description {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 32px 0 0;
+}
+
+.regist_image_dl {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    margin: 0 0 32px;
+    padding: 0 0 200px 0px;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+.bgOTQt {
+    vertical-align: baseline;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 4px 0 0;
+    width: 15%;
+    float: left;
+    font-weight: 700;
+}
+
+.jttSce {
+    vertical-align: baseline;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 600;
+    line-height: 133%;
+    letter-spacing: -0.3px;
+    font-size: 18px;
+    color: #333d4b;
+}
+
+.jXKHON {
+    vertical-align: baseline;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(255, 96, 0);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.3px;
+    margin-left: 2px;
+}
+
+.count_img {
+    vertical-align: baseline;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    margin-top: 32px;
+    font-size: 14px;
+    color: #8b95a1;
+}
+
+.multiple {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    appearance: none;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: none;
+}
+
+.default {
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    vertical-align: top;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 160px;
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.regist_title {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 0 0 43px;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+.title_input {
+    vertical-align: baseline;
+    font-weight: 400;
+    margin: 0px;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-appearance: none;
+    padding: 8px 0 8px 16px;
+    outline: none;
+    box-sizing: border-box;
+    line-height: 20px;
+    border: 1px solid #e8ebed;
+    margin-bottom: 2px;
+    width: 800px;
+    height: 52px;
+    font-size: 18px;
+    text-align: left;
+    color: #333d4b;
+    border-radius: 8px;
+}
+
+.cGwZbp {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    /* width: 100%; */
+    margin: 0 0 35px;
+    padding: 0 0 43px 0;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+
+.bedVtV {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 256px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 8px;
+   
+    width: 800px;
+    margin-top: 50px;
+   
+}
+
+.cjKPpN {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 20px;
+    width: 400px;
+    height: 90%;
+    border-right: 1px solid rgb(229, 232, 235);
+    overflow-y: scroll;
+    box-sizing: border-box;
+
+}
+
+.iJdpqb {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 133%;
+    color: rgb(51, 61, 75);
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.IizqB {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 20px;
+    width: 400px;
+    height: 90%;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+.bPiPKD {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 18px;
+    font-weight: 600;
+    font-size: 18px;
+    color: rgb(51, 61, 75);
+}
+
+.regist_condition {
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 0 0 43px;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+.cABIrJ {
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    vertical-align: top;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    top: 24px;
+    left: 19px;
+    width: 22px;
+}
+
+.item_recommend_box {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    list-style: none;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 6px;
+}
+
+.item_submit_box {
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    margin: 45px 0 21px;
+}
+
+.item_area_submit_box {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.btn_item_cancel {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: 0;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #adb1c5;
+    width: 380px;
+    height: 68px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 12px;
+    border-radius: 12px;
+    padding: 16px 0;
+}
+
+.btn_item_submit {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: 0;
+    font-family: Pretendard Variable, Noto Sans KR, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 380px;
+    height: 68px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 12px;
+    border-radius: 12px;
+    padding: 16px 0;
+    background-color: #6667AB;
+}

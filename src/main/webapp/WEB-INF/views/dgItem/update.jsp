@@ -67,7 +67,7 @@
 
 	<script>
 		$("#back_btn").click(function(){
-			location.href = "./detail?num=" + ${dgItemDTO.item_num};
+			location.href = "./detail?item_num=" + ${dgItemDTO.item_num};
 		});
 		
 		/* 수정 시 카테고리 자동 대입 */

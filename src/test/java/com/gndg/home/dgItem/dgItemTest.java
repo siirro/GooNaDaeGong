@@ -1,6 +1,7 @@
 package com.gndg.home.dgItem;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -16,6 +17,17 @@ public class dgItemTest extends AbstractTest{
 	private DgItemDAO dgItemDAO;
 	
 	@Test
+	public void getReply() throws Exception {
+		List<DgItemReviewDTO> r = dgItemDAO.getReply(261L);
+		for(DgItemReviewDTO rr: r) {
+			
+			System.out.println("ㅇㅈ : "  + rr.getRv_title());
+			
+		}
+		assertNotNull(r);
+	}
+	
+
 	public void getCategoryTest() throws Exception {
 		List<Category> ar = dgItemDAO.getCategory();
 		for(Category ca : ar) {
