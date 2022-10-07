@@ -93,7 +93,7 @@
                             </c:choose>
                             <!-- </div>     -->
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
 
                             

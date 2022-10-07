@@ -66,7 +66,7 @@
                             
                             </h6>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
 
                             <!-- 부트스트랩표 -->

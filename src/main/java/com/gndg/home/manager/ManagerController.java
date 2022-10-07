@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.cancel.CancelDTO;
+import com.gndg.home.cancel.CancelService;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberService;
+import com.gndg.home.orders.OrdersDTO;
+import com.gndg.home.orders.OrdersService;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.qna.QnaService;
 import com.gndg.home.report.ReportDTO;
 import com.gndg.home.report.ReportService;
+import com.gndg.home.util.OrderPager;
 import com.gndg.home.util.Pager;
 
 @Controller
@@ -26,12 +31,14 @@ public class ManagerController {
 	
 	@Autowired
 	private QnaService qnaService;
-	
 	@Autowired
 	private MemberService memberService;
-	
 	@Autowired
 	private ReportService reportService;
+	@Autowired
+	private OrdersService ordersService;
+	@Autowired
+	private CancelService cancelService;
 	
 	//============================================================
 	
@@ -163,6 +170,38 @@ public class ManagerController {
 	
 	
 //	============================= 주문내역 조회 =========================
+	@GetMapping("mall/order")
+	public ModelAndView getList(OrdersDTO ordersDTO, OrderPager orderPager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = ordersService.getList(orderPager, ordersDTO);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+		mv.addObject("code", ordersDTO.getCode());
+		mv.setViewName("manager/order/list");
+		return mv;
+	}
+	@GetMapping("mall/detail")
+	public ModelAndView getDetail(OrdersDTO ordersDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+		
+	}
+//	============================= 주문내역 조회 끝 =========================
+
+//	============================= 취소내역 조회 =========================
+	@GetMapping("mall/cancel")
+	public ModelAndView getList(OrderPager orderPager, CancelDTO cancelDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getList(orderPager);
+		System.out.println(ar);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/cancellist");
+		return mv;
+	}
+
 	
 	
 	

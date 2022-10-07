@@ -1,6 +1,9 @@
 package com.gndg.home.orders;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.gndg.home.cancel.CancelDTO;
 
 public class OrdersDTO {
 	
@@ -19,8 +22,15 @@ public class OrdersDTO {
 	private String ord_phone;
 	private String ord_memo;
 	private Long code;
+	private List<CancelDTO> cancelDTOs;
 	
 
+	public List<CancelDTO> getCancelDTOs() {
+		return cancelDTOs;
+	}
+	public void setCancelDTOs(List<CancelDTO> cancelDTOs) {
+		this.cancelDTOs = cancelDTOs;
+	}
 	public Long getMerchant_uid() {
 		return merchant_uid;
 	}

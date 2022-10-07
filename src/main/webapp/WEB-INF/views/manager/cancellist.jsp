@@ -48,7 +48,7 @@
     <div id="wrapper">
 
         <!-- 사이드바 임포트 -->
-        <c:import url="../template/sidebar.jsp"></c:import>
+        <c:import url="./template/sidebar.jsp"></c:import>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -57,7 +57,7 @@
             <div id="content">
 
                 <!-- 탑바 임포트 -->
-                <c:import url="../template/topbar.jsp"></c:import>
+                <c:import url="./template/topbar.jsp"></c:import>
 
 
                 <!-- Begin Page Content -->
@@ -69,12 +69,9 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header">
-                            <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">주문 조회
+                            <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">취소 조회
                                 
-                                <button class="btn good" name="code" style="font-size: 13px; padding: 0px 0px 0px 8px;" onClick="location='./order?code=1'">구디나라</button>
-                                <button class="btn good" disabled style="font-size: 13px; padding: 0px 4px 0px 4px;">|</button>
-                                <button class="btn bad" name="code" style="font-size: 13px; padding: 0px;" onClick="location='./order?code=2'">대기공주</button>
-
+                                
                             
                             </button>
                         </div>
@@ -82,8 +79,8 @@
                             <!-- 카드 본문  -->
 
                             <!-- 내용 Search -->
-                            <form action="./order" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="" style="display: flex; margin-bottom: 5px;">
+                            <form action="./cancel" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="" style="display: flex; margin-bottom: 5px;">
                                 
                             
                                     <div class="input-group">
@@ -94,27 +91,27 @@
                                             
                                             <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
                                                 <option class="kinds" value="merchant_uid">주문번호</option>
-                                                <option class="kinds" value="user_id">주문자ID</option>
-                                                <option class="kinds" value="item_name">상품이름</option>
-                                                <option class="kinds" value="item_num">상품번호</option>
+                                                <option class="kinds" value="can_num">취소번호</option>
                                                 <option class="kinds" value="ord_status">처리상태</option>
+                                                <option class="kinds" value="user_id">주문자ID</option>
                                             </select>
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
                                             aria-label="Search" aria-describedby="basic-addon2">
                                         
+                                        
+
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
                                     </div>
-                                
-                                </div>
+                               
+                            </div>
 
-                                <!-- 날짜 Search -->
-                                <div class="" style="justify-content: center; display: flex; margin-bottom: 10px;">
-                                    
+                            <!-- 날짜 Search -->
+                            <div class="" style="justify-content: center; display: flex; margin-bottom: 10px;">
                                 
                                     <div class="input-group">
                                         <div class="searchprebox">
@@ -133,38 +130,32 @@
                                             </button>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </form>
 
                             <!-- 부트스트랩표 -->
                             <div id="qnaList">
-                                
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
                                     <table class="table table-hover" width="100%">
                                       <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th class="col-2">주문일</th>
+                                            <th class="col-2">취소신청일</th>
+                                            <th class="col-2">취소번호</th>
                                             <th class="col-2">주문번호</th>
                                             <th class="col-2">주문자ID</th>
-                                            <th class="col-1">주문총액</th>
-                                            <th class="col-1">배송비</th>
                                             <th class="col-1">총결제액</th>
-                                            <th class="col-2">주문상태</th>
-                                            <th class="col-1">구분</th>
+                                            <th class="col-2">상태</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
-                                             <tr class="reporttr" onclick="location.href='detail?merchant_uid=${nl.merchant_uid}'">
-                                                <td><fmt:formatDate value="${nl.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                             <tr class="reporttr" onclick="location.href='#'">
+                                                <td><fmt:formatDate value="${nl.cancelDTOs[0].can_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td>${nl.cancelDTOs[0].can_num}</td>
                                                 <td>${nl.merchant_uid}</td>
                                                 <td>${nl.user_id}</td>
-                                                <td>${nl.ord_total1}</td>
-                                                <td>${nl.ord_delfree}</td>
                                                 <td>${nl.ord_total2}</td>
                                                 <td>${nl.ord_status}</td>
-                                                <td>${nl.code}</td>
                                             </tr>
                                             </c:forEach>
                                       </tbody>
@@ -179,12 +170,12 @@
                                     <ul class="pagination paginate_sm">
 
                                         <c:if test="${pager.pre}">
-                                            <li class="page-item"><a class="page-link" href="./order?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                                            <li class="page-item"><a class="page-link" href="./cancel?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                                         </c:if>
                                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                            <li class="page-item"><a class="page-link" href="./order?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                            <li class="page-item"><a class="page-link" href="./cancel?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                                         </c:forEach>
-                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./order?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./cancel?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -204,7 +195,7 @@
             <!-- End of Main Content -->
 
             <!-- footer 임포트 -->
-            <c:import url="../template/footer.jsp"></c:import>
+            <c:import url="./template/footer.jsp"></c:import>
 
 
         </div>

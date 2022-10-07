@@ -13,8 +13,52 @@ SYSDATE, #{ord_total1}, #{ord_delfree}, #{ord_total2},
 #{ord_phone}, #{ord_memo}, #{code})
 </insert>
 
-<select id="getList" resultType="OrdersDTO">
-SELECT * FROM ORDERS ORDER BY ORD_DATE
+<select id="getList" parameterType="Map" resultType="OrdersDTO">
+SELECT * FROM
+(SELECT ROWNUM R, O.* 
+FROM
+	(SELECT * FROM ORDERS 
+	WHERE 
+		<choose>
+				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
+				<when test="kind == 'user_id'">USER_ID</when>
+				<when test="kind == 'item_name'">ITEM_NAME</when>
+				<when test="kind == 'item_num'">ITEM_NUM</when>
+				<otherwise>ORD_STATUS</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		<if  test= "searchdate1 != null">
+		
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		</if>  
+		<if  test= "code != null">
+		AND CODE = #{code}
+		</if>   
+	ORDER BY ORD_DATE DESC) O)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<select id="getListCount" parameterType="Map" resultType="Long">
+SELECT COUNT(MERCHANT_UID) FROM ORDERS 
+	WHERE 
+		<choose>
+				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
+				<when test="kind == 'user_id'">USER_ID</when>
+				<when test="kind == 'item_name'">ITEM_NAME</when>
+				<when test="kind == 'item_num'">ITEM_NUM</when>
+				<otherwise>ORD_STATUS</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		<if  test= "searchdate1 != null">
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		</if>
+		<if  test= "code != null">
+		AND CODE = #{code}
+		</if>
+</select>
+
+<select id="getDetail" parameterType="OrdersDTO" resultType="OrdersDTO">
+SELECT * FROM ORDERS WHERE MERCHANT_UID=#{merchant_uid}
 </select>
 
 
