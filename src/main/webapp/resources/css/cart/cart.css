@@ -52,7 +52,7 @@ h2 {
     -webkit-box-align: center;
     align-items: center;
     position: relative;
-    padding: 20px 0px;
+    padding: 15px 0px;
 }
 .css-50ad8x {
     position: absolute;
@@ -93,8 +93,8 @@ div {
 }
 h4 {
     display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
+     /* margin-block-start: 1.33em; */
+    /*margin-block-end: 1.33em; */
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
@@ -179,12 +179,13 @@ button {
     background-color: transparent;
     border: none;
 }
-.css-zbxehx label {
+.css-zbxehx {
     display: inline-flex;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 26px;
     padding: 0px;
     color: rgb(51, 51, 51);
+    margin-left: 30px;
 }
 .css-1j5mumb {
     padding: 14px 0px 9px;

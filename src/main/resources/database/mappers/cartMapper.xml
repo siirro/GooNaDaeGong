@@ -52,7 +52,7 @@ WHERE C.USER_ID = #{user_id} AND ITEM_NUM=#{item_num}
 
 <!-- 카트 상품목록 출력 -->
 <select id="getItemList" parameterType="CartDTO" resultMap="CartListResult">
-SELECT C.*,I.ITEM_NAME,I.ITEM_PRICE,I.ITEM_PRICE*C.ITEM_COUNT AS TOTALPRICE, M.USER_POST,M.USER_ADDR,M.USER_ADDR2
+SELECT C.*,F.FILENAME,I.ITEM_NAME,I.ITEM_PRICE,I.ITEM_PRICE*C.ITEM_COUNT AS TOTALPRICE, M.USER_POST,M.USER_ADDR,M.USER_ADDR2
 FROM MEMBER M
 	LEFT JOIN
 	CART C 
@@ -60,6 +60,9 @@ FROM MEMBER M
     LEFT JOIN
     ITEM I
     ON C.ITEM_NUM = I.ITEM_NUM
+    LEFT JOIN
+    ITEMFILE  F
+    ON I.ITEM_NUM = F.ITEM_NUM
 WHERE M.USER_ID= #{user_id}
 </select>
 <resultMap type="CartDTO" id="CartListResult">
@@ -67,17 +70,22 @@ WHERE M.USER_ID= #{user_id}
 <result column="ITEM_NUM" property="item_num"/>
 <result column="ITEM_COUNT" property="item_count" />
 <result column="TOTALPRICE" property="totalPrice" />
-	<association property="dgItemDTO" javaType="DgItemDTO" >
-		<id column="ITEM_NUM" property="item_num" />
-		<result column="ITEM_NAME" property="item_name" />
-		<result column="ITEM_PRICE" property="item_price" />
-	</association>
 	<association property="memberDTO" javaType="MemberDTO">
 		<id column="USER_ID" property="user_id" />
 		<result column="USER_POST" property="user_post" />
 		<result column="USER_ADDR" property="user_addr" />
 		<result column="USER_ADDR2" property="user_addr2"  />
 	</association>
+	<association property="gnItemDTO" javaType="GnItemDTO" >
+		<id column="ITEM_NUM" property="item_num" />
+		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_PRICE" property="item_price" />
+	</association>
+	<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="ITEM_NUM" property="item_num"/>
+		<result column="FILENAME" property="fileName"/>
+	</collection>
 </resultMap>
 
 <!-- 카트 회원 정보 불러오기 -->
