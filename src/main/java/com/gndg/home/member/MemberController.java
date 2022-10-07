@@ -114,7 +114,7 @@ public class MemberController {
 		}
 		session.setAttribute("member", memberDTO);
 		
-		return "./home";
+		return "redirect:/";
 	}
 	
 	//아이디찾기
