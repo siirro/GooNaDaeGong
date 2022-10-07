@@ -18,6 +18,151 @@ WHERE M.USER_ID =#{user_id}
 	<id column="USER_ID" property="user_id"/>
 </resultMap>
  -->
+ 
+<!-- 내 주문내역 -->
+<select id="getMyOrder" parameterType="OrderDTO" resultType="OrderDTO">
+SELECT *
+FROM ORD
+WHERE USER_ID =#{user_id}
+      	<if  test= "code != null">
+			 AND CODE = #{code}
+		</if>
+</select>
+
+<!-- 내 판매 내역 -->
+<select id="getMySale" parameterType="GnItemDTO" resultMap="getMySaleResult">
+SELECT I.*,F.FILENAME, C.CATE_NAME
+FROM ITEM I
+     JOIN
+    ITEMFILE F
+    ON I.ITEM_NUM = F.ITEM_NUM
+    LEFT JOIN
+    CATEGORY C
+    ON I.CATE_NUM = C.CATE_NUM
+WHERE USER_ID= #{user_id} AND CODE =1
+ORDER BY I.ITEM_NUM DESC
+</select>
+<resultMap type="GnItemDTO" id="getMySaleResult">
+	<id column="ITEM_NUM" property="item_num"/>
+	<result column="CATE_NUM" property="cate_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="ITEM_NAME" property="item_name"/>
+	<result column="ITEM_CONTENTS" property="item_contents"/>
+	<result column="ITEM_PRICE" property="item_price"/>
+	<result column="ITEM_DATE" property="item_date"/>
+	<result column="ITEM_HIT" property="item_hit"/>
+	<result column="ITEM_STOCK" property="item_stock"/>
+	<result column="ITEM_DEAL" property="item_deal"/>
+	<result column="ITEM_CONDITION" property="item_condition"/>
+	<result column="ITEM_YN" property="item_yn"/>
+	<result column="CODE" property="code"/>
+		<association property="category" javaType="Category">
+			<id column="CATE_NUM" property="cate_num"/>
+			<result column="CATE_NAME" property="cate_name"/>
+		</association>
+		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+</resultMap>
+
+<!-- 내 문의내역 -->
+<select id="getMyQna" parameterType="QnaDTO" resultMap="getMyQnaResult">
+SELECT Q.*,QF.FILENAME 
+FROM QNA Q
+    LEFT JOIN
+    QNAFILE QF
+    ON Q.QNA_NUM = QF.QNA_NUM
+WHERE USER_ID = #{user_id}
+      	<if  test= "code != null">
+			 AND CODE = #{code}
+		</if>	
+</select>
+<resultMap type="QnaDTO" id="getMyQnaResult">
+<id column="QNA_NUM" property="qna_num"/>
+<result column="USER_ID" property="user_id"/>
+<result column="QNA_CATE" property="qna_cate"/>
+<result column="QNA_TITLE" property="qna_title"/>
+<result column="QNA_CONTENTS" property="qna_contents"/>
+<result column="QNA_DATE" property="qna_date"/>
+<result column="QNA_STATUS" property="qna_status"/>
+<result column="QNA_COMMIT" property="qna_commit"/>
+<result column="QNA_COMMENT" property="qna_comment"/>
+<result column="CODE" property="code"/>
+	<collection property="qnaFileDTOs" javaType="List" ofType="QnaFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="QNA_NUM" property="qna_num"/>
+		<result column="FILENAME" property="fileName"/>
+	</collection>
+</resultMap>
+
+
+
+<!-- 주문 상세페이지 -->
+<select id="getMyOrderDetail" parameterType="OrderDTO" resultMap="getMyOrderDetailResult">
+SELECT * 
+FROM ORD O
+    JOIN 
+    GOODSORDER GO
+    ON O.MERCHANT_UID= GO.MERCHANT_UID
+    JOIN 
+    PAY P
+    ON GO.MERCHANT_UID = P.MERCHANT_UID
+    JOIN
+    ITEM I
+    ON GO.ITEM_NUM = I.ITEM_NUM
+    LEFT JOIN
+    ITEMFILE F
+    ON I.ITEM_NUM = F.ITEM_NUM
+WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
+</select>
+<resultMap type="OrderDTO" id="getMyOrderDetailResult">
+	<id column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="USER_ID" property="user_id" />
+	<result column="ORD_NAME" property="ord_name"/>
+	<result column="ORD_POST" property="ord_post"/>
+	<result column="ORD_PHONE" property="ord_phone"/>
+	<result column="ORD_ADDR" property="ord_addr"/>
+	<result column="ORD_ADDR2" property="ord_addr2"/>
+	<result column="ORD_TOTAL1" property="ord_total1"/>
+	<result column="ORD_TOTAL2" property="ord_total2"/>
+	<result column="ORD_PAYMENT" property="ord_payment"/>
+	<result column="ORD_DATE" property="ord_date"/>
+	<result column="ORD_STATUS" property="ord_status"/>
+	<result column="ORD_MEMO" property="ord_memo"/>
+		<association property="payDTO" javaType="PayDTO">
+			<id column="IMP_UID" property="imp_uid"/>
+			<result column="PAY_DATE" property="pay_date"/>
+		</association>
+		<collection property="goodsOrderDTOs" javaType="List" ofType="GoodsOrderDTO">
+			<id column="GO_NUM" property="go_num"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="MERCHANT_UID" property="merchant_uid"/>
+			<result column="GO_AMOUNT" property="go_amount"/> <!-- 주문 수량 -->
+		</collection>
+		<collection property="gnItemDTOs" javaType="List" ofType="GnItemDTO">
+			<id column="ITEM_NUM" property="item_num"/>
+			<result column="ITEM_NAME" property="item_name"/>
+			<result column="ITEM_PRICE" property="item_price"/>
+		</collection>
+		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO"> 
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+</resultMap>
+
+ 
+<!-- 내 후기내역 -->
+<!--  <select id="">
+ SELECT R.ITEM_NUM, I.ITEM_NAME, R.RV_TITLE, R.RV_DATE, R.RV_FILE
+FROM REVIEW R
+    JOIN 
+    ITEM I
+    ON R.ITEM_NUM = I.ITEM_NUM
+WHERE R.USER_ID = #{}
+ </select> -->
 
 <!-- 회원정보 수정 -->
 <update id="setMyUpdate" parameterType="MemberDTO">
@@ -54,10 +199,10 @@ SELECT FILENAME
 FROM MEMBERFILE
 WHERE USER_ID =#{user_id}
 </select>
-
+<!-- 회원탈퇴 -->
 <update id="setMyDelete" parameterType="MemberDTO">
 UPDATE MEMBER
-SET USER_YN ='N'
+SET USER_YN ='탈퇴'
 WHERE USER_ID =#{user_id}
 </update>
 
