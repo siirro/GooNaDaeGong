@@ -43,8 +43,7 @@ public class FileManager {
 	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO) throws Exception {
 		String realPath = servletContext.getRealPath(path);
 		System.out.println("RealPath : "+realPath);
-		File file = new File(realPath, fileDTO.getFileName());
-		
+		File file = new File(realPath, fileDTO.getFileName()); //(폴더, 삭제할파일명)
 		return file.delete();
 	}
 	

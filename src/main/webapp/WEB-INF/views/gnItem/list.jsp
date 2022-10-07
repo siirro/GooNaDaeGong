@@ -63,7 +63,8 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <c:forEach items="${list}" var="dto">
+                    
+                    <c:forEach items="${list}" var="dto" varStatus="i">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -72,9 +73,12 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">${dto.item_name }</h5>
+                                    <h5>${dto.item_name }</h5>
                                     <!-- Product price-->
-                                   	${dto.item_price }원
+                                    <h5 class="fw-bolder">${dto.item_price }원</h5>
+                                    <span class="bi bi-heart mx-1" style="color: #868e96; font-size: 15px;"> ${count[i.index]}</span>
+                                	<span class="bi bi-chat mx-1" style="color: #868e96; font-size: 15px;"> 3</span>
+                                    <span id="item_date" class="bi bi-clock mx-1" style="color: #868e96; font-size: 15px;"> ${dto.item_date}</span>
                                 </div>
                             </div>
                         </div>
@@ -91,5 +95,9 @@
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/resources/js/gn/list.js"></script>
+        <script>
+            getTime(item_date.innerHTML);
+        </script>
     </body>
     </html>

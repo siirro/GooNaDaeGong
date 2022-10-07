@@ -42,4 +42,37 @@ public class GnItemDAO {
 	public int setDelete(GnItemDTO gnItemDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setDelete", gnItemDTO);
 	}
+	
+	public GnItemFileDTO getFileDetail(GnItemFileDTO gnItemFileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", gnItemFileDTO);
+	}
+	
+	public int setFileDelete(GnItemFileDTO gnItemFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setFileDelete", gnItemFileDTO);
+	}
+	
+	public int setLikeAdd(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setLikeAdd", gnItemLikeDTO);
+	}
+	
+	public int setLikeDelete(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setLikeDelete", gnItemLikeDTO);
+	}
+	
+	public GnItemLikeDTO getLikeUser(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getLikeUser", gnItemLikeDTO);
+	}
+	
+	public Long getLikeItem(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getLikeItem", gnItemLikeDTO);
+	}
+	
+	public int setHit(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setHit", gnItemDTO);
+	}
+	
+	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStateUpdate", gnItemDTO);
+	}
+
 }

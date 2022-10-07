@@ -3,6 +3,10 @@ const category2 = document.querySelector('#category2');
 const category3 = document.querySelector('#category3');
 const category4 = document.querySelector('#category4');
 const cate_num = document.querySelector('#cate_num');
+const cate1 = document.querySelector('#cate1');
+const cate2 = document.querySelector('#cate2');
+const cate3 = document.querySelector('#cate3');
+const cate4 = document.querySelector('#cate4');
 
 category1.addEventListener('change', function () {
     let cate2Child = document.getElementsByClassName("cate2Child");
@@ -24,6 +28,11 @@ category1.addEventListener('change', function () {
     let value = document.createAttribute("value");
     value.value = category1.value;
     cate_num.setAttributeNode(value);
+
+    cate2.value="";
+    cate3.value="";
+    cate4.value="";
+    cate1.setAttribute("value", category1.value);
 });
 
 
@@ -42,6 +51,10 @@ category2.addEventListener('change', function () {
     let value = document.createAttribute("value");
     value.value = category2.value;
     cate_num.setAttributeNode(value);
+
+    cate3.value="";
+    cate4.value="";
+    cate2.setAttribute("value", category2.value);
 });
 
 
@@ -55,6 +68,9 @@ category3.addEventListener('change', function () {
     let value = document.createAttribute("value");
     value.value = category3.value;
     cate_num.setAttributeNode(value);
+
+    cate4.value="";
+    cate3.setAttribute("value", category3.value);
 });
 
 
@@ -62,12 +78,15 @@ category4.addEventListener('change', function () {
     let value = document.createAttribute("value");
     value.value = category4.value;
     cate_num.setAttributeNode(value);
+
+    cate4.setAttribute("value", category4.value);
 });
+
 
 
 function getCategory1() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', './category');
+    xhttp.open('GET', 'category');
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -92,7 +111,7 @@ function getCategory1() {
 
 function getCategory2() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', './category');
+    xhttp.open('GET', 'category');
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -120,7 +139,7 @@ function getCategory2() {
 
 function getCategory3() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', './category');
+    xhttp.open('GET', 'category');
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -148,7 +167,7 @@ function getCategory3() {
 
 function getCategory4() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', './category');
+    xhttp.open('GET', 'category');
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

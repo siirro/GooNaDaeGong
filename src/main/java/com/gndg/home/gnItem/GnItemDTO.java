@@ -3,43 +3,60 @@ package com.gndg.home.gnItem;
 import java.sql.Date;
 import java.util.List;
 
-import com.gndg.home.util.Category;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class GnItemDTO {
 	
 	private Long item_num;
+	private String cate1;
+	private String cate2;
+	private String cate3;
+	private String cate4;
 	private String cate_num;
 	private String user_id;
 	private String item_name;
 	private String item_contents;
 	private Long item_price;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date item_date;
 	private Long item_hit;
 	private Long item_stock;
 	private String item_deal;
 	private String item_condition;
-	private String item_yn;
+	private String item_state;
 	private Long code;
 	private List<GnItemFileDTO> gnItemFileDTOs;
-	private Category category;
 	
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-	public List<GnItemFileDTO> getGnItemFileDTOs() {
-		return gnItemFileDTOs;
-	}
-	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
-		this.gnItemFileDTOs = gnItemFileDTOs;
-	}
 	public Long getItem_num() {
 		return item_num;
 	}
 	public void setItem_num(Long item_num) {
 		this.item_num = item_num;
+	}
+	public String getCate1() {
+		return cate1;
+	}
+	public void setCate1(String cate1) {
+		this.cate1 = cate1;
+	}
+	public String getCate2() {
+		return cate2;
+	}
+	public void setCate2(String cate2) {
+		this.cate2 = cate2;
+	}
+	public String getCate3() {
+		return cate3;
+	}
+	public void setCate3(String cate3) {
+		this.cate3 = cate3;
+	}
+	public String getCate4() {
+		return cate4;
+	}
+	public void setCate4(String cate4) {
+		this.cate4 = cate4;
 	}
 	public String getCate_num() {
 		return cate_num;
@@ -101,11 +118,11 @@ public class GnItemDTO {
 	public void setItem_condition(String item_condition) {
 		this.item_condition = item_condition;
 	}
-	public String getItem_yn() {
-		return item_yn;
+	public String getItem_state() {
+		return item_state;
 	}
-	public void setItem_yn(String item_yn) {
-		this.item_yn = item_yn;
+	public void setItem_state(String item_state) {
+		this.item_state = item_state;
 	}
 	public Long getCode() {
 		return code;
@@ -113,5 +130,10 @@ public class GnItemDTO {
 	public void setCode(Long code) {
 		this.code = code;
 	}
-	
+	public List<GnItemFileDTO> getGnItemFileDTOs() {
+		return gnItemFileDTOs;
+	}
+	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
+		this.gnItemFileDTOs = gnItemFileDTOs;
+	}
 }
