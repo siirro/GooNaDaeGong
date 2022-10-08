@@ -14,10 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.cancel.CancelDTO;
 import com.gndg.home.cancel.CancelService;
+import com.gndg.home.cancel.ExchangeDTO;
+import com.gndg.home.cancel.RefundDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberService;
 import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.orders.OrdersService;
+import com.gndg.home.pay.PayDTO;
+import com.gndg.home.pay.PayService;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.qna.QnaService;
 import com.gndg.home.report.ReportDTO;
@@ -39,6 +43,11 @@ public class ManagerController {
 	private OrdersService ordersService;
 	@Autowired
 	private CancelService cancelService;
+	@Autowired
+	private PayService payService;
+	
+	
+	
 	
 	//============================================================
 	
@@ -247,10 +256,90 @@ public class ManagerController {
 		mv.setViewName("manager/cancellist");
 		return mv;
 	}
+	
+	@GetMapping("mall/cancelDetail")
+	public ModelAndView getDetail(CancelDTO cancelDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		cancelDTO = cancelService.getDetail(cancelDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(cancelDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", cancelDTO);
+		mv.setViewName("manager/canceldetail");
+		return mv;
+	}
+//	============================= 취소내역 조회 =========================
+
+//	============================= 교환내역 조회 =========================
+	@GetMapping("mall/exchange")
+	public ModelAndView getListE(OrderPager orderPager, ExchangeDTO exchangeDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getListE(orderPager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/exchangelist");
+		return mv;
+	}
+	
+	@GetMapping("mall/exchangeDetail")
+	public ModelAndView getDetail(ExchangeDTO exchangeDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		exchangeDTO = cancelService.getDetailE(exchangeDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(exchangeDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", exchangeDTO);
+		mv.setViewName("manager/exchangedetail");
+		return mv;
+	}
+//	============================= 교환내역 조회 =========================
+
+//	============================= 반품내역 조회 =========================
+	@GetMapping("mall/refund")
+	public ModelAndView getListR(OrderPager orderPager, RefundDTO refundDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getListR(orderPager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/refundlist");
+		return mv;
+	}
+	
+	@GetMapping("mall/refundDetail")
+	public ModelAndView getDetail(RefundDTO refundDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		refundDTO = cancelService.getDetailR(refundDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(refundDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", refundDTO);
+		mv.setViewName("manager/refunddetail");
+		return mv;
+	}
+//	============================= 반품내역 조회 =========================
+	//=========================== 결제내역 조회 =========================
+	
+	@GetMapping("mall/payment")
+	public ModelAndView getListPay(OrderPager orderPager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<PayDTO> ar = payService.getList(orderPager);
+		mv.addObject("list", ar);
+		mv.setViewName("manager/order/paylist");
+		
+		
+		return mv;
+	}
+	
 
 	
 	
-	
+	//============================================================
+
 	
 	
 }

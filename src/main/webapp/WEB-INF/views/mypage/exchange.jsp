@@ -59,7 +59,7 @@
 
                 <!-- 찐본문의 제목 -->
                 <div class="css-1yc2nwy eug5r8l2">
-                    <h3 class="css-1ew6v8c eug5r8l1">취소 신청</h3>
+                    <h3 class="css-1ew6v8c eug5r8l1">교환 신청</h3>
                 </div>
 
                 
@@ -87,7 +87,6 @@
                                                 <option class="cates" value="${nl.merchant_uid}">${nl.merchant_uid}</option>
                                             </c:forEach>
                                             <input type="hidden" name="merchant_uid" value="${param.merchant_uid}">
-
                                         </select>
                                     </div>
                                 </div>
@@ -95,7 +94,22 @@
                         </div>
                         <!-- 카테고리 전체 디브 -->
                                 
-                                
+                        <!-- 제목 입력 -->
+                        <div class="css-17bp14q e1vbjq4w3">
+                            <div class="css-mm5tap e1vbjq4w2">
+                                <label for="inquiry-subject" data-testid="label-text">교환상품</label>
+                            </div>
+
+                            <div class="css-12l4j2c e1vbjq4w1">
+                                <div class="css-1waqr6j e1uzxhvi6">
+                                    <div height="44" class="css-t7kbxx e1uzxhvi3">
+                                        <input data-testid="input-box" id="exc_option" name="exc_option" placeholder="교환을 희망하는 상품의 이름을 입력해주세요" 
+                                        type="text" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>        
                         
 
 
@@ -103,7 +117,7 @@
                         <div class="css-rm6te4 e1fgvk594">
                             <div class="css-17bp14q e1vbjq4w3">
                                 <div class="css-mm5tap e1vbjq4w2">
-                                    <label for="inquiry-contents" data-testid="label-text">취소사유</label>
+                                    <label for="inquiry-contents" data-testid="label-text">교환사유</label>
                                 </div>
 
                                 <div class="css-12l4j2c e1vbjq4w1">
@@ -111,7 +125,7 @@
                                     <div class="css-0 e1tjt2bn7">
                                         <div class="css-1gua357 e1tjt2bn5" style="height: 200px;">
                                             <textarea id="memo" inputmode="text" placeholder="사유를 입력해주세요" aria-label="textarea-message" 
-                                            name="can_memo" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
+                                            name="exc_memo" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
 
 
                                             <span class="content-length-counter css-zgkz6w e1tjt2bn0">

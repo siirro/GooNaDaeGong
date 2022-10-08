@@ -1,4 +1,4 @@
-package com.gndg.home.refund;
+package com.gndg.home.cancel;
 
 import java.sql.Date;
 
@@ -8,6 +8,7 @@ public class RefundDTO {
 	private Long merchant_uid;
 	private Date ref_date;
 	private String ref_memo;
+	
 	public Long getRef_num() {
 		return ref_num;
 	}
@@ -32,7 +33,6 @@ public class RefundDTO {
 	public void setRef_memo(String ref_memo) {
 		this.ref_memo = ref_memo;
 	}
-	
 	
 
 }

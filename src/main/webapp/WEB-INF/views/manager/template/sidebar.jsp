@@ -57,7 +57,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="../../manager/mall/order">주문내역</a>
-                        <a class="collapse-item" href="../../manager/mall/delivery">배송관리</a>
+                        <a class="collapse-item" href="../../manager/mall/payment">결제관리</a>
                         <h6 class="collapse-header">CS</h6>
                         <a class="collapse-item" href="../../manager/mall/cancel">주문취소</a>
                         <a class="collapse-item" href="../../manager/mall/exchange">교환관리</a>

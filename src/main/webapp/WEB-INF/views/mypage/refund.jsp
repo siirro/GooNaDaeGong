@@ -59,7 +59,7 @@
 
                 <!-- 찐본문의 제목 -->
                 <div class="css-1yc2nwy eug5r8l2">
-                    <h3 class="css-1ew6v8c eug5r8l1">취소 신청</h3>
+                    <h3 class="css-1ew6v8c eug5r8l1">반품 신청</h3>
                 </div>
 
                 
@@ -103,7 +103,7 @@
                         <div class="css-rm6te4 e1fgvk594">
                             <div class="css-17bp14q e1vbjq4w3">
                                 <div class="css-mm5tap e1vbjq4w2">
-                                    <label for="inquiry-contents" data-testid="label-text">취소사유</label>
+                                    <label for="inquiry-contents" data-testid="label-text">반품사유</label>
                                 </div>
 
                                 <div class="css-12l4j2c e1vbjq4w1">
@@ -111,7 +111,7 @@
                                     <div class="css-0 e1tjt2bn7">
                                         <div class="css-1gua357 e1tjt2bn5" style="height: 200px;">
                                             <textarea id="memo" inputmode="text" placeholder="사유를 입력해주세요" aria-label="textarea-message" 
-                                            name="can_memo" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
+                                            name="ref_memo" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
 
 
                                             <span class="content-length-counter css-zgkz6w e1tjt2bn0">
@@ -147,6 +147,6 @@
         </section>
         <c:import url="../template/footer.jsp"></c:import>
     </div> <!--wrap end-->
-    <script src="/resources/js/mypage/cancel.js"></script>
+    <script src="/resources/js/mypage/refund.js"></script>
 </body>
 </html>

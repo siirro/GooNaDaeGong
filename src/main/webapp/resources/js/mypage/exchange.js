@@ -1,10 +1,13 @@
 
 
 const qna_cate = document.getElementById("merchant_uid");
+const qna_title = document.getElementById("exc_option");
+
 const qna_contents = document.getElementById("memo");
 const qnaSubmit = document.getElementById("qnaSubmit");
 
 let check2=false;
+let check3=false;
 let check4=false;
 
 
@@ -16,6 +19,16 @@ qna_cate.addEventListener("change",function(){
         console.log("카테적용.트루");
     } else {
         check2=false;
+    }
+    qnaSubmit1();
+});
+
+qna_title.addEventListener("keyup",function(){
+    if(qna_title.value.length>0){
+    check3=true;
+    console.log("제목썼음.트루");
+    } else {
+        check3=false;
     }
     qnaSubmit1();
 });
@@ -44,7 +57,7 @@ qna_contents.addEventListener("keyup",function(){
 
 function qnaSubmit1(){
 
-    if(check4) {
+    if(check3&&check4) {
             console.log("넷다트루.버튼을 보라색으로");
             // qnaSubmit.setAttribute("disabled","false");
             qnaSubmit.removeAttribute("disabled");

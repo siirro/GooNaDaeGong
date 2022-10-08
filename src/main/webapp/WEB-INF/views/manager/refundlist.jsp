@@ -69,7 +69,7 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header">
-                            <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">취소 조회
+                            <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">교환신청 조회
                                 
                                 
                             
@@ -79,7 +79,7 @@
                             <!-- 카드 본문  -->
 
                             <!-- 내용 Search -->
-                            <form action="./cancel" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <form action="./refund" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="" style="display: flex; margin-bottom: 5px;">
                                 
                             
@@ -91,7 +91,7 @@
                                             
                                             <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
                                                 <option class="kinds" value="merchant_uid">주문번호</option>
-                                                <option class="kinds" value="can_num">취소번호</option>
+                                                <option class="kinds" value="ref_num">반품번호</option>
                                                 <option class="kinds" value="ord_status">처리상태</option>
                                                 <option class="kinds" value="user_id">주문자ID</option>
                                             </select>
@@ -139,8 +139,8 @@
                                     <table class="table table-hover" width="100%">
                                       <thead class="table-primary" style="font-size: 14px;">
                                         <tr>
-                                            <th class="col-2">취소신청일</th>
-                                            <th class="col-2">취소번호</th>
+                                            <th class="col-2">반품신청일</th>
+                                            <th class="col-2">반품번호</th>
                                             <th class="col-2">주문번호</th>
                                             <th class="col-2">주문자ID</th>
                                             <th class="col-1">총결제액</th>
@@ -149,9 +149,9 @@
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
-                                             <tr class="reporttr" onclick="location.href='cancelDetail?merchant_uid=${nl.merchant_uid}'">
-                                                <td><fmt:formatDate value="${nl.cancelDTO.can_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                                <td>${nl.cancelDTO.can_num}</td>
+                                             <tr class="reporttr" onclick="location.href='refundDetail?merchant_uid=${nl.merchant_uid}'">
+                                                <td><fmt:formatDate value="${nl.refundDTO.ref_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td>${nl.refundDTO.ref_num}</td>
                                                 <td>${nl.merchant_uid}</td>
                                                 <td>${nl.user_id}</td>
                                                 <td>${nl.ord_total2}</td>
@@ -170,12 +170,12 @@
                                     <ul class="pagination paginate_sm">
 
                                         <c:if test="${pager.pre}">
-                                            <li class="page-item"><a class="page-link" href="./cancel?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                                            <li class="page-item"><a class="page-link" href="./refund?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                                         </c:if>
                                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                            <li class="page-item"><a class="page-link" href="./cancel?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                            <li class="page-item"><a class="page-link" href="./refund?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                                         </c:forEach>
-                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./cancel?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./refund?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                                     </ul>
                                 </nav>
                             </div>

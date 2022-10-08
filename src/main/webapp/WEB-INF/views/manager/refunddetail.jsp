@@ -48,7 +48,7 @@
     <div id="wrapper">
 
         <!-- 사이드바 임포트 -->
-        <c:import url="../template/sidebar.jsp"></c:import>
+        <c:import url="./template/sidebar.jsp"></c:import>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -57,7 +57,7 @@
             <div id="content">
 
                 <!-- 탑바 임포트 -->
-                <c:import url="../template/topbar.jsp"></c:import>
+                <c:import url="./template/topbar.jsp"></c:import>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -68,7 +68,14 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4 mt-4">
                         <div class="card-header py-3" style="display: flex">
-                            <h6 class="font-weight" style="color: #6667AB; margin: auto 0px;">주문 상세</h6>
+                            <h6 class="font-weight" style="color: #6667AB; margin: auto 0px;">반품신청 상세</h6>
+                            
+                            <form action="./payDetail?merchant_uid=" method="post" style="margin-left: auto;">
+                                <button disabled="" type="submit" data-qna-num="" id="statusChange" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="background-color: rgb(126, 107, 155); border-color: rgb(126, 107, 155); ">
+                                    결제취소로
+                                      
+                                </button>
+                            </form>
 
                         </div>
                         <div class="card-body" style="zoom: 0.8;">
@@ -139,7 +146,28 @@
                                 </form>
                             </div>
 
-                            
+                            <!-- 취소상세 -->
+                            <div id="qnaList">
+                                <section class="col-lg-12 text-center" style="padding: 0px;">
+                                    <table class="table table-hover" width="100%">
+                                        <thead class="table-primary" style="font-size: 14px;">
+                                            <tr>
+                                                <th class="col-2">반품신청일자</th>
+                                                <th class="col-1">반품번호</th>
+                                                <th class="col-9">반품사유</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: 12px;">
+                                            <tr>
+                                                <td><fmt:formatDate value="${detail.ref_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td>${detail.ref_num}</td>
+                                                <td>${detail.ref_memo}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                            <!-- 취소상세 -->
 
                             <!-- 주문상세 -->
                             <div id="qnaList">
@@ -218,7 +246,7 @@
             <!-- End of Main Content -->
 
             <!-- footer 임포트 -->
-            <c:import url="../template/footer.jsp"></c:import>
+            <c:import url="./template/footer.jsp"></c:import>
 
 
         </div>
