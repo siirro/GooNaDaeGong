@@ -49,11 +49,10 @@ public class NoticeDAO {
 		return sqlSession.insert(NAMESPACE+"addNotice", noticeDTO);
 	}
 
-	public List<NoticeDTO> getList(Pager pager, Long code)throws Exception{
+	public List<NoticeDTO> getList(Pager pager)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", pager.getStartRow());
 		map.put("lastRow", pager.getLastRow());
-		map.put("code", code);
 		map.put("kind", pager.getKind());
 		map.put("search", pager.getSearch());
 		
@@ -61,21 +60,19 @@ public class NoticeDAO {
 		
 	}
 	
-	public List<NoticeDTO> getListHidden(Pager pager, Long code)throws Exception{
+	public List<NoticeDTO> getListHidden(Pager pager)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("startRow", pager.getStartRow());
 		map.put("lastRow", pager.getLastRow());
-		map.put("code", code);
 		map.put("kind", pager.getKind());
 		map.put("search", pager.getSearch());
 		
 		return sqlSession.selectList(NAMESPACE+"getListHidden", map);
 	}
 	
-	public Long getCountHidden(Pager pager, Long code)throws Exception{
+	public Long getCountHidden(Pager pager)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("code", code);
 		map.put("kind", pager.getKind());
 
 		map.put("search", pager.getSearch());
@@ -84,9 +81,8 @@ public class NoticeDAO {
 		
 	}
 	
-	public Long getCount(Pager pager, Long code)throws Exception{
+	public Long getCount(Pager pager)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("code", code);
 		map.put("kind", pager.getKind());
 
 		map.put("search", pager.getSearch());

@@ -14,6 +14,10 @@ public class CancelService {
 	@Autowired
 	private CancelDAO cancelDAO;
 	
+	public int addCancel(CancelDTO cancelDTO)throws Exception{
+		return cancelDAO.addCancel(cancelDTO);
+	}
+	
 	public List<OrdersDTO> getList(OrderPager orderPager)throws Exception{
 		Long totalCount = cancelDAO.getListCount(orderPager);
 		orderPager.getNum(totalCount);

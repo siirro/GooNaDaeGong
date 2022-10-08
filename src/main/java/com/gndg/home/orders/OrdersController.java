@@ -1,5 +1,7 @@
 package com.gndg.home.orders;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.cart.CartDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.pay.PayDTO;
 import com.gndg.home.pay.PayService;
@@ -30,6 +33,8 @@ public class OrdersController {
 		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
+		List<CartDTO> ar = ordersService.getOrderItem(memberDTO);
+		mv.addObject("cart", ar);
 		mv.addObject("member", memberDTO);
 		mv.setViewName("order/checkout");
 		
@@ -59,6 +64,18 @@ public class OrdersController {
 		String jsonResult = "{\"result\":\""+result+"\"}";
 		return jsonResult;
 	}
+	
+	@PostMapping("goodsOrder")
+	@ResponseBody
+	public String addGoodsOrder(GoodsOrdersDTO goodsorderDTO, HttpSession session)throws Exception{
+		
+		int result = ordersService.addGoodsOrder(goodsorderDTO);
+		//session.setAttribute("goodsOrdersDTO", goodsorderDTO);
+
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
+	}
+	
 	
 	@GetMapping("success")
 	public ModelAndView goSuccess(OrdersDTO ordersDTO, HttpSession session)throws Exception{

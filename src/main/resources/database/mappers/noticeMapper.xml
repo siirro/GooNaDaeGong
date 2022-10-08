@@ -23,7 +23,7 @@ SELECT * FROM NOTICEFILE WHERE FILENUM = #{fileNum}
 
 <update id="updateNotice" parameterType="NoticeDTO">
 UPDATE NOTICE 
-SET NT_TITLE=#{nt_title}, NT_CONTENTS=#{nt_contents}, CODE=#{code}, NT_YN=#{nt_yn} 
+SET NT_TITLE=#{nt_title}, NT_CONTENTS=#{nt_contents}, NT_YN=#{nt_yn} 
 WHERE NT_NUM=#{nt_num}
 </update>
 
@@ -35,7 +35,7 @@ DELETE FROM NOTICE WHERE NT_NUM = #{nt_num}
 <selectKey order="BEFORE" keyProperty="nt_num" resultType="Long">
 SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
 </selectKey>
-INSERT INTO NOTICE VALUES (#{nt_num},#{user_id},#{nt_title},#{nt_contents},SYSDATE,#{nt_yn},#{code})
+INSERT INTO NOTICE VALUES (#{nt_num},#{user_id},#{nt_title},#{nt_contents},SYSDATE,#{nt_yn})
 </insert>
 
 
@@ -122,7 +122,6 @@ WHERE N.NT_NUM=#{nt_num}
 	<result column="NT_CONTENTS" property="nt_contents"/>
 	<result column="NT_DATE" property="nt_date"/>
 	<result column="NT_YN" property="nt_yn"/>
-	<result column="CODE" property="code"/>
 	
 	<collection property="noticeFileDTOs" javaType="List" ofType="NoticeFileDTO">
 		<id column="FILENUM" property="fileNum"/>

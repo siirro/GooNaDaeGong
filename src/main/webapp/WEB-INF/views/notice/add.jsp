@@ -55,32 +55,6 @@
                     <input type="hidden" name="user_id" value="1">
                     <!-- value="${session.user_id}" -->
                     
-                    
-                    <!-- 코드구분 전체 -->
-                    <div class="css-17bp14q e1vbjq4w3">
-
-                        <div class="css-mm5tap e1vbjq4w2">
-                            <label data-testid="label-text">구분</label>
-                        </div>
-
-                        <div class="css-12l4j2c e1vbjq4w1">
-                            <div class="css-zjik7 epfrwk70">
-
-                                <div class="search-category" id="search-category">
-                                    <select id="code" name="code" class="custom-select custom-select-sm form-control" style="padding: 10px;
-                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px;">
-                                        <option selected disabled value="">선택 </option>
-                                        <option class="codes" value="1">구디나라</option>
-                                        <option class="codes" value="2">대기공주</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 코드구분 전체 -->
- 
-                            
                             
                     <!-- 제목 입력 -->
                     <div class="css-17bp14q e1vbjq4w3">
@@ -115,7 +89,10 @@
                                         <textarea id="nt_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
                                         name="nt_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
 
-
+                                        <span class="content-length-counter css-zgkz6w e1tjt2bn0">
+                                            <span id="lengthCheck" class="css-14kcwq8 e1tjt2bn2">
+                                            </span>
+                                        </span>
                                         
                                     </div>
                                 </div>

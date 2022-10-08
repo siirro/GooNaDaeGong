@@ -56,29 +56,7 @@
                     <!-- value="${session.user_id}" -->
                     
                     
-                    <!-- 코드구분 전체 -->
-                    <div class="css-17bp14q e1vbjq4w3">
-
-                        <div class="css-mm5tap e1vbjq4w2">
-                            <label data-testid="label-text">구분</label>
-                        </div>
-
-                        <div class="css-12l4j2c e1vbjq4w1">
-                            <div class="css-zjik7 epfrwk70">
-
-                                <div class="search-category" id="search-category">
-                                    <select id="qna_code" name="code" class="custom-select custom-select-sm form-control" style="padding: 10px;
-                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px;">
-                                        <option selected disabled value="">선택 </option>
-                                        <option class="codes" value="1">구디나라</option>
-                                        <option class="codes" value="2">대기공주</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 코드구분 전체 -->
+                    
 
                     <!-- 카테고리 전체 디브 -->
                     <div class="css-17bp14q e1vbjq4w3">
@@ -116,11 +94,12 @@
                             <div class="css-zjik7 epfrwk70">
 
                                 <div class="search-category" id="search-category">
-                                    <select id="qna_cate" name="qna_cate" class="custom-select custom-select-sm form-control" style="padding: 10px;
+                                    <select id="qna_uid" name="qna_uid" class="custom-select custom-select-sm form-control" style="padding: 10px;
                                     appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;">
                                         <option selected disabled value="">주문내역을 선택해주세요 </option>
-                                        <option class="cates" value="주문/결제">주문/결제</option>
-                                        
+                                        <c:forEach items="${ordersDTO}" var="nl">
+                                            <option class="cates" value="${nl.merchant_uid}">${nl.merchant_uid}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>

@@ -47,14 +47,19 @@ INSERT INTO FAQ VALUES (#{faq_num},#{user_id},#{faq_cate},#{faq_title},#{faq_con
 SELECT * FROM
 		(SELECT ROWNUM R, F.* 
 		FROM 
-		(SELECT * FROM FAQ 
-			WHERE FAQ_CATE LIKE '%'||#{faq_cate,jdbcType=NUMERIC}||'%'
+		(SELECT * FROM FAQ
+			<if  test= "faq_cate != null">
+			WHERE FAQ_CATE = #{faq_cate}
+			</if>
 			ORDER BY FAQ_NUM DESC) F)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
 
 <select id="getListCount" parameterType="FaqDTO" resultType="Long">
-	SELECT COUNT(FAQ_NUM) FROM FAQ WHERE FAQ_CATE LIKE '%'||#{faq_cate,jdbcType=NUMERIC}||'%'
+	SELECT COUNT(FAQ_NUM) FROM FAQ 
+			<if  test= "faq_cate != null">
+			WHERE FAQ_CATE = #{faq_cate}
+			</if>
 </select>
 
 <select id="getDetail" parameterType="FaqDTO" resultMap="getDetailResult">

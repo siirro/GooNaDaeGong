@@ -88,7 +88,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">MEMBER</h6> -->
                         <a class="collapse-item" href="../../manager/member/list">회원조회</a>
-
+                        <a class="collapse-item" href="../../manager/qna/list">1대1 문의</a>
                         <div class="collapse-divider"></div>
                         
                     </div>
@@ -111,14 +111,15 @@
                 </div>
             </li>
 
+            <!-- 1대1문의 메뉴 따로뺼까? -->
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- <hr class="sidebar-divider">
 
             <div class="sidebar-heading">
                 QNA
             </div>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQna"
                     aria-expanded="true" aria-controls="collapseQna">
@@ -128,51 +129,15 @@
                 <div id="collapseQna" class="collapse" aria-labelledby="headingQna"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../manager/qna/list?code=1">구디나라</a>
+                        <a class="collapse-item" href="../../manager/qna/list">1대1 문의</a>
                         <a class="collapse-item" href="../../manager/qna/list?code=2">쇼핑몰</a>
                     </div>
-                </div>
+                </div> -->
             </li>
+            <!-- 1대1문의 메뉴 따로뺼까? -->
 
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- 지우세요 -->
-            
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                MEMBER
-            </div>
-
-
-            <!-- 필요없으면 지우기 -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsegg"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>템플릿 나눔 추후삭제</span>
-                </a>
-                <div id="collapsegg" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/resources/vendor/managerboot/buttons.html">버튼모음</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/tables.html">테이블모음</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/cards.html">카드</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/register.html">회원가입</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/forgot-password.html">비번찾기</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/login.html">로긴</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/404.html">404</a>
-
-                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-color.html">유틸-컬러</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-border.html">유틸-보더</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-animation.html">유틸-움직</a>
-                        <a class="collapse-item" href="/resources/vendor/managerboot/utilities-other.html">유틸-기타</a>
-                        <div class="collapse-divider"></div>
-                        
-                    </div>
-                </div>
-            </li>
-            <!-- 지우세요 끝-->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

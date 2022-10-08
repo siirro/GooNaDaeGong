@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 
@@ -47,7 +48,7 @@
     <div id="wrapper">
 
         <!-- 사이드바 임포트 -->
-        <c:import url="./template/sidebar.jsp"></c:import>
+        <c:import url="../template/sidebar.jsp"></c:import>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -56,8 +57,7 @@
             <div id="content">
 
                 <!-- 탑바 임포트 -->
-                
-
+                <c:import url="../template/topbar.jsp"></c:import>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -70,23 +70,78 @@
                         <div class="card-header py-3" style="display: flex">
                             <h6 class="font-weight" style="color: #6667AB; margin: auto 0px;">주문 상세</h6>
 
-                            <form action="./updateStatus" method="get" style="margin-left: auto;">
-                                <button type="submit" data-qna-num="${detail.rp_num}" id="statusChange" 
-                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                style ="background-color: rgb(132, 84, 198); border-color: rgb(132, 84, 198); ">
-                                    <i class="fas fa-check fa-sm text-white-50"></i>상태변경
-                                        
-                            <input type="hidden" name="rp_num" value="${detail.rp_num}">
-                            <input type="hidden" name="rp_status" value="완료">    
-                            </form>
-                            <!-- </div>     -->
                         </div>
                         <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
 
+                            <div style="margin-bottom: 10px; background: lavender;">
+                                <form action="./orderUpdateStatus" method="get" style="display: flex;">
+                                    <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox1" value="주문취소">
+                                        <label class="form-check-label" for="inlineCheckbox1">상품준비중</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송중">
+                                        <label class="form-check-label" for="inlineCheckbox2">배송중</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송완료">
+                                        <label class="form-check-label" for="inlineCheckbox2">배송완료</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소신청">
+                                        <label class="form-check-label" for="inlineCheckbox2">취소신청</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소완료">
+                                        <label class="form-check-label" for="inlineCheckbox2">취소완료</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환신청">
+                                        <label class="form-check-label" for="inlineCheckbox2">교환신청</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환진행">
+                                        <label class="form-check-label" for="inlineCheckbox2">교환진행</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환완료">
+                                        <label class="form-check-label" for="inlineCheckbox2">교환완료</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품신청">
+                                        <label class="form-check-label" for="inlineCheckbox2">반품신청</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품진행">
+                                        <label class="form-check-label" for="inlineCheckbox2">반품진행</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품완료">
+                                        <label class="form-check-label" for="inlineCheckbox2">반품완료</label>
+                                    </div>
+                                    </div>
+
+                                    <div style="width: 300px;">
+                                    
+                                    </div>
+                                    <div style="margin: auto;">
+                                        <button type="submit" data-qna-num="${ordersDTO.merchant_uid}" id="statusChange" 
+                                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                    style ="background-color: rgb(132, 84, 198); border-color: rgb(132, 84, 198); ">
+                                        <i class="fas fa-check fa-sm text-white-50"></i>상태변경
+                                    </div>
+                                            
+                                <input type="hidden" name="merchant_uid" value="${ordersDTO.merchant_uid}">
+                                  
+                                </form>
+                            </div>
+
                             
 
-                            <!-- 부트스트랩표 -->
+                            <!-- 주문상세 -->
                             <div id="qnaList">
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
                                     <table class="table table-hover" width="100%">
@@ -98,42 +153,58 @@
                                                 <th class="col-1">주문총액</th>
                                                 <th class="col-1">배송비</th>
                                                 <th class="col-1">총결제액</th>
-                                                <th class="col-1">주문취소</th>
                                                 <th class="col-2">주문상태</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size: 12px;">
                                             <tr>
-                                                <td><fmt:formatDate value="${nl.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                                <td>${nl.merchant_uid}</td>
-                                                <td>${nl.user_id}</td>
-                                                <td>${nl.ord_total1}</td>
-                                                <td>${nl.ord_delfree}</td>
-                                                <td>${nl.ord_total2}</td>
-                                                <td>${nl.ord_status}</td>
-                                                <td>${nl.code}</td>
+                                                <td><fmt:formatDate value="${ordersDTO.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td>${ordersDTO.merchant_uid}</td>
+                                                <td>${ordersDTO.user_id}</td>
+                                                <td>${ordersDTO.ord_total1}원</td>
+                                                <td>${ordersDTO.ord_delfree}원</td>
+                                                <td>${ordersDTO.ord_total2}원</td>
+                                                <td>${ordersDTO.ord_status}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </section>
                             </div>
+                            <!-- 주문상세 -->
 
-                            <!-- 글내용 -->
+                            <!-- 상품상세 -->
                             <div id="qnaList">
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
-                                    <table border="2" class="table border border-primary" width="100%">
-                                      <tbody>
-                                           <tr>
-                                                <td style="height: auto; padding: 30px; white-space: nowrap;">
-                                                    
-                                                    ${fn:replace(detail.rp_contents, replaceChar, "<br/>")}
-                                                    
-                                                </td>
+                                    <table class="table table-hover" width="100%">
+                                        <thead class="table-primary" style="font-size: 14px;">
+                                            <tr style="background-color: lavenderblush;">
+                                                <th class="col-2">상품이미지</th>
+                                                <th class="col-4">상품이름</th>
+                                                <th class="col-2">판매가</th>
+                                                <th class="col-2">구매수량</th>
+                                                <th class="col-2">소계</th>
                                             </tr>
-                                      </tbody>
+                                        </thead>
+                                        <tbody style="font-size: 12px;">
+                                            <c:forEach items="${ordersDTO.goodsOrdersDTOs}" var="nl">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../resources/upload/gnItem/${nl.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
+
+                                                    </td>
+                                                    <td>${nl.gnItemDTO.item_name}</td>
+                                                    <td>${nl.gnItemDTO.item_price}원</td>
+                                                    <td>${nl.go_amount}개</td>
+                                                    <td>${nl.gnItemDTO.item_price*nl.go_amount}원</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
                                     </table>
                                 </section>
                             </div>
+                            <!-- 상품상세 -->
+
+                            
 
                         </div>
                         
@@ -147,7 +218,7 @@
             <!-- End of Main Content -->
 
             <!-- footer 임포트 -->
-            <c:import url="./template/footer.jsp"></c:import>
+            <c:import url="../template/footer.jsp"></c:import>
 
 
         </div>

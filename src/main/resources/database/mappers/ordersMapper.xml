@@ -5,12 +5,49 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.orders.OrdersDAO">
 
+<update id="updateStatus" parameterType="OrdersDTO">
+UPDATE ORDERS SET ORD_STATUS = #{ord_status} WHERE MERCHANT_UID = #{merchant_uid}
+</update>
+
+<insert id="addGoodsOrders" parameterType="GoodsOrdersDTO">
+INSERT INTO GOODSORDER VALUES (GOODSORDER_SEQ.NEXTVAL,#{item_num},#{merchant_uid},#{go_amount})
+</insert>
+
+<select id="getOrderItem" parameterType="MemberDTO" resultMap="itemResult">
+SELECT * 
+FROM CART C
+    JOIN  ITEM I
+     ON C.ITEM_NUM = I.ITEM_NUM
+     LEFT JOIN
+     ITEMFILE F
+     ON I.ITEM_NUM = F.ITEM_NUM
+WHERE C.USER_ID=#{user_id}
+</select>
+
+<resultMap type="CartDTO" id="itemResult">
+	<id column="CART_NUM" property="cart_num"/>
+	<result column="ITEM_NUM" property="item_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column= "ITEM_COUNT" property="item_count"/>
+	<association property="gnItemDTO" javaType="GnItemDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_PRICE" property="item_price" />
+			<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="ITEM_NUM" property="item_num"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORINAME" property="oriName"/>
+			</collection>
+	</association> 
+</resultMap>
+
 <insert id="addOrders" parameterType="OrdersDTO">
 INSERT INTO ORDERS VALUES 
 (#{merchant_uid}, #{user_id}, #{ord_payment}, #{ord_status}, 
 SYSDATE, #{ord_total1}, #{ord_delfree}, #{ord_total2}, 
 #{ord_name}, #{ord_post}, #{ord_addr}, #{ord_addr2}, 
-#{ord_phone}, #{ord_memo}, #{code})
+#{ord_phone}, #{ord_memo})
 </insert>
 
 <select id="getList" parameterType="Map" resultType="OrdersDTO">
@@ -31,9 +68,7 @@ FROM
 		
 		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>  
-		<if  test= "code != null">
-		AND CODE = #{code}
-		</if>   
+		  
 	ORDER BY ORD_DATE DESC) O)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
@@ -52,14 +87,48 @@ SELECT COUNT(MERCHANT_UID) FROM ORDERS
 		<if  test= "searchdate1 != null">
 		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>
-		<if  test= "code != null">
-		AND CODE = #{code}
-		</if>
+		
 </select>
 
-<select id="getDetail" parameterType="OrdersDTO" resultType="OrdersDTO">
-SELECT * FROM ORDERS WHERE MERCHANT_UID=#{merchant_uid}
+<select id="getDetail" parameterType="OrdersDTO" resultMap="detailResult">
+SELECT * 
+FROM ORDERS O
+JOIN GOODSORDER GO
+ON O.MERCHANT_UID = GO.MERCHANT_UID
+JOIN ITEM I
+ON GO.ITEM_NUM = I.ITEM_NUM
+LEFT JOIN ITEMFILE IT
+ON I.ITEM_NUM = IT.ITEM_NUM
+WHERE O.MERCHANT_UID=#{merchant_uid}
 </select>
+
+<resultMap type="OrdersDTO" id="detailResult">
+	<id column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column= "ORD_DATE" property="ord_date"/>
+	<result column= "ORD_TOTAL1" property="ord_total1"/>
+	<result column= "ORD_DELFREE" property="ord_delfree"/>
+	<result column= "ORD_TOTAL2" property="ord_total2"/>
+	<result column= "ORD_PAYMENT" property="ord_payment"/>
+	<result column= "ORD_STATUS" property="ord_status"/>
+	<collection property="goodsOrdersDTOs" javaType="List" ofType="GoodsOrdersDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="GO_AMOUNT" property="go_amount" />
+		<association property="gnItemDTO" javaType="GnItemDTO">
+			<id column="ITEM_NUM" property="item_num"/>
+			<result column="ITEM_NAME" property="item_name"/>
+			<result column="ITEM_PRICE" property="item_price"/>
+				<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+					<id column="FILENUM" property="fileNum"/>
+					<result column="ITEM_NUM" property="item_num"/>
+					<result column="FILENAME" property="fileName"/>
+					<result column="ORINAME" property="oriName"/>
+				</collection>
+		</association>
+	</collection>
+
+</resultMap>
+
 
 
 

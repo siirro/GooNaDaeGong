@@ -17,6 +17,10 @@ public class CancelDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.cancel.CancelDAO.";
 	
+	public int addCancel(CancelDTO cancelDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCancel", cancelDTO);
+	}
+	
 	public List<OrdersDTO> getList(OrderPager orderPager)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList", orderPager);
 	}

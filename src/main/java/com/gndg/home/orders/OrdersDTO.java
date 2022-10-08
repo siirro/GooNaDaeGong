@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.gndg.home.cancel.CancelDTO;
+import com.gndg.home.gnItem.GnItemDTO;
 
 public class OrdersDTO {
 	
@@ -21,16 +22,25 @@ public class OrdersDTO {
 	private String ord_addr2;
 	private String ord_phone;
 	private String ord_memo;
-	private Long code;
+	
+	private List<GoodsOrdersDTO> goodsOrdersDTOs;
 	private List<CancelDTO> cancelDTOs;
 	
 
+
+	public List<GoodsOrdersDTO> getGoodsOrdersDTOs() {
+		return goodsOrdersDTOs;
+	}
+	public void setGoodsOrdersDTOs(List<GoodsOrdersDTO> goodsOrdersDTOs) {
+		this.goodsOrdersDTOs = goodsOrdersDTOs;
+	}
 	public List<CancelDTO> getCancelDTOs() {
 		return cancelDTOs;
 	}
 	public void setCancelDTOs(List<CancelDTO> cancelDTOs) {
 		this.cancelDTOs = cancelDTOs;
 	}
+	
 	public Long getMerchant_uid() {
 		return merchant_uid;
 	}
@@ -115,12 +125,7 @@ public class OrdersDTO {
 	public void setOrd_memo(String ord_memo) {
 		this.ord_memo = ord_memo;
 	}
-	public Long getCode() {
-		return code;
-	}
-	public void setCode(Long code) {
-		this.code = code;
-	}
+
 
 	
 	

@@ -189,6 +189,7 @@
                 </div>
             </div> -->
 
+            <c:if test="${sessionScope.member.user_grade eq 2}">
             <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
             <div class="mb-3" style="display: flex; justify-content: right; margin-top: 10px;">
                 
@@ -203,6 +204,7 @@
                 </a>
             </div>
             <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+            </c:if>
 
 
         </div>

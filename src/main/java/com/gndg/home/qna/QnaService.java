@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
+import com.gndg.home.member.MemberDTO;
+import com.gndg.home.orders.GoodsOrdersDTO;
+import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.util.Pager;
 
 @Service
@@ -21,6 +24,11 @@ public class QnaService {
 	
 	@Autowired
 	private FileManager fileManager;
+	
+	
+	public List<OrdersDTO> getOrders(MemberDTO memberDTO)throws Exception{
+		return qnaDAO.getOrders(memberDTO);
+	}
 	
 	public int addQna(QnaDTO qnaDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
 		int result = qnaDAO.addQna(qnaDTO);
@@ -46,11 +54,11 @@ public class QnaService {
 
 	}
 		
-	public List<QnaDTO> getList(Pager pager, Long code) throws Exception{
-		Long totalCount = qnaDAO.getCount(pager, code);
+	public List<QnaDTO> getList(Pager pager) throws Exception{
+		Long totalCount = qnaDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
-		List<QnaDTO> ar = qnaDAO.getList(pager, code);
+		List<QnaDTO> ar = qnaDAO.getList(pager);
 		return ar;
 	}
 	

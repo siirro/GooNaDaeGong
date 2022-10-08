@@ -1,46 +1,33 @@
 
-const code = document.getElementById("code");
 const nt_yn = document.getElementById("nt_yn");
 const nt_title = document.getElementById("nt_title");
 const nt_contents = document.getElementById("nt_contents");
 const ntSubmit = document.getElementById("ntSubmit");
 
-let check1=false;
 let check2=true;
 let check3=false;
 let check4=false;
 
 // 수정용 js
-if(code.value.length>0){
-	check1=true;
-	console.log("코드적용.트루");
-	}
+
 if(nt_title.value.length>0){
 	check3=true;
-	console.log("제목썼음.트루");
+	// console.log("제목썼음.트루");
 	} 
 if(nt_contents.value.length>0){
 	check4=true;
-	console.log("내용썻음.트루");
+	// console.log("내용썻음.트루");
 }
 ntSubmit1();
 // 수정용 js
 
-code.addEventListener("change",function(){
-    if(code.value.length>0){
-        check1=true;
-        console.log("코드적용.트루");
-    } else {
-        check1=false;
-    }
-    ntSubmit1();
-});
+
 
 
 nt_yn1.addEventListener("change",function(){
     if(nt_yn1.value.length>0){
         check2=true;
-        console.log("노출적용.트루");
+        // console.log("노출적용.트루");
     } else {
         check2=false;
     }
@@ -50,7 +37,7 @@ nt_yn1.addEventListener("change",function(){
 nt_yn2.addEventListener("change",function(){
     if(nt_yn2.value.length>0){
         check2=true;
-        console.log("노출적용.트루");
+        // console.log("노출적용.트루");
     } else {
         check2=false;
     }
@@ -61,7 +48,7 @@ nt_yn2.addEventListener("change",function(){
 nt_title.addEventListener("keyup",function(){
     if(nt_title.value.length>0){
     check3=true;
-    console.log("제목썼음.트루");
+    // console.log("제목썼음.트루");
     } else {
         check3=false;
     }
@@ -71,7 +58,7 @@ nt_title.addEventListener("keyup",function(){
 nt_contents.addEventListener("keyup",function(){
     if(nt_contents.value.length>0){
         check4=true;
-        console.log("내용썻음.트루");
+        // console.log("내용썻음.트루");
     } if(nt_contents.value.length=="") {
         check4=false;
 		console.log("내용비엇음.4는false");
@@ -85,13 +72,13 @@ nt_contents.addEventListener("keyup",function(){
 
 function ntSubmit1(){
 
-    if(check1&&check2&&check3&&check4) {
-		console.log("넷다트루.버튼을 보라색으로");
+    if(check2&&check3&&check4) {
+		// console.log("넷다트루.버튼을 보라색으로");
 		// qnaSubmit.setAttribute("disabled","false");
 		ntSubmit.removeAttribute("disabled");
 		ntSubmit.style.backgroundColor = "#6667AB";
     } else {
-		console.log("False가생겼다");
+		//console.log("False가생겼다");
 		ntSubmit.setAttribute("disabled","");
         ntSubmit.style.backgroundColor = "rgb(221, 221, 221)";
 	}
@@ -212,5 +199,20 @@ function onTestChange() {
     }
 }
 
+document.getElementById("nt_contents").addEventListener("keyup",function(){
+	
+	let content = this.value;
+	
+	document.getElementById("lengthCheck").textContent = content.length + "/ 5000";
 
+	if(content.length >5000) {
+		alert("최대 5000자까지 입력 가능합니다.");
+		document.getElementById("lengthCheck").textContent = "5000 / 5000";
+		// this.value = content.slice(0, -1);
+		this.value = content.substring(0, 5000);
+
+
+	}
+
+});
 

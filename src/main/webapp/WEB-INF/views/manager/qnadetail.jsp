@@ -103,15 +103,35 @@
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
                                     <table class="table table-bordered" width="100%">
                                       <tbody class="">
-                                            <tr>
-                                                
+                                            <!-- <tr>
+                                                    
                                                 <td>제목</td>
-                                                <td colspan="5">${qnaDTO.qna_title}</td>
+                                                <td colspan="5">[${qnaDTO.qna_cate}] 
+                                                    ${qnaDTO.qna_title}</td>
+                                                
+                                            </tr> -->
+                                            <tr>
+                                                <td>카테고리</td>
+                                                <td class="w-25">${qnaDTO.qna_cate}</td>
+                                                <td>문의제목</td>
+                                                <td class="w-25">${qnaDTO.qna_title}</td>
                                                 
                                             </tr>
                                             <tr>
-                                                <td style="width: 100px;">번호</td>
-                                                <td>${qnaDTO.qna_num}</td>
+                                                <td>문의번호</td>
+                                                <td class="w-25">${qnaDTO.qna_num}</td>
+                                                <td>주문번호</td>
+                                                <td class="w-25" onclick="location.href='../mall/detail?merchant_uid=${qnaDTO.qna_uid}'" style="cursor: pointer">
+                                                    <c:if test="${empty qnaDTO.qna_uid}">
+                                                    미선택
+                                                    </c:if>
+                                                    ${qnaDTO.qna_uid}
+                                                    
+                                                
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
                                                 <td>작성자</td>
                                                 <td class="w-25">${qnaDTO.user_id}</td>
                                                 <td>작성일</td>
@@ -131,7 +151,7 @@
                                            <tr>
                                                 <td style="height: auto; padding: 30px; white-space: nowrap;">
                                                     <c:forEach items="${qnaDTO.qnaFileDTOs}" var="file">
-                                                    <img src="../../resources/upload/qna/${file.fileName}" alt="" width="auto"><br></br>
+                                                    <img src="../../resources/upload/qna/${file.fileName}" alt="" width="1000px" style="cursor: pointer;" onclick="location.href='../../resources/upload/qna/${file.fileName}'"><br></br>
                                                     </c:forEach>
                                                     ${fn:replace(qnaDTO.qna_contents, replaceChar, "<br/>")}
                                                     

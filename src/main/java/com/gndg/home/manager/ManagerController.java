@@ -53,15 +53,14 @@ public class ManagerController {
 	
 //	==============================QNA 조회=========================
 	@RequestMapping(value = "qna/list", method=RequestMethod.GET)
-	public ModelAndView managerQnaList(Pager pager, Long code)throws Exception{
+	public ModelAndView managerQnaList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<QnaDTO> ar = qnaService.getList(pager, code);
+		List<QnaDTO> ar = qnaService.getList(pager);
 		System.out.println(ar.size());
 		
 		mv.addObject("qnalist", ar);
 		
 		mv.addObject("pager", pager);
-		mv.addObject("code", code);
 		mv.setViewName("manager/qnalist");
 		return mv;
 	}
@@ -101,10 +100,23 @@ public class ManagerController {
 	}
 	
 	@PostMapping("qna/update")
-	public String statusChange(QnaDTO qnaDTO)throws Exception{
+	public ModelAndView statusChange(QnaDTO qnaDTO)throws Exception{
 		int result = qnaService.statusChange(qnaDTO);
+		ModelAndView mv = new ModelAndView();
 		
-		return "redirect:./detail?qna_num="+qnaDTO.getQna_num();
+		String message = "처리상태 변경 실패";
+		if(result!=0) {
+			message = "1대1 문의 처리상태를 변경했습니다.";
+		}
+		
+				
+		mv.addObject("url", "./detail?qna_num="+qnaDTO.getQna_num());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
+		
 	}
 //	==============================QNA 조회 끝=========================
 	
@@ -124,9 +136,22 @@ public class ManagerController {
 	}
 	
 	@GetMapping("member/updateYN")
-	public String updateYN(MemberDTO memberDTO)throws Exception{
+	public ModelAndView updateYN(MemberDTO memberDTO)throws Exception{
 		int result = memberService.updateYN(memberDTO);
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "회원상태 변경 실패";
+		if(result!=0) {
+			message = "회원 상태를 변경했습니다.";
+		}
+		
+				
+		mv.addObject("url", "./list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
 	}
 //	============================= 회원 조회 끝=========================
 
@@ -176,15 +201,36 @@ public class ManagerController {
 		List<OrdersDTO> ar = ordersService.getList(orderPager, ordersDTO);
 		mv.addObject("list", ar);
 		mv.addObject("pager", orderPager);
-		mv.addObject("code", ordersDTO.getCode());
 		mv.setViewName("manager/order/list");
 		return mv;
 	}
-	@GetMapping("mall/detail")
+	@GetMapping("mall/orderDetail")
 	public ModelAndView getDetail(OrdersDTO ordersDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.setViewName("manager/order/detail");
+		return mv;
+		
+	}
+	
+	@GetMapping("mall/orderUpdateStatus")
+	public ModelAndView updateStatus(OrdersDTO ordersDTO)throws Exception{
+		int result = ordersService.updateStatus(ordersDTO);
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "주문상태 변경 실패";
+		if(result!=0) {
+			message = "주문상태를 변경했습니다.";
+		}
+		
+				
+		mv.addObject("url", "./orderDetail?merchant_uid="+ordersDTO.getMerchant_uid());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
 		
 		return mv;
+		
 		
 	}
 //	============================= 주문내역 조회 끝 =========================

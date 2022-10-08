@@ -1,21 +1,18 @@
 
-const code = document.getElementById("code");
+
 const nt_yn = document.getElementById("nt_yn");
 const nt_title = document.getElementById("nt_title");
 const nt_contents = document.getElementById("nt_contents");
 const ntUpdate = document.getElementById("ntUpdate");
 const fileDelete = document.querySelectorAll(".fileDelete")
 
-let check1=false;
+
 let check2=true;
 let check3=false;
 let check4=false;
 
 // 수정용 js
-if(code.value.length>0){
-	check1=true;
-	console.log("코드적용.트루");
-	}
+
 if(nt_title.value.length>0){
 	check3=true;
 	console.log("제목썼음.트루");
@@ -27,15 +24,7 @@ if(nt_contents.value.length>0){
 ntSubmit1();
 // 수정용 js
 
-code.addEventListener("change",function(){
-    if(code.value.length>0){
-        check1=true;
-        console.log("코드적용.트루");
-    } else {
-        check1=false;
-    }
-    ntSubmit1();
-});
+
 
 
 nt_yn1.addEventListener("change",function(){
@@ -86,7 +75,7 @@ nt_contents.addEventListener("keyup",function(){
 
 function ntSubmit1(){
 
-    if(check1&&check2&&check3&&check4) {
+    if(check2&&check3&&check4) {
 		console.log("넷다트루.버튼을 보라색으로");
 		// qnaSubmit.setAttribute("disabled","false");
 		ntUpdate.removeAttribute("disabled");
@@ -110,13 +99,6 @@ function ntSubmit1(){
 
 // qnaSubmit.disabled = check==false;
 
-
-ntUpdate.addEventListener("click",function(){
-    
-    alert("공지가 수정되었습니다")
-    //qnaSubmit.submit();
-    
-});
 
 
 
@@ -284,3 +266,20 @@ fileDelete.forEach(function(f){
 }catch(e){
 	console.log(e);
 }
+
+
+document.getElementById("nt_contents").addEventListener("keyup",function(){
+	
+	let content = this.value;
+	
+	document.getElementById("lengthCheck").textContent = content.length + "/ 5000";
+
+	if(content.length >5000) {
+		alert("최대 5000자까지 입력 가능합니다.");
+		document.getElementById("lengthCheck").textContent = "5000 / 5000";
+		// this.value = content.slice(0, -1);
+		this.value = content.substring(0, 5000);
+
+	}
+
+});

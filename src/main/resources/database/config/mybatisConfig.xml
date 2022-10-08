@@ -45,6 +45,7 @@
 			
 			<typeAlias type="com.gndg.home.pay.PayDTO" alias="PayDTO"/>
 			<typeAlias type="com.gndg.home.orders.OrdersDTO" alias="OrdersDTO"/>
+			<typeAlias type="com.gndg.home.orders.GoodsOrdersDTO" alias="GoodsOrdersDTO"/>
 			<typeAlias type="com.gndg.home.cancel.CancelDTO" alias="CancelDTO"/>
 			
 

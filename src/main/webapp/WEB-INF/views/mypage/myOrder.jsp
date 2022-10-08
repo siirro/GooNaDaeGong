@@ -108,7 +108,7 @@
                                     <span class="css-1fdt947 e1437c641">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="#">
+                                                <a href="../cancel/inquiry">
                                                 취소
                                                 </a>
                                             </span>

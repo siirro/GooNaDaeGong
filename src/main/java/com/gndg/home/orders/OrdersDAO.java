@@ -8,6 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.gndg.home.cart.CartDTO;
+import com.gndg.home.member.MemberDTO;
+import com.gndg.home.order.OrderDTO;
 import com.gndg.home.pay.PayDTO;
 import com.gndg.home.util.OrderPager;
 
@@ -18,6 +21,22 @@ public class OrdersDAO {
 	private SqlSession sqlsession;
 	private final String NAMESPACE = "com.gndg.home.orders.OrdersDAO.";
 	
+	public int updateStatus(OrdersDTO ordersDTO)throws Exception{
+		return sqlsession.update(NAMESPACE+"updateStatus", ordersDTO);
+	}
+	
+	public OrdersDTO getDetail(OrdersDTO ordersDTO)throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"getDetail", ordersDTO);
+	}
+	
+	public int addGoodsOrder(GoodsOrdersDTO goodsorderDTO)throws Exception{
+		return sqlsession.insert(NAMESPACE+"addGoodsOrders", goodsorderDTO);
+	}
+	
+	public List<CartDTO> getOrderItem(MemberDTO memberDTO)throws Exception{
+		return sqlsession.selectList(NAMESPACE+"getOrderItem", memberDTO);
+	}
+	
 	public int addOrders(OrdersDTO ordersDTO)throws Exception{
 		return sqlsession.insert(NAMESPACE+"addOrders", ordersDTO);
 	}
@@ -26,7 +45,6 @@ public class OrdersDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", orderPager.getStartRow());
 		map.put("lastRow", orderPager.getLastRow());
-		map.put("code", ordersDTO.getCode());
 		map.put("kind", orderPager.getKind());
 		map.put("search", orderPager.getSearch());
 		
@@ -43,7 +61,6 @@ public class OrdersDAO {
 	public Long getListCount(OrderPager orderPager, OrdersDTO ordersDTO)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("code", ordersDTO.getCode());
 		map.put("kind", orderPager.getKind());
 		map.put("search", orderPager.getSearch());
 		

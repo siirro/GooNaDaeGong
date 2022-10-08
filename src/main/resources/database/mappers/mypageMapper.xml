@@ -20,9 +20,9 @@ WHERE M.USER_ID =#{user_id}
  -->
  
 <!-- 내 주문내역 -->
-<select id="getMyOrder" parameterType="OrderDTO" resultType="OrderDTO">
+<select id="getMyOrder" parameterType="OrdersDTO" resultType="OrdersDTO">
 SELECT *
-FROM ORD
+FROM ORDERS
 WHERE USER_ID =#{user_id}
       	<if  test= "code != null">
 			 AND CODE = #{code}

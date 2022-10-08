@@ -1,24 +1,15 @@
 
-const qna_code = document.getElementById("qna_code");
+
 const qna_cate = document.getElementById("qna_cate");
 const qna_title = document.getElementById("qna_title");
 const qna_contents = document.getElementById("qna_contents");
 const qnaSubmit = document.getElementById("qnaSubmit");
 
-let check1=false;
 let check2=false;
 let check3=false;
 let check4=false;
 
-qna_code.addEventListener("change",function(){
-    if(qna_code.value.length>0){
-        check1=true;
-        console.log("코드적용.트루");
-    } else {
-        check1=false;
-    }
-    qnaSubmit1();
-});
+
 
 
 qna_cate.addEventListener("change",function(){
@@ -46,9 +37,11 @@ qna_contents.addEventListener("keyup",function(){
     if(qna_contents.value.length>0){
         check4=true;
         
-    } else {
+    } if(qna_contents.value.length=="") {
         check4=false;
-        
+		console.log("내용비엇음.4는false");
+		qnaSubmit.setAttribute("disabled","");
+        qnaSubmit.style.backgroundColor = "rgb(221, 221, 221)";
     }
 	if(qna_contents.value.length>5000){
 		check4=false;
@@ -59,33 +52,24 @@ qna_contents.addEventListener("keyup",function(){
 
 
 
+
+
+
 function qnaSubmit1(){
 
-    if(check1&&check2&&check3&&check4) {
+    if(check2&&check3&&check4) {
             console.log("넷다트루.버튼을 보라색으로");
             // qnaSubmit.setAttribute("disabled","false");
             qnaSubmit.removeAttribute("disabled");
             qnaSubmit.style.backgroundColor = "#6667AB";
-    };
+    } else {
+		console.log("False가생겼다");
+		qnaSubmit.setAttribute("disabled","");
+        qnaSubmit.style.backgroundColor = "rgb(221, 221, 221)";
+	}
 };
 
 
-
-
-
-// if(check) {
-//         button.disabled = false;
-//         button.style.cursor = "pointer";
-//         button.style.backgroundColor = "#1c7ed6";
-// };
-
-// qnaSubmit.disabled = check==false;
-
-qnaSubmit.addEventListener("click",function(){
-    
-   
-    
-});
 
 
 
@@ -213,7 +197,8 @@ document.getElementById("qna_contents").addEventListener("keyup",function(){
 	if(content.length >5000) {
 		alert("최대 5000자까지 입력 가능합니다.");
 		document.getElementById("lengthCheck").textContent = "5000 / 5000";
-		this.value = content.slice(0, -1);
+		// this.value = content.slice(0, -1);
+		this.value = content.substring(0, 5000);
 
 	}
 

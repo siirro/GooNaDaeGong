@@ -192,3 +192,18 @@ function onTestChange() {
 
 
 
+document.getElementById("faq_contents").addEventListener("keyup",function(){
+	
+	let content = this.value;
+	
+	document.getElementById("lengthCheck").textContent = content.length + "/ 5000";
+
+	if(content.length >5000) {
+		alert("최대 5000자까지 입력 가능합니다.");
+		document.getElementById("lengthCheck").textContent = "5000 / 5000";
+		// this.value = content.slice(0, -1);
+		this.value = content.substring(0, 5000);
+
+	}
+
+});

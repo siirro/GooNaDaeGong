@@ -56,14 +56,6 @@
                     text-align: center; font-weight: 500;">제목
                     </div>
                     <div id="titleBody" style="padding-left: 25px; align-self: center;">
-                        <c:if test="${detail.code == 1}">
-                            [구디나라]
-                        </c:if>
-
-                        <c:if test="${detail.code == 2}">
-                            [대기공주]
-                        </c:if>
-
                         ${detail.nt_title}
                     </div>
                 </div>
@@ -80,7 +72,7 @@
                 <div id="contetns" style="border-bottom: 1px solid #D6D6EA; margin-bottom: 30px;">
                     <div id="contentsValue" style="height: auto; margin: 30px 10px 50px 10px; ">
                         <c:forEach items="${detail.noticeFileDTOs}" var="file">
-                        <img src="../../resources/upload/notice/${file.fileName}" alt="" width="auto">
+                        <img src="../../resources/upload/notice/${file.fileName}" alt="" width="auto" style="cursor: pointer;" onclick="location.href='../../resources/upload/notice/${file.fileName}'">
                         <br></br>
                         </c:forEach>
                         
@@ -99,12 +91,14 @@
                 </c:forEach>
             </div>
 
-            
+            <c:if test="${sessionScope.member.user_grade eq 2}">
             <!-- 목록으로 -->
             <div class="css-1spu0j4 ebvrvv11" style="padding: 0px; margin-top: 30px;">
                 <a href="./update?nt_num=${detail.nt_num}"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">수정</button></a>
                 <a href="javascript:goDelete()"><button style="background-color: #6667AB;" type="button" class="css-13kn1it ebvrvv10" id="ntUpdate">삭제</button></a>
             </div>
+            </c:if>
+
             
 
         </div>

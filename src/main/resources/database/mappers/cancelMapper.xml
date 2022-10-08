@@ -5,12 +5,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.cancel.CancelDAO">
 
-<!-- <insert id="addCancel" parameterType="CancelDTO">
-<selectKey order="BEFORE" keyProperty="can_num" resultType="Long">
+<insert id="addCancel" parameterType="CancelDTO">
+<selectKey order="BEFORE" keyProperty="can_num" resultType="Long"> 
 SELECT CANCEL_SEQ.NEXTVAL FROM DUAL
 </selectKey>
-INSERT INTO CANCEL VALUES (#{can_num}, #{merchant_uid}, sysdate)
-</insert> -->
+INSERT INTO CANCEL VALUES (#{can_num}, #{merchant_uid}, sysdate, #{can_memo})
+</insert>
 
 <select id="getList" parameterType="OrderPager" resultMap="getListResult">
 	SELECT * 
