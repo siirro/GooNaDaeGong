@@ -42,7 +42,7 @@
 
             <!-- 찐본문의 제목 -->
             <div class="css-1yc2nwy eug5r8l2">
-                <h3 class="css-1ew6v8c eug5r8l1">1:1 문의</h3>
+                <h3 class="css-1ew6v8c eug5r8l1">1:1 문의 수정</h3>
             </div>
 
             
@@ -70,7 +70,7 @@
 
                                 <div class="search-category" id="search-category">
                                     <select id="qna_cate" name="qna_cate" class="custom-select custom-select-sm form-control" style="padding: 10px;
-                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;">
+                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;" value="${qnaDTO.qna_cate}">
                                         <option selected disabled value="">카테고리를 선택해주세요 </option>
                                         <option class="cates" value="주문/결제">주문/결제</option>
                                         <option class="cates" value="상품">상품</option>
@@ -94,13 +94,9 @@
                             <div class="css-zjik7 epfrwk70">
 
                                 <div class="search-category" id="search-category">
-                                    <select ${param.merchant_uid==null?'':'disabled'} id="qna_uid" name="qna_uid" class="custom-select custom-select-sm form-control" style="padding: 10px;
+                                    <select disabled id="qna_uid" name="qna_uid" class="custom-select custom-select-sm form-control" style="padding: 10px;
                                     appearance: auto; font-size: 14px; color: #6667AB; height: 44px; margin: -4px 0px 2px;">
-                                        <!-- <option selected disabled value="">주문내역을 선택해주세요 </option> -->
-                                        <option selected value="">${param.merchant_uid}</option>
-                                        <c:forEach items="${ordersDTO}" var="nl">
-                                            <option class="cates" value="${nl.merchant_uid}">${nl.merchant_uid}</option>
-                                        </c:forEach>
+                                        <option selected disabled value="${qnaDTO.qna_uid}">${qnaDTO.qna_uid} </option>
                                     </select>
                                 </div>
                             </div>
@@ -122,7 +118,7 @@
                             <div class="css-1waqr6j e1uzxhvi6">
                                 <div height="44" class="css-t7kbxx e1uzxhvi3">
                                     <input data-testid="input-box" id="qna_title" name="qna_title" placeholder="제목을 입력해주세요" 
-                                    type="text" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                                    type="text" height="44" class="css-n2am0u e1uzxhvi2" value="${qnaDTO.qna_title}">
                                 </div>
                             </div>
                         </div>
@@ -142,7 +138,7 @@
                                 <div class="css-0 e1tjt2bn7">
                                     <div class="css-1gua357 e1tjt2bn5">
                                         <textarea id="qna_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
-                                        name="qna_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;"></textarea>
+                                        name="qna_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;">${qnaDTO.qna_contents}</textarea>
 
 
                                         <span class="content-length-counter css-zgkz6w e1tjt2bn0">
@@ -171,17 +167,7 @@
                             <div class="css-mlazth edd8l6o3">
                                 <div class="css-g8ewo8 e9bfpi41" id="fileBox">
 
-                                    <!-- 개빡친다 지워 -->
-                                    <!-- <div class="input-group mb-3" id="file0">
-                                        <input type="file" class="form-control" name="multipartFiles" id="multipartFiles">
-                                        <button class="btn btn-danger del" type="button" title="0">삭제</button>
-                                        
-                                    </div>
-
-                                    <div id="fileAdd2">
-                                        이 안에 추가 파일추가 창이 뜬다
-                                    </div> -->
-                                    <!-- 개빡친다 지워 -->
+                                    
 
                                     
                                     <!-- 옛날에쓴파일추가 -->
@@ -279,5 +265,17 @@
 
 
 <script src="/resources/js/notice/inquiry.js"></script>
+<script>
+    let k = '${qnaDTO.qna_cate}';
+        const cates = document.getElementsByClassName('cates');
+
+        for(let i=0;i<cates.length;i++) {
+            if(k==cates[i].value) {
+                cates[i].selected=true;
+                break;
+            }
+        }
+
+</script>
 </body>
 </html>

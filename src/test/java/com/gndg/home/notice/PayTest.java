@@ -3,6 +3,7 @@ package com.gndg.home.notice;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 import java.util.List;
@@ -52,18 +53,20 @@ public class PayTest extends AbstractTest{
 //		assertEquals(2, ar.size());
 //	}
 	
+//	@Test
+//	public void getDetail()throws Exception{
+//		OrdersDTO ordersDTO = new OrdersDTO();
+//		ordersDTO.setMerchant_uid(1665221685045L);
+//		ordersDTO = ordersDAO.getDetail(ordersDTO);
+//	}
+	
 	@Test
-	public void getDetail()throws Exception{
-		OrdersDTO ordersDTO = new OrdersDTO();
-		ordersDTO.setMerchant_uid(1665221685045L);
-		ordersDTO = ordersDAO.getDetail(ordersDTO);
+	public void countNewOrder()throws Exception{
+		Long count = ordersDAO.countNewOrder();
+		assertEquals(14L, count.longValue());
+
 		
 	}
-	
-//	@Test
-//	public void getCount()throws Exception{
-//		
-//	}
 	
 //	@Test
 //	public void getCount()throws Exception{

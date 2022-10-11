@@ -54,11 +54,11 @@ public class QnaService {
 
 	}
 		
-	public List<QnaDTO> getList(Pager pager) throws Exception{
-		Long totalCount = qnaDAO.getCount(pager);
+	public List<QnaDTO> getList(Pager pager, String qna_status) throws Exception{
+		Long totalCount = qnaDAO.getCount(pager, qna_status);
 		pager.getNum(totalCount);
 		pager.getRowNum();
-		List<QnaDTO> ar = qnaDAO.getList(pager);
+		List<QnaDTO> ar = qnaDAO.getList(pager, qna_status);
 		return ar;
 	}
 	

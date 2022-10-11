@@ -84,9 +84,9 @@
                             <!-- 내용 Search -->
                             <form action="./payment" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <input type="hidden" value="${access_token}" id="access_token">
+
+                                <!-- 검색1번 -->
                                 <div class="" style="display: flex; margin-bottom: 5px;">
-                                
-                            
                                     <div class="input-group">
                                         <div class="searchprebox">
                                             검색
@@ -96,7 +96,6 @@
                                             <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
                                                 <option class="kinds" value="merchant_uid">주문번호</option>
                                                 <option class="kinds" value="imp_uid">결제번호</option>
-                                                <option class="kinds" value="pay_result">결제상태</option>
                                             </select>
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
@@ -108,8 +107,8 @@
                                             </button>
                                         </div>
                                     </div>
-                                
                                 </div>
+                                <!-- 검색1번 -->
 
                                 <!-- 날짜 Search -->
                                 <div class="" style="justify-content: center; display: flex; margin-bottom: 10px;">
@@ -134,6 +133,34 @@
                                     </div>
                                     
                                 </div>
+
+                                <!-- 검색3번 -->
+                                <div class="" style="display: flex; margin-bottom: 5px;">
+                                    <div class="input-group">
+                                        <div class="searchprebox">
+                                            결제상태
+                                        </div>
+                                        <div class="search-category" id="search-category">
+                                            
+                                            <select name="payresultSearch" class="custom-select custom-select-sm form-control form-control-sm">
+                                                <option class="kindss" value="">선택하세요</option>
+                                                <option class="kindss" value="1">결제대기</option>
+                                                <option class="kindss" value="2">결제완료</option>
+                                                <option class="kindss" value="3">결제취소</option>
+                                            </select>
+                                        </div>
+                                        <!-- <input name="pay_result" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
+                                            aria-label="Search" aria-describedby="basic-addon2"> -->
+                                        
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 검색3번 -->
+
                             </form>
 
                             <!-- 부트스트랩표 -->
@@ -258,6 +285,18 @@
                 break;
             }
         }
+
+        let kk = '${param.payresultSearch}';
+        const kindss = document.getElementsByClassName('kindss');
+
+        for(let i=0;i<kindss.length;i++) {
+            if(kk==kindss[i].value) {
+                kindss[i].selected=true;
+                break;
+            }
+        }
+
+
 
         
     

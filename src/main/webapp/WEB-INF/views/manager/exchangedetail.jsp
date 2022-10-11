@@ -84,27 +84,7 @@
                             <div style="margin-bottom: 10px; background: lavender;">
                                 <form action="./orderUpdateStatus" method="get" style="display: flex;">
                                     <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox1" value="주문취소">
-                                        <label class="form-check-label" for="inlineCheckbox1">상품준비중</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송중">
-                                        <label class="form-check-label" for="inlineCheckbox2">배송중</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">배송완료</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소신청">
-                                        <label class="form-check-label" for="inlineCheckbox2">취소신청</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">취소완료</label>
-                                    </div>
-                                    <br>
+                                    
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환신청">
                                         <label class="form-check-label" for="inlineCheckbox2">교환신청</label>
@@ -117,18 +97,7 @@
                                         <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환완료">
                                         <label class="form-check-label" for="inlineCheckbox2">교환완료</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품신청">
-                                        <label class="form-check-label" for="inlineCheckbox2">반품신청</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품진행">
-                                        <label class="form-check-label" for="inlineCheckbox2">반품진행</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">반품완료</label>
-                                    </div>
+                                    
                                     </div>
 
                                     <!-- <div style="width: 35%;">

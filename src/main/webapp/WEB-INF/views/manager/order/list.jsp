@@ -93,7 +93,7 @@
                                                 <option class="kinds" value="user_id">주문자ID</option>
                                                 <option class="kinds" value="item_name">상품이름</option>
                                                 <option class="kinds" value="item_num">상품번호</option>
-                                                <option class="kinds" value="ord_status">처리상태</option>
+                                                <option class="kinds" value="ord_status">주문상태</option>
                                             </select>
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"

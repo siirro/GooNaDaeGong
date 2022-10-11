@@ -74,5 +74,26 @@ public class OrdersDAO {
 		
 		return sqlsession.selectOne(NAMESPACE+"getListCount", map);
 	}
+	
+	public Long countNewOrder()throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"countNewOrder", NAMESPACE);
+	}
+	
+	public Long countNewCancel()throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"countNewCancel", NAMESPACE);
+	}
+	
+	public Long countNewExchange()throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"countNewExchange", NAMESPACE);
+	}
+
+	public Long countNewRefund()throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"countNewRefund", NAMESPACE);
+	}
+	
+	public Long countNewQna()throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"countNewQna", NAMESPACE);
+	}
+
 
 }

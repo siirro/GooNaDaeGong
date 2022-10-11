@@ -89,9 +89,9 @@ public class ManagerController {
 	
 //	==============================QNA 조회=========================
 	@RequestMapping(value = "qna/list", method=RequestMethod.GET)
-	public ModelAndView managerQnaList(Pager pager)throws Exception{
+	public ModelAndView managerQnaList(Pager pager, String qna_status)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<QnaDTO> ar = qnaService.getList(pager);
+		List<QnaDTO> ar = qnaService.getList(pager, qna_status);
 		System.out.println(ar.size());
 		
 		mv.addObject("qnalist", ar);

@@ -70,12 +70,11 @@
                         <div class="card-header py-3" style="display: flex">
                             <h6 class="font-weight" style="color: #6667AB; margin: auto 0px;">반품신청 상세</h6>
                             
-                            <form action="./payDetail?merchant_uid=" method="post" style="margin-left: auto;">
-                                <button disabled="" type="submit" data-qna-num="" id="statusChange" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="background-color: rgb(126, 107, 155); border-color: rgb(126, 107, 155); ">
+                            <button onclick="location.href='./payment?kind=merchant_uid&search=${ordersDTO.merchant_uid}'"
+                                type="submit" data-qna-num="" id="statusChange" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="background-color: rgb(126, 107, 155); border-color: rgb(126, 107, 155); margin-left: auto;">
                                     결제취소로
                                       
-                                </button>
-                            </form>
+                            </button>
 
                         </div>
                         <div class="card-body" style="zoom: 0.8;">
@@ -84,39 +83,7 @@
                             <div style="margin-bottom: 10px; background: lavender;">
                                 <form action="./orderUpdateStatus" method="get" style="display: flex;">
                                     <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox1" value="주문취소">
-                                        <label class="form-check-label" for="inlineCheckbox1">상품준비중</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송중">
-                                        <label class="form-check-label" for="inlineCheckbox2">배송중</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="배송완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">배송완료</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소신청">
-                                        <label class="form-check-label" for="inlineCheckbox2">취소신청</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="취소완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">취소완료</label>
-                                    </div>
-                                    <br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환신청">
-                                        <label class="form-check-label" for="inlineCheckbox2">교환신청</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환진행">
-                                        <label class="form-check-label" for="inlineCheckbox2">교환진행</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="교환완료">
-                                        <label class="form-check-label" for="inlineCheckbox2">교환완료</label>
-                                    </div>
+                                    
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" name="ord_status" type="checkbox" id="inlineCheckbox2" value="반품신청">
                                         <label class="form-check-label" for="inlineCheckbox2">반품신청</label>

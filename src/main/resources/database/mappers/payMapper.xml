@@ -23,7 +23,10 @@ SELECT *
 		</choose>
 		LIKE '%'||#{search}||'%' 
 	<if  test= "searchdate1 != null">
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>
+	<if  test= "payresultSearch != null">
+		AND PAY_RESULT = #{payresultSearch}
 	</if>	
 	ORDER BY PAY_DATE DESC) P)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -39,7 +42,10 @@ SELECT COUNT(IMP_UID) FROM PAY
 		</choose>
 		LIKE '%'||#{search}||'%' 
 	<if  test= "searchdate1 != null">
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>	
+	<if  test= "payresultSearch != null">
+		AND PAY_RESULT = #{payresultSearch}
 	</if>	
 	ORDER BY PAY_DATE DESC
 </select>

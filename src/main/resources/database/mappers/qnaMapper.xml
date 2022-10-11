@@ -33,6 +33,9 @@ SELECT * FROM
 					<otherwise>USER_ID</otherwise>
 				</choose>
 			LIKE '%'||#{search}||'%'
+			<if  test= "qna_status != null">
+				AND QNA_STATUS = #{qna_status}
+			</if>
 			ORDER BY QNA_NUM DESC)
 		N)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -47,6 +50,9 @@ SELECT * FROM
 		<otherwise>USER_ID</otherwise>
 	</choose>
 	LIKE '%'||#{search}||'%'
+	<if  test= "qna_status != null">
+		AND QNA_STATUS = #{qna_status}
+	</if>
 </select>
 	
 <select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">

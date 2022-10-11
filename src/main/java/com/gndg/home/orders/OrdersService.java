@@ -43,5 +43,23 @@ public class OrdersService {
 		List<OrdersDTO> ar = ordersDAO.getList(orderPager, ordersDTO);
 		return ar;
 	}
+	
+//	얘네들 매니저인덱스에서 쓸거니까 홈컨트롤러로간다
+	public Long countNewOrder()throws Exception{
+		return ordersDAO.countNewOrder();
+	}
+	public Long countNewCancel()throws Exception{
+		return ordersDAO.countNewCancel();
+	}
+	public Long countNewExchange()throws Exception{
+		return ordersDAO.countNewExchange();
+	}
+	public Long countNewRefund()throws Exception{
+		return ordersDAO.countNewRefund();
+	}
+	
+	public Long countNewQna()throws Exception{
+		return ordersDAO.countNewQna();
+	}
 
 }

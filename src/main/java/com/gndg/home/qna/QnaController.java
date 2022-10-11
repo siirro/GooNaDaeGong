@@ -22,6 +22,15 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@GetMapping("inquiryUpdate")
+	public ModelAndView updateQna(QnaDTO qnaDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		qnaDTO = qnaService.getDetail(qnaDTO);
+		mv.addObject("qnaDTO", qnaDTO);
+		mv.setViewName("qna/inquiryUpdate");
+		return mv;
+	}
+	
 	@GetMapping("inquiry")
 	public ModelAndView addQna(HttpSession session)throws Exception {
 		ModelAndView mv = new ModelAndView();

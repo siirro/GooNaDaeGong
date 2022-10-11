@@ -99,7 +99,7 @@
                                     <div class="css-1bbz142 e1437c640">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="../qna/inquiry">
+                                                <a href="../qna/inquiry?merchant_uid=${order.merchant_uid}">
                                                 1:1 문의
                                                 </a>
                                             </span>

@@ -40,24 +40,27 @@ public class QnaDAO {
 	
 
 	// qna 전체 리스트 - 관리자메뉴, 코드, 서치, 페이지
-	public List<QnaDTO> getList(Pager pager)throws Exception{
+	public List<QnaDTO> getList(Pager pager, String qna_status)throws Exception{
 		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("startRow", pager.getStartRow());
 		map.put("lastRow", pager.getLastRow());
 		map.put("search", pager.getSearch());
 		map.put("kind", pager.getKind());
+		map.put("qna_status", qna_status);
 		
 		return sqlSession.selectList(NAMESPACE+"getList", map);
 	}
 	
 	// qna 전체 리스트 - 글갯수
-	public Long getCount(Pager pager)throws Exception{
+	public Long getCount(Pager pager, String qna_status)throws Exception{
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("startRow", pager.getStartRow());
 		map.put("lastRow", pager.getLastRow());
 		map.put("search", pager.getSearch());
 		map.put("kind", pager.getKind());
+		map.put("qna_status", qna_status);
+
 		
 		return sqlSession.selectOne(NAMESPACE+"getCount", map);
 	}

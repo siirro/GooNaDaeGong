@@ -50,42 +50,52 @@ SYSDATE, #{ord_total1}, #{ord_delfree}, #{ord_total2},
 #{ord_phone}, #{ord_memo})
 </insert>
 
-<select id="getList" parameterType="Map" resultType="OrdersDTO">
+<select id="getList" parameterType="Map" resultMap="detailResult">
 SELECT * FROM
 (SELECT ROWNUM R, O.* 
 FROM
-	(SELECT * FROM ORDERS 
+	(SELECT * 
+	FROM ORDERS OO
+	JOIN GOODSORDER GO
+	ON OO.MERCHANT_UID = GO.MERCHANT_UID
+	JOIN ITEM I
+	ON GO.ITEM_NUM = I.ITEM_NUM
 	WHERE 
 		<choose>
-				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
-				<when test="kind == 'user_id'">USER_ID</when>
-				<when test="kind == 'item_name'">ITEM_NAME</when>
-				<when test="kind == 'item_num'">ITEM_NUM</when>
-				<otherwise>ORD_STATUS</otherwise>
+				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
+				<when test="kind == 'user_id'">OO.USER_ID</when>
+				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
+				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%'
 		<if  test= "searchdate1 != null">
 		
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND OO.ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>  
 		  
-	ORDER BY ORD_DATE DESC) O)
+	ORDER BY OO.ORD_DATE DESC) O)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
 
 <select id="getListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(MERCHANT_UID) FROM ORDERS 
+	SELECT COUNT(OO.MERCHANT_UID) 
+	FROM ORDERS OO
+	JOIN GOODSORDER GO
+	ON OO.MERCHANT_UID = GO.MERCHANT_UID
+	JOIN ITEM I
+	ON GO.ITEM_NUM = I.ITEM_NUM 
 	WHERE 
 		<choose>
-				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
-				<when test="kind == 'user_id'">USER_ID</when>
-				<when test="kind == 'item_name'">ITEM_NAME</when>
-				<when test="kind == 'item_num'">ITEM_NUM</when>
-				<otherwise>ORD_STATUS</otherwise>
+				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
+				<when test="kind == 'user_id'">OO.USER_ID</when>
+				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
+				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%'
 		<if  test= "searchdate1 != null">
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND OO.ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>
 		
 </select>
@@ -129,9 +139,47 @@ WHERE O.MERCHANT_UID=#{merchant_uid}
 
 </resultMap>
 
+<!-- 매니저인덱스-홈- 새 주문 수 노출 -->
 
+<!-- 새 주문의 개수 (상태가 결제완료인 아이들) -->
+<select id="countNewOrder" resultType="Long">
+    SELECT COUNT(MERCHANT_UID) 
+    FROM ORDERS
+    WHERE ORD_STATUS = '결제완료'
+</select>
 
+<!-- 새 취소글의 개수 (상태가 취소신청인 아이들) -->
+<select id="countNewCancel" resultType="Long">
+    SELECT COUNT(CAN_NUM) 
+    FROM CANCEL C
+    JOIN ORDERS O
+    ON C.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '취소신청'
+</select>
 
+<!-- 새 교환글의 개수 (상태가 교환신청인 아이들) -->
+<select id="countNewExchange" resultType="Long">
+    SELECT COUNT(EXC_NUM) 
+    FROM EXCHANGE E
+    JOIN ORDERS O
+    ON E.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '교환신청'
+</select>
+
+<!-- 새 반품글의 개수 (상태가 반품신청인 아이들) -->
+<select id="countNewRefund" resultType="Long">
+    SELECT COUNT(REF_NUM) 
+    FROM REFUND R
+    JOIN ORDERS O
+    ON R.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '반품신청'
+</select>
+
+<select id="countNewQna" resultType="Long">
+    SELECT COUNt(QNA_NUM)
+    FROM QNA
+    WHERE QNA_STATUS = '대기'
+</select>
 
 
 
