@@ -13,6 +13,10 @@ public class PayService {
 	@Autowired
 	private PayDAO payDAO;
 	
+	public int cancelPayment(PayDTO payDTO)throws Exception{
+		return payDAO.cancelPayment(payDTO);
+	}
+	
 	public List<PayDTO> getList(OrderPager orderPager)throws Exception{
 		Long totalCount = payDAO.getListCount(orderPager);
 		orderPager.getNum(totalCount);

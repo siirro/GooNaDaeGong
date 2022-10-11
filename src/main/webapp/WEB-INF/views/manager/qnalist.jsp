@@ -191,7 +191,6 @@
         }
 
     </script>
-    <script src="/resources/js/manager/qnalist.js"></script>
 
 </body>
 

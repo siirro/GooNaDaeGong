@@ -15,6 +15,10 @@ public class PayDAO {
 	private SqlSession sqlsession;
 	private final String NAMESPACE = "com.gndg.home.pay.PayDAO.";
 	
+	public int cancelPayment(PayDTO payDTO)throws Exception{
+		return sqlsession.update(NAMESPACE+"cancelPayment", payDTO);
+	}
+	
 	public List<PayDTO> getList(OrderPager orderPager)throws Exception{
 		return sqlsession.selectList(NAMESPACE+"getList", orderPager);
 	}

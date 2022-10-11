@@ -14,6 +14,15 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<!-- REST API를 자바로 끌고올때 (결제취소) -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version>
+		</dependency>
+
 	
 		<!-- 카카오 소셜로그인때문에 넣음 -->
 		<!-- JSON객체 파싱에 유용한 Gson 외부 라이브러리 Dependency 추가 -->

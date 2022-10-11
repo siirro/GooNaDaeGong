@@ -1,17 +1,44 @@
 package com.gndg.home.manager;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.mail.HtmlEmail;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.cancel.CancelDTO;
 import com.gndg.home.cancel.CancelService;
 import com.gndg.home.cancel.ExchangeDTO;
@@ -46,7 +73,7 @@ public class ManagerController {
 	@Autowired
 	private PayService payService;
 	
-	
+	String token;
 	
 	
 	//============================================================
@@ -115,7 +142,21 @@ public class ManagerController {
 		
 		String message = "처리상태 변경 실패";
 		if(result!=0) {
-			message = "1대1 문의 처리상태를 변경했습니다.";
+			message = "1대1 문의 처리상태를 완료로 변경했습니다. 회원에게 답변 알림 이메일이 발송됩니다.";
+//			이메일 발송.
+//			HtmlEmail email = new HtmlEmail();
+//			email.setHostName("smtp.gmail.com");
+//			email.setSmtpPort(587);
+//			email.setCharset("euc-kr");
+//			email.addTo(RecieverEmailAddress, RecieverName);
+//			email.setFrom(SenderEmailAddress, SenderName);
+//			email.setSubject(EmailSubject);
+//			email.setHtmlMsg(EmailContentInHtmlForm);
+//			
+//			email.send();
+			
+			
+//			
 		}
 		
 				
@@ -328,6 +369,65 @@ public class ManagerController {
 	public ModelAndView getListPay(OrderPager orderPager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<PayDTO> ar = payService.getList(orderPager);
+		
+		
+		//rest api 토큰 발급받기
+		HttpURLConnection conn = null;
+		String access_token = null;
+		URL url = new URL("https://api.iamport.kr/users/getToken");
+		conn = (HttpURLConnection)url.openConnection();
+		
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("imp_key", "7781488188655887");
+		obj.put("imp_secret", "zZUHA0UdodAq48a1ljvk6dqpMh6DAbOR5LhIVjRuusLTmR3akP2UZfDvUnLkeRCoB9oYXIsxhF1wABIp");
+		
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+		bw.write(obj.toString());
+		bw.flush();
+		bw.close();
+		
+		int result = 0;
+		int responseCode = conn.getResponseCode();
+		System.out.println("응답 코드 : "+responseCode);
+		if(responseCode == 200) {
+			System.out.println("코드를발급받았다");
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			br.close();
+			String gg = sb.toString();
+			System.out.println(gg);
+			result = 1;
+			
+			JSONParser jsonParser = new JSONParser();
+
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(gg);
+
+			if((Long)jsonObj.get("code") == 0){
+			JSONObject getToken = (JSONObject) jsonObj.get("response");
+			System.out.println("getToken==>>"+getToken.get("access_token"));
+			token = (String)getToken.get("access_token");
+			System.out.println("진짜토근 : "+token);
+			mv.addObject("access_token", token);
+			
+			
+			
+
+			
+
+			}
+		} else {
+			System.out.println(conn.getResponseMessage());
+		}
+		
 		mv.addObject("list", ar);
 		mv.setViewName("manager/order/paylist");
 		
@@ -338,7 +438,61 @@ public class ManagerController {
 
 	
 	
-	//============================================================
+	//===============================결제취소=============================
+	
+	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수
+	private List<NameValuePair> convertParameter(Map<String,String> paramMap){
+		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
+		
+		Set<Entry<String,String>> entries = paramMap.entrySet();
+		
+		for(Entry<String,String> entry : entries) {
+			paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+		}
+		return paramList;
+	}
+
+	
+	@PostMapping("mall/cancelPayment")
+	@ResponseBody
+	public String cancelPayment(@RequestBody PayDTO params, PayDTO payDTO)throws Exception{
+		String jsonResult = "";
+		
+		// 결제취소
+		
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPost post = new HttpPost("https://api.iamport.kr/payments/cancel");
+		Map<String, String> map = new HashMap<String, String>();
+		post.setHeader("Authorization", token);
+		map.put("merchant_uid", params.getMerchant_uid().toString());
+		String asd = "";
+		try {
+			
+			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
+			HttpResponse res = client.execute(post);
+			ObjectMapper mapper = new ObjectMapper();
+			String enty = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(enty);
+			asd = rootNode.get("response").asText();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (asd.equals("null")) {
+			System.err.println("환불실패");
+			int result1 = 0;
+			jsonResult = "{\"result\":\""+result1+"\"}";
+			
+		} else {
+			System.err.println("환불성공");
+			payDTO.setMerchant_uid(params.getMerchant_uid());
+			int result1 = payService.cancelPayment(payDTO);
+			jsonResult = "{\"result\":\""+result1+"\"}";
+		}
+		
+
+		return jsonResult;
+	}
 
 	
 	

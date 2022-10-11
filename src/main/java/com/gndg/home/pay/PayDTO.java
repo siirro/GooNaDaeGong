@@ -8,7 +8,7 @@ public class PayDTO {
 	private Long merchant_uid;
 	private Long pay_total;
 	private Long pay_result;
-	private String pay_date;
+	private Date pay_date;
 	
 	public String getImp_uid() {
 		return imp_uid;
@@ -34,12 +34,13 @@ public class PayDTO {
 	public void setPay_result(Long pay_result) {
 		this.pay_result = pay_result;
 	}
-	public String getPay_date() {
+	public Date getPay_date() {
 		return pay_date;
 	}
-	public void setPay_date(String pay_date) {
+	public void setPay_date(Date pay_date) {
 		this.pay_date = pay_date;
 	}
+
 	
 	
 

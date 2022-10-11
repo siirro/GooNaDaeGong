@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +29,12 @@
     <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
 
     <style>
-        .reporttr:hover {
-            cursor: pointer;
+
+        #cancelbtn:hover {
+            background-color: #6667AB;
+            color: aliceblue;
         }
+        
 
         .searchprebox {
             width: 80px;
@@ -79,6 +83,7 @@
 
                             <!-- 내용 Search -->
                             <form action="./payment" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <input type="hidden" value="${access_token}" id="access_token">
                                 <div class="" style="display: flex; margin-bottom: 5px;">
                                 
                             
@@ -89,9 +94,9 @@
                                         <div class="search-category" id="search-category">
                                             
                                             <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option class="kinds" value="merchant_uid">결제번호</option>
-                                                <option class="kinds" value="user_id">주문번호</option>
-                                                <option class="kinds" value="ord_status">결제상태</option>
+                                                <option class="kinds" value="merchant_uid">주문번호</option>
+                                                <option class="kinds" value="imp_uid">결제번호</option>
+                                                <option class="kinds" value="pay_result">결제상태</option>
                                             </select>
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
@@ -140,19 +145,40 @@
                                         <tr>
                                             <th class="col-2">결제일</th>
                                             <th class="col-2">결제번호</th>
-                                            <th class="col-1">주문번호</th>
-                                            <th class="col-1">총결제액</th>
-                                            <th class="col-2">결제상태</th>
+                                            <th class="col-2">주문번호</th>
+                                            <th class="col-2">총결제액</th>
+                                            <th class="col-1">결제상태</th>
+                                            <th class="col-1">결제취소하기</th>
+
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
-                                          <c:forEach items="${list}" var="nl">
+                                          <c:forEach items="${list}" var="nl" varStatus="status">
                                              <tr class="reporttr">
                                                 <td><fmt:formatDate value="${nl.pay_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                                <td>${nl.imp_uid}원</td>
+                                                <td>${nl.imp_uid}</td>
                                                 <td>${nl.merchant_uid}</td>
-                                                <td>${nl.pay_amount}원</td>
-                                                <td>${nl.pay_result}</td>
+                                                <td>${nl.pay_total}원</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${nl.pay_result eq 1}">
+                                                            결제대기
+                                                        </c:when>
+                                                        <c:when test="${nl.pay_result eq 2}">
+                                                            결제완료
+                                                        </c:when>
+                                                        <c:when test="${nl.pay_result eq 3}">
+                                                            결제취소
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            오류
+                                                        </c:otherwise>
+                                                
+                                                
+                                                    </c:choose>
+                                                </td>
+                                                <td id="cancelbtn" onclick=" cancelPay('${nl.imp_uid}','${nl.merchant_uid}','${nl.pay_total}');" style="cursor: pointer;">취소</td>
+
                                             </tr>
                                             </c:forEach>
                                       </tbody>
@@ -220,6 +246,8 @@
     <!-- Custom scripts for all pages-->
     <script src="/resources/js/manager/sb-admin-2.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <script>
         let k = '${param.kind}';
         const kinds = document.getElementsByClassName('kinds');
@@ -231,7 +259,89 @@
             }
         }
 
+        
+    
 
+        // 
+       
+
+        function cancelPay(imp_uid, merchant_uid, pay_total) {
+
+            let check = confirm("결제를 취소하시겠습니까?")
+            if(check) {
+
+                // axios({
+                //     url: "https://api.iamport.kr/users/getToken",
+                //     method: "post", // POST method
+                //     headers: { "Content-Type": "application/json" }, // "Content-Type": "application/json"
+                //     data: {
+                //     imp_key: "7781488188655887", // REST API키
+                //     imp_secret: "zZUHA0UdodAq48a1ljvk6dqpMh6DAbOR5LhIVjRuusLTmR3akP2UZfDvUnLkeRCoB9oYXIsxhF1wABIp" // REST API Secret
+                //     }
+                // });
+
+                // let access_token = document.getElementById("access_token");
+
+
+                // getRefundData = async ({
+                // imp_uid,
+                // pay_total,
+                // access_token,
+                // }) => {
+                //     const refundData = await axios({
+                //     url: 'https://api.iamport.kr/payments/cancel',
+                //     method: 'post',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         Authorization: `Bearer ${access_token}`, // 아임포트 서버로부터 발급받은 엑세스 토큰
+                //     },
+                //     data: {
+                //         reason: "테스트 환불", // 가맹점 클라이언트로부터 받은 환불사유
+                //         imp_uid: imp_uid, // imp_uid를 환불 `unique key`로 입력
+                //         amount: Math.abs(pay_total), // 가맹점 클라이언트로부터 받은 환불금액
+                //     },
+                //     });
+
+                //     const { response } = refundData.data;
+
+                // }
+
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST","./cancelPayment");
+                xhttp.setRequestHeader("Content-type","application/json");
+                xhttp.send(
+                    JSON.stringify({
+                        "merchant_uid": merchant_uid, // 
+                        "cancel_request_amount": pay_total, // 환불금액
+                        "reason": "테스트 결제 환불" // 환불사유
+                    })
+                );
+                //5.응답처리
+                            
+                xhttp.onreadystatechange=function(){
+                    if(this.readyState==4 && this.status==200){
+
+                        let result = xhttp.responseText.trim();
+                        result = JSON.parse(result);
+                        console.log("1뜨면 결제취소DB성공 : "+result.result);
+
+                        if(result.result==1) {
+                        
+                            console.log("DB 끝..");
+                            document.location.href="./payment";
+
+                        } else {
+                            console.log("DB 실패..");
+                        }
+
+                    };
+                };
+
+            } else {
+                alert("결제취소 요청이 취소되었습니다.")
+            }
+        }
         
 
     </script>
