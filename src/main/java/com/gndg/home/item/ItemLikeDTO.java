@@ -8,8 +8,8 @@ public class ItemLikeDTO {
 	private Long item_num;
 	private String user_id;
 	
-	private ItemDTO gnItemDTO;
-	private List<ItemFileDTO> gnItemFileDTOs;
+	private ItemDTO itemDTO;
+	private List<ItemFileDTO> itemFileDTOs;
 	
 	public Long getLike_num() {
 		return like_num;
@@ -29,17 +29,18 @@ public class ItemLikeDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-    public ItemDTO getGnItemDTO() {
-        return gnItemDTO;
+    public ItemDTO getItemDTO() {
+        return itemDTO;
     }
-    public void setGnItemDTO(ItemDTO gnItemDTO) {
-        this.gnItemDTO = gnItemDTO;
+    public void setItemDTO(ItemDTO itemDTO) {
+        this.itemDTO = itemDTO;
     }
-    public List<ItemFileDTO> getGnItemFileDTOs() {
-        return gnItemFileDTOs;
+    public List<ItemFileDTO> getItemFileDTOs() {
+        return itemFileDTOs;
     }
-    public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
-        this.gnItemFileDTOs = gnItemFileDTOs;
+    public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+        this.itemFileDTOs = itemFileDTOs;
     }
+  
 	
 }

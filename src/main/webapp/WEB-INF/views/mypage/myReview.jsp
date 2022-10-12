@@ -90,7 +90,7 @@
                                                             <span class="css-a5dfz6 ecg7plp0"></span>
                                                             <span class="css-aq9a2j e94cdlt0">
                                                                 <a href="#">
-                                                                    ${rev.ItemDTO.item_title}
+                                                                    ${rev.itemDTO.item_title}
                                                                 </a>
                                                             </span>
                                                         </div>

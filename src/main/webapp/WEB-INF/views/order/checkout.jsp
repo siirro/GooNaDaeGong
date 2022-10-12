@@ -45,24 +45,24 @@
                                 <div class="css-bd9p1l e17a7yib9">
 
                                     <span class="css-1w0uptv e17a7yib8">
-                                        <img src="../../resources/upload/gnItem/${l.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="1000px" style="cursor: pointer;">
+                                        <img src="../../resources/upload/item/${l.itemDTO.itemFileDTOs[0].fileName}" alt="" width="1000px" style="cursor: pointer;">
                                     </span>
 
-                                    <!-- 아이폰 14 지우고 ${l.gnItemDTO.item_title} -->
+                                    <!-- 아이폰 14 지우고 ${l.itemDTO.item_title} -->
                                     <span class="css-10nl60h e17a7yib7">
-                                        <span class="css-1f86gv6 e17a7yib6">${l.gnItemDTO.item_title}</span>
+                                        <span class="css-1f86gv6 e17a7yib6">${l.itemDTO.item_title}</span>
                                     </span>
-                                    <input type="hidden" name="item_title" class="item_title" value="${l.gnItemDTO.item_title}">
+                                    <input type="hidden" name="item_title" class="item_title" value="${l.itemDTO.item_title}">
 
                                     <!-- 1 지우고 ${l.item_count} -->
                                     <span class="css-1efb5i1 e17a7yib4">${l.item_count}개</span>
                                     <input type="hidden" name="item_count" class="item_count" value="${l.item_count}">
 
-                                    <!-- 100 지우고 ${l.gnItemDTO.item_price} -->
+                                    <!-- 100 지우고 ${l.itemDTO.item_price} -->
                                     <span class="css-1j31gob e17a7yib3">
-                                        <span class="css-jnogx7 e17a7yib0">${l.gnItemDTO.item_price}원</span>
+                                        <span class="css-jnogx7 e17a7yib0">${l.itemDTO.item_price}원</span>
                                     </span>
-                                    <input type="hidden" name="item_price" class="item_price" value="${l.gnItemDTO.item_price}">
+                                    <input type="hidden" name="item_price" class="item_price" value="${l.itemDTO.item_price}">
                                     <input type="hidden" name="item_num" class="item_num" value="${l.item_num}">
 
                                 </div>

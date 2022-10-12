@@ -27,9 +27,9 @@ public class OrderDTO {
     //1:1
     
     private PayDTO payDTO;
-    private List<ItemDTO> gnItemDTOs;
+    private List<ItemDTO> itemDTOs;
     private List<GoodsOrderDTO> goodsOrderDTOs;
-    private List<ItemFileDTO> gnItemFileDTOs;
+    private List<ItemFileDTO> itemFileDTOs;
     
     public Long getMerchant_uid() {
         return merchant_uid;
@@ -115,23 +115,11 @@ public class OrderDTO {
     public void setPayDTO(PayDTO payDTO) {
         this.payDTO = payDTO;
     }
-    public List<ItemDTO> getGnItemDTOs() {
-        return gnItemDTOs;
-    }
-    public void setGnItemDTOs(List<ItemDTO> gnItemDTOs) {
-        this.gnItemDTOs = gnItemDTOs;
-    }
     public List<GoodsOrderDTO> getGoodsOrderDTOs() {
         return goodsOrderDTOs;
     }
     public void setGoodsOrderDTOs(List<GoodsOrderDTO> goodsOrderDTOs) {
         this.goodsOrderDTOs = goodsOrderDTOs;
-    }
-    public List<ItemFileDTO> getGnItemFileDTOs() {
-        return gnItemFileDTOs;
-    }
-    public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
-        this.gnItemFileDTOs = gnItemFileDTOs;
     }
     public String getOrd_memo() {
         return ord_memo;

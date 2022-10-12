@@ -13,6 +13,8 @@ public class ItemReviewDTO {
 	private String rv_file;
 	private String fileName;
 	
+	private ItemDTO itemDTO;
+	
 	public Long getRv_num() {
 		return rv_num;
 	}
@@ -67,6 +69,13 @@ public class ItemReviewDTO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+    public ItemDTO getItemDTO() {
+        return itemDTO;
+    }
+    public void setItemDTO(ItemDTO itemDTO) {
+        this.itemDTO = itemDTO;
+    }
+
 	
 
 	

@@ -62,7 +62,7 @@
 		            <div class="css-i3aepa e1c07x4811">
 		                <div class="css-1u8qly9 e1c07x489">
 		                    <div class="e1c07x4810 css-1qpsnts e3um3060">
-		                        <img src="../resources/upload/gnItem/${like.ItemFileDTOs[0].fileName}" alt="상품 이미지" loading="lazy">
+		                        <img src="../resources/upload/gnItem/${like.itemFileDTOs[0].fileName}" alt="상품 이미지" loading="lazy">
                                 <span>
                                     <c:choose>
                                         <c:when test="${like eq null }">
@@ -88,9 +88,9 @@
 		                    </div>
 		                </div>
 		                <div class="css-c1cgl e1c07x486">
-		                    <div class="css-1qsrhd e1c07x485">상품이름 ${like.ItemDTO.item_title}</div>
+		                    <div class="css-1qsrhd e1c07x485">상품이름 ${like.itemDTO.item_title}</div>
 		                    <div class="e1c07x484 css-1drr403 ei5rudb2">
-		                        <span class="sales-price css-1qe668a ei5rudb1">상품가격 ${like.ItemDTO.item_price}원</span>
+		                        <span class="sales-price css-1qe668a ei5rudb1">상품가격 ${like.itemDTO.item_price}원</span>
 		                    </div>
 		                </div>
 		            </div>

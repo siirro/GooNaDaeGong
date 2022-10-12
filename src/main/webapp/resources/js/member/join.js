@@ -45,7 +45,7 @@ var idJ = /^[a-z0-9][a-z0-9_\-]{4,12}$/;
 // 비밀번호 정규식
 var pwJ = /^[A-Za-z0-9]{4,12}$/;
 // 이름 정규식
-var nameJ = /^[a-z0-9가-힣]{5,12}$/;
+var nameJ = /^[a-z0-9가-힣]{3,12}$/;
 // 이메일 검사 정규식
 var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -106,7 +106,7 @@ user_pw2.addEventListener("blur",function(){
 user_name.addEventListener("blur",function(){
     console.log("이름 체크해라");
     nameCheck= false;
-    if(user_name.value.length>5){
+    if(user_name.value.length>2){
         name_check.innerHTML="";
         nameCheck=true;
     }else{
