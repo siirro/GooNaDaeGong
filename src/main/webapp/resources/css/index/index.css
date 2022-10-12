@@ -2,30 +2,6 @@
     box-sizing: border-box;
 }
 
-/* 헤더 카테고리*/
-ul ul {
-	display: none;
-	
-}
-ul li:hover > ul {
-    display: block;
-}
-
-ul ul ul {
-	display: none;
-}
-ul ul li:hover > ul {
-    display: block;
-}
-
-ul ul ul ul {
-	display: none;
-}
-ul ul ul li:hover > ul {
-    display: block;
-}
-
-
 body {
     margin: 0;
     min-width: 992px;

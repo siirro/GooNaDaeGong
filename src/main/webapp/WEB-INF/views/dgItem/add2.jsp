@@ -11,7 +11,7 @@
     <title>상품 등록 페이지</title>
 
     <!-- 상품등록페이지 css -->
-    <link href="/resources/css/dg/addItem.css" rel="stylesheet">
+    <link href="/resources/css/dg/add.css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,13 +39,28 @@
                                 <div class="Title__EssentialMark-dmi4ru-2 jXKHON">*</div>
                             </dt>
                             <div class="count_img">
-                                (<span>0</span>/12)
+                                (<span>0</span>/5)
                             </div>
-                            <dd>
+                            <dd class="dd">
                                 <input type="file" multiple="" class="multiple" id="multiple">
                                 <img src="https://ccimage.hellomarket.com/img/web/regist/image_camera_x3.png"
                                     alt="기본 상품 등록 이미지" class="default">
-                                <ul class="image_list"></ul>
+                                    
+                                <!-- 이미지 첨부 시 여기에 올라감 -->
+                                <ul class="image_list">
+                                    <li>
+                                        <div class="up_img_box">
+                                            <img src="https://ccimage.hellomarket.com/img/web/regist/image_delete_x3.png" class="img_delete_icon" alt="상품 썸네일 제거 아이콘">
+                                            <img src="https://ccimg.hellomarket.com/upload_temp/kr/item/10/08/7513a5f6-7bfb-40f9-b862-73899f621015_1665225727639.png" class="item_img" alt="상품 썸네일">
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="up_img_box">
+                                            <img src="https://ccimage.hellomarket.com/img/web/regist/image_delete_x3.png" class="img_delete_icon" alt="상품 썸네일 제거 아이콘">
+                                            <img src="https://ccimg.hellomarket.com/upload_temp/kr/item/10/08/7513a5f6-7bfb-40f9-b862-73899f621015_1665225727639.png" class="item_img" alt="상품 썸네일">
+                                        </div>
+                                    </li>
+                                </ul>
                             </dd>
                         </dl>
                         <dl class="regist_title" id="title">
@@ -169,7 +184,7 @@
     </div>
     <!-- Wrap End -->
 
-    <script src="/resources/js/dg/buy.js"></script>
+    <script src="/resources/js/dg/add.js"></script>
 </body>
 
 </html>

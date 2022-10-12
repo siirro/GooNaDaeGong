@@ -20,8 +20,23 @@ public class DgItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	/* 통합 검색 */
+	public List<DgItemDTO> getSearch(String search) throws Exception {
+		System.out.println("Service search");
+		
+		return dgItemDAO.getSearch(search); 
+	}
+	
+	/* 최근 본 상품 */
+	public List<DgItemFileDTO> getProduct(Long item_num) throws Exception {
+		System.out.println("Service product");
+		
+		return dgItemDAO.getProduct(item_num);
+	}
+	
 	/* 후기 가져오기 */
 	public List<DgItemReviewDTO> getReply(Long item_num) throws Exception {
+		System.out.println("Service getReply");
 		
 		return dgItemDAO.getReply(item_num);
 	}
@@ -55,11 +70,17 @@ public class DgItemService {
 		return dgItemDAO.getDetailItem(item_num);
 	}
 	
+	/* 상품 갯수 */
+//	public int getCount(Category category) throws Exception {
+//		
+//		return dgItemDAO.getCount(category);
+//	}
+//	
 	/* 상품목록 */
-	public List<DgItemDTO> getListItem() throws Exception {
+	public List<DgItemDTO> getListItem(DgItemDTO dgItemDTO) throws Exception {
 		System.out.println("Service List");
 		
-		return dgItemDAO.getListItem();
+		return dgItemDAO.getListItem(dgItemDTO);
 	}
 
 	/* 상품등록  + 상품이미지  */

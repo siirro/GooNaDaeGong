@@ -1,0 +1,694 @@
+/* 후기 내용 보는 법 */
+/* review_view - 후기 내용 */
+/* review_view -> display: block; */
+
+.title_txt {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.title_txt h2 {
+    margin-top: 50px;
+}
+
+.sort-wrap {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    position: relative;
+}
+
+.list_type1 {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    word-break: break-all;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.ico {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    list-style-type: none;
+    word-break: break-all;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    float: left;
+    width: 4px;
+    height: 4px;
+    margin: 7px 8px 0 0;
+    background-color: #514859;
+    vertical-align: 2px;
+}
+
+.txt {
+    -webkit-text-size-adjust: 100%;
+    list-style-type: none;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    overflow: hidden;
+    padding: 0;
+    font-size: 12px;
+    color: #666;
+    line-height: 18px;
+    letter-spacing: -.3px;
+}
+
+.emph {
+    -webkit-text-size-adjust: 100%;
+    list-style-type: none;
+    word-break: break-all;
+    font-size: 12px;
+    line-height: 18px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.sort {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    text-align: right;
+    bottom: -9px;
+}
+
+.xans-board-listheader {
+    -webkit-text-size-adjust: 100%;
+    word-break: break-all;
+    width: 100%;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    box-sizing: border-box;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 2px solid #522772;
+    margin: 15px 0 0;
+    color: #353535;
+    font-size: 12px;
+    line-height: 140%;
+    table-layout: fixed;
+}
+
+.input_txt {
+    -webkit-text-size-adjust: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #353535;
+    line-height: 140%;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    padding: 25px 0 23px;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.screen_out {
+    -webkit-text-size-adjust: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #353535;
+    word-break: break-all;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.tr_line {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.xans-board-listheaderd {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    word-break: break-all;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.subject {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid #e3e3e3;
+    vertical-align: middle;
+    height: auto;
+    padding: 20px 3px 22px;
+    line-height: 20px;
+    padding-left: 50px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.user_grade {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid #e3e3e3;
+    vertical-align: middle;
+    height: auto;
+    padding: 22px 0 23px;
+    line-height: 19px;
+    text-align: left;
+}
+
+.time {
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid #e3e3e3;
+    text-align: center;
+    vertical-align: middle;
+    height: auto;
+    padding: 20px 3px 22px;
+    line-height: 20px;
+    color: #939393;
+}
+
+.review-like-cnt {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    text-align: center;
+    line-height: 20px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.review_view {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: none;
+    padding: 10px 10px 11px;
+    border-top: 1px solid #e3e3e3;
+}
+
+.inner_review {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    width: 100%;
+    padding: 20px 9px 9px;
+    line-height: 25px;
+}
+
+.name_purchase {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    line-height: 25px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.name {
+    -webkit-text-size-adjust: 100%;
+    word-break: break-all;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    color: #514859;
+    line-height: 18px;
+}
+
+.package {
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    padding-top: 2px;
+    font-size: 14px;
+    color: #000;
+    line-height: 20px;
+}
+
+.review_photo {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    padding-top: 30px;
+    line-height: 16px;
+}
+
+.goods-review-grp-btn {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: right;
+}
+
+.fst {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 20px;
+    text-align: left;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.snd {
+    -webkit-text-size-adjust: 100%;
+    color: #4c4c4c;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 20px;
+    text-align: left;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: none;
+}
+
+.ico_grade {
+    -webkit-text-size-adjust: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    min-width: 38px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 30px;
+    font-size: 9px;
+    color: #fff;
+    line-height: 14px;
+    text-align: center;
+    border: 1px solid #6667AB;
+    background-color: #6667AB;
+}
+
+.styled-button {
+    -webkit-text-size-adjust: 100%;
+    word-break: break-all;
+    box-sizing: border-box;
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    border-radius: 0;
+    text-transform: none;
+    -webkit-appearance: button;
+    cursor: pointer;
+    max-width: 100%;
+    outline: none;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    border: 1px solid #5f0080;
+    background-color: #fff;
+    color: #5f0080;
+    text-align: center;
+    width: auto;
+    min-width: 75px;
+    padding: 0 15px;
+    line-height: 28px;
+    font-size: 12px;
+    height: 32px;
+}
+
+.btnArea {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid #6a3664;
+    padding: 10px 0;
+    text-align: right;
+    width: 100%;
+    display: table;
+}
+
+.bhs_button {
+    -webkit-text-size-adjust: 100%;
+    word-break: break-all;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    text-align: center;
+    background-color: #6667AB;
+    border: 1px solid #6667AB;
+    color: #fff;
+    float: right;
+    font-size: 13px;
+    margin: 20px 0 20px 5px;
+    line-height: 30px;
+    width: 130px;
+}
+
+.board_pg_area {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    clear: both;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.layout-pagination-button {
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    vertical-align: top;
+    font-weight: 700;
+    color: #333;
+    line-height: 34px;
+}
+
+.layout-pagination-first-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-first.png);
+    border-left: 1px solid #ddd;
+}
+
+.layout-pagination-prev-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-prev.png);
+}
+
+.layout-pagination-number {
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    vertical-align: top;
+    font-weight: 700;
+    line-height: 34px;
+    background-color: #f7f7f7;
+    color: #5f0080;
+}
+
+.layout-pagination-next-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-next.png);
+}
+
+.layout-pagination-last-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-last.png);
+}

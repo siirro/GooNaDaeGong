@@ -53,8 +53,6 @@
 
 .container_buy {
     display: flex;
-    justify-content: space-between;
-    width: 8%;
     color: rgb(51, 51, 51);
 }
 
@@ -151,7 +149,6 @@
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
     display: block;
-    margin-bottom: 150px;
     height: 580px;
     width: 100%;
     padding-bottom: 20px;
@@ -205,8 +202,15 @@
     border-image: initial;
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
+    width: 460px;
+    height: 460px;
+}
+
+.item-image__ImgBox-sc-1o2byye-0 img {
     width: 100%;
     height: 100%;
+
+    object-fit : cover
 }
 
 .swiper-container {
@@ -415,6 +419,8 @@
     width: 460px;
     position: relative;
     margin: 20px auto;
+    
+    display: none;
 }
 
 .als_prev {
@@ -431,6 +437,20 @@
     -webkit-font-smoothing: antialiased;
     float: left;
     cursor: pointer;
+}
+
+.als_prev::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    box-shadow: 0 0 0 #d3d3d3;
+    transform: rotate(222deg);
 }
 
 .als_container {
@@ -468,6 +488,13 @@
     margin-right: 10px;
 }
 
+.als_item a > .thumbnail_img {
+    width: 60px;
+    height: 60px;
+
+	margin-right: -5px
+}
+
 .thumbnail_img {
     cursor: pointer;
     font-weight: 400;
@@ -482,9 +509,7 @@
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
     float: left;
-    width: 100%;
     height: 100%;
-    -webkit-transform: translate(-50%,-50%);
 }
 
 .als_next {
@@ -501,6 +526,20 @@
     -webkit-font-smoothing: antialiased;
     float: left;
     cursor: pointer;
+}
+
+.als_next::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left:440px;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    box-shadow: 0 0 0 #d3d3d3;
+    transform: rotate(42deg);
 }
 
 .item_info {
@@ -717,6 +756,12 @@
     margin-bottom: 20px;
 }
 
+.detail_table {
+
+    height: 150px;
+    padding-bottom: 30px;
+}
+
 .first {
     border-collapse: separate;
     border-spacing: 0 10px;
@@ -769,6 +814,268 @@
     width: 430px;
     padding-bottom: 3px;
 }
+
+/* 수량 체크 시작 */
+
+.bd_2cuha {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    list-style: none;
+    float: left;
+    position: relative;
+    min-width: 114px;
+    height: 34px;
+    border: solid 1px #dde0e3;
+}
+
+.bd_EZ05h {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    border: none;
+    position: relative;
+    width: 34px;
+    height: 100%;
+    background-color: #f1f2f4;
+    cursor: default;
+}
+
+/* 수량 빼기 */
+.bd_3ex46::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    margin: -1px 0 0 -5px;
+    background-color: #000000;
+    content: "";
+}
+
+/* 수량 추가 */
+.bd_2nJMW::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    margin: -1px 0 0 -5px;
+    background-color: #000000;
+    content: "";
+}
+
+.bd_2nJMW::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    margin: -5px 0 0 -1px;
+    background-color: #000000;
+    content: "";
+}
+
+.blind {
+    list-style: none;
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    cursor: default;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.bd_2eiJL {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 44px;
+    height: 100%;
+    border: solid #eff1f5;
+    border-width: 0 1px;
+    vertical-align: top;
+    font-family: tahoma, helvetica, "\B098\B214\ACE0\B515", "Nanum Gothic", "\B098\B214\C2A4\D018\C5B4", "Nanum Square", "Apple SD Gothic Neo", "Malgun Gothic", "\B9D1\C740\ACE0\B515", dotum, "\B3CB\C6C0", sans-serif;
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 34px;
+    text-align: center;
+}
+
+/* input type="number"일 때 버튼 없애는 CSS */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 수량 체크 끝 */
+
+/* 총 수량  시작*/
+.bd_2qCsT {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 13px;
+    line-height: 23px;
+    margin-top: 55px;
+
+}
+
+.bd_28JKM {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.bd_CVTqI {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 13px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1px;
+    margin: 4px 0 0 6px;
+}
+
+.bd_32dL8 {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    padding-top: 3px;
+    border: 1px solid #d7d7d7;
+    background-color: #ffffff;
+    vertical-align: top;
+}
+
+.bd_3GYLw {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    cursor: pointer;
+    width: 6;
+    height: 8;
+    vertical-align: top;
+}
+
+.bd_y5n6u {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    position: absolute;
+    top: 100%;
+    z-index: 100;
+    margin-top: 6px;
+    border: 1px solid #d7d7d7;
+    background-color: #ffffff;
+    line-height: 16px;
+    font-size: 12px;
+    color: #000000;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+.bd_1XGXQ {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    line-height: 16px;
+    font-size: 12px;
+    color: #000000;
+    white-space: nowrap;
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    z-index: 1;
+    width: 6px;
+    height: 6px;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    border-color: #d7d7d7;
+    background-color: #ffffff;
+    transform: translateX(-4px) rotate(45deg);
+}
+
+.bd_3gqWB {
+    white-space: nowrap;
+    margin: 0;
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+}
+
+.bd_K4Ce9 {
+    white-space: nowrap;
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    cursor: pointer;
+    width: 11;
+    height: 11;
+    display: block;
+}
+
+.bd_3XvVU {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 13px;
+    line-height: 23px;
+    float: right;
+}
+
+.bd_1hU3G {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-size: 13px;
+    line-height: 23px;
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+    padding-right: 18px;
+    color: #999999;
+    vertical-align: top;
+}
+
+.bd_1Ukv5 {
+    font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    display: inline-block;
+    margin-top: -1px;
+    font-size: 18px;
+    line-height: 20px;
+    vertical-align: top;
+    color: #6667AB;
+}
+
+.bd_32Qz_ {
+    line-height: 20px;
+    color: #6667AB;
+    font-family: tahoma, helvetica, "\B098\B214\ACE0\B515", "Nanum Gothic", "\B098\B214\C2A4\D018\C5B4", "Nanum Square", "Apple SD Gothic Neo", "Malgun Gothic", "\B9D1\C740\ACE0\B515", dotum, "\B3CB\C6C0", sans-serif;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+    font-size: 24px;
+}
+/* 총 수량 끝 */
+
 
 .notice_text_box {
     vertical-align: baseline;
@@ -952,9 +1259,9 @@
     outline: 0;
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
-    background-color: #e2eeff;
-    color: #0484f6;
-    border: 1px solid #e8ebed;
+    background-color: #F4F4F4;
+    color: #6667AB;
+    border: 1px solid #F4F4F4;
     border-radius: 3px;
     font-size: 17px;
     font-weight: 700;
@@ -992,9 +1299,9 @@
     text-align: center;
     letter-spacing: .2px;
     width: 100%;
-    background-color: #0484f6;
+    background-color: #6667AB;
     color: #fff;
-    border: 1px solid #0484f6;
+    border: 1px solid #6667AB;
     border-radius: 3px;
 }
 
@@ -1135,7 +1442,7 @@
     cursor: pointer;
 }
 
-.hide {
+/* .hide {
     line-height: 48px;
     vertical-align: baseline;
     font-weight: 400;
@@ -1149,9 +1456,35 @@
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
     display: none;
+} */
+
+.previous_arrow {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    line-height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    top: 228%;
+    left: -1px;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.previous_arrow img {
+    width: 24px;
+    height: 24px;
 }
 
 .next_arrow {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
     line-height: 48px;
     vertical-align: baseline;
     font-weight: 400;
@@ -1171,6 +1504,10 @@
     cursor: pointer;
 }
 
+.next_arrow img {
+    width: 24px;
+    height: 24px;
+}
 .main_auto_item {
     vertical-align: baseline;
     font-weight: 400;
@@ -1213,6 +1550,9 @@
     border-image: initial;
     font-family: Pretendard Variable,Noto Sans KR,sans-serif;
     -webkit-font-smoothing: antialiased;
+
+    width: 130px;
+    height: 180px;
 }
 
 .wrap_auto_item_wrapper {
@@ -1329,13 +1669,14 @@
     -webkit-font-smoothing: antialiased;
     margin-top: 8px;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 20px;
     color: #454c53;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+    
 }
 
 .item_bottom {
@@ -2099,10 +2440,6 @@
     overflow: hidden;
     border-radius: 5px;
 
-    
-
-    /* background-color: red; */
-
 }
 
 .image_centerbox {
@@ -2125,6 +2462,10 @@
     right: 0;
     bottom: 0;
     transform: translate(50%,50%);
+}
+
+.image_centerbox > img {
+    -webkit-transform: translate(-50%,-50%);
 }
 
 .cont {
@@ -2227,6 +2568,8 @@
     margin: 0;
     width: 40px;
     height: 40px;
+
+    z-index: 1000;
 }
 
 .image_wish_box_img {

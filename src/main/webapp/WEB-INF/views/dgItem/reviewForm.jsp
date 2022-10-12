@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/dg/review.css">
+    <link rel="stylesheet" href="/resources/css/dg/reviewForm.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <input type="hidden" name="page_num" value="">
         <input type="hidden" name="goodsno" value="5055948">
         <div class="title_txt">
-            <h2>후기</h2>
+            <h2>PRODUCT REVIEW</h2>
             <div class="sort-wrap">
                 <ul class="list_type1 old">
                     <li><span class="ico"></span>
@@ -471,7 +471,7 @@
     </form>
     
     <p class="btnArea after">
-        <a href="./review?item_num=${dgItemDetailDTO.item_num}">후기
+        <a href="./review?item_num=${dgItemDetailDTO.item_num}">
             <span class="bhs_button" style="line-height:30px; width:130px;">후기쓰기</span>
         </a>
     </p>

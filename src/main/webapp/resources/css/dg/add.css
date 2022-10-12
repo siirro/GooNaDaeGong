@@ -246,6 +246,9 @@
     -webkit-font-smoothing: antialiased;
     margin: 0 auto;
     display: inline-block;
+
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .regist_box_sub {
@@ -314,7 +317,7 @@
     -webkit-font-smoothing: antialiased;
     width: 100%;
     margin: 0 0 32px;
-    padding: 0 0 200px 0px;
+    padding: 0 0 12px 0px;
     border-bottom: 1px solid #e5e8eb;
 }
 
@@ -389,6 +392,22 @@
     color: #8b95a1;
 }
 
+.dd {
+	    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: #333;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 85%;
+    float: left;
+    position: relative;
+}
+
 .multiple {
     vertical-align: baseline;
     font-weight: 400;
@@ -404,6 +423,7 @@
     -webkit-font-smoothing: antialiased;
     display: none;
 }
+
 
 .default {
     font-weight: 400;
@@ -422,6 +442,111 @@
     margin-right: 8px;
     margin-bottom: 20px;
     cursor: pointer;
+}
+
+.image_list {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    list-style: none;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 750px;
+    height: 180px;
+}
+
+.image_list li {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    list-style: none;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    width: 162px;
+    height: 162px;
+    padding-bottom: 100%;
+}
+
+.up_img_box {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    list-style: none;
+    vertical-align: baseline;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.img_delete_icon {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    list-style: none;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    vertical-align: top;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.item_img {
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    list-style: none;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+    vertical-align: top;
+    font-family: Pretendard Variable,Noto Sans KR,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid #e8ebed;
+    border-radius: 12px;
 }
 
 .regist_title {

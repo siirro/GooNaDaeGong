@@ -3,6 +3,8 @@ package com.gndg.home.dgItem;
 import java.sql.Date;
 import java.util.List;
 
+import com.gndg.home.util.Category;
+
 public class DgItemDTO {
 	
 	private Long item_num;
@@ -17,9 +19,25 @@ public class DgItemDTO {
 	private String item_deal;
 	private String item_condition;
 	private String item_yn;
-	private Long code;
+	private Long code; 
+	
+	private Category category;
+	private List<DgItemFileDTO> dgItemFileDTOs;
 	
 	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public List<DgItemFileDTO> getDgItemFileDTOs() {
+		return dgItemFileDTOs;
+	}
+	public void setDgItemFileDTOs(List<DgItemFileDTO> dgItemFileDTOs) {
+		this.dgItemFileDTOs = dgItemFileDTOs;
+	}
 	public Long getItem_num() {
 		return item_num;
 	}

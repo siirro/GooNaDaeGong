@@ -15,6 +15,16 @@ public class DgItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.dgItem.DgItemDAO.";
 	
+	/* 통합 검색 */
+	public List<DgItemDTO> getSearch(String search) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getSearch", search);
+	}
+	
+	/* 최근 본 상품 */
+	public List<DgItemFileDTO> getProduct(Long item_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
+	}
+	
 	/* 후기 가져오기 */
 	public List<DgItemReviewDTO> getReply(Long item_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getReply", item_num);
@@ -45,9 +55,14 @@ public class DgItemDAO {
 		return sqlSession.selectOne(NAMESPACE + "getDetailItem", item_num);
 	}
 	
+	/* 상품 갯수 */
+//	public int getCount(Category category) throws Exception {
+//		return sqlSession.select(NAMESPACE + "getCount", category);
+//	}
+	
 	/* 상품목록 */
-	public List<DgItemDTO> getListItem() throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getListItem");
+	public List<DgItemDTO> getListItem(DgItemDTO dgItemDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getListItem",dgItemDTO);
 	}
 	
 	/* 상품등록 */
