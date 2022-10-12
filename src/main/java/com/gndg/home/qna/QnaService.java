@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
 import com.gndg.home.member.MemberDTO;
+import com.gndg.home.notice.NoticeFileDTO;
 import com.gndg.home.orders.GoodsOrdersDTO;
 import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.util.Pager;
@@ -25,8 +26,41 @@ public class QnaService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public int updateQna(QnaDTO qnaDTO)throws Exception{
-		return qnaDAO.updateQna(qnaDTO);
+	public int deleteQnaFile(QnaFileDTO qnaFileDTO, ServletContext servletContext)throws Exception{
+		qnaFileDTO = qnaDAO.detailQnaFile(qnaFileDTO);
+		
+		int result = qnaDAO.deleteNoticeFile(qnaFileDTO);
+		String path="resources/upload/qna";
+		
+		if(result>0) {
+			fileManager.deleteFile(servletContext, path, qnaFileDTO);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	public int updateQna(QnaDTO qnaDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
+		int result = qnaDAO.updateQna(qnaDTO);
+//		String path = "resources/upload/notice";
+//		
+//		for(MultipartFile multipartFile : files) {
+//			if(multipartFile.isEmpty()) {
+//				continue;
+//			}
+//			
+//			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+//			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+//			noticeFileDTO.setFileName(fileName);
+//			noticeFileDTO.setOriName(multipartFile.getOriginalFilename());
+//			noticeFileDTO.setNt_num(qnaDTO.getQna_num());
+//			
+//			qnaDAO.addQnaFile(qnaFileDTO);
+//		}
+
+		
+		return result;
 	}
 	
 	

@@ -5,11 +5,31 @@ const qna_title = document.getElementById("qna_title");
 const qna_contents = document.getElementById("qna_contents");
 const qnaSubmit = document.getElementById("qnaSubmit");
 
-let check2=false;
+const fileDelete = document.querySelectorAll(".fileDelete");
+
+let check2=true;
 let check3=false;
 let check4=false;
 
+let cate = document.getElementById("qna_cate").value;
 
+// 수정용 js
+if(cate.length>0){
+	console.log("카테의밸류는? : "+cate)
+	check2=true;
+	console.log("코드적용.트루 수정");
+	}
+if(qna_title.value.length>0){
+	
+	check3=true;
+	console.log("제목썼음.트루 수정");
+	} 
+if(qna_contents.value.length>0){
+	check4=true;
+	console.log("내용썻음.트루 수정");
+}
+qnaSubmit1();
+// 수정용 js
 
 
 qna_cate.addEventListener("change",function(){
@@ -63,7 +83,7 @@ function qnaSubmit1(){
             qnaSubmit.removeAttribute("disabled");
             qnaSubmit.style.backgroundColor = "#6667AB";
     } else {
-		console.log("False가생겼다");
+		console.log("False가생겼다 dk");
 		qnaSubmit.setAttribute("disabled","");
         qnaSubmit.style.backgroundColor = "rgb(221, 221, 221)";
 	}
@@ -186,6 +206,50 @@ addFiles.addEventListener("click", function(event){
 // 	}
 // });
 
+
+
+
+
+try {
+	fileDelete.forEach(function(f){
+		f.addEventListener("click",function(){
+			let check = window.confirm("파일을 삭제하시겠습니까?");
+			if(!check){
+				return;
+			}
+	
+			console.log("fileDelete"+check);
+			
+			let fileNum = f.getAttribute("data-file-num");
+			
+			//에이작스
+			const xhttp = new XMLHttpRequest();
+	
+			xhttp.open("POST","./fileDelete");
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("fileNum="+fileNum);
+			xhttp.onreadystatechange=function(){
+				if(xhttp.readyState==4&&xhttp.status==200){
+					let result = xhttp.responseText.trim();
+					
+					result = JSON.parse(result)
+					
+					if(result.result==1){
+						console.log(result);
+						f.parentNode.remove();
+						count--;
+	
+					}else{
+						console.log("너는실패함 result = "+result);
+					}
+				}
+			};
+	
+		});
+	});
+	}catch(e){
+		console.log(e);
+	}
 
 
 document.getElementById("qna_contents").addEventListener("keyup",function(){

@@ -55,7 +55,7 @@
                     <input type="hidden" name="user_id" value="${member.user_id}">
                     <!-- value="${session.user_id}" -->
                     
-                    
+                    <input type="hidden" name="qna_num" value="${qnaDTO.qna_num}">
                     
 
                     <!-- 카테고리 전체 디브 -->
@@ -167,7 +167,15 @@
                             <div class="css-mlazth edd8l6o3">
                                 <div class="css-g8ewo8 e9bfpi41" id="fileBox">
 
-                                    
+                                    <!-- 현재 첨부되어있는 파일 확인, 삭제 -->
+                                    <c:forEach items="${qnaDTO.qnaFileDTOs}" var="file">
+                                        <div style="display: flex;">
+                                            <a style="width: 250px; margin: auto 0px;" href="../../resources/upload/qna/${file.fileName}">${file.oriName}</a> 
+                                            <button type="button" class="fileDelete btn btn-danger" data-file-num="${file.fileNum}">삭제</button>
+
+                                        </div>
+                                        <br>
+                                    </c:forEach>
 
                                     
                                     <!-- 옛날에쓴파일추가 -->
