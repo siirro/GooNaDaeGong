@@ -27,13 +27,13 @@
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active" data-bs-interval="10000">
-						<img src="/resources/images/dg/1.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/index/1.jpg" class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item" data-bs-interval="2000">
-						<img src="/resources/images/dg/2.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/index/2.jpg" class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/resources/images/dg/3.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/index/3.jpg" class="d-block w-100" alt="...">
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -48,16 +48,14 @@
 			</div>
 			<!-- Carousel End -->
 			
-			
+			<div>관리자센터</div>
+			<a href="./manager/index.jsp">관리자센터</a>
 			<hr>
 
-			<div>구디나라</div>
-			<a href="./gnItem/add">상품등록</a> <a href="./gnItem/list">상품목록</a>
+			<div>구디나라 대기공주</div>
+			<a href="./item/add.jsp">상품등록</a> <a href="./item/list.jsp">상품목록</a>
 			<hr>
 			
-			<div>대기공주</div>
-			<a href="/dgItem/add">상품등록</a> <a href="/dgItem/list">상품목록</a>
-			<hr>
 
 			<a href="/member/google">구글 로그인</a><br>
 			
