@@ -1,23 +1,54 @@
 package com.gndg.home.manager;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.mail.HtmlEmail;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.cancel.CancelDTO;
 import com.gndg.home.cancel.CancelService;
+import com.gndg.home.cancel.ExchangeDTO;
+import com.gndg.home.cancel.RefundDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberService;
 import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.orders.OrdersService;
+import com.gndg.home.pay.PayDTO;
+import com.gndg.home.pay.PayService;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.qna.QnaService;
 import com.gndg.home.report.ReportDTO;
@@ -39,6 +70,11 @@ public class ManagerController {
 	private OrdersService ordersService;
 	@Autowired
 	private CancelService cancelService;
+	@Autowired
+	private PayService payService;
+	
+	String token;
+	
 	
 	//============================================================
 	
@@ -53,15 +89,14 @@ public class ManagerController {
 	
 //	==============================QNA 조회=========================
 	@RequestMapping(value = "qna/list", method=RequestMethod.GET)
-	public ModelAndView managerQnaList(Pager pager, Long code)throws Exception{
+	public ModelAndView managerQnaList(Pager pager, String qna_status)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<QnaDTO> ar = qnaService.getList(pager, code);
+		List<QnaDTO> ar = qnaService.getList(pager, qna_status);
 		System.out.println(ar.size());
 		
 		mv.addObject("qnalist", ar);
 		
 		mv.addObject("pager", pager);
-		mv.addObject("code", code);
 		mv.setViewName("manager/qnalist");
 		return mv;
 	}
@@ -101,10 +136,37 @@ public class ManagerController {
 	}
 	
 	@PostMapping("qna/update")
-	public String statusChange(QnaDTO qnaDTO)throws Exception{
+	public ModelAndView statusChange(QnaDTO qnaDTO)throws Exception{
 		int result = qnaService.statusChange(qnaDTO);
+		ModelAndView mv = new ModelAndView();
 		
-		return "redirect:./detail?qna_num="+qnaDTO.getQna_num();
+		String message = "처리상태 변경 실패";
+		if(result!=0) {
+			message = "1대1 문의 처리상태를 완료로 변경했습니다. 회원에게 답변 알림 이메일이 발송됩니다.";
+//			이메일 발송.
+//			HtmlEmail email = new HtmlEmail();
+//			email.setHostName("smtp.gmail.com");
+//			email.setSmtpPort(587);
+//			email.setCharset("euc-kr");
+//			email.addTo(RecieverEmailAddress, RecieverName);
+//			email.setFrom(SenderEmailAddress, SenderName);
+//			email.setSubject(EmailSubject);
+//			email.setHtmlMsg(EmailContentInHtmlForm);
+//			
+//			email.send();
+			
+			
+//			
+		}
+		
+				
+		mv.addObject("url", "./detail?qna_num="+qnaDTO.getQna_num());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
+		
 	}
 //	==============================QNA 조회 끝=========================
 	
@@ -124,9 +186,22 @@ public class ManagerController {
 	}
 	
 	@GetMapping("member/updateYN")
-	public String updateYN(MemberDTO memberDTO)throws Exception{
+	public ModelAndView updateYN(MemberDTO memberDTO)throws Exception{
 		int result = memberService.updateYN(memberDTO);
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "회원상태 변경 실패";
+		if(result!=0) {
+			message = "회원 상태를 변경했습니다.";
+		}
+		
+				
+		mv.addObject("url", "./list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
 	}
 //	============================= 회원 조회 끝=========================
 
@@ -176,15 +251,36 @@ public class ManagerController {
 		List<OrdersDTO> ar = ordersService.getList(orderPager, ordersDTO);
 		mv.addObject("list", ar);
 		mv.addObject("pager", orderPager);
-		mv.addObject("code", ordersDTO.getCode());
 		mv.setViewName("manager/order/list");
 		return mv;
 	}
-	@GetMapping("mall/detail")
+	@GetMapping("mall/orderDetail")
 	public ModelAndView getDetail(OrdersDTO ordersDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.setViewName("manager/order/detail");
+		return mv;
+		
+	}
+	
+	@GetMapping("mall/orderUpdateStatus")
+	public ModelAndView updateStatus(OrdersDTO ordersDTO)throws Exception{
+		int result = ordersService.updateStatus(ordersDTO);
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "주문상태 변경 실패";
+		if(result!=0) {
+			message = "주문상태를 변경했습니다.";
+		}
+		
+				
+		mv.addObject("url", "./orderDetail?merchant_uid="+ordersDTO.getMerchant_uid());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
 		
 		return mv;
+		
 		
 	}
 //	============================= 주문내역 조회 끝 =========================
@@ -201,10 +297,203 @@ public class ManagerController {
 		mv.setViewName("manager/cancellist");
 		return mv;
 	}
+	
+	@GetMapping("mall/cancelDetail")
+	public ModelAndView getDetail(CancelDTO cancelDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		cancelDTO = cancelService.getDetail(cancelDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(cancelDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", cancelDTO);
+		mv.setViewName("manager/canceldetail");
+		return mv;
+	}
+//	============================= 취소내역 조회 =========================
+
+//	============================= 교환내역 조회 =========================
+	@GetMapping("mall/exchange")
+	public ModelAndView getListE(OrderPager orderPager, ExchangeDTO exchangeDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getListE(orderPager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/exchangelist");
+		return mv;
+	}
+	
+	@GetMapping("mall/exchangeDetail")
+	public ModelAndView getDetail(ExchangeDTO exchangeDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		exchangeDTO = cancelService.getDetailE(exchangeDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(exchangeDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", exchangeDTO);
+		mv.setViewName("manager/exchangedetail");
+		return mv;
+	}
+//	============================= 교환내역 조회 =========================
+
+//	============================= 반품내역 조회 =========================
+	@GetMapping("mall/refund")
+	public ModelAndView getListR(OrderPager orderPager, RefundDTO refundDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrdersDTO> ar = cancelService.getListR(orderPager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", orderPager);
+
+		mv.setViewName("manager/refundlist");
+		return mv;
+	}
+	
+	@GetMapping("mall/refundDetail")
+	public ModelAndView getDetail(RefundDTO refundDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		refundDTO = cancelService.getDetailR(refundDTO);
+		OrdersDTO ordersDTO = new OrdersDTO();
+		ordersDTO.setMerchant_uid(refundDTO.getMerchant_uid());
+		ordersDTO = ordersService.getDetail(ordersDTO);
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.addObject("detail", refundDTO);
+		mv.setViewName("manager/refunddetail");
+		return mv;
+	}
+//	============================= 반품내역 조회 =========================
+	//=========================== 결제내역 조회 =========================
+	
+	@GetMapping("mall/payment")
+	public ModelAndView getListPay(OrderPager orderPager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<PayDTO> ar = payService.getList(orderPager);
+		
+		
+		//rest api 토큰 발급받기
+		HttpURLConnection conn = null;
+		String access_token = null;
+		URL url = new URL("https://api.iamport.kr/users/getToken");
+		conn = (HttpURLConnection)url.openConnection();
+		
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("imp_key", "7781488188655887");
+		obj.put("imp_secret", "zZUHA0UdodAq48a1ljvk6dqpMh6DAbOR5LhIVjRuusLTmR3akP2UZfDvUnLkeRCoB9oYXIsxhF1wABIp");
+		
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+		bw.write(obj.toString());
+		bw.flush();
+		bw.close();
+		
+		int result = 0;
+		int responseCode = conn.getResponseCode();
+		System.out.println("응답 코드 : "+responseCode);
+		if(responseCode == 200) {
+			System.out.println("코드를발급받았다");
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			br.close();
+			String gg = sb.toString();
+			System.out.println(gg);
+			result = 1;
+			
+			JSONParser jsonParser = new JSONParser();
+
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(gg);
+
+			if((Long)jsonObj.get("code") == 0){
+			JSONObject getToken = (JSONObject) jsonObj.get("response");
+			System.out.println("getToken==>>"+getToken.get("access_token"));
+			token = (String)getToken.get("access_token");
+			System.out.println("진짜토근 : "+token);
+			mv.addObject("access_token", token);
+			
+			
+			
+
+			
+
+			}
+		} else {
+			System.out.println(conn.getResponseMessage());
+		}
+		
+		mv.addObject("list", ar);
+		mv.setViewName("manager/order/paylist");
+		
+		
+		return mv;
+	}
+	
 
 	
 	
+	//===============================결제취소=============================
 	
+	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수
+	private List<NameValuePair> convertParameter(Map<String,String> paramMap){
+		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
+		
+		Set<Entry<String,String>> entries = paramMap.entrySet();
+		
+		for(Entry<String,String> entry : entries) {
+			paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+		}
+		return paramList;
+	}
+
+	
+	@PostMapping("mall/cancelPayment")
+	@ResponseBody
+	public String cancelPayment(@RequestBody PayDTO params, PayDTO payDTO)throws Exception{
+		String jsonResult = "";
+		
+		// 결제취소
+		
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPost post = new HttpPost("https://api.iamport.kr/payments/cancel");
+		Map<String, String> map = new HashMap<String, String>();
+		post.setHeader("Authorization", token);
+		map.put("merchant_uid", params.getMerchant_uid().toString());
+		String asd = "";
+		try {
+			
+			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
+			HttpResponse res = client.execute(post);
+			ObjectMapper mapper = new ObjectMapper();
+			String enty = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(enty);
+			asd = rootNode.get("response").asText();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (asd.equals("null")) {
+			System.err.println("환불실패");
+			int result1 = 0;
+			jsonResult = "{\"result\":\""+result1+"\"}";
+			
+		} else {
+			System.err.println("환불성공");
+			payDTO.setMerchant_uid(params.getMerchant_uid());
+			int result1 = payService.cancelPayment(payDTO);
+			jsonResult = "{\"result\":\""+result1+"\"}";
+		}
+		
+
+		return jsonResult;
+	}
+
 	
 	
 }

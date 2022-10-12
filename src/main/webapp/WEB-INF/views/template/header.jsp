@@ -45,6 +45,11 @@
 				<div class="row">
 					<div class="test col-md-12 text-center text-lg-end" id="nav-padding">
 						<div class="d-inline-flex align-items-center">
+							<c:if test="${sessionScope.member.user_grade eq 2}">
+								<a href="../../../../manager" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-right: 5px; color: white;">
+									<i class="fas fa-download fa-sm text-white-50"></i>관리자센터
+								</a>
+							</c:if>
 							<c:if test="${member.user_id eq null}">
 								<a class="text-body px-2" href="../member/join">회원가입</a>
 								<a class="text-body px-2" href="../member/login">로그인</a>

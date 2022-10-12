@@ -30,9 +30,9 @@ var IMP = window.IMP; // 생략 가능
 
       
       
-      const url = new URL(window.location.href);
-      const code = url.searchParams.get('code');
-      console.log("code값 세팅해놨다 : "+code);
+      // const url = new URL(window.location.href);
+      // const code = url.searchParams.get('code');
+      // console.log("code값 세팅해놨다 : "+code);
 
       //jsp파일의 메서드 계산 후에 뜨는 값이라 버튼누르기전에 깔아놓으면 0만뜸
       const ord_total2 = document.getElementById("ord_total2").value;
@@ -50,18 +50,22 @@ var IMP = window.IMP; // 생략 가능
       const ord_memo = document.getElementById("ord_memo").value;
 
       
-      console.log("총결제액: "+ord_total2);
-      console.log("구매금액: "+user_id);
-      console.log("배송비: "+ord_delfree);
+      // console.log("총결제액: "+ord_total2);
+      // console.log("구매금액: "+user_id);
+      // console.log("배송비: "+ord_delfree);
       
-      console.log("구매자아이디: "+user_id);
+      // console.log("구매자아이디: "+user_id);
       
-      console.log("수령자이름: "+ord_name);
-      console.log("수령자우편: "+ord_post);
-      console.log("수령자주소: "+ord_addr);
-      console.log("수령자주소2: "+ord_addr2);
-      console.log("수령자폰: "+ord_phone);
-      console.log("배송메모: "+ord_memo);
+      // console.log("수령자이름: "+ord_name);
+      // console.log("수령자우편: "+ord_post);
+      // console.log("수령자주소: "+ord_addr);
+      // console.log("수령자주소2: "+ord_addr2);
+      // console.log("수령자폰: "+ord_phone);
+      // console.log("배송메모: "+ord_memo);
+
+      //주문상세를 위한애들
+      const item_num = document.getElementsByClassName("item_num");
+      const item_count = document.getElementsByClassName("item_count");
 
 
       
@@ -151,9 +155,43 @@ var IMP = window.IMP; // 생략 가능
 
                             if(result.result==1) {
                               
-                              console.log("끝났다.. 이제 결제완료 페이지로");
+                              console.log("주문상세DB까지 넣읍시다...");
+                              //주문상세
+                              for(let i=0;i<item_num.length;i++) {
+                                const xhttp = new XMLHttpRequest();
+                                xhttp.open("POST","/order/goodsOrder");
+                                xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                                xhttp.send(
+                                  "item_num="+item_num[i].value+
+                                  "&merchant_uid="+rsp.merchant_uid+
+                                  "&go_amount="+item_count[i].value
+                                );
+                                //5.응답처리
+                                          
+                                xhttp.onreadystatechange=function(){
+                                  if(this.readyState==4 && this.status==200){
 
-                              document.location.href="./success";
+                                      let result = xhttp.responseText.trim();
+                                      result = JSON.parse(result);
+                                      console.log("1뜨면 주문상세DB등록성공 : "+result.result);
+
+                                      if(result.result==1) {
+                                        
+                                        console.log("주문상세도 넣었다...");
+                                        document.location.href="./success";
+
+                                      } else {
+                                        console.log("주문상세DB 등록실패");
+                                      }
+
+                                  } 
+                                };
+                              };
+                              //주문상세
+
+
+
+                              
                             } else {
                               console.log("결제DB 등록실패");
                             }

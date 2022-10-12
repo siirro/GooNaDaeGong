@@ -5,64 +5,181 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.orders.OrdersDAO">
 
+<update id="updateStatus" parameterType="OrdersDTO">
+UPDATE ORDERS SET ORD_STATUS = #{ord_status} WHERE MERCHANT_UID = #{merchant_uid}
+</update>
+
+<insert id="addGoodsOrders" parameterType="GoodsOrdersDTO">
+INSERT INTO GOODSORDER VALUES (GOODSORDER_SEQ.NEXTVAL,#{item_num},#{merchant_uid},#{go_amount})
+</insert>
+
+<select id="getOrderItem" parameterType="MemberDTO" resultMap="itemResult">
+SELECT * 
+FROM CART C
+    JOIN  ITEM I
+     ON C.ITEM_NUM = I.ITEM_NUM
+     LEFT JOIN
+     ITEMFILE F
+     ON I.ITEM_NUM = F.ITEM_NUM
+WHERE C.USER_ID=#{user_id}
+</select>
+
+<resultMap type="CartDTO" id="itemResult">
+	<id column="CART_NUM" property="cart_num"/>
+	<result column="ITEM_NUM" property="item_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column= "ITEM_COUNT" property="item_count"/>
+	<association property="gnItemDTO" javaType="GnItemDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_PRICE" property="item_price" />
+			<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="ITEM_NUM" property="item_num"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORINAME" property="oriName"/>
+			</collection>
+	</association> 
+</resultMap>
+
 <insert id="addOrders" parameterType="OrdersDTO">
 INSERT INTO ORDERS VALUES 
 (#{merchant_uid}, #{user_id}, #{ord_payment}, #{ord_status}, 
 SYSDATE, #{ord_total1}, #{ord_delfree}, #{ord_total2}, 
 #{ord_name}, #{ord_post}, #{ord_addr}, #{ord_addr2}, 
-#{ord_phone}, #{ord_memo}, #{code})
+#{ord_phone}, #{ord_memo})
 </insert>
 
-<select id="getList" parameterType="Map" resultType="OrdersDTO">
+<select id="getList" parameterType="Map" resultMap="detailResult">
 SELECT * FROM
 (SELECT ROWNUM R, O.* 
 FROM
-	(SELECT * FROM ORDERS 
+	(SELECT * 
+	FROM ORDERS OO
+	JOIN GOODSORDER GO
+	ON OO.MERCHANT_UID = GO.MERCHANT_UID
+	JOIN ITEM I
+	ON GO.ITEM_NUM = I.ITEM_NUM
 	WHERE 
 		<choose>
-				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
-				<when test="kind == 'user_id'">USER_ID</when>
-				<when test="kind == 'item_name'">ITEM_NAME</when>
-				<when test="kind == 'item_num'">ITEM_NUM</when>
-				<otherwise>ORD_STATUS</otherwise>
+				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
+				<when test="kind == 'user_id'">OO.USER_ID</when>
+				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
+				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%'
 		<if  test= "searchdate1 != null">
 		
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND OO.ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>  
-		<if  test= "code != null">
-		AND CODE = #{code}
-		</if>   
-	ORDER BY ORD_DATE DESC) O)
+		  
+	ORDER BY OO.ORD_DATE DESC) O)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
 
 <select id="getListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(MERCHANT_UID) FROM ORDERS 
+	SELECT COUNT(OO.MERCHANT_UID) 
+	FROM ORDERS OO
+	JOIN GOODSORDER GO
+	ON OO.MERCHANT_UID = GO.MERCHANT_UID
+	JOIN ITEM I
+	ON GO.ITEM_NUM = I.ITEM_NUM 
 	WHERE 
 		<choose>
-				<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
-				<when test="kind == 'user_id'">USER_ID</when>
-				<when test="kind == 'item_name'">ITEM_NAME</when>
-				<when test="kind == 'item_num'">ITEM_NUM</when>
-				<otherwise>ORD_STATUS</otherwise>
+				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
+				<when test="kind == 'user_id'">OO.USER_ID</when>
+				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
+				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%'
 		<if  test= "searchdate1 != null">
-		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND OO.ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 		</if>
-		<if  test= "code != null">
-		AND CODE = #{code}
-		</if>
+		
 </select>
 
-<select id="getDetail" parameterType="OrdersDTO" resultType="OrdersDTO">
-SELECT * FROM ORDERS WHERE MERCHANT_UID=#{merchant_uid}
+<select id="getDetail" parameterType="OrdersDTO" resultMap="detailResult">
+SELECT * 
+FROM ORDERS O
+JOIN GOODSORDER GO
+ON O.MERCHANT_UID = GO.MERCHANT_UID
+JOIN ITEM I
+ON GO.ITEM_NUM = I.ITEM_NUM
+LEFT JOIN ITEMFILE IT
+ON I.ITEM_NUM = IT.ITEM_NUM
+WHERE O.MERCHANT_UID=#{merchant_uid}
 </select>
 
+<resultMap type="OrdersDTO" id="detailResult">
+	<id column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column= "ORD_DATE" property="ord_date"/>
+	<result column= "ORD_TOTAL1" property="ord_total1"/>
+	<result column= "ORD_DELFREE" property="ord_delfree"/>
+	<result column= "ORD_TOTAL2" property="ord_total2"/>
+	<result column= "ORD_PAYMENT" property="ord_payment"/>
+	<result column= "ORD_STATUS" property="ord_status"/>
+	<collection property="goodsOrdersDTOs" javaType="List" ofType="GoodsOrdersDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="GO_AMOUNT" property="go_amount" />
+		<association property="gnItemDTO" javaType="GnItemDTO">
+			<id column="ITEM_NUM" property="item_num"/>
+			<result column="ITEM_NAME" property="item_name"/>
+			<result column="ITEM_PRICE" property="item_price"/>
+				<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+					<id column="FILENUM" property="fileNum"/>
+					<result column="ITEM_NUM" property="item_num"/>
+					<result column="FILENAME" property="fileName"/>
+					<result column="ORINAME" property="oriName"/>
+				</collection>
+		</association>
+	</collection>
 
+</resultMap>
 
+<!-- 매니저인덱스-홈- 새 주문 수 노출 -->
+
+<!-- 새 주문의 개수 (상태가 결제완료인 아이들) -->
+<select id="countNewOrder" resultType="Long">
+    SELECT COUNT(MERCHANT_UID) 
+    FROM ORDERS
+    WHERE ORD_STATUS = '결제완료'
+</select>
+
+<!-- 새 취소글의 개수 (상태가 취소신청인 아이들) -->
+<select id="countNewCancel" resultType="Long">
+    SELECT COUNT(CAN_NUM) 
+    FROM CANCEL C
+    JOIN ORDERS O
+    ON C.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '취소신청'
+</select>
+
+<!-- 새 교환글의 개수 (상태가 교환신청인 아이들) -->
+<select id="countNewExchange" resultType="Long">
+    SELECT COUNT(EXC_NUM) 
+    FROM EXCHANGE E
+    JOIN ORDERS O
+    ON E.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '교환신청'
+</select>
+
+<!-- 새 반품글의 개수 (상태가 반품신청인 아이들) -->
+<select id="countNewRefund" resultType="Long">
+    SELECT COUNT(REF_NUM) 
+    FROM REFUND R
+    JOIN ORDERS O
+    ON R.MERCHANT_UID = O.MERCHANT_UID
+    WHERE O.ORD_STATUS = '반품신청'
+</select>
+
+<select id="countNewQna" resultType="Long">
+    SELECT COUNt(QNA_NUM)
+    FROM QNA
+    WHERE QNA_STATUS = '대기'
+</select>
 
 
 

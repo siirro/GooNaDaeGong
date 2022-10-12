@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Pager;
 
 @Controller
@@ -24,12 +25,11 @@ public class NoticeController {
 	
 	
 	@GetMapping("hidden")
-	public ModelAndView getListHidden(Pager pager, Long code)throws Exception{
+	public ModelAndView getListHidden(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<NoticeDTO> ar = noticeService.getListHidden(pager, code);
+		List<NoticeDTO> ar = noticeService.getListHidden(pager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.addObject("code", code);
 		mv.setViewName("notice/hiddenlist");
 		
 		return mv;
@@ -54,15 +54,38 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update")
-	public String updateNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+	public ModelAndView updateNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = noticeService.updateNotice(noticeDTO, multipartFiles, session.getServletContext());
-		return "redirect:./detail?nt_num="+noticeDTO.getNt_num();
+		
+		ModelAndView mv = new ModelAndView();
+		String message = "공지사항 수정 실패";
+		if(result!=0) {
+			message = "공지사항 수정 성공";
+		}
+		
+				
+		mv.addObject("url", "./detail?nt_num="+noticeDTO.getNt_num());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	@GetMapping("delete")
-	public String deleteNotice(NoticeDTO noticeDTO, HttpSession session)throws Exception{
+	public ModelAndView deleteNotice(NoticeDTO noticeDTO, HttpSession session)throws Exception{
 		int result = noticeService.deleteNotice(noticeDTO, session.getServletContext());
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		String message = "공지사항 삭제 실패";
+		if(result!=0) {
+			message = "공지사항 삭제 성공";
+		}
+		
+				
+		mv.addObject("url", "./list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	
@@ -72,18 +95,31 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public String addNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+	public ModelAndView addNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = noticeService.addNotice(noticeDTO, multipartFiles, session.getServletContext());
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "공지사항 등록 실패";
+		if(result!=0) {
+			message = "공지사항 등록 성공";
+		}
+		
+		mv.addObject("url", "./list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	@GetMapping("list")
-	public ModelAndView getList(Pager pager, Long code)throws Exception{
+	public ModelAndView getList(Pager pager, HttpSession session)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+
 		ModelAndView mv = new ModelAndView();
-		List<NoticeDTO> ar = noticeService.getList(pager, code);
+		List<NoticeDTO> ar = noticeService.getList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.addObject("code", code);
+		mv.addObject("member", memberDTO);
 		mv.setViewName("notice/list");
 		
 		return mv;

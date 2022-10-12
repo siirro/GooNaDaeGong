@@ -13,6 +13,16 @@ public class OrderPager extends Pager{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate searchdate2;
 	
+	private Long payresultSearch;
+	
+	
+	
+	public Long getPayresultSearch() {
+		return payresultSearch;
+	}
+	public void setPayresultSearch(Long payresultSearch) {
+		this.payresultSearch = payresultSearch;
+	}
 	public LocalDate getSearchdate1() {
 		if(this.searchdate1==null) {
 			this.searchdate1=null;

@@ -99,7 +99,7 @@
                                     <div class="css-1bbz142 e1437c640">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="../qna/inquiry">
+                                                <a href="../qna/inquiry?merchant_uid=${order.merchant_uid}">
                                                 1:1 문의
                                                 </a>
                                             </span>
@@ -108,21 +108,21 @@
                                     <span class="css-1fdt947 e1437c641">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="#">
+                                                <a href="../cancel/inquiry?merchant_uid=${order.merchant_uid}">
                                                 취소
                                                 </a>
                                             </span>
                                         </button>
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="#">
+                                                <a href="../exchange/inquiry?merchant_uid=${order.merchant_uid}">
                                                 교환
                                                 </a>
                                             </span>
                                         </button>
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="#">
+                                                <a href="../refund/inquiry?merchant_uid=${order.merchant_uid}">
                                                 환불
                                                 </a>
                                             </span>

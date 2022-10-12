@@ -1,5 +1,7 @@
 package com.gndg.home.qna;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.member.MemberDTO;
+import com.gndg.home.orders.OrdersDTO;
 
 @Controller
 @RequestMapping("/qna/*")
@@ -19,12 +22,23 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@GetMapping("inquiryUpdate")
+	public ModelAndView updateQna(QnaDTO qnaDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		qnaDTO = qnaService.getDetail(qnaDTO);
+		mv.addObject("qnaDTO", qnaDTO);
+		mv.setViewName("qna/inquiryUpdate");
+		return mv;
+	}
+	
 	@GetMapping("inquiry")
 	public ModelAndView addQna(HttpSession session)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		mv.addObject("member", memberDTO);
+		
+		List<OrdersDTO> ar = qnaService.getOrders(memberDTO);
+		mv.addObject("ordersDTO", ar);
 		
 //		QnaDTO qnaDTO =  (QnaDTO)session.getAttribute("member");
 //		qnaDTO.setUser_id(qnaDTO.getUser_id);
@@ -39,7 +53,17 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		int result = qnaService.addQna(qnaDTO, multipartFiles, session.getServletContext());
 		
-		mv.setViewName("index");
+		String message = "문의 등록이 실패했습니다. 다시 시도해주세요";
+		
+		if(result!=0) {
+			message = "문의가 등록되었습니다. 답변에는 영업일 기준 1~3일이 소요됩니다.";
+		}
+		
+				
+		mv.addObject("url", "../../../../");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
 		return mv;
 		
 	}

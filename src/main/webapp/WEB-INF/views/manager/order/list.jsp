@@ -71,10 +71,6 @@
                         <div class="card-header">
                             <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">주문 조회
                                 
-                                <button class="btn good" name="code" style="font-size: 13px; padding: 0px 0px 0px 8px;" onClick="location='./order?code=1'">구디나라</button>
-                                <button class="btn good" disabled style="font-size: 13px; padding: 0px 4px 0px 4px;">|</button>
-                                <button class="btn bad" name="code" style="font-size: 13px; padding: 0px;" onClick="location='./order?code=2'">대기공주</button>
-
                             
                             </button>
                         </div>
@@ -97,7 +93,7 @@
                                                 <option class="kinds" value="user_id">주문자ID</option>
                                                 <option class="kinds" value="item_name">상품이름</option>
                                                 <option class="kinds" value="item_num">상품번호</option>
-                                                <option class="kinds" value="ord_status">처리상태</option>
+                                                <option class="kinds" value="ord_status">주문상태</option>
                                             </select>
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
@@ -151,20 +147,18 @@
                                             <th class="col-1">배송비</th>
                                             <th class="col-1">총결제액</th>
                                             <th class="col-2">주문상태</th>
-                                            <th class="col-1">구분</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
-                                             <tr class="reporttr" onclick="location.href='detail?merchant_uid=${nl.merchant_uid}'">
+                                             <tr class="reporttr" onclick="location.href='orderDetail?merchant_uid=${nl.merchant_uid}'">
                                                 <td><fmt:formatDate value="${nl.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${nl.merchant_uid}</td>
                                                 <td>${nl.user_id}</td>
-                                                <td>${nl.ord_total1}</td>
-                                                <td>${nl.ord_delfree}</td>
-                                                <td>${nl.ord_total2}</td>
+                                                <td>${nl.ord_total1}원</td>
+                                                <td>${nl.ord_delfree}원</td>
+                                                <td>${nl.ord_total2}원</td>
                                                 <td>${nl.ord_status}</td>
-                                                <td>${nl.code}</td>
                                             </tr>
                                             </c:forEach>
                                       </tbody>

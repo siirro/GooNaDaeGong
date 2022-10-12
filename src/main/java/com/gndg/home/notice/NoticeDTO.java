@@ -10,7 +10,6 @@ public class NoticeDTO {
 	private String nt_contents;
 	private Date nt_date;
 	private String nt_yn;
-	private Long code;
 	private List<NoticeFileDTO> noticeFileDTOs;
 	
 	
@@ -58,12 +57,7 @@ public class NoticeDTO {
 	public void setNt_yn(String nt_yn) {
 		this.nt_yn = nt_yn;
 	}
-	public Long getCode() {
-		return code;
-	}
-	public void setCode(Long code) {
-		this.code = code;
-	}
+
 	
 	
 	

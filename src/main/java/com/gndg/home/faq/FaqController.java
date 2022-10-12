@@ -31,9 +31,20 @@ public class FaqController {
 	}
 	
 	@GetMapping("delete")
-	public String deleteFaq(FaqDTO faqDTO, HttpSession session)throws Exception{
+	public ModelAndView deleteFaq(FaqDTO faqDTO, HttpSession session)throws Exception{
 		int result = faqService.deleteFaq(faqDTO, session.getServletContext());
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		String message = "FAQ 삭제 실패";
+		if(result!=0) {
+			message = "FAQ 삭제 성공";
+		}
+				
+		mv.addObject("url", "list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
 	}
 	
 	@GetMapping("update")
@@ -46,10 +57,20 @@ public class FaqController {
 	}
 	
 	@PostMapping("update")
-	public String updateFaq(FaqDTO faqDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+	public ModelAndView updateFaq(FaqDTO faqDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		
 		int result = faqService.updateFaq(faqDTO, multipartFiles, session.getServletContext());
-		return "redirect:./detail?faq_num="+faqDTO.getFaq_num();
+		ModelAndView mv = new ModelAndView();
+		String message = "FAQ 수정 실패";
+		if(result!=0) {
+			message = "FAQ 수정 성공";
+		}
+				
+		mv.addObject("url", "./detail?faq_num="+faqDTO.getFaq_num());
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	@GetMapping("add")
@@ -58,9 +79,19 @@ public class FaqController {
 	}
 	
 	@PostMapping("add")
-	public String addFaq(FaqDTO faqDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+	public ModelAndView addFaq(FaqDTO faqDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = faqService.addFaq(faqDTO, multipartFiles, session.getServletContext());
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		String message = "FAQ 등록 실패";
+		if(result!=0) {
+			message = "FAQ 등록 성공";
+		}
+				
+		mv.addObject("url", "list");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	@GetMapping("list")

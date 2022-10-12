@@ -60,37 +60,6 @@
                     <!--  -->
                     
                     
-                    <!-- 코드구분 전체 -->
-                    <div class="css-17bp14q e1vbjq4w3">
-
-                        <div class="css-mm5tap e1vbjq4w2">
-                            <label data-testid="label-text">구분</label>
-                        </div>
-
-                        <div class="css-12l4j2c e1vbjq4w1">
-                            <div class="css-zjik7 epfrwk70">
-
-                                <div class="search-category" id="search-category">
-                                    <select id="code" name="code" class="custom-select custom-select-sm form-control" style="padding: 10px;
-                                    appearance: auto; font-size: 14px; color: #6667AB; height: 44px;">
-                                        <option disabled value="">선택 </option>
-
-                                        <c:if test="${detail.code == 1}">
-                                            <option selected class="codes" value="1">구디나라</option>
-                                            <option class="codes" value="2">대기공주</option>
-                                        </c:if>
-
-                                        <c:if test="${detail.code == 2}">
-                                            <option class="codes" value="1">구디나라</option>
-                                            <option selected class="codes" value="2">대기공주</option>
-                                        </c:if>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 코드구분 전체 -->
  
                             
                             
@@ -125,7 +94,10 @@
                                     <div class="css-1gua357 e1tjt2bn5">
                                         <textarea onkeypress="onTestChange();" value="${detail.nt_contents}" id="nt_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
                                         name="nt_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;">${detail.nt_contents}</textarea>
-
+                                        <span class="content-length-counter css-zgkz6w e1tjt2bn0">
+                                            <span id="lengthCheck" class="css-14kcwq8 e1tjt2bn2">
+                                            </span>
+                                        </span>
 
                                         
                                     </div>

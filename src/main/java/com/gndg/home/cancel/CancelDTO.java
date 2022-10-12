@@ -7,7 +7,7 @@ public class CancelDTO {
 	private Long can_num;
 	private Long merchant_uid;
 	private Date can_date;
-	
+	private String can_memo;
 	
 	public Long getCan_num() {
 		return can_num;
@@ -27,7 +27,12 @@ public class CancelDTO {
 	public void setCan_date(Date can_date) {
 		this.can_date = can_date;
 	}
-	
+	public String getCan_memo() {
+		return can_memo;
+	}
+	public void setCan_memo(String can_memo) {
+		this.can_memo = can_memo;
+	}
 	
 
 }

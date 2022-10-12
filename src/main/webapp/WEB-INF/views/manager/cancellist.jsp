@@ -149,9 +149,9 @@
                                       </thead>
                                       <tbody style="font-size: 12px;">
                                           <c:forEach items="${list}" var="nl">
-                                             <tr class="reporttr" onclick="location.href='#'">
-                                                <td><fmt:formatDate value="${nl.cancelDTOs[0].can_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                                <td>${nl.cancelDTOs[0].can_num}</td>
+                                             <tr class="reporttr" onclick="location.href='cancelDetail?merchant_uid=${nl.merchant_uid}'">
+                                                <td><fmt:formatDate value="${nl.cancelDTO.can_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td>${nl.cancelDTO.can_num}</td>
                                                 <td>${nl.merchant_uid}</td>
                                                 <td>${nl.user_id}</td>
                                                 <td>${nl.ord_total2}</td>

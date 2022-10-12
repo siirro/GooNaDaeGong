@@ -72,16 +72,7 @@
                         <!-- <a style="color: black;" href="./detail?nt_num=${nl.nt_num}"> -->
                             <tr class="css-x2m5rx e15yrn082" onclick="location.href='./detail?nt_num=${nl.nt_num}'">
                                 <td class=" css-1k4d546 e15yrn081">${nl.nt_num}</td>
-                                <td class=" css-s1v1rc e15yrn081">
-                                    <c:if test="${nl.code == 1}">
-                                    [구디나라]
-                                    </c:if>
-
-                                    <c:if test="${nl.code == 2}">
-                                    [대기공주]
-                                    </c:if>
-
-                                    ${nl.nt_title}
+                                <td class=" css-s1v1rc e15yrn081">${nl.nt_title}
                                 </td>
                                 
                                 <td class=" css-vzhbq5 e15yrn081">${nl.nt_date}</td>
@@ -102,12 +93,12 @@
                     <ul class="pagination paginate_sm">
 
                         <c:if test="${pager.pre}">
-                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                            <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                         </c:if>
                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                            <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                         </c:forEach>
-                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                     </ul>
                 </nav>
             </div>
@@ -128,7 +119,6 @@
                     </div>
                     <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small w-10" placeholder="Search"
                         aria-label="Search" aria-describedby="basic-addon2" style="border-radius: 8px;">
-                    <input type="hidden" name="code" value="${code}">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-search fa-sm"></i>
@@ -165,30 +155,32 @@
                 </a>
             </div> -->
 
-            <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
-            <div class="mb-3" style="display: flex; justify-content: right; margin-top: 30px;">
-                <a href="./hidden">
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                style ="width: 120px;
-                height: 42px; 
-                background-color: cornflowerblue; border-color: cornflowerblue;">
-                    <i class="fas fa-download fa-sm text-white-50"></i> 
-                    
-                        숨긴글 조회
-                </button>        
-                </a>
+            <c:if test="${sessionScope.member.user_grade eq 2}">
+                <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+                <div class="mb-3" style="display: flex; justify-content: right; margin-top: 30px;">
+                    <a href="./hidden">
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                    style ="width: 120px;
+                    height: 42px; 
+                    background-color: cornflowerblue; border-color: cornflowerblue;">
+                        <i class="fas fa-download fa-sm text-white-50"></i> 
+                        
+                            숨긴글 조회
+                    </button>        
+                    </a>
 
-                <a href="./add">
-                <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
-                style ="width: 120px;
-                height: 42px; background-color: #6667AB; border: 0px none; margin-left: 10px;">
-                    <i class="fas fa-wrench fa-sm text-white-50"></i> 
-                    
-                        공지 등록
-                </button>   
-                </a>
-            </div>
-            <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+                    <a href="./add">
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-1"
+                    style ="width: 120px;
+                    height: 42px; background-color: #6667AB; border: 0px none; margin-left: 10px;">
+                        <i class="fas fa-wrench fa-sm text-white-50"></i> 
+                        
+                            공지 등록
+                    </button>   
+                    </a>
+                </div>
+                <!-- 관리자 전용 메뉴. 인터셉터 추가하기 -->
+            </c:if>
 
 
         </div>
@@ -208,7 +200,6 @@
 
 <!-- 푸터 -->
 <c:import url="../template/footer.jsp"></c:import>
-<script src="/resources/js/notice/list.js"></script>
 </div>
 
 

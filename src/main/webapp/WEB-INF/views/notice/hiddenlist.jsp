@@ -70,16 +70,7 @@
                         <!-- <a style="color: black;" href="./detail?nt_num=${nl.nt_num}"> -->
                             <tr class="css-x2m5rx e15yrn082" onclick="location.href='./detail?nt_num=${nl.nt_num}'">
                                 <td class=" css-1k4d546 e15yrn081">${nl.nt_num}</td>
-                                <td class=" css-s1v1rc e15yrn081">
-                                    <c:if test="${nl.code == 1}">
-                                    [구디나라]
-                                    </c:if>
-
-                                    <c:if test="${nl.code == 2}">
-                                    [대기공주]
-                                    </c:if>
-
-                                    ${nl.nt_title}
+                                <td class=" css-s1v1rc e15yrn081">${nl.nt_title}
                                 </td>
                                 
                                 <td class=" css-vzhbq5 e15yrn081">${nl.nt_date}</td>
@@ -99,12 +90,12 @@
                     <ul class="pagination paginate_sm">
 
                         <c:if test="${pager.pre}">
-                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                            <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                         </c:if>
                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                            <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                         </c:forEach>
-                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                     </ul>
                 </nav>
             </div>
@@ -125,7 +116,6 @@
                     </div>
                     <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small w-10" placeholder="Search"
                         aria-label="Search" aria-describedby="basic-addon2" style="border-radius: 8px;">
-                    <input type="hidden" name="code" value="${code}">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-search fa-sm"></i>

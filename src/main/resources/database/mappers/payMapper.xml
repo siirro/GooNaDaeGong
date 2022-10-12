@@ -5,6 +5,51 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.pay.PayDAO">
 
+<update id="cancelPayment" parameterType="PayDTO">
+UPDATE PAY SET PAY_RESULT = 3 WHERE MERCHANT_UID = #{merchant_uid}
+</update>
+
+<select id="getList" parameterType="OrderPager" resultType="PayDTO">
+SELECT * 
+	FROM
+	(SELECT ROWNUM R, P.*
+	FROM
+	(SELECT * FROM PAY P
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
+			<when test="kind == 'imp_uid'">IMP_UID</when>
+			<otherwise>PAY_RESULT</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>
+	<if  test= "payresultSearch != null">
+		AND PAY_RESULT = #{payresultSearch}
+	</if>	
+	ORDER BY PAY_DATE DESC) P)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<select id="getListCount" parameterType="OrderPager" resultType="Long">
+SELECT COUNT(IMP_UID) FROM PAY
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
+			<when test="kind == 'imp_uid'">IMP_UID</when>
+			<otherwise>PAY_RESULT</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>	
+	<if  test= "payresultSearch != null">
+		AND PAY_RESULT = #{payresultSearch}
+	</if>	
+	ORDER BY PAY_DATE DESC
+</select>
+
 <insert id="addPay" parameterType="PayDTO">
 INSERT INTO PAY VALUES (#{imp_uid}, #{merchant_uid}, #{pay_total}, #{pay_result}, SYSDATE)
 </insert>

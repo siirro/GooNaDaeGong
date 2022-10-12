@@ -125,7 +125,10 @@
                                     <div class="css-1gua357 e1tjt2bn5">
                                         <textarea onkeypress="onTestChange();" value="${detail.faq_contents}" id="faq_contents" inputmode="text" placeholder="내용을 입력해주세요" aria-label="textarea-message" 
                                         name="faq_contents" class="css-5etceh e1tjt2bn1" style="font-size: 14px;">${detail.faq_contents}</textarea>
-
+                                        <span class="content-length-counter css-zgkz6w e1tjt2bn0">
+                                            <span id="lengthCheck" class="css-14kcwq8 e1tjt2bn2">
+                                            </span>
+                                        </span>
 
                                         
                                     </div>

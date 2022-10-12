@@ -5,6 +5,14 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.qna.QnaDAO">
 
+<update id="updateQna" parameterType="QnaDTO">
+UPDATE QNA SET QNA_CATE = #{qna_cate}, QNA_TITLE = #{qna_title}, QNA_CONTENTS = #{qna_contents} WHERE QNA_NUM = #{qna_num}
+</update>
+
+<select id="getOrders" parameterType="MemberDTO" resultType="OrdersDTO">
+SELECT * FROM ORDERS WHERE user_id = #{user_id}
+</select>
+
 <insert id="addQnaFile" parameterType="QnaFileDTO">
 INSERT INTO QNAFILE
 VALUES(QNAFILE_SEQ.NEXTVAL, #{qna_num}, #{fileName}, #{oriName})
@@ -14,7 +22,7 @@ VALUES(QNAFILE_SEQ.NEXTVAL, #{qna_num}, #{fileName}, #{oriName})
 <selectKey order="BEFORE" keyProperty="qna_num" resultType="Long"> 
 SELECT QNA_SEQ.NEXTVAL FROM DUAL
 </selectKey>
-INSERT INTO QNA VALUES(#{qna_num}, #{user_id}, #{qna_cate}, #{qna_title}, #{qna_contents},SYSDATE,'대기','',#{code})
+INSERT INTO QNA VALUES(#{qna_num}, #{user_id}, #{qna_cate}, #{qna_title}, #{qna_contents},SYSDATE,'대기','',#{qna_uid,jdbcType=VARCHAR})
 </insert>
 
 
@@ -28,9 +36,10 @@ SELECT * FROM
 					<when test="kind == 'qna_contents'">QNA_CONTENTS</when>
 					<otherwise>USER_ID</otherwise>
 				</choose>
-			LIKE '%'||#{search}||'%' 
-			
-			AND CODE LIKE '%'||#{code,jdbcType=NUMERIC}||'%'
+			LIKE '%'||#{search}||'%'
+			<if  test= "qna_status != null">
+				AND QNA_STATUS = #{qna_status}
+			</if>
 			ORDER BY QNA_NUM DESC)
 		N)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -44,8 +53,10 @@ SELECT * FROM
 		<when test="kind == 'qna_contents'">QNA_CONTENTS</when>
 		<otherwise>USER_ID</otherwise>
 	</choose>
-	LIKE '%'||#{search}||'%' 
-	AND CODE LIKE '%'||#{code,jdbcType=NUMERIC}||'%'
+	LIKE '%'||#{search}||'%'
+	<if  test= "qna_status != null">
+		AND QNA_STATUS = #{qna_status}
+	</if>
 </select>
 	
 <select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">
@@ -65,7 +76,8 @@ WHERE Q.QNA_NUM = #{qna_num}
 	<result column="QNA_DATE" property="qna_date"/>
 	<result column="QNA_COMMENT" property="qna_comment"/>
 	<result column="QNA_STATUS" property="qna_status"/>
-	<result column="CODE" property="code"/>
+	<result column="QNA_uid" property="qna_uid"/>
+	
 	
 	<collection property="qnaFileDTOs" javaType="List" ofType="QnaFileDTO">
 		<id column="FILENUM" property="fileNum"/>

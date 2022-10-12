@@ -48,9 +48,7 @@
 			</div>
 			<!-- Carousel End -->
 			
-			<!-- 관리자센터 링크 -->
-			<hr>
-			<a href="./manager">관리자센터</a>
+			
 			<hr>
 
 			<div>구디나라</div>

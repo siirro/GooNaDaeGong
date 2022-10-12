@@ -17,7 +17,7 @@
 
 
     <div class="css-1ykiyus e146m4rf2">
-        <div class="css-1uom1od e146m4rf0">
+        <div class="css-1uom1od e146m4rf0" style="zoom: 0.8;">
             <h2 class="css-10owlr e146m4rf1">주문</h2>
             
             <!-- 본문 전체박스 -->
@@ -41,53 +41,35 @@
 
                             <!-- 주문상품목록 -->
                             <!-- <씨:포이치 items="${catlist}" var="l"> -->
+                            <c:forEach items="${cart}" var="l">
                                 <div class="css-bd9p1l e17a7yib9">
 
-                                    <span class="css-1w0uptv e17a7yib8"></span>
-
-                                    <!-- 아이폰 14 지우고 ${l.item_name} -->
-                                    <span class="css-10nl60h e17a7yib7">
-                                        <span class="css-1f86gv6 e17a7yib6">아이폰 14</span>
+                                    <span class="css-1w0uptv e17a7yib8">
+                                        <img src="../../resources/upload/gnItem/${l.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="1000px" style="cursor: pointer;">
                                     </span>
-                                    <input type="hidden" name="item_name" class="item_name" value="아이폰 14">
+
+                                    <!-- 아이폰 14 지우고 ${l.gnItemDTO.item_name} -->
+                                    <span class="css-10nl60h e17a7yib7">
+                                        <span class="css-1f86gv6 e17a7yib6">${l.gnItemDTO.item_name}</span>
+                                    </span>
+                                    <input type="hidden" name="item_name" class="item_name" value="${l.gnItemDTO.item_name}">
 
                                     <!-- 1 지우고 ${l.item_count} -->
-                                    <span class="css-1efb5i1 e17a7yib4">1개</span>
-                                    <input type="hidden" name="item_count" class="item_count" value="1">
+                                    <span class="css-1efb5i1 e17a7yib4">${l.item_count}개</span>
+                                    <input type="hidden" name="item_count" class="item_count" value="${l.item_count}">
 
-                                    <!-- 100 지우고 ${l.item_price} -->
+                                    <!-- 100 지우고 ${l.gnItemDTO.item_price} -->
                                     <span class="css-1j31gob e17a7yib3">
-                                        <span class="css-jnogx7 e17a7yib0">100원</span>
+                                        <span class="css-jnogx7 e17a7yib0">${l.gnItemDTO.item_price}원</span>
                                     </span>
-                                    <input type="hidden" name="item_price" class="item_price" value="101">
+                                    <input type="hidden" name="item_price" class="item_price" value="${l.gnItemDTO.item_price}">
+                                    <input type="hidden" name="item_num" class="item_num" value="${l.item_num}">
 
                                 </div>
 
-                                <!-- 포이치돌리기전에더미 -->
-                                <div class="css-bd9p1l e17a7yib9">
-
-                                    <span class="css-1w0uptv e17a7yib8"></span>
-
-                                    <!-- 아이폰 14 지우고 ${l.item_name} -->
-                                    <span class="css-10nl60h e17a7yib7">
-                                        <span class="css-1f86gv6 e17a7yib6">갤럭시 14</span>
-                                    </span>
-                                    <input type="hidden" name="item_name" class="item_name" value="갤럭시 14">
-
-                                    <!-- 1 지우고 ${l.item_count} -->
-                                    <span class="css-1efb5i1 e17a7yib4">1개</span>
-                                    <input type="hidden" name="item_count" class="item_count" value="1">
-
-                                    <!-- 100 지우고 ${l.item_price} -->
-                                    <span class="css-1j31gob e17a7yib3">
-                                        <span class="css-jnogx7 e17a7yib0">100원</span>
-                                    </span>
-                                    <input type="hidden" name="item_price" class="item_price" value="101">
-
-                                </div>
-                                <!-- 포이치돌리기전에더미 -->
 
                             <!-- </씨:포이치> -->
+                            </c:forEach>
 
                             <!-- 주문자 정보 -->
                             <div class="css-6q17pt edbbr7c2">
@@ -255,7 +237,9 @@
                                 <!-- 결제버튼 -->
                                 <div class="css-1azakc el0c5j41">
                                     <button onclick="gogogogo()" class="css-1lha8en e4nu7ef3" type="button" width="240" height="56" radius="3">
-                                        <span class="css-ymwvow e4nu7ef1">총금액 +원 결제하기</span>
+                                        <span class="css-ymwvow e4nu7ef1">총금액 
+                                            <span id="total22"></span>
+                                            원 결제하기</span>
                                     </button>
                                 </div>
 
@@ -288,24 +272,32 @@
                                         <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked> -->
                                         <label class="form-check-label" for="terms-agree-personal-info">
                                             (필수) 개인정보 수집 및 이용 동의
-                                            <span class="css-gwort8 er4y7r81"></span>
+                                            <!-- <span class="css-gwort8 er4y7r81"></span> -->
+                                            
                                         </label>
+                                        <span onclick="checkcheck1()">(보기)</span>
                                     </div>
 
                                     <div class="form-check" style="margin-bottom: 5px;">
                                         <input class="form-check-input normal" type="checkbox" value="" id="terms-agree-personal-info-third-party">
                                         <label class="form-check-label" for="terms-agree-personal-info-third-party">
                                             (필수) 개인정보 판매자 제공 동의 
-                                            <span class="css-gwort8 er4y7r81" style="margin-left: 3px;"></span>
+                                            
                                         </label>
+                                        <span onclick="checkcheck2()">(보기)</span>
+                                        
+
+                                        
+
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input normal" type="checkbox" value="" id="terms-agree-payment-agent">
                                         <label class="form-check-label" for="terms-agree-payment-agent">
                                             (필수) 결제대행 서비스 약관 동의 
-                                            <span class="css-gwort8 er4y7r81" style="margin-left: 3px;"></span>
+                                            
                                         </label>
+                                        <span onclick="checkcheck3()">(보기)</span>
                                     </div>
                                 </div>
                             </div>
@@ -398,12 +390,16 @@
 
     
     function allPrice() {
-        let ord_total1 = 100;
+        let ord_total1 = 0;
 
-        // 상품총금액 잠시 주석처리
-        // for(let i=0;i<item.length;i++) {
-        //     ord_total1 += item[i].ITEM_PRICE * item[i].ITEM_COUNT
-        // }
+        const item_price = document.getElementsByClassName("item_price");
+        const item_count = document.getElementsByClassName("item_count");
+
+        for(let i=0;i<item_price.length;i++){
+            ord_total1 += item_price[i].value * item_count[i].value;
+        }
+
+        console.log(ord_total1);
 
         
 
@@ -422,12 +418,41 @@
         document.getElementById("total1").innerHTML = ord_total1;
         document.getElementById("delfree").innerHTML = ord_delfree;
         document.getElementById("total2").innerHTML = ord_total2;
+        document.getElementById("total22").innerHTML = ord_total2;
+
         document.getElementById("ord_total1").value = ord_total1;
         document.getElementById("ord_delfree").value = ord_delfree;
         document.getElementById("ord_total2").value = ord_total2;
     }
    
-        
+        function checkcheck1() {
+            let check1 = confirm("개인정보를 수집");
+            if(check1==true){
+                document.getElementById("terms-agree-personal-info").checked = true;
+            } else {
+                document.getElementById("terms-agree-personal-info").checked = false;
+            }
+        }
+
+        function checkcheck2() {
+            let check2 = confirm("개인정보를 판매자에게 제공");
+            
+            if(check2==true){
+                document.getElementById("terms-agree-personal-info-third-party").checked = true;
+            } else {
+                document.getElementById("terms-agree-personal-info-third-party").checked = false;
+            }
+        }
+
+        function checkcheck3() {
+            let check3 = confirm("결제대행은 이런서비스고 위험하다");
+            
+            if(check3==true){
+                document.getElementById("terms-agree-payment-agent").checked = true;
+            } else {
+                document.getElementById("terms-agree-payment-agent").checked = false;
+            }
+        }
    
 
     

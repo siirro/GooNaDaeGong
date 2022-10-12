@@ -60,16 +60,16 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트
-                                <c:if test="${code == 1}">
-                                    [구디나라]
-                                </c:if>
-        
-                                <c:if test="${code == 2}">
-                                    [대기공주]
-                                </c:if>
+                            <!-- <h6 class="m-0 font-weight" style="color: #6667AB;">1대1 문의 리스트
+                            </h6> -->
+                            <button class="m-0 font-weight btn" onClick="location='./list'" style="color: #6667AB; padding: 0px;">1대1 문의 리스트
+                                
+                                <button class="btn good" name="qna_status" style="font-size: 13px; padding: 0px 0px 0px 8px;" onClick="location='./list?qna_status=대기'" value="대기">대기</button>
+                                <button class="btn good" disabled style="font-size: 13px; padding: 0px 4px 0px 4px;">|</button>
+                                <button class="btn bad" name="qna_status" style="font-size: 13px; padding: 0px;" onClick="location='./list?qna_status=완료'" value="완료">완료</button>
+
                             
-                            </h6>
+                            </button>
                         </div>
                         <div class="card-body" style="zoom: 0.8;">
                             <!-- 카드 본문  -->
@@ -111,12 +111,12 @@
                                     <ul class="pagination paginate_sm">
 
                                         <c:if test="${pager.pre}">
-                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
+                                            <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">pre</a></li>
                                         </c:if>
                                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                            <li class="page-item"><a class="page-link" href="./list?code=${code}&page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                            <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                                         </c:forEach>
-                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?code=${code}&page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
+                                        <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">next</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -135,7 +135,6 @@
                                     </div>
                                     <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
                                         aria-label="Search" aria-describedby="basic-addon2">
-                                    <input type="hidden" name="code" value="${code}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search fa-sm"></i>
@@ -198,7 +197,6 @@
         }
 
     </script>
-    <script src="/resources/js/manager/qnalist.js"></script>
 
 </body>
 

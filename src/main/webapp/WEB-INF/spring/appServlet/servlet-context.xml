@@ -22,8 +22,32 @@
 	</beans:bean>
 	
 	<!-- Interceptor 설정 -->
+	<beans:bean class="com.gndg.home.interceptor.AdminInterceptor" id="adminInterceptor"></beans:bean>
+	<beans:bean class="com.gndg.home.interceptor.LoginInterceptor" id="loginInterceptor"></beans:bean>
+	
 	
 	<!-- URL- Interceptor 맵핑 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<mapping path="/faq/**"/>
+			<mapping path="/manager/**"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<exclude-mapping path="/faq/list"/>
+			<exclude-mapping path="/faq/detail"/>
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/**"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		
+		
+		
+	</interceptors>
 	<!-- Interceptor 큰 순서대로 Intercpetor가 실행된다 -->
 	
 	<context:component-scan base-package="com.gndg.home" />

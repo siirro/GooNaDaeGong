@@ -5,12 +5,156 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.cancel.CancelDAO">
 
-<!-- <insert id="addCancel" parameterType="CancelDTO">
-<selectKey order="BEFORE" keyProperty="can_num" resultType="Long">
-SELECT CANCEL_SEQ.NEXTVAL FROM DUAL
-</selectKey>
-INSERT INTO CANCEL VALUES (#{can_num}, #{merchant_uid}, sysdate)
-</insert> -->
+<insert id="addRefund" parameterType="RefundDTO">
+INSERT INTO REFUND VALUES (REFUND_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{ref_memo})
+</insert>
+
+<select id="getListR" parameterType="OrderPager" resultMap="getListResultR">
+	SELECT * 
+	FROM
+	(SELECT ROWNUM R, RF.*
+	FROM
+	(SELECT * FROM REFUND RF
+	LEFT JOIN ORDERS O
+	ON RF.MERCHANT_UID = O.MERCHANT_UID
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">O.MERCHANT_UID</when>
+			<when test="kind == 'ref_num'">RF.REF_NUM</when>
+			<when test="kind == 'ord_status'">O.ORD_STATUS</when>
+			<otherwise>O.USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>	
+	ORDER BY REF_NUM DESC) RF)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<resultMap type="OrdersDTO" id="getListResultR">
+	<id column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="ORD_TOTAL2" property="ord_total2"/>
+	<result column="ORD_STATUS" property="ord_status"/>
+	
+	<association property="refundDTO" javaType="RefundDTO">
+		<id column="REF_NUM" property="ref_num"/>
+		<result column="REF_DATE" property="ref_date"/>
+		<result column="REF_MEMO" property="ref_memo"/>
+	</association>
+</resultMap>
+
+
+
+<select id="getListCountR" parameterType="OrderPager" resultType="Long">
+	SELECT COUNT(R.REF_NUM) FROM REFUND R
+	LEFT JOIN ORDERS O
+	ON R.MERCHANT_UID = O.MERCHANT_UID
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">O.MERCHANT_UID</when>
+			<when test="kind == 'ref_num'">R.REF_NUM</when>
+			<when test="kind == 'ord_status'">O.ORD_STATUS</when>
+			<otherwise>O.USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>
+</select>
+
+<select id="getDetailR" parameterType="RefundDTO" resultType="RefundDTO">
+SELECT * 
+FROM REFUND
+WHERE MERCHANT_UID=#{merchant_uid}
+</select>
+
+
+
+
+
+
+
+
+
+<insert id="addExchange" parameterType="ExchangeDTO">
+INSERT INTO EXCHANGE VALUES (EXCHANGE_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{exc_option}, #{exc_memo})
+</insert>
+
+<select id="getListE" parameterType="OrderPager" resultMap="getListResultE">
+	SELECT * 
+	FROM
+	(SELECT ROWNUM R, E.*
+	FROM
+	(SELECT * FROM EXCHANGE E
+	LEFT JOIN ORDERS O
+	ON E.MERCHANT_UID = O.MERCHANT_UID
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">O.MERCHANT_UID</when>
+			<when test="kind == 'exc_num'">E.EXC_NUM</when>
+			<when test="kind == 'ord_status'">O.ORD_STATUS</when>
+			<otherwise>O.USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>	
+	ORDER BY EXC_NUM DESC) E)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<resultMap type="OrdersDTO" id="getListResultE">
+	<id column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="ORD_TOTAL2" property="ord_total2"/>
+	<result column="ORD_STATUS" property="ord_status"/>
+	
+	<association property="exchangeDTO" javaType="ExchangeDTO">
+		<id column="EXC_NUM" property="exc_num"/>
+		<result column="EXC_DATE" property="exc_date"/>
+		<result column="EXC_OPTION" property="exc_option"/>
+		<result column="EXC_MEMO" property="exc_memo"/>
+	</association>
+</resultMap>
+
+
+
+<select id="getListCountE" parameterType="OrderPager" resultType="Long">
+	SELECT COUNT(E.EXC_NUM) FROM EXCHANGE E
+	LEFT JOIN ORDERS O
+	ON E.MERCHANT_UID = O.MERCHANT_UID
+	WHERE 
+		<choose>
+			<when test="kind == 'merchant_uid'">O.MERCHANT_UID</when>
+			<when test="kind == 'exc_num'">E.EXC_NUM</when>
+			<when test="kind == 'ord_status'">O.ORD_STATUS</when>
+			<otherwise>O.USER_ID</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' 
+	<if  test= "searchdate1 != null">
+		AND ORD_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+	</if>
+</select>
+
+<select id="getDetailE" parameterType="ExchangeDTO" resultType="ExchangeDTO">
+SELECT * 
+FROM EXCHANGE
+WHERE MERCHANT_UID=#{merchant_uid}
+</select>
+
+
+
+
+
+
+
+
+
+<insert id="addCancel" parameterType="CancelDTO">
+INSERT INTO CANCEL VALUES (CANCEL_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{can_memo})
+</insert>
 
 <select id="getList" parameterType="OrderPager" resultMap="getListResult">
 	SELECT * 
@@ -41,10 +185,12 @@ INSERT INTO CANCEL VALUES (#{can_num}, #{merchant_uid}, sysdate)
 	<result column="ORD_TOTAL2" property="ord_total2"/>
 	<result column="ORD_STATUS" property="ord_status"/>
 	
-	<collection property="cancelDTOs" javaType="List" ofType="CancelDTO">
+	<association property="cancelDTO" javaType="CancelDTO">
 		<id column="CAN_NUM" property="can_num"/>
 		<result column="CAN_DATE" property="can_date"/>
-	</collection>
+		<result column="CAN_MEMO" property="can_memo"/>
+		
+	</association>
 </resultMap>
 
 
@@ -71,9 +217,7 @@ INSERT INTO CANCEL VALUES (#{can_num}, #{merchant_uid}, sysdate)
 <select id="getDetail" parameterType="CancelDTO" resultType="CancelDTO">
 SELECT * 
 FROM CANCEL C
-LEFT JOIN ORDERS O
-ON C.MERCHANT_UID = O.MERCHANT_UID
-WHERE C.MERCHANT_UID=#{merchant_uid}
+WHERE MERCHANT_UID=#{merchant_uid}
 </select>
 
 

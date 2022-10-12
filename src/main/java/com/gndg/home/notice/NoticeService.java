@@ -93,21 +93,21 @@ public class NoticeService {
 		return result;
 	}
 	
-	public List<NoticeDTO> getList(Pager pager, Long code)throws Exception {
+	public List<NoticeDTO> getList(Pager pager)throws Exception {
 		
-		Long totalCount = noticeDAO.getCount(pager, code);
+		Long totalCount = noticeDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
-		List<NoticeDTO> ar = noticeDAO.getList(pager, code);
+		List<NoticeDTO> ar = noticeDAO.getList(pager);
 		return ar;
 	}
 	
-	public List<NoticeDTO> getListHidden(Pager pager, Long code)throws Exception {
+	public List<NoticeDTO> getListHidden(Pager pager)throws Exception {
 			
-		Long totalCount = noticeDAO.getCountHidden(pager, code);
+		Long totalCount = noticeDAO.getCountHidden(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
-		List<NoticeDTO> ar = noticeDAO.getListHidden(pager, code);
+		List<NoticeDTO> ar = noticeDAO.getListHidden(pager);
 		return ar;
 	}
 

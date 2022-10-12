@@ -85,6 +85,10 @@ a {
     font-weight: 500;
 }
 
+.css-nk8664.active > span, .css-nk8664:hover > span {
+    background-image: url(/resources/images/notice/active.svg);
+}
+
 .css-171zbec {
     width: 820px;
 }

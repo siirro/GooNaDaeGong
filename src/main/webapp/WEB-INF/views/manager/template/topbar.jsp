@@ -67,7 +67,7 @@
                 <div class="modal-body">관리자 계정을 로그아웃 합니다.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" href="login.html">로그아웃</a>
+                    <a class="btn btn-primary" href="../../../member/logout">로그아웃</a>
                 </div>
             </div>
         </div>

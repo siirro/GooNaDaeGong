@@ -13,9 +13,15 @@ public class QnaDTO {
 	private Date qna_date;
 	private String qna_status;
 	private String qna_comment;
-	private Long code;
+	private Long qna_uid;
 	private List<QnaFileDTO> qnaFileDTOs;
 	
+	public Long getQna_uid() {
+		return qna_uid;
+	}
+	public void setQna_uid(Long qna_uid) {
+		this.qna_uid = qna_uid;
+	}
 	public List<QnaFileDTO> getQnaFileDTOs() {
 		return qnaFileDTOs;
 	}
@@ -70,12 +76,7 @@ public class QnaDTO {
 	public void setQna_comment(String qna_comment) {
 		this.qna_comment = qna_comment;
 	}
-	public Long getCode() {
-		return code;
-	}
-	public void setCode(Long code) {
-		this.code = code;
-	}
+
 	
 	
 	
