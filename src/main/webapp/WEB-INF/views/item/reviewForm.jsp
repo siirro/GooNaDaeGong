@@ -471,7 +471,7 @@
     </form>
     
     <p class="btnArea after">
-        <a href="./review?item_num=${dgItemDetailDTO.item_num}">
+        <a href="./review?item_num=${dto.item_num}">
             <span class="bhs_button" style="line-height:30px; width:130px;">후기쓰기</span>
         </a>
     </p>

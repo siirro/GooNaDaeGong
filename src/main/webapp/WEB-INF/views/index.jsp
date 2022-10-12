@@ -49,11 +49,11 @@
 			<!-- Carousel End -->
 			
 			<div>관리자센터</div>
-			<a href="./manager/index.jsp">관리자센터</a>
+			<a href="./manager/index">관리자센터</a>
 			<hr>
 
 			<div>구디나라 대기공주</div>
-			<a href="./item/add.jsp">상품등록</a> <a href="./item/list.jsp">상품목록</a>
+			<a href="./item/add">상품등록</a> <a href="./item/list">상품목록</a>
 			<hr>
 			
 
