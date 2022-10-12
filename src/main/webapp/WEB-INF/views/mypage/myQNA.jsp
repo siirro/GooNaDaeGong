@@ -107,7 +107,7 @@
                                                         </c:forEach>
                                                     <c:if test="${qna.qna_status == '대기'}">
                                                     <div class="css-c0oq5k eula2qn2">
-                                                        <button type="button" class="css-qv4hdm eula2qn1" onClick="location.href=''">수정</button>
+                                                        <button type="button" class="css-qv4hdm eula2qn1" onClick="location.href='../qna/inquiryUpdate?qna_num=${qna.qna_num}'">수정</button>
                                                         <div class="css-ord49b eula2qn0"></div>
                                                         <button type="button" class="css-qv4hdm eula2qn1">삭제</button>
                                                     </div>

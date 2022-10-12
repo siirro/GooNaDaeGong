@@ -231,6 +231,7 @@ FROM
         ORDER BY RV_NUM DESC) A )
 WHERE RN BETWEEN #{startRow} AND #{lastRow}
 </select>
+
 <resultMap type="DgItemReviewDTO" id="getMyReviewResult">
 	<id column="RV_NUM" property="rv_num"/>
 	<result column="ITEM_NUM" property="item_num"/>

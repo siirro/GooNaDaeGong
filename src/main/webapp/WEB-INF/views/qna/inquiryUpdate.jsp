@@ -264,7 +264,7 @@
 
 
 
-<script src="/resources/js/notice/inquiry.js"></script>
+<script src="/resources/js/notice/inquiryUpdate.js"></script>
 <script>
     let k = '${qnaDTO.qna_cate}';
         const cates = document.getElementsByClassName('cates');

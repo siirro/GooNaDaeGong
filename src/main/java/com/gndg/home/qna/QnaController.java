@@ -43,7 +43,7 @@ public class QnaController {
 		
 				
 //		mv.addObject("url", "./detail?qna_num="+qnaDTO.getQna_num());
-		mv.addObject("url", "../../../index");
+		mv.addObject("url", "../mypage/myQNA");
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
 		
