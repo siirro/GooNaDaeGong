@@ -31,7 +31,7 @@ WHERE C.USER_ID=#{user_id}
 	<result column= "ITEM_COUNT" property="item_count"/>
 	<association property="gnItemDTO" javaType="GnItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_TITLE" property="item_title" />
 		<result column="ITEM_PRICE" property="item_price" />
 			<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
 				<id column="FILENUM" property="fileNum"/>
@@ -64,7 +64,7 @@ FROM
 		<choose>
 				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
 				<when test="kind == 'user_id'">OO.USER_ID</when>
-				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_title'">I.ITEM_TITLE</when>
 				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
 				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
@@ -89,7 +89,7 @@ FROM
 		<choose>
 				<when test="kind == 'merchant_uid'">OO.MERCHANT_UID</when>
 				<when test="kind == 'user_id'">OO.USER_ID</when>
-				<when test="kind == 'item_name'">I.ITEM_NAME</when>
+				<when test="kind == 'item_title'">I.ITEM_TITLE</when>
 				<when test="kind == 'item_num'">GO.ITEM_NUM</when>
 				<otherwise>OO.ORD_STATUS</otherwise>
 		</choose>
@@ -126,7 +126,7 @@ WHERE O.MERCHANT_UID=#{merchant_uid}
 		<result column="GO_AMOUNT" property="go_amount" />
 		<association property="gnItemDTO" javaType="GnItemDTO">
 			<id column="ITEM_NUM" property="item_num"/>
-			<result column="ITEM_NAME" property="item_name"/>
+			<result column="ITEM_TITLE" property="item_title"/>
 			<result column="ITEM_PRICE" property="item_price"/>
 				<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
 					<id column="FILENUM" property="fileNum"/>

@@ -48,11 +48,11 @@
                                         <img src="../../resources/upload/gnItem/${l.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="1000px" style="cursor: pointer;">
                                     </span>
 
-                                    <!-- 아이폰 14 지우고 ${l.gnItemDTO.item_name} -->
+                                    <!-- 아이폰 14 지우고 ${l.gnItemDTO.item_title} -->
                                     <span class="css-10nl60h e17a7yib7">
-                                        <span class="css-1f86gv6 e17a7yib6">${l.gnItemDTO.item_name}</span>
+                                        <span class="css-1f86gv6 e17a7yib6">${l.gnItemDTO.item_title}</span>
                                     </span>
-                                    <input type="hidden" name="item_name" class="item_name" value="${l.gnItemDTO.item_name}">
+                                    <input type="hidden" name="item_title" class="item_title" value="${l.gnItemDTO.item_title}">
 
                                     <!-- 1 지우고 ${l.item_count} -->
                                     <span class="css-1efb5i1 e17a7yib4">${l.item_count}개</span>

@@ -25,6 +25,10 @@ public class QnaService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public int updateQna(QnaDTO qnaDTO)throws Exception{
+		return qnaDAO.updateQna(qnaDTO);
+	}
+	
 	
 	public List<OrdersDTO> getOrders(MemberDTO memberDTO)throws Exception{
 		return qnaDAO.getOrders(memberDTO);

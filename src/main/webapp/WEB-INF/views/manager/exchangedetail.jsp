@@ -191,7 +191,7 @@
                                                         <img src="../../resources/upload/gnItem/${nl.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
 
                                                     </td>
-                                                    <td>${nl.gnItemDTO.item_name}</td>
+                                                    <td>${nl.gnItemDTO.item_title}</td>
                                                     <td>${nl.gnItemDTO.item_price}원</td>
                                                     <td>${nl.go_amount}개</td>
                                                     <td>${nl.gnItemDTO.item_price*nl.go_amount}원</td>

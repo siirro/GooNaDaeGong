@@ -5,7 +5,7 @@ const qna_title = document.getElementById("qna_title");
 const qna_contents = document.getElementById("qna_contents");
 const qnaSubmit = document.getElementById("qnaSubmit");
 
-let check2=true;
+let check2=false;
 let check3=false;
 let check4=false;
 

@@ -49,7 +49,7 @@
 
             <!-- 찐본문의 본문 -->
             <div class="css-185m8ch e1153ede0">
-                <form action="inquiry" method="post" enctype="multipart/form-data">
+                <form action="inquiryUpdate" method="post" enctype="multipart/form-data">
 
                     <!-- 작성자 = ${session.user_id} -->
                     <input type="hidden" name="user_id" value="${member.user_id}">
@@ -264,7 +264,7 @@
 
 
 
-<script src="/resources/js/notice/inquiry.js"></script>
+<script src="/resources/js/notice/inquiryUpdate.js"></script>
 <script>
     let k = '${qnaDTO.qna_cate}';
         const cates = document.getElementsByClassName('cates');

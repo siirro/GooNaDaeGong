@@ -22,6 +22,18 @@ public class QnaDAO {
 	
 	//==============================================================
 	
+	public int deleteNoticeFile(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteNoticeFile", qnaDTO);
+	}
+	
+	public QnaFileDTO detailQnaFile(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailQnaFile", qnaDTO);
+	}
+	
+	public int updateQna(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"updateQna", qnaDTO);
+	}
+	
 	public List<OrdersDTO> getOrders(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getOrders", memberDTO);
 	}

@@ -31,6 +31,26 @@ public class QnaController {
 		return mv;
 	}
 	
+	@PostMapping("inquiryUpdate")
+	public ModelAndView updateQna(QnaDTO qnaDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
+		int result = qnaService.updateQna(qnaDTO);
+		
+		ModelAndView mv = new ModelAndView();
+		String message = "문의 수정 실패";
+		if(result!=0) {
+			message = "문의 내용이 성공적으로 수정되었습니다.";
+		}
+		
+				
+//		mv.addObject("url", "./detail?qna_num="+qnaDTO.getQna_num());
+		mv.addObject("url", "../mypage/myQNA");
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
+		
+	}
+	
 	@GetMapping("inquiry")
 	public ModelAndView addQna(HttpSession session)throws Exception {
 		ModelAndView mv = new ModelAndView();
