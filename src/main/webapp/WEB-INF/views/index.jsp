@@ -27,13 +27,13 @@
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active" data-bs-interval="10000">
-						<img src="/resources/images/index/1.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/dg/1.jpg" class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item" data-bs-interval="2000">
-						<img src="/resources/images/index/2.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/dg/2.jpg" class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/resources/images/index/3.jpg" class="d-block w-100" alt="...">
+						<img src="/resources/images/dg/3.jpg" class="d-block w-100" alt="...">
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -48,9 +48,7 @@
 			</div>
 			<!-- Carousel End -->
 			
-
-			<div>관리자센터</div>
-			<a href="./manager/index">관리자센터</a>
+			
 			<hr>
 
 			<div>구디나라</div>

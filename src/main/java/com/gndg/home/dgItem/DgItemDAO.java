@@ -56,9 +56,9 @@ public class DgItemDAO {
 	}
 	
 	/* 상품 갯수 */
-	public int getCount(Category category) throws Exception {
-		return sqlSession.select(NAMESPACE + "getCount", category);
-	}
+//	public int getCount(Category category) throws Exception {
+//		return sqlSession.select(NAMESPACE + "getCount", category);
+//	}
 	
 	/* 상품목록 */
 	public List<DgItemDTO> getListItem(DgItemDTO dgItemDTO) throws Exception {
