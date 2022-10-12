@@ -3,7 +3,6 @@ package com.gndg.home.cart;
 import java.util.List;
 
 import com.gndg.home.gnItem.GnItemDTO;
-import com.gndg.home.gnItem.GnItemFileDTO;
 import com.gndg.home.member.MemberDTO;
 
 public class CartDTO{
@@ -14,9 +13,9 @@ public class CartDTO{
 	private Long item_count;
 	
 	//join용
-	private GnItemDTO gnItemDTO;
+	private GnItemDTO ItemDTO;
 	private MemberDTO memberDTO;
-	private List<GnItemFileDTO> gnItemFileDTOs;
+	private List<ItemFileDTO> ItemFileDTOs;
 	
 	//추가
 	private String item_name;
@@ -67,17 +66,18 @@ public class CartDTO{
 	public void setMemberDTO(MemberDTO memberDTO) {
 		this.memberDTO = memberDTO;
 	}
-	public GnItemDTO getGnItemDTO() {
-        return gnItemDTO;
+	
+    public GnItemDTO getItemDTO() {
+        return ItemDTO;
     }
-    public void setGnItemDTO(GnItemDTO gnItemDTO) {
-        this.gnItemDTO = gnItemDTO;
+    public void setItemDTO(GnItemDTO itemDTO) {
+        ItemDTO = itemDTO;
     }
-    public List<GnItemFileDTO> getGnItemFileDTOs() {
-        return gnItemFileDTOs;
+    public List<ItemFileDTO> getItemFileDTOs() {
+        return ItemFileDTOs;
     }
-    public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
-        this.gnItemFileDTOs = gnItemFileDTOs;
+    public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+        ItemFileDTOs = itemFileDTOs;
     }
     public String getItem_name() {
 		return item_name;

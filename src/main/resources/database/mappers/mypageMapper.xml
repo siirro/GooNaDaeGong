@@ -26,7 +26,7 @@ SELECT *
 FROM
 	(SELECT ROWNUM RN,A.*
 	FROM
-	    (SELECT IK.*,ITEM_NAME, ITEM_PRICE, F.FILENAME
+	    (SELECT IK.*,ITEM_TITLE, ITEM_PRICE, F.FILENAME
 	    FROM ITEMLIKE IK
 	         JOIN
 	         ITEM I
@@ -38,16 +38,16 @@ FROM
 	    ORDER BY IK.LIKE_NUM DESC) A)
 WHERE RN BETWEEN #{startRow} AND #{lastRow}
 </select>
-<resultMap type="GnItemLikeDTO" id="getMyLikeResult">
+<resultMap type="ItemLikeDTO" id="getMyLikeResult">
 	<id column="LIKE_NUM" property="like_num"/>
 	<result column="ITEM_NUM" property="item_num"/>
 	<result column="USER_ID" property="user_id"/>
-	<association property="gnItemDTO" javaType="GnItemDTO">
+	<association property="ItemDTO" javaType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_TITLE" property="item_title"/>
 		<result column="ITEM_PRICE" property="item_price"/>
 	</association>
-	<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+	<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="ITEM_NUM" property="item_num"/>
 		<result column="FILENAME" property="fileName"/>
@@ -68,7 +68,7 @@ FROM
     (SELECT ROWNUM RN, A.*
     FROM
         (SELECT *
-        FROM ORD
+        FROM ORDERS
         WHERE USER_ID = #{user_id}
         ORDER BY MERCHANT_UID DESC) A)
 WHERE RN BETWEEN #{startRow} AND #{lastRow}
@@ -77,12 +77,12 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 <!-- 내 주문내역 글 갯수 -->
 <select id="getMyOrderCount" parameterType="MypagePager" resultType="Long">
 SELECT COUNT(MERCHANT_UID)
-FROM ORD
+FROM ORDERS
 WHERE USER_ID = #{user_id}
 </select>
 
 <!-- 내 판매 내역 -->
-<select id="getMySale" parameterType="GnItemDTO" resultMap="getMySaleResult">
+<select id="getMySale" parameterType="ItemDTO" resultMap="getMySaleResult">
 SELECT I.*,F.FILENAME, C.CATE_NAME
 FROM ITEM I
      JOIN
@@ -94,7 +94,7 @@ FROM ITEM I
 WHERE USER_ID= #{user_id}
 ORDER BY I.ITEM_NUM DESC
 </select>
-<resultMap type="GnItemDTO" id="getMySaleResult">
+<resultMap type="ItemDTO" id="getMySaleResult">
 	<id column="ITEM_NUM" property="item_num"/>
 	<result column="CATE_NUM" property="cate_num"/>
 	<result column="USER_ID" property="user_id"/>
@@ -111,7 +111,7 @@ ORDER BY I.ITEM_NUM DESC
 			<id column="CATE_NUM" property="cate_num"/>
 			<result column="CATE_NAME" property="cate_name"/>
 		</association>
-		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+		<collection property="gnItemFileDTOs" javaType="List" ofType="ItemFileDTO">
 			<id column="FILENUM" property="fileNum"/>
 			<result column="ITEM_NUM" property="item_num"/>
 			<result column="FILENAME" property="fileName"/>
@@ -179,7 +179,7 @@ FROM ORD O
     ON I.ITEM_NUM = F.ITEM_NUM
 WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 </select>
-<resultMap type="OrderDTO" id="getMyOrderDetailResult">
+<resultMap type="OrdersDTO" id="getMyOrderDetailResult">
 	<id column="MERCHANT_UID" property="merchant_uid"/>
 	<result column="USER_ID" property="user_id" />
 	<result column="ORD_NAME" property="ord_name"/>
@@ -203,12 +203,12 @@ WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 			<result column="MERCHANT_UID" property="merchant_uid"/>
 			<result column="GO_AMOUNT" property="go_amount"/> <!-- 주문 수량 -->
 		</collection>
-		<collection property="gnItemDTOs" javaType="List" ofType="GnItemDTO">
+		<collection property="ItemDTOs" javaType="List" ofType="ItemDTO">
 			<id column="ITEM_NUM" property="item_num"/>
 			<result column="ITEM_NAME" property="item_name"/>
 			<result column="ITEM_PRICE" property="item_price"/>
 		</collection>
-		<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO"> 
+		<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO"> 
 			<id column="FILENUM" property="fileNum"/>
 			<result column="ITEM_NUM" property="item_num"/>
 			<result column="FILENAME" property="fileName"/>
@@ -231,7 +231,7 @@ FROM
         ORDER BY RV_NUM DESC) A )
 WHERE RN BETWEEN #{startRow} AND #{lastRow}
 </select>
-<resultMap type="DgItemReviewDTO" id="getMyReviewResult">
+<resultMap type="ItemReviewDTO" id="getMyReviewResult">
 	<id column="RV_NUM" property="rv_num"/>
 	<result column="ITEM_NUM" property="item_num"/>
 	<result column="USER_ID" property="user_id"/>
@@ -240,7 +240,7 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 	<result column="RV_DATE" property="rv_date"/>
 	<result column="RV_FILE" property="rv_file"/>
 	
-	<association property="dgItemDTO" javaType="DgItemDTO">
+	<association property="ItemDTO" javaType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="ITEM_NAME" property="item_name"/>
 	</association>
