@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gndg.home.dgItem.DgItemReviewDTO;
 import com.gndg.home.gnItem.GnItemDTO;
+import com.gndg.home.gnItem.GnItemLikeDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.order.OrderDTO;
 import com.gndg.home.qna.QnaDTO;
+import com.gndg.home.util.MypagePager;
 
 @Service
 public class MypageService {
@@ -23,8 +26,14 @@ public class MypageService {
 	private MypageDAO mypageDAO;
 
 	//내 주문내역
-	public List<OrderDTO> getMyOrder(OrderDTO orderDTO)throws Exception{
-	    return mypageDAO.getMyOrder(orderDTO);
+	public List<OrderDTO> getMyOrder(MypagePager mypagePager)throws Exception{
+	    //내 주문 글 갯수
+	    Long totalCount = mypageDAO.getMyOrderCount(mypagePager);
+	    
+	    mypagePager.getNum(totalCount);
+	    mypagePager.getRowNum();
+	    
+	    return mypageDAO.getMyOrder(mypagePager);
 	}
 	
 	//내 주문 상세페이지
@@ -37,9 +46,37 @@ public class MypageService {
 	    return mypageDAO.getMySale(gnItemDTO);
 	}
 	
+	//내 (상품)좋아요 목록
+	public List<GnItemLikeDTO> getMyLike(MypagePager mypagePager)throws Exception{
+	    //내 좋아요 글 갯수
+	    Long totalCount = mypageDAO.getMyLikeCount(mypagePager);
+	    
+	    mypagePager.getNum(totalCount);
+	    mypagePager.getRowNum();
+	    
+	    return mypageDAO.getMyLike(mypagePager);
+	}
+	
+	
 	//내 문의 내역
-	public List<QnaDTO> getMyQna(QnaDTO qnaDTO)throws Exception{
-	    return mypageDAO.getMyQna(qnaDTO);
+	public List<QnaDTO> getMyQna(MypagePager mypagePager)throws Exception{
+	    //내 문의 글 갯수
+	    Long totalCount = mypageDAO.getMyQnaCount(mypagePager);
+	    
+	    mypagePager.getNum(totalCount);
+	    mypagePager.getRowNum();
+	    return mypageDAO.getMyQna(mypagePager);
+	}
+	
+	//내 후기 내역
+	public List<DgItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
+	    //내 후기 글 갯수
+	    Long totalCount = mypageDAO.getMyReviewCount(mypagePager);
+	    
+	    mypagePager.getNum(totalCount);
+	    mypagePager.getRowNum();
+	    
+	    return mypageDAO.getMyReview(mypagePager);
 	}
 	
 	//회원정보 수정

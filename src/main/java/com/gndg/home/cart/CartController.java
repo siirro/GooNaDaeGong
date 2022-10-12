@@ -32,7 +32,7 @@ public class CartController {
 //      
 //      return mv;
 //  }
-    //카트 추가  AJAX처리 해줘야함
+    //카트 추가  
     @RequestMapping(value="AddCart")
     public int setAddCart(CartDTO cartDTO, HttpSession session)throws Exception{
         MemberDTO member =  (MemberDTO)session.getAttribute("member");

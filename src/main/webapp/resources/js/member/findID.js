@@ -4,6 +4,8 @@
 const findbtn = document.getElementById("findbtn");
 const user_name= document.getElementById("user_name");
 const user_phone = document.getElementById("user_phone");
+const name_check =document.getElementById("name_check");
+const phone_check =document.getElementById("phone_check");
 const modalbody = document.getElementById("modalbody");
 
 
@@ -30,9 +32,9 @@ findbtn.addEventListener("click",function(){
 
             if(user_name.value == ""){
                 modalbody.innerHTML="이름을 입력주세요."
-            }else if(user_phone == ""){
+            }else if(user_phone.value == ""){
                 modalbody.innerHTML="핸드폰 번호를 입력해 주세요."
-            }else if(id==""){
+            }else if(id == ""){
                 modalbody.innerHTML="입력한 정보로 등록된 ID가 없습니다."
             }else{
                 modalbody.innerHTML="회원님의 계정을 찾았습니다."+"<br>"+"회원님의 ID는 "+"<strong>"+id+"</strong>"+" 입니다.";
@@ -42,3 +44,4 @@ findbtn.addEventListener("click",function(){
 
 
 });
+

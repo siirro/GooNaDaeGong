@@ -6,18 +6,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gndg.home.dgItem.DgItemReviewDTO;
 import com.gndg.home.gnItem.GnItemDTO;
+import com.gndg.home.gnItem.GnItemLikeDTO;
+import com.gndg.home.gnItem.GnItemService;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.member.MemberService;
 import com.gndg.home.order.OrderDTO;
 import com.gndg.home.qna.QnaDTO;
+import com.gndg.home.util.MypagePager;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -27,6 +32,41 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private GnItemService gnItemService;
+	
+	//test
+	@RequestMapping(value="myLike")
+	public ModelAndView myLike(MypagePager mypagePager,HttpSession session)throws Exception{
+	    ModelAndView mv = new ModelAndView();
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        mypagePager.setUser_id(memberDTO.getUser_id());
+        List<GnItemLikeDTO> al = mypageService.getMyLike(mypagePager);
+        
+        //해당 게시글 좋아요 컬러
+//        GnItemLikeDTO gnItemLikeDTO = new GnItemLikeDTO();
+//        gnItemLikeDTO.setUser_id(mypagePager.getUser_id());
+//        gnItemLikeDTO = gnItemService.getLikeUser(gnItemLikeDTO);
+//        mv.addObject("heart", gnItemLikeDTO);
+//        
+        mv.addObject("like", al);
+        mv.addObject("pager", mypagePager);
+        mv.setViewName("/mypage/myLike");
+        return mv;
+	}
+	   //좋아요 등록&취소
+    @PostMapping("heart")
+    @ResponseBody
+    public int setLike(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+        int result = 0;
+        GnItemLikeDTO likeDTO = gnItemService.getLikeUser(gnItemLikeDTO);
+        if(likeDTO == null) {
+            return gnItemService.setLikeAdd(gnItemLikeDTO);
+        }else {
+            gnItemService.setLikeDelete(gnItemLikeDTO);
+        }
+        return result;
+    }
 	
 	//마이페이지 메인
 	@RequestMapping(value="mypage")
@@ -35,20 +75,28 @@ public class MypageController {
 	}
 	
 	//내 찜목록
-	@RequestMapping(value="myHeart")
-	public String myHeart()throws Exception{
-		return "/mypage/myHeart";
-	}
+//	@RequestMapping(value="myHeart")
+//	public ModelAndView myHeart(GnItemLikeDTO gnItemLikeDTO,HttpSession session)throws Exception{
+//	    ModelAndView mv = new ModelAndView();
+//	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+//	    gnItemLikeDTO.setUser_id(memberDTO.getUser_id());
+//	    List<GnItemLikeDTO> al = mypageService.getMyLike(gnItemLikeDTO);
+//	    
+//	    mv.addObject("like", al);
+//	    mv.setViewName("/mypage/myHeart");
+//		return mv;
+//	}
 	
 	//내 주문내역
 	@RequestMapping(value="myOrder")
-	public ModelAndView myOrder(OrderDTO orderDTO, HttpSession session)throws Exception{
+	public ModelAndView myOrder(MypagePager mypagePager, HttpSession session)throws Exception{
 	    ModelAndView mv = new ModelAndView();
 	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-	    orderDTO.setUser_id(memberDTO.getUser_id());
+	    mypagePager.setUser_id(memberDTO.getUser_id());
 	    
-	    List<OrderDTO> al = mypageService.getMyOrder(orderDTO);
+	    List<OrderDTO> al = mypageService.getMyOrder(mypagePager);
 	    mv.addObject("order", al);
+	    mv.addObject("pager", mypagePager);
 	    mv.setViewName("/mypage/myOrder");
 	    
 		return mv;
@@ -70,13 +118,14 @@ public class MypageController {
 	
 	//내 QNA내역
 	@RequestMapping(value="myQNA")
-	public ModelAndView myQNA(QnaDTO qnaDTO, HttpSession session)throws Exception{
+	public ModelAndView myQNA(MypagePager mypagePager, HttpSession session)throws Exception{
 	        ModelAndView mv =new ModelAndView();
 	        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-	        qnaDTO.setUser_id(memberDTO.getUser_id());
-	        List<QnaDTO> al = mypageService.getMyQna(qnaDTO);
+	        mypagePager.setUser_id(memberDTO.getUser_id());
+	        List<QnaDTO> al = mypageService.getMyQna(mypagePager);
 	        
 	        mv.addObject("qna", al);
+	        mv.addObject("pager", mypagePager);
 	        mv.setViewName("/mypage/myQNA");
 	    
 		return mv;
@@ -85,8 +134,25 @@ public class MypageController {
 	
 	//내 후기내역
 	@RequestMapping(value="myReview")
-	public String myReview()throws Exception{
-		return "/mypage/myReview";
+	public ModelAndView myReview(MypagePager mypagePager, HttpSession session)throws Exception{
+	    ModelAndView mv = new ModelAndView();
+	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	    mypagePager.setUser_id(memberDTO.getUser_id());
+	    List<DgItemReviewDTO> al = mypageService.getMyReview(mypagePager);
+	    
+	    for(int i=0; i<al.size(); i++) {
+	        System.out.println(i+"번 째== "+al.get(i).getRv_title());
+	        System.out.println(i+"번 째== "+al.get(i).getRv_contents());
+	        System.out.println(i+"번 째== "+al.get(i).getRv_date());
+	        System.out.println(i+"번 째== "+al.get(i).getRv_file());
+	    }
+	    
+	    mv.addObject("review", al);   
+	    mv.addObject("pager", mypagePager);   
+	    mv.setViewName("/mypage/myReview");
+	    
+	    
+		return mv;
 	}
 	
 	//내 판매내역

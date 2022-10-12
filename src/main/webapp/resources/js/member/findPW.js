@@ -5,33 +5,7 @@ const id_check = document.getElementById("id_check");
 const email_check = document.getElementById("email_check");
 const pwbtn = document.getElementById("pwbtn");
 const frmPW = document.getElementById("frmPW");
-
-// pwbtn.addEventListener("click",function(){
-
-//     // frmPW.submit();
-   
-//     if( user_id.value=""){
-//         id_check.innerHTML ="아이이디를 입력해주세요.";
-//     }
-//     console.log("음 이건 바로 될꺼같은데?");
-
-
-//     user_id.addEventListener("blur",function(){
-//         console.log("으음 아이디 빈거 막아야되니깐 실행점");
-    
-//         if(user_id.value == ""){
-//             id_check.innerHTML="아이디를 입력해주세요.";
-//             user_id.focus();
-//         }
-//     })
-    
-//     user_email.addEventListener("blur",function(){
-//         console.log("이메일 됨?")
-//     })
-// })
-
-
-
+const modalbody = document.getElementById("modalbody");
 
 
 pwbtn.addEventListener("click",function(){
@@ -56,7 +30,17 @@ pwbtn.addEventListener("click",function(){
             console.log("email==", userEmail);
             console.log("ajax 뭐가오는중이죠?==",xhttp.responseText)
             let result = xhttp.responseText.trim();
-            result
+            
+            if(userID == ""){
+                modalbody.innerHTML="아이디를 입력해주세요."
+            }else if(userEmail == ""){
+                modalbody.innerHTML="이메일을 입력해주세요."
+            }else if(result ==""){
+                modalbody.innerHTML="입력한 정보로 등록된 정보가 없습니다."
+            }else{
+                modalbody.innerHTML="등록된 이메일로 임시비밀번호 발급되었습니다."
+            }
+            
         }
     }
 })

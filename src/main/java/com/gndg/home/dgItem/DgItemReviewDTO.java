@@ -13,6 +13,8 @@ public class DgItemReviewDTO {
 	private String rv_file;
 	private Long code;
 	
+	private DgItemDTO dgItemDTO;
+	
 	public Long getRv_num() {
 		return rv_num;
 	}
@@ -67,5 +69,11 @@ public class DgItemReviewDTO {
 	public void setCode(Long code) {
 		this.code = code;
 	}
+    public DgItemDTO getDgItemDTO() {
+        return dgItemDTO;
+    }
+    public void setDgItemDTO(DgItemDTO dgItemDTO) {
+        this.dgItemDTO = dgItemDTO;
+    }
 	
 }

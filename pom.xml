@@ -38,20 +38,7 @@
 			<artifactId>scribejava-core</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-		
-		<!-- 문자 인증관련 라이브러리 -->
-		<dependency>
-			<groupId>net.nurigo</groupId>
-		    <artifactId>javaSDK</artifactId>
-		    <version>2.2</version>
-		</dependency>
-	
-		<!-- 메일 api -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-email</artifactId>
-			<version>1.5</version>
-		</dependency>
+
 	
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<!-- 자바를 json으로 변경시켜줌 -->
@@ -61,6 +48,13 @@
 		    <version>2.13.4</version>
 		</dependency>
 	
+		<!-- 메일 api -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
+		</dependency>
+		
 		  <!-- file upload -->
 		  <!-- commons-fileupload -->
 	      <dependency>

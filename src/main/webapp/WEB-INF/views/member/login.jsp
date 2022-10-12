@@ -17,16 +17,18 @@
 	        <div class="css-1bb6q2p etkckst2">
 	            <div class="css-a7gihu etkckst1">로그인</div>
 	            <div class="css-10zt1af etkckst0">
-	                <form action="login" method="post">
+	                <form action="login" method="post" id="frmLogin">
 	                    <div class="css-46b038 e18ap6t76">
 	                        <div class="css-1accgqb e1uzxhvi6">
 	                            <div class="css-176lya2 e1uzxhvi3">
-	                                <input data-testid="input-box" name="user_id" placeholder="아이디를 입력해주세요" type="text" class="css-1bkd15f e1uzxhvi2" value="">
+	                                <input id="user_id" name="user_id" placeholder="아이디를 입력해주세요" type="text" class="css-1bkd15f e1uzxhvi2" value="" >
+									<div id="id_check" class="check"></div>
 	                            </div>
 	                        </div>
 	                        <div class="css-1accgqb e1uzxhvi6">
 	                            <div class="css-176lya2 e1uzxhvi3">
-	                                <input data-testid="input-box" name="user_pw" placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off" class="css-1bkd15f e1uzxhvi2" value="">
+	                                <input id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off" class="css-1bkd15f e1uzxhvi2" value="" >
+									<div id="pw_check" class="check"></div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -36,7 +38,7 @@
 	                        <a class="css-i4t6me e18ap6t74" href="./findPW">비밀번호 찾기</a>
 	                    </div>
 	                    <div class="css-s4i9n2 e18ap6t71">
-	                        <button class="css-qaxuc4 e4nu7ef3" type="submit" height="54" radius="3">
+	                        <button class="css-qaxuc4 e4nu7ef3" type="button" id="loginbtn" height="54" radius="3">
 	                            <span class="css-ymwvow e4nu7ef1">로그인</span>
 	                        </button>
 	                        <button class="css-hxorrg e4nu7ef3" type="button" height="54" radius="3" onClick="location.href='./join'">
@@ -44,10 +46,19 @@
 	                        </button>
 	                    </div>
 	                </form>
+					<!-- <form action="kakao">
+						 카카오 로그인
+						<div id="kakao_id_login" style="text-align: center">
+							<a  href="https://kauth.kakao.com/oauth/authorize?client_id=7fd3f72a12710b29220e17ed15eadb6c&redirect_uri=http://localhost/member/kakao&response_type=code">
+								<img  src="/resources/images/member/kakao_login_medium_wide.png"   />
+							</a>
+						</div>
+					</form> -->
 	            </div>
 	        </div>
 	    </section>
 	   <c:import url="../template/footer.jsp"></c:import>
 	</div>
+	<script src="/resources/js/member/login.js"></script>
 </body>
 </html>

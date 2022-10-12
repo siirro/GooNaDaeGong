@@ -19,14 +19,66 @@ WHERE M.USER_ID =#{user_id}
 </resultMap>
  -->
  
+ 
+<!-- 내 좋아요 목록 -->
+<select id="getMyLike" parameterType="MypagePager" resultMap="getMyLikeResult">
+SELECT * 
+FROM
+	(SELECT ROWNUM RN,A.*
+	FROM
+	    (SELECT IK.*,ITEM_NAME, ITEM_PRICE, F.FILENAME
+	    FROM ITEMLIKE IK
+	         JOIN
+	         ITEM I
+	         ON IK.ITEM_NUM = I.ITEM_NUM
+	         LEFT JOIN
+	         ITEMFILE F
+	         ON I.ITEM_NUM = F.ITEM_NUM
+	    WHERE IK.USER_ID = #{user_id}
+	    ORDER BY IK.LIKE_NUM DESC) A)
+WHERE RN BETWEEN #{startRow} AND #{lastRow}
+</select>
+<resultMap type="GnItemLikeDTO" id="getMyLikeResult">
+	<id column="LIKE_NUM" property="like_num"/>
+	<result column="ITEM_NUM" property="item_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<association property="gnItemDTO" javaType="GnItemDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+	</association>
+	<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="ITEM_NUM" property="item_num"/>
+		<result column="FILENAME" property="fileName"/>
+	</collection>
+</resultMap>
+
+<!-- 내 좋아요 글 갯수 -->
+<select id="getMyLikeCount" parameterType="MypagePager" resultType="Long">
+SELECT COUNT(LIKE_NUM)
+FROM ITEMLIKE
+WHERE USER_ID = #{user_id}
+</select>
+ 
 <!-- 내 주문내역 -->
-<select id="getMyOrder" parameterType="OrdersDTO" resultType="OrdersDTO">
-SELECT *
-FROM ORDERS
-WHERE USER_ID =#{user_id}
-      	<if  test= "code != null">
-			 AND CODE = #{code}
-		</if>
+<select id="getMyOrder" parameterType="MypagePager" resultType="OrderDTO">
+SELECT * 
+FROM
+    (SELECT ROWNUM RN, A.*
+    FROM
+        (SELECT *
+        FROM ORD
+        WHERE USER_ID = #{user_id}
+        ORDER BY MERCHANT_UID DESC) A)
+WHERE RN BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<!-- 내 주문내역 글 갯수 -->
+<select id="getMyOrderCount" parameterType="MypagePager" resultType="Long">
+SELECT COUNT(MERCHANT_UID)
+FROM ORD
+WHERE USER_ID = #{user_id}
 </select>
 
 <!-- 내 판매 내역 -->
@@ -39,7 +91,7 @@ FROM ITEM I
     LEFT JOIN
     CATEGORY C
     ON I.CATE_NUM = C.CATE_NUM
-WHERE USER_ID= #{user_id} AND CODE =1
+WHERE USER_ID= #{user_id}
 ORDER BY I.ITEM_NUM DESC
 </select>
 <resultMap type="GnItemDTO" id="getMySaleResult">
@@ -55,7 +107,6 @@ ORDER BY I.ITEM_NUM DESC
 	<result column="ITEM_DEAL" property="item_deal"/>
 	<result column="ITEM_CONDITION" property="item_condition"/>
 	<result column="ITEM_YN" property="item_yn"/>
-	<result column="CODE" property="code"/>
 		<association property="category" javaType="Category">
 			<id column="CATE_NUM" property="cate_num"/>
 			<result column="CATE_NAME" property="cate_name"/>
@@ -68,17 +119,21 @@ ORDER BY I.ITEM_NUM DESC
 </resultMap>
 
 <!-- 내 문의내역 -->
-<select id="getMyQna" parameterType="QnaDTO" resultMap="getMyQnaResult">
-SELECT Q.*,QF.FILENAME 
-FROM QNA Q
-    LEFT JOIN
-    QNAFILE QF
-    ON Q.QNA_NUM = QF.QNA_NUM
-WHERE USER_ID = #{user_id}
-      	<if  test= "code != null">
-			 AND CODE = #{code}
-		</if>	
+<select id="getMyQna" parameterType="MypagePager" resultMap="getMyQnaResult">
+SELECT *
+FROM
+    (SELECT ROWNUM RN, A.*
+    FROM
+        (SELECT Q.*,QF.FILENAME 
+        FROM QNA Q
+            LEFT JOIN
+            QNAFILE QF
+            ON Q.QNA_NUM = QF.QNA_NUM
+        WHERE USER_ID = #{user_id}
+        ORDER BY Q.QNA_NUM DESC) A)
+WHERE RN BETWEEN #{startRow} AND #{lastRow}
 </select>
+
 <resultMap type="QnaDTO" id="getMyQnaResult">
 <id column="QNA_NUM" property="qna_num"/>
 <result column="USER_ID" property="user_id"/>
@@ -96,6 +151,13 @@ WHERE USER_ID = #{user_id}
 		<result column="FILENAME" property="fileName"/>
 	</collection>
 </resultMap>
+
+<!-- 내 문의 글 갯수 -->
+<select id="getMyQnaCount" parameterType="MypagePager" resultType="Long">
+SELECT COUNT(QNA_NUM)
+FROM QNA
+WHERE USER_ID = #{user_id}
+</select>
 
 
 
@@ -155,14 +217,42 @@ WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 
  
 <!-- 내 후기내역 -->
-<!--  <select id="">
- SELECT R.ITEM_NUM, I.ITEM_NAME, R.RV_TITLE, R.RV_DATE, R.RV_FILE
-FROM REVIEW R
-    JOIN 
-    ITEM I
-    ON R.ITEM_NUM = I.ITEM_NUM
-WHERE R.USER_ID = #{}
- </select> -->
+<select id="getMyReview" parameterType="MypagePager" resultMap="getMyReviewResult">
+SELECT * 
+FROM
+    (SELECT ROWNUM RN, A.*
+    FROM 
+        (SELECT R.*,I.ITEM_NAME 
+        FROM REVIEW R
+             JOIN
+             ITEM I
+             ON R.ITEM_NUM = I.ITEM_NUM
+        WHERE R.USER_ID = #{user_id}
+        ORDER BY RV_NUM DESC) A )
+WHERE RN BETWEEN #{startRow} AND #{lastRow}
+</select>
+<resultMap type="DgItemReviewDTO" id="getMyReviewResult">
+	<id column="RV_NUM" property="rv_num"/>
+	<result column="ITEM_NUM" property="item_num"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="RV_TITLE" property="rv_title"/>
+	<result column="RV_CONTENTS" property="rv_contents"/>
+	<result column="RV_DATE" property="rv_date"/>
+	<result column="RV_FILE" property="rv_file"/>
+	
+	<association property="dgItemDTO" javaType="DgItemDTO">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_NAME" property="item_name"/>
+	</association>
+</resultMap>
+
+<!-- 내 후기 총 글 갯수 -->
+<select id="getMyReviewCount" parameterType="MypagePager" resultType="Long">
+SELECT COUNT(RV_NUM)
+FROM REVIEW
+WHERE USER_ID= #{user_id}
+</select>
+
 
 <!-- 회원정보 수정 -->
 <update id="setMyUpdate" parameterType="MemberDTO">
@@ -183,7 +273,6 @@ UPDATE MEMBERFILE
 SET 
 FILENAME =#{fileName},
 ORINAME= #{oriName}
-
 WHERE USER_ID =#{user_id}
 </update>
 
@@ -199,6 +288,7 @@ SELECT FILENAME
 FROM MEMBERFILE
 WHERE USER_ID =#{user_id}
 </select>
+
 <!-- 회원탈퇴 -->
 <update id="setMyDelete" parameterType="MemberDTO">
 UPDATE MEMBER

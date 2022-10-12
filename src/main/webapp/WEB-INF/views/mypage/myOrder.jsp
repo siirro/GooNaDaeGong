@@ -28,10 +28,7 @@
                             <a class="active css-nk8664 ecbxmj0" href="./myOrder">주문 내역<span class="css-e41glx e1x0rfoo0"></span></a>
                         </li>
                         <li class="css-0 ecbxmj1">
-                            <a class="css-nk8664 ecbxmj0" href="./mySale">판매 내역<span class="css-e41glx e1x0rfoo0"></span></a>
-                        </li>
-                        <li class="css-0 ecbxmj1">
-                            <a class=" css-nk8664 ecbxmj0" href="./myHeart">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
+                            <a class=" css-nk8664 ecbxmj0" href="./myLike">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
                         </li>
                         <li class="css-0 ecbxmj1">
                             <a class=" css-nk8664 ecbxmj0" href="./myReview">상품 후기<span class="css-e41glx e1x0rfoo0"></span></a>
@@ -57,8 +54,6 @@
                     <h2 class="css-xr9nhh ed9qr671">주문 내역</h2>
                 </div>
             </div>
-            <button class="btn good" name="code" onClick="location='./myOrder?code=1'">구디나라</button>
-            <button class="btn bad" name="code" onClick="location='myOrder?code=2'">대기공주</button>
                     <div class="css-1dmsa3j e1jm6dy15"></div>
                     <div class="css-1c8nox e1ykq6gv1">
                             <c:forEach items="${order}" var="order" varStatus="">
@@ -104,8 +99,6 @@
                                                 </a>
                                             </span>
                                         </button>
-                                    </div>
-                                    <span class="css-1fdt947 e1437c641">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../cancel/inquiry?merchant_uid=${order.merchant_uid}">
@@ -113,6 +106,8 @@
                                                 </a>
                                             </span>
                                         </button>
+                                    </div>
+                                    <span class="css-1fdt947 e1437c641">
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../exchange/inquiry?merchant_uid=${order.merchant_uid}">
@@ -133,6 +128,37 @@
                         </div>
                             </c:forEach>
                         <div class="css-bx0kqw e1mkosgq0"></div>
+                        <!-- 페이징 처리 -->
+                        <div class="css-15jhycr e3tf63e0">
+                                <div class="css-sxxs1g eytury60">
+                                <c:choose>
+                                        <c:when test="${pager.pre}">
+                                            <button  type="button" class="css-rzcdhr e1hbwyso0" onClick="location.href='./myQNA?page=${pager.startNum-1}'">
+                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                             <button type="button" class="css-rzcdhr e1hbwyso0" disabled="">
+                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    
+                                    
+                                    <c:choose>
+                                        <c:when test="${pager.next}">
+                                            <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myQNA?page=${pager.lastNum+1}'">
+                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                        </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button disabled="" type="button" class="css-1jwilit e1pk9060">
+                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                        </button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
                     </div>
                 </div>
               </div>

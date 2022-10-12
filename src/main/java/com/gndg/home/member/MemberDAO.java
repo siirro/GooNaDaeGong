@@ -33,6 +33,10 @@ public class MemberDAO {
 	public int setAddMemberFile(MemberFileDTO memberFileDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAddMemberFile", memberFileDTO);
 	}
+	//카카오 회원가입
+	public int setKakaoJoin(MemberDTO memberDTO)throws Exception{
+	    return sqlSession.insert(NAMESPACE+"setKakaoJoin", memberDTO);
+	}
 	//로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);

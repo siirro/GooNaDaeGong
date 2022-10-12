@@ -101,16 +101,16 @@ button[disabled], input[disabled] {
 
 /* 모달창 전체위치 */
 .modal.show .modal-dialog {
-    transform: none;
-    margin-top: 330px;
+    transform: none !important;
+    margin-top: 330px !important;
 }
 /* 모달창 크기 줄임 */
 .modal-content {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin-left: 47px;
+    width: 80% !important;
+    margin-left: 47px !important;
     pointer-events: auto;
     background-color: #fff;
     background-clip: padding-box;
