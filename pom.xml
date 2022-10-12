@@ -14,6 +14,8 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+	
+		
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<!-- REST API를 자바로 끌고올때 (결제취소) -->
