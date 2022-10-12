@@ -16,10 +16,10 @@
 	  		<typeAlias type="com.gndg.home.pay.PayDTO" alias="PayDTO"/>
 		
 
-			<typeAlias type="com.gndg.home.gnItem.ItemDTO" alias="ItemDTO"/>
-			<typeAlias type="com.gndg.home.gnItem.ItemFileDTO" alias="ItemFileDTO"/>
-			<typeAlias type="com.gndg.home.gnItem.ItemLikeDTO" alias="ItemLikeDTO"/>
-			<typeAlias type="com.gndg.home.gnItem.ItemReviewDTO" alias="ItemReviewDTO"/>
+			<typeAlias type="com.gndg.home.item.ItemDTO" alias="ItemDTO"/>
+			<typeAlias type="com.gndg.home.item.ItemFileDTO" alias="ItemFileDTO"/>
+			<typeAlias type="com.gndg.home.item.ItemLikeDTO" alias="ItemLikeDTO"/>
+			<typeAlias type="com.gndg.home.item.ItemReviewDTO" alias="ItemReviewDTO"/>
 	  		
 
 	  		

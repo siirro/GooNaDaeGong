@@ -30,7 +30,7 @@ WHERE C.USER_ID = #{user_id} AND ITEM_NUM=#{item_num}
 	<result column="ITEM_NUM" property="item_num"/>
 	<result column="USER_ID" property="user_id"/>
 	<result column= "ITEM_COUNT" property="item_count"/>
-	<collection property="dgItemDTOs" javaType="List" ofType="DgItemDTO">
+	<collection property="ItemDTOs" javaType="List" ofType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="ITEM_NAME" property="item_name" />
 		<result column="ITEM_PRICE" property="item_price" />

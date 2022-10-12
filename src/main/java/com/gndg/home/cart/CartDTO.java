@@ -14,9 +14,9 @@ public class CartDTO{
 	private Long item_count;
 	
 	//join용
-	private ItemDTO gnItemDTO;
+	private ItemDTO itemDTO;
 	private MemberDTO memberDTO;
-	private List<ItemFileDTO> gnItemFileDTOs;
+	private List<ItemFileDTO> itemFileDTOs;
 	
 	//추가
 	private String item_name;
@@ -68,17 +68,18 @@ public class CartDTO{
 		this.memberDTO = memberDTO;
 	}
 	
+
     public ItemDTO getItemDTO() {
-        return ItemDTO;
+        return itemDTO;
     }
     public void setItemDTO(ItemDTO itemDTO) {
-        ItemDTO = itemDTO;
+        this.itemDTO = itemDTO;
     }
     public List<ItemFileDTO> getItemFileDTOs() {
-        return ItemFileDTOs;
+        return itemFileDTOs;
     }
     public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
-        ItemFileDTOs = itemFileDTOs;
+        this.itemFileDTOs = itemFileDTOs;
     }
     public String getItem_name() {
 		return item_name;

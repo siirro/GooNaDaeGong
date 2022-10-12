@@ -29,11 +29,11 @@ WHERE C.USER_ID=#{user_id}
 	<result column="ITEM_NUM" property="item_num"/>
 	<result column="USER_ID" property="user_id"/>
 	<result column= "ITEM_COUNT" property="item_count"/>
-	<association property="gnItemDTO" javaType="GnItemDTO">
+	<association property="itemDTO" javaType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="ITEM_TITLE" property="item_title" />
 		<result column="ITEM_PRICE" property="item_price" />
-			<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+			<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
 				<id column="FILENUM" property="fileNum"/>
 				<result column="ITEM_NUM" property="item_num"/>
 				<result column="FILENAME" property="fileName"/>
@@ -124,11 +124,11 @@ WHERE O.MERCHANT_UID=#{merchant_uid}
 	<collection property="goodsOrdersDTOs" javaType="List" ofType="GoodsOrdersDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="GO_AMOUNT" property="go_amount" />
-		<association property="gnItemDTO" javaType="GnItemDTO">
+		<association property="itemDTO" javaType="ItemDTO">
 			<id column="ITEM_NUM" property="item_num"/>
 			<result column="ITEM_TITLE" property="item_title"/>
 			<result column="ITEM_PRICE" property="item_price"/>
-				<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+				<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
 					<id column="FILENUM" property="fileNum"/>
 					<result column="ITEM_NUM" property="item_num"/>
 					<result column="FILENAME" property="fileName"/>

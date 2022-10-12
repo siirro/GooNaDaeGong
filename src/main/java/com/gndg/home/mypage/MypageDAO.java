@@ -6,9 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.gndg.home.dgItem.DgItemReviewDTO;
 import com.gndg.home.item.ItemDTO;
 import com.gndg.home.item.ItemLikeDTO;
+import com.gndg.home.item.ItemReviewDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.order.OrderDTO;
@@ -62,7 +62,7 @@ public class MypageDAO {
 	}
 	
 	//내 후기 내역
-	public List<DgItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
+	public List<ItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getMyReview", mypagePager);
 	}
 	

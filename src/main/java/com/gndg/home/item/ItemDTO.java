@@ -21,7 +21,7 @@ public class ItemDTO {
 	private Long item_hit;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date item_date;
-	private List<ItemFileDTO> gnItemFileDTOs;
+	private List<ItemFileDTO> itemFileDTOs;
 	
 	public Long getItem_num() {
 		return item_num;
@@ -101,10 +101,11 @@ public class ItemDTO {
 	public void setItem_date(Date item_date) {
 		this.item_date = item_date;
 	}
-	public List<ItemFileDTO> getGnItemFileDTOs() {
-		return gnItemFileDTOs;
-	}
-	public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
-		this.gnItemFileDTOs = gnItemFileDTOs;
-	}
+    public List<ItemFileDTO> getItemFileDTOs() {
+        return itemFileDTOs;
+    }
+    public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+        this.itemFileDTOs = itemFileDTOs;
+    }
+
 }

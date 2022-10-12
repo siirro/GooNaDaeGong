@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gndg.home.Item.ItemReviewDTO;
 import com.gndg.home.item.ItemDTO;
 import com.gndg.home.item.ItemLikeDTO;
+import com.gndg.home.item.ItemReviewDTO;
 import com.gndg.home.item.ItemService;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
@@ -57,13 +57,13 @@ public class MypageController {
 	   //좋아요 등록&취소
     @PostMapping("heart")
     @ResponseBody
-    public int setLike(ItemLikeDTO gnItemLikeDTO) throws Exception {
+    public int setLike(ItemLikeDTO ItemLikeDTO) throws Exception {
         int result = 0;
         ItemLikeDTO likeDTO = ItemService.getLikeUser(ItemLikeDTO);
         if(likeDTO == null) {
             return ItemService.setLikeAdd(ItemLikeDTO);
         }else {
-            ItemService.setLikeDelete(gnItemLikeDTO);
+            ItemService.setLikeDelete(ItemLikeDTO);
         }
         return result;
     }

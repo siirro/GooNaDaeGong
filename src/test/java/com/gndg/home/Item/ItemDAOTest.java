@@ -1,7 +1,6 @@
 package com.gndg.home.Item;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -9,9 +8,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gndg.home.AbstractTest;
-import com.gndg.home.Item.ItemDTO;
-import com.gndg.home.Item.ItemReviewDTO;
-import com.gndg.home.gnItem.GnItemDTO;
+import com.gndg.home.item.ItemDAO;
+import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemFileDTO;
 import com.gndg.home.util.Category;
 
 public class ItemDAOTest extends AbstractTest {
@@ -29,7 +28,7 @@ public class ItemDAOTest extends AbstractTest {
 	public void setAddTest() throws Exception {
 		
 		for(int i=1; i<60; i++) {
-			GnItemDTO ItemDTO = new ItemDTO();
+			ItemDTO ItemDTO = new ItemDTO();
 			ItemDTO.setCate_num("1234");
 			ItemDTO.setUser_id("11");
 			ItemDTO.setItem_title("아이폰"+i+" Pro Max");
@@ -71,25 +70,5 @@ public class ItemDAOTest extends AbstractTest {
 		assertEquals(1, result);
 	}
 	
-//	===========용원 test 파일
-   public void getReply() throws Exception {
-        List<ItemReviewDTO> r = ItemDAO.getReply(261L);
-        for(ItemReviewDTO rr: r) {
-            
-            System.out.println("ㅇㅈ : "  + rr.getRv_title());
-            
-        }
-        assertNotNull(r);
-    }
-    
-
-    public void getCategoryTest() throws Exception {
-        List<Category> ar = ItemDAO.getCategory();
-        for(Category ca : ar) {
-            System.out.println("category : " + ca.getCate_name());
-        }
-        assertEquals(201, ar.size());
-        
-    }
 	
 }
