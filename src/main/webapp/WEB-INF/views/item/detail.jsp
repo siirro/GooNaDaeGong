@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/resources/css/item/detail.css">
-<title>web sample</title>
+<title>상세페이지</title>
 <style>
 	a {
 		color: black !important;
@@ -54,7 +54,7 @@
 																					<div class="centered">
                                                                                         <img alt="상세 이미지 "
 																							class="view thumbnail_img mainItemImg"
-																							src="../resources/upload/item/${dgItemDetailDTO.dgItemFileDTOs[0].fileName}" >
+																							src="../resources/upload/item/${dto.itemFileDTOs[0].fileName}" >
 																					</div>
 																				</div>
 																			</div>
@@ -111,19 +111,17 @@
 																	<img  src="https://ccimage.hellomarket.com/web/2018/item/btn_share_16x16_x2.png" alt="공유이미지" class="share_icon">
 																</span>
 															<div class="registration_date_box">
-																<fmt:formatDate value="${dgItemDetailDTO.item_date}" pattern="yy/MM/dd" /> ·<span class="">찜 0 </span>
+																<fmt:formatDate value="${dto.item_date}" pattern="yy/MM/dd" /> ·<span class="">찜 0 </span>
 															</div>
 														</span>
 													</div>
 													<h1 class="H1-sc-1jnmmbn-0 lUWLJ">
-														<span class="item_title">${dgItemDetailDTO.item_name}</span>
+														<span class="item_title">${dto.item_title }</span>
 													</h1>
 													<div class="item_price_box item_price_box_bottom">
 														<div class="item_price_box_bottom_low">
 															<div class="item_price item_price_bottom">
-																<span>
-																	<fmt:formatNumber value="${dgItemDetailDTO.item_price}" pattern="###,###,###" />원
-																</span>
+																<span>${price}원</span>
 															</div>
 														</div>
 														<div class="description_hellopay  only_hellopay_area">
@@ -297,9 +295,9 @@
 																<div class="description_title">상세설명</div>
 															</h3>
 															<div class="description_text">
-																<span>${dgItemDetailDTO.item_contents}</span>
+																<span>${dto.item_contents }</span>
 															</div>
-															<c:forEach items="${dgItemFileDTOs}" var="fileDTO">
+															<c:forEach items="${dto.itemFileDTOs}" var="fileDTO">
 																<img alt="" src="../resources/upload/item/${fileDTO.fileName}">
 															</c:forEach>
 														</section>

@@ -37,7 +37,7 @@
             <div class="css-185m8ch e1153ede0">
                 <form action="review" method="post" enctype="multipart/form-data">
                 
-                <input type="hidden" name="item_num" value="${dgItemReviewDTO.item_num}">
+                <input type="hidden" name="item_num" value="${itemReviewDTO.item_num}">
 
                     <!-- 작성자 = ${session.user_id} -->
                     <input type="hidden" name="user_id" value="${member.user_id}">
