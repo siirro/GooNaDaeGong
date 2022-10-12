@@ -49,7 +49,7 @@
 			<!-- Carousel End -->
 			
 			<div>관리자센터</div>
-			<a href="./manager/index">관리자센터</a>
+			<a href="./manager">관리자센터</a>
 			<hr>
 
 			<div>구디나라 대기공주</div>
