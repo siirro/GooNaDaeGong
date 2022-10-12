@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gndg.home.dgItem.DgItemReviewDTO;
+import com.gndg.home.dgItem.ItemReviewDTO;
 import com.gndg.home.item.ItemDTO;
 import com.gndg.home.item.ItemLikeDTO;
 import com.gndg.home.member.MemberDTO;
@@ -42,8 +42,8 @@ public class MypageService {
 	}
 	
 	//내 판매내역
-	public List<ItemDTO> getMySale(ItemDTO gnItemDTO)throws Exception{
-	    return mypageDAO.getMySale(gnItemDTO);
+	public List<ItemDTO> getMySale(ItemDTO ItemDTO)throws Exception{
+	    return mypageDAO.getMySale(ItemDTO);
 	}
 	
 	//내 (상품)좋아요 목록
@@ -69,7 +69,7 @@ public class MypageService {
 	}
 	
 	//내 후기 내역
-	public List<DgItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
+	public List<ItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
 	    //내 후기 글 갯수
 	    Long totalCount = mypageDAO.getMyReviewCount(mypagePager);
 	    

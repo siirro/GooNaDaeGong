@@ -76,12 +76,12 @@ WHERE M.USER_ID= #{user_id}
 		<result column="USER_ADDR" property="user_addr" />
 		<result column="USER_ADDR2" property="user_addr2"  />
 	</association>
-	<association property="gnItemDTO" javaType="GnItemDTO" >
+	<association property="ItemDTO" javaType="ItemDTO" >
 		<id column="ITEM_NUM" property="item_num" />
-		<result column="ITEM_NAME" property="item_name" />
+		<result column="ITEM_TITLE" property="item_title" />
 		<result column="ITEM_PRICE" property="item_price" />
 	</association>
-	<collection property="gnItemFileDTOs" javaType="List" ofType="GnItemFileDTO">
+	<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="ITEM_NUM" property="item_num"/>
 		<result column="FILENAME" property="fileName"/>

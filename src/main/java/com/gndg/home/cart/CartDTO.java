@@ -67,17 +67,18 @@ public class CartDTO{
 	public void setMemberDTO(MemberDTO memberDTO) {
 		this.memberDTO = memberDTO;
 	}
-	public ItemDTO getGnItemDTO() {
-        return gnItemDTO;
+	
+    public ItemDTO getItemDTO() {
+        return ItemDTO;
     }
-    public void setGnItemDTO(ItemDTO gnItemDTO) {
-        this.gnItemDTO = gnItemDTO;
+    public void setItemDTO(ItemDTO itemDTO) {
+        ItemDTO = itemDTO;
     }
-    public List<ItemFileDTO> getGnItemFileDTOs() {
-        return gnItemFileDTOs;
+    public List<ItemFileDTO> getItemFileDTOs() {
+        return ItemFileDTOs;
     }
-    public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
-        this.gnItemFileDTOs = gnItemFileDTOs;
+    public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+        ItemFileDTOs = itemFileDTOs;
     }
     public String getItem_name() {
 		return item_name;

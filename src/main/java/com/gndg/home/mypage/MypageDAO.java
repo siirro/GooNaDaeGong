@@ -38,8 +38,8 @@ public class MypageDAO {
 	}
 	
 	//내 판매 내역
-	public List<ItemDTO> getMySale(ItemDTO gnItemDTO)throws Exception{
-	    return sqlSession.selectList(NAMESPACE+"getMySale", gnItemDTO);
+	public List<ItemDTO> getMySale(ItemDTO ItemDTO)throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getMySale", ItemDTO);
 	}
 	
 	//내 (상품)좋아요 목록
