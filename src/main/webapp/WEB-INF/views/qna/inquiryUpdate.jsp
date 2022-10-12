@@ -49,7 +49,7 @@
 
             <!-- 찐본문의 본문 -->
             <div class="css-185m8ch e1153ede0">
-                <form action="inquiry" method="post" enctype="multipart/form-data">
+                <form action="inquiryUpdate" method="post" enctype="multipart/form-data">
 
                     <!-- 작성자 = ${session.user_id} -->
                     <input type="hidden" name="user_id" value="${member.user_id}">

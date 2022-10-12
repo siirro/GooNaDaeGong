@@ -6,13 +6,13 @@
 <mapper namespace="com.gndg.home.qna.QnaDAO">
 
 <!-- 1대1 문의 수정- 개별파일삭제 -->
-<delete id="deleteNoticeFile" parameterType="NoticeFileDTO">
-DELETE FROM NOTICEFILE WHERE FILENUM = #{fileNum}
+<delete id="deleteNoticeFile" parameterType="QnaFileDTO">
+DELETE FROM QNAFILE WHERE FILENUM = #{fileNum}
 </delete>
 
 <!-- 1대1 문의 수정- 글에 첨부되어있는 파일 정보 가져오기 -->
-<select id="detailNoticeFile" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
-SELECT * FROM NOTICEFILE WHERE FILENUM = #{fileNum}
+<select id="detailQnaFile" parameterType="QnaFileDTO" resultType="QnaFileDTO">
+SELECT * FROM QNAFILE WHERE FILENUM = #{fileNum}
 </select>
 
 <!-- 1대1 문의 작성시 파일추가 -->

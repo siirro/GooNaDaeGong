@@ -68,7 +68,7 @@ FROM
     (SELECT ROWNUM RN, A.*
     FROM
         (SELECT *
-        FROM ORD
+        FROM ORDERS
         WHERE USER_ID = #{user_id}
         ORDER BY MERCHANT_UID DESC) A)
 WHERE RN BETWEEN #{startRow} AND #{lastRow}
@@ -77,7 +77,7 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 <!-- 내 주문내역 글 갯수 -->
 <select id="getMyOrderCount" parameterType="MypagePager" resultType="Long">
 SELECT COUNT(MERCHANT_UID)
-FROM ORD
+FROM ORDERS
 WHERE USER_ID = #{user_id}
 </select>
 
@@ -164,7 +164,7 @@ WHERE USER_ID = #{user_id}
 <!-- 주문 상세페이지 -->
 <select id="getMyOrderDetail" parameterType="OrderDTO" resultMap="getMyOrderDetailResult">
 SELECT * 
-FROM ORD O
+FROM ORDERS O
     JOIN 
     GOODSORDER GO
     ON O.MERCHANT_UID= GO.MERCHANT_UID
@@ -179,7 +179,7 @@ FROM ORD O
     ON I.ITEM_NUM = F.ITEM_NUM
 WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 </select>
-<resultMap type="OrderDTO" id="getMyOrderDetailResult">
+<resultMap type="OrdersDTO" id="getMyOrderDetailResult">
 	<id column="MERCHANT_UID" property="merchant_uid"/>
 	<result column="USER_ID" property="user_id" />
 	<result column="ORD_NAME" property="ord_name"/>
@@ -197,7 +197,7 @@ WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 			<id column="IMP_UID" property="imp_uid"/>
 			<result column="PAY_DATE" property="pay_date"/>
 		</association>
-		<collection property="goodsOrderDTOs" javaType="List" ofType="GoodsOrderDTO">
+		<collection property="goodsOrdersDTOs" javaType="List" ofType="GoodsOrdersDTO">
 			<id column="GO_NUM" property="go_num"/>
 			<result column="ITEM_NUM" property="item_num"/>
 			<result column="MERCHANT_UID" property="merchant_uid"/>
