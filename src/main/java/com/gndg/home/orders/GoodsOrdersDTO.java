@@ -1,6 +1,6 @@
 package com.gndg.home.orders;
 
-import com.gndg.home.gnItem.GnItemDTO;
+import com.gndg.home.item.ItemDTO;
 
 public class GoodsOrdersDTO {
 	
@@ -9,11 +9,11 @@ public class GoodsOrdersDTO {
 	private Long merchant_uid;
 	private Long go_amount;
 	
-	private GnItemDTO gnItemDTO;
-	public GnItemDTO getGnItemDTO() {
+	private ItemDTO gnItemDTO;
+	public ItemDTO getGnItemDTO() {
 		return gnItemDTO;
 	}
-	public void setGnItemDTO(GnItemDTO gnItemDTO) {
+	public void setGnItemDTO(ItemDTO gnItemDTO) {
 		this.gnItemDTO = gnItemDTO;
 	}
 	

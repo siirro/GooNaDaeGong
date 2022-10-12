@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.dgItem.DgItemReviewDTO;
-import com.gndg.home.gnItem.GnItemDTO;
-import com.gndg.home.gnItem.GnItemLikeDTO;
-import com.gndg.home.gnItem.GnItemService;
+import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemLikeDTO;
+import com.gndg.home.item.ItemService;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.member.MemberService;
@@ -33,7 +33,7 @@ public class MypageController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	private GnItemService gnItemService;
+	private ItemService gnItemService;
 	
 	//test
 	@RequestMapping(value="myLike")
@@ -41,7 +41,7 @@ public class MypageController {
 	    ModelAndView mv = new ModelAndView();
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         mypagePager.setUser_id(memberDTO.getUser_id());
-        List<GnItemLikeDTO> al = mypageService.getMyLike(mypagePager);
+        List<ItemLikeDTO> al = mypageService.getMyLike(mypagePager);
         
         //해당 게시글 좋아요 컬러
 //        GnItemLikeDTO gnItemLikeDTO = new GnItemLikeDTO();
@@ -57,9 +57,9 @@ public class MypageController {
 	   //좋아요 등록&취소
     @PostMapping("heart")
     @ResponseBody
-    public int setLike(GnItemLikeDTO gnItemLikeDTO) throws Exception {
+    public int setLike(ItemLikeDTO gnItemLikeDTO) throws Exception {
         int result = 0;
-        GnItemLikeDTO likeDTO = gnItemService.getLikeUser(gnItemLikeDTO);
+        ItemLikeDTO likeDTO = gnItemService.getLikeUser(gnItemLikeDTO);
         if(likeDTO == null) {
             return gnItemService.setLikeAdd(gnItemLikeDTO);
         }else {
@@ -157,11 +157,11 @@ public class MypageController {
 	
 	//내 판매내역
 	@RequestMapping(value="mySale")
-	public ModelAndView mySale(GnItemDTO gnItemDTO,HttpSession session)throws Exception{
+	public ModelAndView mySale(ItemDTO gnItemDTO,HttpSession session)throws Exception{
 	    ModelAndView mv = new ModelAndView();
 	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 	    gnItemDTO.setUser_id(memberDTO.getUser_id());
-	    List<GnItemDTO> al = mypageService.getMySale(gnItemDTO);
+	    List<ItemDTO> al = mypageService.getMySale(gnItemDTO);
 	    
 	    mv.addObject("sale", al);
 	    mv.setViewName("/mypage/mySale");

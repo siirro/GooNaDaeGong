@@ -1,8 +1,8 @@
-package com.gndg.home.gnItem;
+package com.gndg.home.item;
 
 import java.sql.Date;
 
-public class GnItemReviewDTO {
+public class ItemReviewDTO {
 	private Long rv_num;
 	private Long item_num;
 	private String user_id;
