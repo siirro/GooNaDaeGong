@@ -17,7 +17,7 @@
         <div class="css-140915z e13dlrpy2">
             <div class="css-7500ra e13dlrpy0">비밀번호 찾기</div>
             <div class="css-u3y03b e13dlrpy1">
-                <form class="css-s3iz85 e1mnvs534">
+                <form action ="findPW" method="post" class="css-s3iz85 e1mnvs534">
                     <div class="css-1blp8ou e1mnvs533">
                         <div class="css-1yjqrpx e1uzxhvi6">
                             <label for="user_id" class="css-c3g9of e1uzxhvi4">아이디</label>
@@ -36,17 +36,17 @@
                     </div>
                     <div class="css-3vxi16 e1mnvs530">
                           <!-- Button trigger modal -->
-	                    <button type="button" data-bs-toggle="modal" data-bs-target="#findIDModal" class="css-1s9rhb5 e4nu7ef3" radius="4" id="findbtn">FIND</button>
+	                    <button type="button" data-bs-toggle="modal" data-bs-target="#findIDModal" class="css-1s9rhb5 e4nu7ef3" radius="4" id="pwbtn">FIND</button>
                          <!-- Modal -->
 	                    <div class="modal fade" id="findIDModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	                        <div class="modal-dialog">
 	                            <div class="modal-content">
 	                                <div class="modal-header">
-	                                    <h5 class="modal-title" id="exampleModalLabel">아이디 찾기</h5>
+	                                    <h5 class="modal-title" id="exampleModalLabel">비밀번호 찾기</h5>
 	                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	                                </div>
 	                                <div class="modal-body" id="modalbody">
-	                                    등록된 이메일로 임시비밀번호가 발급 되었습니다.
+	                                    
 	                                </div>
 	                                <div class="modal-footer">
                                         <button type="button" data-bs-dismiss="modal" class="css-1s9rhb5 e4nu7ef3" radius="4">닫기</button>
@@ -63,6 +63,6 @@
     </section>
     <c:import url="../template/footer.jsp"></c:import>
 	</div>
-    
+    <script src="/resources/js/member/findPW.js"></script>
 </body>
 </html>

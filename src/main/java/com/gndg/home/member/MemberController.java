@@ -77,9 +77,16 @@ public class MemberController {
 		System.out.println("####access_Token###"+access_Token);
 		System.out.println("###userInfo### : "+ userInfo.get("email"));
 		System.out.println("###nickname### : " + userInfo.get("nickname") );
-//		System.out.println("###profile_image### : "+ userInfo.get("profile_image"));
+		System.out.println("###id### : " +userInfo.get("id"));
 		
-		return "/member/login";
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUser_id((String)userInfo.get("id"));
+		memberDTO.setUser_name((String)userInfo.get("nickname"));
+		memberDTO.setUser_email((String)userInfo.get("email"));
+		
+		memberService.setKakaoJoin(memberDTO);
+		
+		return "redirect:/";
 	} 
 	
 	//구글 로그인
@@ -100,9 +107,10 @@ public class MemberController {
 		return "/member/login";
 	}
 	@RequestMapping(value="login", method = RequestMethod.POST)
-	public String getLogin(MemberDTO memberDTO,HttpSession session)throws Exception{
+	public ModelAndView getLogin(MemberDTO memberDTO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getLogin(memberDTO);
+		session.setAttribute("member", memberDTO);
 		
 		int result = 0;
 		String message = "로그인 실패";
@@ -110,11 +118,14 @@ public class MemberController {
 		if(memberDTO != null) {
 			result = 1;
 			message ="로그인 성공";
-			url ="../";
+			url ="/";
 		}
-		session.setAttribute("member", memberDTO);
 		
-		return "redirect:/";
+		mv.addObject("url", url);
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	//아이디찾기
@@ -145,7 +156,12 @@ public class MemberController {
 	@ResponseBody
 	public String getFindPWCheck(MemberDTO memberDTO, HttpServletResponse response)throws Exception{
 		System.out.println("비밀번호 찾기 controller1");
+		try {
 		memberService.getFindPWCheck(memberDTO,response);
+		}catch (Exception e) {
+            // TODO: handle exception
+		    e.printStackTrace();
+        }
 		System.out.println("비밀번호 찾기 controller2");
 		System.out.println("비밀번호=="+memberDTO.getUser_pw());
 		

@@ -23,7 +23,7 @@
     margin-top: 30px;
 }
 .css-1accgqb:first-of-type {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .css-1accgqb {
     padding-bottom: 12px;
@@ -105,4 +105,8 @@ a {
     color: #6667AB;
     background-color: rgb(255, 255, 255);
     border: 1px solid #6667AB;
+}
+.check{
+    font-size: 11px;
+    color: red;
 }

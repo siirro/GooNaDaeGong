@@ -17,12 +17,13 @@
         <div class="css-140915z e13dlrpy2">
             <div class="css-7500ra e13dlrpy0">아이디 찾기</div>
             <div class="css-u3y03b e13dlrpy1">
-                <form class="css-s3iz85 e1mnvs534" action="">
+                <form class="css-s3iz85 e1mnvs534" action="findID">
                     <div class="css-1blp8ou e1mnvs533">
                         <div class="css-1yjqrpx e1uzxhvi6">
                             <label for="user_name" class="css-c3g9of e1uzxhvi4">이름</label>
                             <div class="css-176lya2 e1uzxhvi3">
                                 <input data-testid="input-box" id="user_name" name="user_name" placeholder="이름을 입력해 주세요" type="text" class="css-1bkd15f e1uzxhvi2" value="">
+                                <div id="name_check"></div>
                             </div>
                         </div>
                         <!-- <p class="css-1ozil7i e1revjhv0">가입 시 등록한 이름을 입력해 주세요.</p> -->
@@ -32,6 +33,7 @@
                             <label for="user_phone" class="css-c3g9of e1uzxhvi4">휴대폰 번호</label>
                             <div height="46" class="css-1iilz1t e1uzxhvi3">
                                 <input data-testid="input-box" id="user_phone" name="user_phone" placeholder="휴대폰 번호를 입력해 주세요" type="tel" height="46" class="css-189shdi e1uzxhvi2" value="">
+                                <div id="phone_check"></div>
                             </div>
                         </div>
                         <!-- <p class="css-1ozil7i e1revjhv0">가입 시 등록한 휴대폰 번호를 입력해 주세요.</p> -->

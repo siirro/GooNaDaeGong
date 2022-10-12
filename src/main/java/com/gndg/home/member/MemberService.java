@@ -15,7 +15,9 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.mail.HtmlEmail;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -116,7 +118,7 @@ public class MemberService {
 			}//while end
 			
 			System.out.println("response body == "+result);
-			
+
 			//Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
@@ -168,13 +170,16 @@ public class MemberService {
 
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+            JsonObject id = element.getAsJsonObject();
 
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 //            String profile_image = properties.getAsJsonObject().get("profile_image").getAsString();
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
+            String kakaoid = id.getAsJsonObject().get("id").getAsString();
 
             userInfo.put("nickname", nickname);
             userInfo.put("email", email);
+            userInfo.put("id", kakaoid);
 //            userInfo.put("profile_image", profile_image);
 
         } catch (IOException e) {
@@ -183,6 +188,10 @@ public class MemberService {
         }
 
         return userInfo;
+    }
+    //카카오 로그인 하기
+    public int setKakaoJoin(MemberDTO memberDTO)throws Exception{
+        return memberDAO.setKakaoJoin(memberDTO);
     }
 	
 	//로그인
@@ -194,6 +203,67 @@ public class MemberService {
 	public String getFindID(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getFindID(memberDTO);
 	}
+	//이메일쏘기
+    public void sendEmail(MemberDTO memberDTO,String fw)throws Exception{
+        System.out.println("이메일 service 1");
+        //Mail Server 설정
+        String charSet = "utf-8";
+        String hostSMTP = "smtp.naver.com";
+
+        String hostSMTPid = "keroro3086@naver.com"; // 보내는사람 이메일
+
+        String hostSMTPpw = "!!8282gksquf1130"; // 보내는사람 비밀번호
+        
+        
+        //보내는 사람 Email/보내는사람 이름/제목/내용
+        String fromEmail = "keroro3086@naver.com"; // 보내는 사람 이메일
+        String fromName ="GNDG";
+        String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
+        String msg ="";
+        
+        if(fw.equals("findpw")) {
+            msg += "<div align='center'>";
+            msg += memberDTO.getUser_id()+"님의 임시 비밀번호 입니다.";
+            msg += "<p>임시 비밀번호:"+memberDTO.getUser_pw()+"</p>";
+            msg += "마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
+        }
+        
+        //받는 사람 Email 주소
+        String mail = memberDTO.getUser_email();
+        try {
+//            HtmlEmail email = new HtmlEmail();
+//            email.setDebug(false);
+//            email.setCharset(charSet);  //encoding 타입
+//            email.setSSLOnConnect(true);
+//            email.setHostName(hostSMTP);    //네이버를 쓰겠다는 의지 네이버smtp서버명
+//            email.setSmtpPort(465); //네이버 이메일 사용할경우 번호 587
+//            
+//            
+//            email.setAuthentication(hostSMTPid, hostSMTPpw);
+//            email.setSSLOnConnect(true);
+//            email.addTo(mail, charSet);
+//            email.setFrom(fromEmail, fromName, charSet);
+//            email.setSubject(subject);
+//            email.setHtmlMsg(msg);
+//            email.send();
+            Email email = new SimpleEmail();
+            email.setHostName("smtp.naver.com");
+            email.setSmtpPort(587);
+            email.setCharset("UTF-8"); // 인코딩 설정(utf-8, euc-kr)
+            email.setAuthenticator(new DefaultAuthenticator(hostSMTPid, hostSMTPpw));
+            email.setSSL(true);
+            email.setFrom(fromEmail, fromName);
+            email.setSubject(subject);
+            email.setMsg(msg);
+            email.addTo(memberDTO.getUser_email(), memberDTO.getUser_name());
+            email.send();
+
+
+            
+        }catch(Exception e) {
+            System.out.println("메일발송 실패"+ e);
+        }
+    }
 	
 	//비밀번호 찾기
 	public void getFindPWCheck(MemberDTO memberDTO,HttpServletResponse response)throws Exception{
@@ -205,79 +275,38 @@ public class MemberService {
 				pw += (char) ((Math.random() * 26) + 97);
 			}
 			memberDTO.setUser_pw(pw);
-			// 비밀번호 변경
-			int result = memberDAO.setUpdatePW(memberDTO);
+//			// 비밀번호 변경
+		    int result = memberDAO.setUpdatePW(memberDTO);
 			// 비밀번호 변경 메일 발송
-//			sendEmail(memberDTO,"findpw");
+			sendEmail(memberDTO,"findpw");
 			
 	}
 //		response.setContentType("text/html;charset=utf-8");
 //		System.out.println("비밀번호 찾기 service 1");
 //		memberDTO = memberDAO.getFindPWCheck(memberDTO);	//비밀번호만 받아옴
-////		System.out.println("비밀번호 찾기 service 비밀번호 == "+userPW);
-//		System.out.println("비밀번호 찾기 service 2");
-//		
-//		String pw ="";
-//		for(int i =0; i<12; i++) {
-//			pw += (char)((Math.random() * 26)+97);
+//		if(memberDTO == null) {
+//		    System.out.println("시발 체코하십쇼");
+//		    
+//		}else {
+		    
+//		System.out.println("비밀번호 찾기 service 비밀번호 == "+userPW);
+//		    System.out.println("비밀번호 찾기 service 2");
+//		    
+//		    String pw ="";
+//		    for(int i =0; i<12; i++) {
+//		        pw += (char)((Math.random() * 26)+97);
+//		    }
+//		    memberDTO.setUser_pw(pw);
+//		    System.out.println("비밀번호 찾기 service 3");
+//		    //비밀번호 변경
+//		    memberDAO.setUpdatePW(memberDTO);
+//		    System.out.println("비밀번호 찾기 service 4");
+//		    sendEmail(memberDTO, "findpw");
+//		    System.out.println("비밀번호 찾기 service 5");
 //		}
-//		 memberDTO.setUser_pw(pw);
-//		System.out.println("비밀번호 찾기 service 3");
-//		//비밀번호 변경
-//		memberDAO.setUpdatePW(memberDTO);
-//		System.out.println("비밀번호 찾기 service 4");
-//		sendEmail(memberDTO, "findpw");
-//		System.out.println("비밀번호 찾기 service 5");
 //		
 //	}
-	//이메일쏘기
-		public void sendEmail(MemberDTO memberDTO,String fw)throws Exception{
-			System.out.println("이메일 service 1");
-			//Mail Server 설정
-			String charSet = "utf-8";
-			String hostSMTP = "smtp.naver.com";
-
-			String hostSMTPid = ""; // 보내는사람 이메일
-
-			String hostSMTPpw = ""; // 보내는사람 비밀번호
-			
-			
-			//보내는 사람 Email/보내는사람 이름/제목/내용
-			String fromEmail = ""; // 보내는 사람 이메일
-			String fromName ="GNDG";
-			String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
-			String msg ="";
-			
-			if(fw.equals("findpw")) {
-				msg += "<div align='center'>";
-				msg += memberDTO.getUser_id()+"님의 임시 비밀번호 입니다.";
-				msg += "<p>임시 비밀번호:"+memberDTO.getUser_pw()+"</p>";
-				msg += "마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
-			}
-			
-			//받는 사람 Email 주소
-			String mail = memberDTO.getUser_email();
-			try {
-				HtmlEmail email = new HtmlEmail();
-				email.setDebug(true);
-				email.setCharset(charSet);	//encoding 타입
-				email.setSSL(true);
-				email.setHostName(hostSMTP);	//네이버를 쓰겠다는 의지 네이버smtp서버명
-				email.setSmtpPort(587); //네이버 이메일 사용할경우 번호
-				
-				
-				email.setAuthentication(hostSMTPid, hostSMTPpw);
-				email.setTLS(true);
-				email.addTo(mail, charSet);
-				email.setFrom(fromEmail, fromName, charSet);
-				email.setSubject(subject);
-				email.setHtmlMsg(msg);
-				email.send();
-				
-			}catch(Exception e) {
-				System.out.println("메일발송 실패"+ e);
-			}
-		}
+	
 		
 //		//회원 탈퇴
 //		public int setMyDelete(MemberDTO memberDTO)throws Exception
