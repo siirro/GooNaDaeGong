@@ -1,14 +1,11 @@
 package com.gndg.home.gnItem;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.maven.shared.invoker.SystemOutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +32,7 @@ public class GnItemController {
 		return gnItemService.getCategory();
 	}
 
-	//거래글등록
+	//상품등록
 	@GetMapping("add")
 	public String setAdd() throws Exception {
 		return "/gnItem/add";
@@ -55,14 +52,14 @@ public class GnItemController {
 		return mv;
 	}
 
-	//거래글리스트
+	//상품리스트
 	@GetMapping("list")
 	public ModelAndView getList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<GnItemDTO> ar = gnItemService.getList();
-		ArrayList<Long> counts = new ArrayList<Long>();
 		
 		//좋아요수
+		ArrayList<Long> counts = new ArrayList<Long>();
 		for(int i=0; i<ar.size(); i++) {
 			GnItemLikeDTO gnItemLikeDTO = new GnItemLikeDTO();
 			gnItemLikeDTO.setItem_num(ar.get(i).getItem_num());
@@ -70,8 +67,8 @@ public class GnItemController {
 			counts.add(count);
 		}
 		
-		mv.addObject("count", counts);
 		mv.addObject("list", ar);
+		mv.addObject("count", counts);
 		mv.setViewName("gnItem/list");
 		return mv;
 	}
@@ -93,7 +90,7 @@ public class GnItemController {
 		String price = Format.format(gnItemDTO.getItem_price());
 		mv.addObject("price", price);
 		
-		//해당 게시글 좋아요 컬러
+		//해당 상품 좋아요 컬러
 		GnItemLikeDTO gnItemLikeDTO = new GnItemLikeDTO();
 		gnItemLikeDTO.setItem_num(gnItemDTO.getItem_num());
 		gnItemLikeDTO.setUser_id(gnItemDTO.getUser_id());
@@ -104,7 +101,7 @@ public class GnItemController {
 		return mv;
 	}
 
-	//거래글수정
+	//상품수정
 	@GetMapping("update")
 	public ModelAndView setUpdate(GnItemDTO gnItemDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -120,14 +117,14 @@ public class GnItemController {
 		return "redirect:detail?item_num=" + gnItemDTO.getItem_num();
 	}
 
-	//거래글삭제
+	//상품삭제
 	@GetMapping("delete")
 	public String setDelete(GnItemDTO gnItemDTO) throws Exception {
 		int result = gnItemService.setDelete(gnItemDTO);
 		return "redirect:list";
 	}
 
-	//글수정시 파일삭제
+	//상품수정시 파일삭제
 	@PostMapping("fileDelete")
 	@ResponseBody
 	public int setFileDelete(GnItemFileDTO gnItemFileDTO, HttpSession session) throws Exception {
@@ -157,12 +154,34 @@ public class GnItemController {
 		return count;
 	}
 	
-	@PostMapping("stateUpdate")
+	
+	//후기 조회
+	@GetMapping("reviewList")
 	@ResponseBody
-	//상품판매상태 변경
-	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
-		int result = gnItemService.setStateUpdate(gnItemDTO);
-		System.out.println(gnItemDTO.getItem_state());
+	public ModelAndView getReview(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<GnItemReviewDTO> ar = gnItemService.getReview(gnItemReviewDTO);
+		mv.addObject("list", ar);
+		mv.setViewName("gnItem/review");
+		return mv;
+	}
+
+	//후기 등록
+	@PostMapping("reviewAdd")
+	@ResponseBody
+	public int setReviewAdd(GnItemReviewDTO gnItemReviewDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
+		int result = gnItemService.setReviewAdd(gnItemReviewDTO, multipartFile, session.getServletContext());
 		return result;
+	}
+	
+	//후기 삭제
+	//후기 수정
+	
+	//후기수
+	@GetMapping("reviewCount")
+	@ResponseBody
+	public Long getReviewCount(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		Long count = gnItemService.getReviewCount(gnItemReviewDTO);
+		return count;
 	}
 }

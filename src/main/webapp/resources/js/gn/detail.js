@@ -7,6 +7,84 @@ const category2 = document.querySelector("#category2");
 const category3 = document.querySelector("#category3");
 const category4 = document.querySelector("#category4");
 let json = JSON.parse(document.querySelector('#json').innerHTML);
+const minus = document.querySelector("#minus");
+const plus = document.querySelector("#plus");
+const itemCount = document.querySelector("#itemCount");
+const reviewContents = document.querySelector("#reviewContents");
+const reviewBtn = document.querySelector("#reviewBtn");
+const reviewTop = document.querySelector("#reviewTop");
+const shareBtn = document.querySelector("#shareBtn");
+
+//----------------------------리뷰수 조회----------------------------
+// function getReviewCount() {
+//     const xhttp = new XMLHttpRequest();
+//     xhttp.open("GET", "reviewCount?item_num="+item_num);
+//     xhttp.send();
+//     xhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             let count = xhttp.responseText;
+//             console.log(count);
+//             reviewTop.innerHTML = count;
+//         }
+//     }
+// }
+
+
+// -----------------------리뷰등록-----------------------
+// reviewBtn.addEventListener("click", function(){
+//     const xhttp = new XMLHttpRequest();
+//     xhttp.open("POST", "reviewAdd");
+//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhttp.send("item_num="+item_num+"&user_id="+user_id);
+//     xhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             let result = xhttp.responseText;
+//             reviewContents.innerHTML = result;
+//             console.log(result);
+//         }
+//     }
+// })
+
+
+
+//-----------------------리뷰 불러오기-----------------------
+function getReview() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "reviewList?item_num="+item_num);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            reviewContents.innerHTML = xhttp.responseText;
+        }
+    }
+}
+
+//-----------------------공유하기-----------------------
+shareBtn.addEventListener("click", function(){
+    console.log('ddd');
+})
+
+
+
+//-----------------------수량선택-----------------------
+plus.addEventListener("click", function(){
+    let count = parseInt(itemCount.value);
+    let plusCount = count+1;
+    if(plusCount > json.item_stock){
+        itemCount.value=count;
+    }else{
+        itemCount.value=plusCount;
+    }
+})
+minus.addEventListener("click", function(){
+    let count = parseInt(itemCount.value);
+    let minusCount = count-1;
+    if(minusCount < 1){
+        itemCount.value=count;
+    }else{
+        itemCount.value=minusCount;
+    }
+})
 
 
 
@@ -44,8 +122,6 @@ function getLikeCount() {
         }
     }
 }
-
-
 
 
 
