@@ -100,7 +100,6 @@ WHERE Q.QNA_NUM = #{qna_num}
 	<result column="QNA_STATUS" property="qna_status"/>
 	<result column="QNA_uid" property="qna_uid"/>
 	
-	
 	<collection property="qnaFileDTOs" javaType="List" ofType="QnaFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="FILENAME" property="fileName"/>

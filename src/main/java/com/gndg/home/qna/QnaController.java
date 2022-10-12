@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.member.MemberDTO;
+import com.gndg.home.notice.NoticeFileDTO;
 import com.gndg.home.orders.OrdersDTO;
 
 @Controller
@@ -21,6 +23,14 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public String deleteNoticeFile(QnaFileDTO qnaFileDTO, HttpSession session)throws Exception{
+		int result = qnaService.deleteQnaFile(qnaFileDTO, session.getServletContext());
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
+	}
 	
 	@GetMapping("inquiryUpdate")
 	public ModelAndView updateQna(QnaDTO qnaDTO)throws Exception{
