@@ -29,10 +29,7 @@
                         <a class="active css-nk8664 ecbxmj0" href="./myOrder">주문 내역<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                     <li class="css-0 ecbxmj1">
-                        <a class="css-nk8664 ecbxmj0" href="./mySale">판매 내역<span class="css-e41glx e1x0rfoo0"></span></a>
-                    </li>
-                    <li class="css-0 ecbxmj1">
-                        <a class=" css-nk8664 ecbxmj0" href="./myHeart">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
+                        <a class=" css-nk8664 ecbxmj0" href="./myLike">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
                     </li>
                     <li class="css-0 ecbxmj1">
                         <a class=" css-nk8664 ecbxmj0" href="./myReview">상품 후기<span class="css-e41glx e1x0rfoo0"></span></a>
@@ -122,7 +119,7 @@
                     <li class="css-8homh5 eu7fh4o2">
                         <span class="css-9i2eur eu7fh4o1">결제일자</span>
                         <span class="css-thgwm0 eu7fh4o0">
-                        <fmt:formatDate value="${detail.payDTO.pay_date}" pattern="yyyy-MM-dd"/>
+                            ${detail.payDTO.pay_date}
                         
                         </span>
                     </li>

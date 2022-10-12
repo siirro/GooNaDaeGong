@@ -1,7 +1,6 @@
 package com.gndg.home.dgItem;
 
 import java.sql.Date;
-import java.util.List;
 
 public class DgItemDTO {
 	
@@ -19,6 +18,7 @@ public class DgItemDTO {
 	private String item_yn;
 	private Long code;
 	
+	private DgItemReviewDTO dgItemReviewDTO;
 	
 	public Long getItem_num() {
 		return item_num;
@@ -98,5 +98,11 @@ public class DgItemDTO {
 	public void setCode(Long code) {
 		this.code = code;
 	}
+    public DgItemReviewDTO getDgItemReviewDTO() {
+        return dgItemReviewDTO;
+    }
+    public void setDgItemReviewDTO(DgItemReviewDTO dgItemReviewDTO) {
+        this.dgItemReviewDTO = dgItemReviewDTO;
+    }
 	
 }

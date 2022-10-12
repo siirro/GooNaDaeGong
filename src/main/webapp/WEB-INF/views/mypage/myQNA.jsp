@@ -30,16 +30,13 @@
 	                        <a class="css-nk8664 ecbxmj0" href="./myOrder">주문 내역<span class="css-e41glx e1x0rfoo0"></span></a>
 	                    </li>
 	                    <li class="css-0 ecbxmj1">
-	                        <a class="css-nk8664 ecbxmj0" href="./mySale">판매 내역<span class="css-e41glx e1x0rfoo0"></span></a>
-	                    </li>
-	                    <li class="css-0 ecbxmj1">
-	                        <a class=" css-nk8664 ecbxmj0" href="./myHeart">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
+	                        <a class=" css-nk8664 ecbxmj0" href="./myLike">찜한 상품<span class="css-e41glx e1x0rfoo0"></span></a>
 	                    </li>
 	                    <li class="css-0 ecbxmj1">
 	                        <a class=" css-nk8664 ecbxmj0" href="./myReview">상품 후기<span class="css-e41glx e1x0rfoo0"></span></a>
 	                    </li>
 	                    <li class="css-0 ecbxmj1">
-	                        <a class="active css-nk8664 ecbxmj0">상품 문의<span class="css-e41glx e1x0rfoo0"></span></a>
+	                        <a class="active css-nk8664 ecbxmj0" href="./myQNA">상품 문의<span class="css-e41glx e1x0rfoo0"></span></a>
 	                    </li>
 	                    <li class="css-0 ecbxmj1">
 	                        <a class=" css-nk8664 ecbxmj0" href="./myUpdate">개인 정보 수정<span class="css-e41glx e1x0rfoo0"></span></a>
@@ -64,8 +61,6 @@
 	                                <li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 	                                <li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 <a href="/mypage/inquiry/list">1:1 문의</a>에 남겨주세요.</li>
 	                            </ul>
-                                <button class="btn good" name="code" onClick="location='./myQNA?code=1'">구디나라</button>
-                                <button class="btn bad" name="code" onClick="location='myQNA?code=2'">대기공주</button>
 	                        </div>
                             <div class="css-1d3w5wq e3tf63e1">
                                 <table class="css-10utwlq e3tf63e6">
@@ -112,7 +107,7 @@
                                                         </c:forEach>
                                                     <c:if test="${qna.qna_status == '대기'}">
                                                     <div class="css-c0oq5k eula2qn2">
-                                                        <button type="button" class="css-qv4hdm eula2qn1">수정</button>
+                                                        <button type="button" class="css-qv4hdm eula2qn1" onClick="location.href=''">수정</button>
                                                         <div class="css-ord49b eula2qn0"></div>
                                                         <button type="button" class="css-qv4hdm eula2qn1">삭제</button>
                                                     </div>
@@ -143,21 +138,31 @@
                             <div class="css-15jhycr e3tf63e0">
                                 <div class="css-sxxs1g eytury60">
                                 <c:choose>
-                                	<c:when test="">
-	                                    <button disabled="" type="button" class="css-rzcdhr e1hbwyso0">
-	                                        <div class="css-7qb0sc e1ilyb3p0">이전</div>
-	                                    </button>
-                                	</c:when>
-                                	<c:otherwise>
-                            		     <button type="button" class="css-rzcdhr e1hbwyso0">
-	                                        <div class="css-7qb0sc e1ilyb3p0">이전</div>
-	                                    </button>
-                                	</c:otherwise>
-                                </c:choose>
-                         
-                                    <button disabled="" type="button" class="css-1jwilit e1pk9060">
-                                        <div class="css-7qb0sc e1ilyb3p0">다음</div>
-                                    </button>
+                                        <c:when test="${pager.pre}">
+                                            <button  type="button" class="css-rzcdhr e1hbwyso0" onClick="location.href='./myQNA?page=${pager.startNum-1}'">
+                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                             <button type="button" class="css-rzcdhr e1hbwyso0" disabled="">
+                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    
+                                    
+                                    <c:choose>
+                                        <c:when test="${pager.next}">
+                                            <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myQNA?page=${pager.lastNum+1}'">
+                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                        </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button disabled="" type="button" class="css-1jwilit e1pk9060">
+                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                        </button>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
 	                    </div>
