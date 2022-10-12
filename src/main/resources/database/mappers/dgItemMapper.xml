@@ -4,6 +4,27 @@
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.dgItem.DgItemDAO">
+	
+	<!-- 통합 검색-->
+	<select id="getSearch"  parameterType="String" resultMap="DgItemDTOResult">
+		SELECT 
+			I.ITEM_NUM, I.CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, F.FILENUM, F.ITEM_NUM, F.FILENAME, F.ORINAME
+			FROM 
+			ITEM I
+			LEFT JOIN
+			ITEMFILE F
+			ON I.ITEM_NUM = F.ITEM_NUM
+				WHERE ITEM_NAME LIKE '%'||#{search}||'%'
+					ORDER BY ITEM_NAME ASC
+	</select>
+	
+	<!-- 최근 본 상품 -->
+	<select id="getProduct" parameterType="DgItemFileDTO" resultType="DgItemFileDTO">
+		SELECT ITEM_NUM, FILENAME 
+			FROM ITEMFILE
+				WHERE ITEM_NUM = #{item_num}
+					ORDER BY ITEM_NUM DESC
+	</select>
 
 	<!-- 후기 가져오기 -->
 	<select id="getReply" resultType="DgItemReviewDTO">
@@ -94,12 +115,55 @@
 		WHERE ITEM_NUM = #{item_num}
 	</delete>
 
+	<!-- 상품 갯수 -->
+<!-- 	<select id="getCount" parameterType="Category" resultType="Category">
+		SELECT COUNT(*) as cnt FROM ITEM
+    		WHERE cate_num = #{cate_num}
+	</select> -->
+	
 	<!-- 상품목록 -->
-	<select id="getListItem" resultType="DgItemDTO">
-		SELECT ITEM_NUM, CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, CODE
-			FROM ITEM
-				ORDER BY ITEM_NUM DESC
+	<select id="getListItem" parameterType="DgItemDTO" resultMap="DgItemDTOResult">
+		SELECT 
+			I.ITEM_NUM, I.CATE_NUM, USER_ID, ITEM_NAME, ITEM_CONTENTS, ITEM_PRICE, ITEM_DATE, ITEM_HIT, ITEM_STOCK, ITEM_YN, C.CATE_NUM, C.CATE_NAME, F.FILENUM, F.ITEM_NUM, F.FILENAME, F.ORINAME
+			FROM 
+			ITEM I
+				LEFT JOIN
+			ITEMFILE F
+			ON I.ITEM_NUM = F.ITEM_NUM
+				JOIN
+			CATEGORY C
+			ON I.CATE_NUM = C.CATE_NUM
+			<if test="cate_num !=  null">
+				WHERE I.CATE_NUM  =  #{cate_num}
+			</if>
+			
+			ORDER BY I.ITEM_NUM DESC
 	</select>
+	
+	<resultMap type="DgItemDTO" id="DgItemDTOResult">
+		<id column="ITEM_NUM" property="item_num" />
+		<result column="CATE_NUM" property="cate_num"/>
+		<result column="USER_ID" property="user_id"/>
+		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_CONTENTS" property="item_contents"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+		<result column="ITEM_DATE" property="item_date"/>
+		<result column="ITEM_HIT" property="item_hit"/>
+		<result column="ITEM_STOCK" property="item_stock"/>
+		<result column="ITEM_YN" property="item_yn"/>
+		
+		<association property="category" javaType="Category">
+			<id column="CATE_NUM" property="cate_num"/>
+			<result column="CATE_NAME" property="cate_name"/>
+		</association>
+		
+		<collection property="dgItemFileDTOs" javaType="List" ofType="DgItemFileDTO" >
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
 
 	<!-- 상품등록 -->
 	<insert id="setAddItem" parameterType="DgItemDTO">

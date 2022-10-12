@@ -24,6 +24,30 @@ footer {
 }
 
 /* 구디나라/대기공주 */
+
+/* 헤더 카테고리*/
+.category_ul .category_ul {
+	display: none;
+	
+}
+.category_ul .category_li:hover > .category_ul {
+    display: block;
+}
+
+.category_ul .category_ul .category_ul {
+	display: none;
+}
+.category_ul .category_ul .category_li:hover > .category_ul {
+    display: block;
+}
+
+.category_ul .category_ul .category_ul .category_ul {
+	display: none;
+}
+.category_ul .category_ul .category_ul .category_li:hover > .category_ul {
+    display: block;
+}
+
 .gndg {
     color: #000;
     font-weight: bold;

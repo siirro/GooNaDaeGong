@@ -208,7 +208,7 @@ public class MemberService {
 			// 비밀번호 변경
 			int result = memberDAO.setUpdatePW(memberDTO);
 			// 비밀번호 변경 메일 발송
-//			sendEmail(memberDTO,"findpw");
+			sendEmail(memberDTO,"findpw");
 			
 	}
 //		response.setContentType("text/html;charset=utf-8");

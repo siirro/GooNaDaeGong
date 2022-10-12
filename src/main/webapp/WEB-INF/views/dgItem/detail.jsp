@@ -8,8 +8,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/resources/css/dg/buyPage.css">
+<link rel="stylesheet" href="/resources/css/dg/detail.css">
 <title>web sample</title>
+<style>
+	a {
+		color: black !important;
+	}
+</style>
 </head>
 <body>
 	<!-- Wrap Start -->
@@ -24,7 +29,7 @@
 						<div class="breadcrumbs">
 							<div class="container_buy">
 								<div><a href="/">HOME</a></div>
-								<div><a href="#">&gt; <span class="cate4">${dgItemDetailDTO.cate_num}</span></a></div>
+								<div><a href="../dgItem/list?cate_num="${dgItemDetailDTO.category.cate_num}>&gt; <span class="cate4">${dgItemDetailDTO.category.cate_name}</span></a></div>
 							</div>
 						</div>
 						<div class="main_area">
@@ -38,8 +43,8 @@
 														<div class="item-image__ImgBox-sc-1o2byye-0 dMmKaI">
 															<div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
 																modules="[object Object],[object Object],[object Object]">
-																<div class="swiper-button-prev swiper-button-disabled"></div>
-																<div class="swiper-button-next swiper-button-disabled"></div>
+																<div class="swiper-button-prev "></div>
+																<div class="swiper-button-next "></div>
 																<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 																	<div class="swiper-slide swiper-slide-active"
 																		style="width: 460px;">
@@ -47,9 +52,9 @@
 																			<div class="swiper-wrapper">
 																				<div class="badeagle">
 																					<div class="centered">
-                                                                                        <img alt="애플워치7 41mm 스뎅 실버 > 그파랑 바꾸실준의 상세 이미지 1"
+                                                                                        <img alt="상세 이미지 "
 																							class="view thumbnail_img mainItemImg"
-																							src="https://ccimg.hellomarket.com/images/2022/item/10/03/13/5822435_5255763_1.jpg?size=s6">
+																							src="../resources/upload/item/${dgItemDetailDTO.dgItemFileDTOs[0].fileName}" >
 																					</div>
 																				</div>
 																			</div>
@@ -100,8 +105,8 @@
 												<div class="item_info">
 													<div class="item_title_area">
 														<span class="item_tag">
-															<span class="used_type_tag">거의 새상품</span>
-																<span class="delivery_tag used_type_tag_active active used_type_tag_active">무료배송</span>
+															<!-- <span class="used_type_tag">거의 새상품</span> -->
+																<!-- <span class="delivery_tag used_type_tag_active active used_type_tag_active">무료배송</span> -->
 																<span class="share_box item_share_box">
 																	<img  src="https://ccimage.hellomarket.com/web/2018/item/btn_share_16x16_x2.png" alt="공유이미지" class="share_icon">
 																</span>
@@ -122,7 +127,7 @@
 															</div>
 														</div>
 														<div class="description_hellopay  only_hellopay_area">
-															<table>
+															<table  class="detail_table">
 																<tbody>
 																	<tr class="first">
 																		<td class="title">거래방법</td>
@@ -142,7 +147,46 @@
 																	</tr>
 																</tbody>
 															</table>
-															<div class="notice_text_box big">
+
+															<div class="bd_2cuha">
+																<button type="button" class="bd_EZ05h bd_3ex46 bd_2jhSJ N=a:pcs.quantity" disabled="">
+																	<span class="blind">수량 빼기</span>
+																</button>
+
+																<input type="number" class="bd_2eiJL N=a:pcs.quantity" value="1">
+																
+																<button type="button" class="bd_EZ05h bd_2nJMW N=a:pcs.quantity">
+																	<span class="blind">수량 추가</span>
+																</button>
+															</div>
+
+															<div class="bd_2qCsT bd_xMsL8 bd_7h93m">
+																<strong class="bd_28JKM">총 상품 금액</strong>
+																<div class="bd_CVTqI" style="margin:4px 0 0 6px">
+																	<button type="button" class="bd_32dL8 N=a:pcs.price" aria-haspopup="true" aria-expanded="false">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="6" height="8" class="bd_3GYLw">
+																			<path fill="#5f5f5f" fill-rule="evenodd" d="M5 3v1H4v2H2V4h1V3h1V1H2v1H0V1h1V0h4v1h1v2H5zM4 8H2V7h2v1z"></path>
+																		</svg>
+																		<span class="blind">도움말</span>
+																	</button>
+																	<div class="bd_y5n6u bd_2ZJCl bd_2K79u" style="display:none">
+																		<i class="bd_1XGXQ"></i>
+																		<button type="button" class="bd_3gqWB">
+																			<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 17 17" class="bd_K4Ce9">
+																				<path fill-rule="evenodd" d="M16.272 0L8.5 7.772.728 0 0 .728 7.772 8.5 0 16.272.728 17 8.5 9.228 16.272 17l.728-.728L9.228 8.5 17 .728 16.272 0z"></path>
+																			</svg>
+																			<span class="blind">닫기</span>
+																		</button>
+																	</div>
+																</div>
+																<div class="bd_3XvVU">
+																	<em class="bd_1hU3G">총 수량 <!-- -->5<!-- -->개</em>
+																	<strong class="bd_1Ukv5 bd_2WCtq">
+																		<span class="bd_32Qz_">157,500 원</span>
+																	</strong>
+																</div>
+															</div>
+															<!-- <div class="notice_text_box big">
 																<span>
 																	<div class="highlight_method">
 																		<span class="highlight_notice">직거래 유도 주의안내</span>
@@ -152,7 +196,7 @@
 																		계좌입금 및 직거래를 유도하는 경우 대기공주로 신고 바랍니다. <br>
 																		안전거래 외 거래는 사기피해 보호를 받을 수 없습니다.</div>
 																</span>
-															</div>
+															</div> -->
 															<div style="margin-top: 0px;"></div>
 														</div>
 														<div class="item_sns item_detail_sns">
@@ -175,12 +219,12 @@
 											<section>
 												<div class="detail_box_bottom detail_box_item" style="padding-top: 0px;">
 													<div class="detail_comment">
-														<section class="main_auto_item_section">
+<!-- 														<section class="main_auto_item_section">
 															<div class="main_auto_item_title"><span class="common_text"></span>
 																<h3 class="H3-sc-7ikhff-0 hUvHkp">
 																	<span class="bold_text"> 판매자의 다른상품</span><span class="all_data">전체보기 &gt;</span>
 																</h3>
-																<div class="hide">
+																<div class="previous_arrow">
 																	<img src="https://ccimage.hellomarket.com/web/2020/item/btn_detail_arrow_box_left_50x50.png" alt="더보기">
 																</div>
 																<div class="next_arrow">
@@ -224,8 +268,8 @@
 																	</ul>
 																</div>
 															</div>
-														</section>
-														<section class="pc_item_user_info">
+														</section> -->
+														<!-- <section class="pc_item_user_info">
 															<div class="profile_img">
 																<a href="/s/@16366874">
 																	<img class="profile" src="https://ccimage.hellomarket.com/web/tag/img_itemdetail_profile_noimage.png" alt="모바일 상품 회원 프로필 이미지">
@@ -247,7 +291,7 @@
 																		<img src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png" alt="상품 상세 모바일 별점 없는 이미지 3">
 																		<img src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png" alt="상품 상세 모바일 별점 없는 이미지 4">
 																		<img src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png" alt="상품 상세 모바일 별점 없는 이미지 5"></span></a></div>
-														</section>
+														</section> -->
 														<section class="description">
 															<h3 class="H3-sc-7ikhff-0 hUvHkp">
 																<div class="description_title">상세설명</div>
