@@ -61,7 +61,7 @@
                 </div>
                 <c:forEach items="${detail.gnItemDTOs}" var="item"  varStatus="i">
                 <div class="css-mrxscg ecmuszp10">
-                    <img src="../resources/upload/gnItem/${detail.gnItemFileDTOs[0].fileName}" alt="" class="css-1ixzt3f ecmuszp9">
+                    <img src="../resources/upload/gnItem/${detail.itemFileDTOs[0].fileName}" alt="" class="css-1ixzt3f ecmuszp9">
                     <div class="css-1t5xcqm ecmuszp8">
                         <a href="/goods/5095223" class="css-15vlnp ecmuszp7">상품이름${item.item_name}</a>
                         <div class="css-s5xdrg ecmuszp5">

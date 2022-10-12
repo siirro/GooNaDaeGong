@@ -42,12 +42,12 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 	<id column="LIKE_NUM" property="like_num"/>
 	<result column="ITEM_NUM" property="item_num"/>
 	<result column="USER_ID" property="user_id"/>
-	<association property="ItemDTO" javaType="ItemDTO">
+	<association property="itemDTO" javaType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="ITEM_TITLE" property="item_title"/>
 		<result column="ITEM_PRICE" property="item_price"/>
 	</association>
-	<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO">
+	<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="ITEM_NUM" property="item_num"/>
 		<result column="FILENAME" property="fileName"/>
@@ -98,7 +98,7 @@ ORDER BY I.ITEM_NUM DESC
 	<id column="ITEM_NUM" property="item_num"/>
 	<result column="CATE_NUM" property="cate_num"/>
 	<result column="USER_ID" property="user_id"/>
-	<result column="ITEM_NAME" property="item_name"/>
+	<result column="ITEM_TITLE" property="item_title"/>
 	<result column="ITEM_CONTENTS" property="item_contents"/>
 	<result column="ITEM_PRICE" property="item_price"/>
 	<result column="ITEM_DATE" property="item_date"/>
@@ -144,7 +144,6 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 <result column="QNA_STATUS" property="qna_status"/>
 <result column="QNA_COMMIT" property="qna_commit"/>
 <result column="QNA_COMMENT" property="qna_comment"/>
-<result column="CODE" property="code"/>
 	<collection property="qnaFileDTOs" javaType="List" ofType="QnaFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="QNA_NUM" property="qna_num"/>
@@ -203,9 +202,9 @@ WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 			<result column="MERCHANT_UID" property="merchant_uid"/>
 			<result column="GO_AMOUNT" property="go_amount"/> <!-- 주문 수량 -->
 		</collection>
-		<collection property="ItemDTOs" javaType="List" ofType="ItemDTO">
+		<collection property="itemDTOs" javaType="List" ofType="ItemDTO">
 			<id column="ITEM_NUM" property="item_num"/>
-			<result column="ITEM_NAME" property="item_name"/>
+			<result column="ITEM_TITLE" property="item_title"/>
 			<result column="ITEM_PRICE" property="item_price"/>
 		</collection>
 		<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO"> 
@@ -222,7 +221,7 @@ SELECT *
 FROM
     (SELECT ROWNUM RN, A.*
     FROM 
-        (SELECT R.*,I.ITEM_NAME 
+        (SELECT R.*,I.ITEM_TITLE 
         FROM REVIEW R
              JOIN
              ITEM I
@@ -240,9 +239,9 @@ WHERE RN BETWEEN #{startRow} AND #{lastRow}
 	<result column="RV_DATE" property="rv_date"/>
 	<result column="RV_FILE" property="rv_file"/>
 	
-	<association property="ItemDTO" javaType="ItemDTO">
+	<association property="itemDTO" javaType="ItemDTO">
 		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_NAME" property="item_name"/>
+		<result column="ITEM_TITLE" property="item_title"/>
 	</association>
 </resultMap>
 

@@ -7,6 +7,8 @@ import com.gndg.home.cancel.CancelDTO;
 import com.gndg.home.cancel.ExchangeDTO;
 import com.gndg.home.cancel.RefundDTO;
 import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemFileDTO;
+import com.gndg.home.pay.PayDTO;
 
 public class OrdersDTO {
 	
@@ -30,8 +32,11 @@ public class OrdersDTO {
 	private ExchangeDTO exchangeDTO;
 	private RefundDTO refundDTO;
 	
-	
-	
+//	mypage join용
+	private PayDTO payDTO;
+    private List<ItemDTO> itemDTOs;
+    private List<ItemFileDTO> itemFileDTOs;
+
 
 
 	public CancelDTO getCancelDTO() {
@@ -117,7 +122,25 @@ public class OrdersDTO {
 	public String getOrd_post() {
 		return ord_post;
 	}
-	public void setOrd_post(String ord_post) {
+	public PayDTO getPayDTO() {
+        return payDTO;
+    }
+    public void setPayDTO(PayDTO payDTO) {
+        this.payDTO = payDTO;
+    }
+    public List<ItemDTO> getItemDTOs() {
+        return itemDTOs;
+    }
+    public void setItemDTOs(List<ItemDTO> itemDTOs) {
+        this.itemDTOs = itemDTOs;
+    }
+    public List<ItemFileDTO> getItemFileDTOs() {
+        return itemFileDTOs;
+    }
+    public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+        this.itemFileDTOs = itemFileDTOs;
+    }
+    public void setOrd_post(String ord_post) {
 		this.ord_post = ord_post;
 	}
 	public String getOrd_addr() {

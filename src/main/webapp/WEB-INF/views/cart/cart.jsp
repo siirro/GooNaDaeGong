@@ -66,13 +66,13 @@
                                                 </label> -->
                                             <a class="css-3u0haf esoayg810">
                                                 <span class="css-rnzd62 esoayg89">
-                                                    <img src="../resources/upload/gnItem/${list.gnItemFileDTOs[0].fileName}" alt="" class="css-1oc1pausale e1437c648" value="">
+                                                    <img src="../resources/upload/gnItem/${list.itemFileDTOs[0].fileName}" alt="" class="css-1oc1pausale e1437c648" value="">
                                                 </span>
                                             </a>
                                             <div class="css-14sb0pe esoayg88">
                                             
                                             <a class="css-e0dnmk esoayg87">
-                                                <p class="css-5cezqo esoayg86">${list.gnItemDTO.item_name}</p>
+                                                <p class="css-5cezqo esoayg86">${list.itemDTO.item_title}</p>
                                             </a>
                                             <div class="css-ar9i78 esoayg82"></div>
                                             </div>
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                         <div class="css-8qz8ia e1mybczi1">
-                            <button class="css-fwelhw e4nu7ef3" type="button" height="56" radius="3">
+                            <button class="css-fwelhw e4nu7ef3" type="button" onClick="location.href='../order/checkout?user_id=${member.user_id}'" height="56" radius="3">
                                 <span class="css-ymwvow e4nu7ef1">주문하기</span>
                             </button>
                             <ul class="css-19kxq7d">
