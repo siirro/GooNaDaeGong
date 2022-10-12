@@ -549,3 +549,173 @@ a {
     object-fit: cover;
     transition: all 0.5s ease-in-out 0s;
 }
+
+.board_pg_area {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    color: #4c4c4c;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    clear: both;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.layout-pagination-first-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-first.png);
+    border-left: 1px solid #ddd;
+}
+
+.layout-pagination-prev-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    /* border-left: 0; */
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-prev.png);
+}
+
+.layout-pagination-number {
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    /* border-left: 0; */
+    vertical-align: top;
+    font-weight: 700;
+    line-height: 34px;
+    background-color: #f7f7f7;
+    color: #5f0080;
+}
+
+.layout-pagination-button {
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Noto Sans';
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    /* border-left: 0; */
+    vertical-align: top;
+    font-weight: 700;
+    color: #333;
+    line-height: 34px;
+}
+
+.layout-pagination-next-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    /* border-left: 0; */
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-next.png);
+}
+
+.layout-pagination-last-page {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1;
+    font-size: 12px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    letter-spacing: 0;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    /* border-left: 0; */
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+    background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-pagination-last.png);
+}

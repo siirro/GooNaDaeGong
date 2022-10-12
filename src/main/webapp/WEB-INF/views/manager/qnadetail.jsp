@@ -52,6 +52,7 @@
             <div id="content">
 
                 <!-- 탑바 임포트 -->
+                <c:import url="./template/topbar.jsp"></c:import>
                 
 
 

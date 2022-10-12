@@ -189,13 +189,13 @@
                                             <c:forEach items="${ordersDTO.goodsOrdersDTOs}" var="nl">
                                                 <tr>
                                                     <td>
-                                                        <img src="../../resources/upload/gnItem/${nl.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
+                                                        <img src="../../resources/upload/item/${nl.itemDTO.itemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
 
                                                     </td>
-                                                    <td>${nl.gnItemDTO.item_title}</td>
-                                                    <td>${nl.gnItemDTO.item_price}원</td>
+                                                    <td>${nl.itemDTO.item_title}</td>
+                                                    <td>${nl.itemDTO.item_price}원</td>
                                                     <td>${nl.go_amount}개</td>
-                                                    <td>${nl.gnItemDTO.item_price*nl.go_amount}원</td>
+                                                    <td>${nl.itemDTO.item_price*nl.go_amount}원</td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

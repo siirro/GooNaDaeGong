@@ -9,12 +9,13 @@ public class GoodsOrdersDTO {
 	private Long merchant_uid;
 	private Long go_amount;
 	
-	private ItemDTO gnItemDTO;
-	public ItemDTO getGnItemDTO() {
-		return gnItemDTO;
+	private ItemDTO itemDTO;
+	
+	public ItemDTO getItemDTO() {
+		return itemDTO;
 	}
-	public void setGnItemDTO(ItemDTO gnItemDTO) {
-		this.gnItemDTO = gnItemDTO;
+	public void setItemDTO(ItemDTO itemDTO) {
+		this.itemDTO = itemDTO;
 	}
 	
 	public Long getGo_num() {

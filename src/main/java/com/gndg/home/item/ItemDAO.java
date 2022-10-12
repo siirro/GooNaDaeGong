@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Repository
 public class ItemDAO {
@@ -27,8 +28,12 @@ public class ItemDAO {
 		return sqlSession.insert(NAMESPACE+"setAddFile", itemFileDTO);
 	}
 	
-	public List<ItemDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<ItemDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
+	}
+	
+	public Long getListCount()throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", NAMESPACE);
 	}
 	
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {

@@ -85,6 +85,20 @@
 										</c:forEach>
 										<!--반복문 end-->
 									</div>
+
+
+
+									<!-- 페이징 -->
+									<div class="board_pg_area">
+										<a href="./list?page=${pager.startNum-1}" class="cc ${pager.pre?'':'disabledLink'} layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
+										<!-- <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
+										
+										<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+											<a href="./list?page=${i}" class="layout-pagination-button layout-pagination-number">${i}</a>
+										</c:forEach>
+										<a href="./list?page=${pager.lastNum+1}" class="cc ${pager.next?'':'disabledLink'} layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+									</div>
+									<!-- 페이징 -->
 								</div>
 
 							</div>
@@ -96,6 +110,24 @@
 
 				</div>
 				<!-- Wrap End -->
+				<script>
+					const btnbtn = document.getElementsByClassName("disabledLink");
+					for(let i=0;i<btnbtn.length;i++) {
+						console.log(btnbtn[i]);
+						btnbtn[i].removeAttribute('href');
+					}
+
+						// const btn = document.getElementsByClassName("cc");
+						// for(let i =0;i<btn.length;i++) {
+						// 	btn[i].onclick = function(){
+						// 		console.log("눌러보셈");
+						// 		// 버튼을 클릭하면, a태그의 href 속성을 제거
+						// 		document.getElementsByClassName("disableLink").removeAttribute('href');
+						// 	}
+						// }
+					
+
+				</script>
 			</body>
 
 			</html>

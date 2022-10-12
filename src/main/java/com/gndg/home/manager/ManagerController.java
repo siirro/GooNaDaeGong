@@ -10,9 +10,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Map.Entry;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import java.util.Set;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -41,6 +52,7 @@ import com.gndg.home.cancel.ExchangeDTO;
 import com.gndg.home.cancel.RefundDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberService;
+import com.gndg.home.mypage.MypageService;
 import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.orders.OrdersService;
 import com.gndg.home.pay.PayDTO;
@@ -68,6 +80,8 @@ public class ManagerController {
 	private CancelService cancelService;
 	@Autowired
 	private PayService payService;
+	@Autowired
+	private MypageService mypageService;
 	
 	String token;
 	
@@ -133,23 +147,59 @@ public class ManagerController {
 	
 	@PostMapping("qna/update")
 	public ModelAndView statusChange(QnaDTO qnaDTO)throws Exception{
-		int result = qnaService.statusChange(qnaDTO);
+		qnaDTO = qnaService.getDetail(qnaDTO);
+		String message = "";
+		int result = 0;
+		if(qnaDTO.getQna_comment()==null) {
+			message = "답변이 등록되지 않았습니다.";
+			
+		} else {
+			result = qnaService.statusChange(qnaDTO);
+		}
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUser_id(qnaDTO.getUser_id());
+		memberDTO = mypageService.getMyInfo(memberDTO);
+		
 		ModelAndView mv = new ModelAndView();
 		
-		String message = "처리상태 변경 실패";
+		
 		if(result!=0) {
 			message = "1대1 문의 처리상태를 완료로 변경했습니다. 회원에게 답변 알림 이메일이 발송됩니다.";
-//			이메일 발송.
-//			HtmlEmail email = new HtmlEmail();
-//			email.setHostName("smtp.gmail.com");
-//			email.setSmtpPort(587);
-//			email.setCharset("euc-kr");
-//			email.addTo(RecieverEmailAddress, RecieverName);
-//			email.setFrom(SenderEmailAddress, SenderName);
-//			email.setSubject(EmailSubject);
-//			email.setHtmlMsg(EmailContentInHtmlForm);
-//			
-//			email.send();
+			
+			//이메일 발송.
+			Properties props = new Properties();
+			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+			
+			Session session = Session.getInstance(props, new Authenticator() {
+				@Override
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("dbfdkfdbf@gmail.com", "qkyckhhsnzabbcpb");
+				}
+			});
+			
+			String receiver = memberDTO.getUser_email(); // 메일 받을 주소
+			String title = "구디나라 1대1 문의 답변이 등록되었습니다.";
+			String content = "<h2 style='color:blue'><a href='localhost/mypage/myQNA'>문의 확인하기</a></h2>";
+			Message message2 = new MimeMessage(session);
+			try {
+				message2.setFrom(new InternetAddress("sendMail@gmail.com", "관리자", "utf-8"));
+				message2.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+				message2.setSubject(title);
+				message2.setContent(content, "text/html; charset=utf-8");
+	
+				Transport.send(message2);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+			//이메일발송
+			
+
 			
 			
 //			

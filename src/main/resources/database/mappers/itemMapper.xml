@@ -22,13 +22,17 @@
 		INSERT INTO ITEMFILE VALUES(ITEMFILE_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
 	</insert> 
 	
-	<select id="getList" resultType="ItemDTO" resultMap="getListResult">
-		SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+	<select id="getList" parameterType="Pager" resultType="ItemDTO" resultMap="getListResult">
+		SELECT * FROM
+		(SELECT ROWNUM R, I.*
+		FROM
+		(SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
 		FROM ITEM I
 		LEFT JOIN 
 		ITEMFILE F
         USING (ITEM_NUM)
-		ORDER BY ITEM_NUM DESC, FILENUM ASC
+		ORDER BY ITEM_NUM DESC, FILENUM ASC) I)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<resultMap type="ItemDTO" id="getListResult">
@@ -40,6 +44,15 @@
 			<result column="FILENAME" property="fileName"/>
 		</collection>
 	</resultMap>
+	
+	<select id="getListCount" resultType="Long">
+	SELECT COUNT(ITEM_NUM)
+		FROM ITEM I
+		LEFT JOIN 
+		ITEMFILE F
+        USING (ITEM_NUM)
+		ORDER BY ITEM_NUM DESC, FILENUM ASC
+	</select>
 	
 	
 	<select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">

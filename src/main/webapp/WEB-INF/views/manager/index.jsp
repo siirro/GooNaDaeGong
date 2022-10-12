@@ -23,7 +23,12 @@
 
     <!-- Custom styles for this template-->
     <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
+    <style>
+        .hovv:hover {
+            cursor: pointer;
+        }
 
+    </style>
 </head>
 
 <body id="page-top">
@@ -155,7 +160,52 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                뭐
+                                 <!-- 부트스트랩표 -->
+                                <div id="qnaList">
+                                    <section class="col-lg-12 text-center" style="padding: 0px;">
+                                        <table class="table table-hover" width="100%">
+                                        <thead class="table-primary" style="font-size: 14px;">
+                                            <tr>
+                                                <th class="col-1">번호</th>
+                                                <th class="col-1">구분</th>
+                                                <th class="col-4">글제목</th>
+                                                <th class="col-2">작성자</th>
+                                                <th class="col-2">등록일</th>
+                                                <th class="col-1">처리</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: 12px;">
+                                            <c:forEach items="${qnalist}" var="nl">
+                                                <tr class="hovv" onclick="location.href='./manager/qna/detail?qna_num=${nl.qna_num}'">
+                                                    <td>${nl.qna_num}</td>
+                                                    <td>${nl.qna_cate}</td>
+                                                    <td>${nl.qna_title}</td>
+                                                    <td>${nl.user_id}</td>
+                                                    <td>${nl.qna_date}</td>
+                                                    <td id="updateStatus">${nl.qna_status}</td>
+                                                </tr>
+                                                </c:forEach>
+                                        </tbody>
+                                        </table>
+                                    </section>
+                                </div>
+
+                                <!-- 페이지 -->
+                                <div class="pagediv" style="display: flex; justify-content: center;">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination paginate_sm">
+
+                                            <c:if test="${pager.pre}">
+                                                <li class="page-item"><a class="page-link" href="./manager?page=${pager.startNum-1}">pre</a></li>
+                                            </c:if>
+                                            <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                                <li class="page-item"><a class="page-link" href="./manager?page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                            <li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./manager?page=${pager.lastNum+1}">next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- 페이지 -->
                             </div>
                         </div>
                     </div>

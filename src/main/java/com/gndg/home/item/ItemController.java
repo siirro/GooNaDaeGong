@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Controller
 @RequestMapping("/item/*")
@@ -54,9 +55,9 @@ public class ItemController {
 
 	//상품리스트
 	@GetMapping("list")
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ItemDTO> ar = itemService.getList();
+		List<ItemDTO> ar = itemService.getList(pager);
 		
 		//좋아요수
 		ArrayList<Long> counts = new ArrayList<Long>();

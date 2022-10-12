@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Service
 public class ItemService {
@@ -44,8 +45,14 @@ public class ItemService {
 		return result;
 	}
 	
-	public List<ItemDTO> getList() throws Exception {
-		return itemDAO.getList();
+	public List<ItemDTO> getList(Pager pager) throws Exception {
+		Long totalCount = itemDAO.getListCount();
+		pager.setPerPage(12L);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+		return itemDAO.getList(pager);
 	}
 	
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {
