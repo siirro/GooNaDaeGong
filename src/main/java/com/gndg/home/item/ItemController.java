@@ -159,10 +159,11 @@ public class ItemController {
 	//후기 조회
 	@GetMapping("reviewList")
 	@ResponseBody
-	public ModelAndView getReview(ItemReviewDTO itemReviewDTO) throws Exception {
+	public ModelAndView getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ItemReviewDTO> ar = itemService.getReview(itemReviewDTO);
+		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		mv.setViewName("item/review");
 		return mv;
 	}

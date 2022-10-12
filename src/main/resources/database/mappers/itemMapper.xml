@@ -135,13 +135,17 @@
 	
 	
 	<!-- 후기 조회 -->
-	<select id="getReview" parameterType="ItemReviewDTO" resultType="ItemReviewDTO">
-		SELECT R.*, MF.FILENAME
+	<select id="getReview" parameterType="Map" resultType="ItemReviewDTO">
+		SELECT * FROM
+		(SELECT ROWNUM RR, RRR.*
+		FROM
+		(SELECT R.*, MF.FILENAME
 		FROM REVIEW R
 		LEFT JOIN MEMBERFILE MF
 		ON R.USER_ID = MF.USER_ID
 		WHERE ITEM_NUM=#{item_num}
-		ORDER BY RV_NUM DESC
+		ORDER BY RV_NUM DESC) RRR)
+		WHERE RR BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
 	<!-- 후기 작성 -->
@@ -161,7 +165,7 @@
 	</update>
 	
 	<!-- 후기수 -->
-	<select id="getReviewCount" parameterType="ItemReviewDTO">
+	<select id="getReviewCount" parameterType="ItemReviewDTO" resultType="Long">
 		SELECT COUNT(RV_NUM) FROM REVIEW WHERE ITEM_NUM=#{item_num}
 	</select>
 </mapper>

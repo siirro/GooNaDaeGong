@@ -135,8 +135,13 @@ public class ItemService {
 		return result;
 	}
 	
-	public List<ItemReviewDTO> getReview(ItemReviewDTO itemReviewDTO) throws Exception {
-		return itemDAO.getReview(itemReviewDTO);
+	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
+		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+		return itemDAO.getReview(pager, itemReviewDTO);
 	}
 	
 	
