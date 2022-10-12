@@ -52,6 +52,7 @@
 				
 			<typeAlias type="com.gndg.home.util.Category" alias="Category"/>
 			<typeAlias type="com.gndg.home.util.Pager" alias="Pager"/>	
+			<typeAlias type="com.gndg.home.util.MypagePager" alias="MypagePager"/>	
 			<typeAlias type="com.gndg.home.util.Pager" alias="OrderPager"/>	
 			
   		</typeAliases>

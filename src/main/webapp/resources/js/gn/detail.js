@@ -14,7 +14,7 @@ let json = JSON.parse(document.querySelector('#json').innerHTML);
 likeButton.addEventListener('click', function () {
     const count = parseInt(likeUpDown.innerHTML);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "like");
+    xhttp.open("POST", "./like");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("item_num=" + item_num + "&user_id=" + user_id);
     xhttp.onreadystatechange = function () {
