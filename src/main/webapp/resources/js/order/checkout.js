@@ -7,8 +7,8 @@ var IMP = window.IMP; // 생략 가능
     const user_addr = document.getElementById("user_addr").value;
     const user_addr2 = document.getElementById("user_addr2").value;
     const user_post = document.getElementById("user_post").value;
-    const item_name = document.getElementsByClassName("item_name");
-    let lll = item_name.length-1;
+    const item_title = document.getElementsByClassName("item_title");
+    let lll = item_title.length-1;
 
 
     
@@ -76,7 +76,7 @@ var IMP = window.IMP; // 생략 가능
           pg: "html5_inicis",
           pay_method: "card",
           merchant_uid: new Date().getTime(),
-          name: item_name[0].value+" 외 "+lll+"개",
+          name: item_title[0].value+" 외 "+lll+"개",
           amount: ord_total2,
           buyer_email: user_email,
           buyer_name: user_name,

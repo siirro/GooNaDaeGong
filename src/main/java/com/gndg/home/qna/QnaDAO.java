@@ -22,6 +22,10 @@ public class QnaDAO {
 	
 	//==============================================================
 	
+	public int updateQna(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"updateQna", qnaDTO);
+	}
+	
 	public List<OrdersDTO> getOrders(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getOrders", memberDTO);
 	}
