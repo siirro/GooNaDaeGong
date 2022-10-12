@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.member.MemberDTO;
-import com.gndg.home.notice.NoticeFileDTO;
 import com.gndg.home.orders.OrdersDTO;
 
 @Controller
@@ -90,7 +89,7 @@ public class QnaController {
 		}
 		
 				
-		mv.addObject("url", "../../../../");
+		mv.addObject("url", "../mypage/myQNA");
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
 		

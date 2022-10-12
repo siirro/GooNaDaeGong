@@ -103,7 +103,7 @@
                                                         </div>
                                                     </div>
                                                         <c:forEach items="${qna.qnaFileDTOs}" var="file">
-                                                        	<img src="../resources/upload/qna/${file.fileName}"/>
+                                                        	<img src="../resources/upload/qna/${file.fileName}" width="200px"/>
                                                         </c:forEach>
                                                     <c:if test="${qna.qna_status == '대기'}">
                                                     <div class="css-c0oq5k eula2qn2">
