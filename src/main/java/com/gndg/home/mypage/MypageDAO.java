@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gndg.home.dgItem.DgItemReviewDTO;
-import com.gndg.home.gnItem.GnItemDTO;
-import com.gndg.home.gnItem.GnItemLikeDTO;
+import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemLikeDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.order.OrderDTO;
@@ -38,12 +38,12 @@ public class MypageDAO {
 	}
 	
 	//내 판매 내역
-	public List<GnItemDTO> getMySale(GnItemDTO gnItemDTO)throws Exception{
+	public List<ItemDTO> getMySale(ItemDTO gnItemDTO)throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getMySale", gnItemDTO);
 	}
 	
 	//내 (상품)좋아요 목록
-	public List<GnItemLikeDTO> getMyLike(MypagePager mypagePager)throws Exception{
+	public List<ItemLikeDTO> getMyLike(MypagePager mypagePager)throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getMyLike", mypagePager);
 	}
 	//내 좋아요 글 갯수

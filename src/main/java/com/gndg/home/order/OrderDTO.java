@@ -3,8 +3,8 @@ package com.gndg.home.order;
 import java.util.Date;
 import java.util.List;
 
-import com.gndg.home.gnItem.GnItemDTO;
-import com.gndg.home.gnItem.GnItemFileDTO;
+import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemFileDTO;
 import com.gndg.home.pay.PayDTO;
 
 public class OrderDTO {
@@ -27,9 +27,9 @@ public class OrderDTO {
     //1:1
     
     private PayDTO payDTO;
-    private List<GnItemDTO> gnItemDTOs;
+    private List<ItemDTO> gnItemDTOs;
     private List<GoodsOrderDTO> goodsOrderDTOs;
-    private List<GnItemFileDTO> gnItemFileDTOs;
+    private List<ItemFileDTO> gnItemFileDTOs;
     
     public Long getMerchant_uid() {
         return merchant_uid;
@@ -115,10 +115,10 @@ public class OrderDTO {
     public void setPayDTO(PayDTO payDTO) {
         this.payDTO = payDTO;
     }
-    public List<GnItemDTO> getGnItemDTOs() {
+    public List<ItemDTO> getGnItemDTOs() {
         return gnItemDTOs;
     }
-    public void setGnItemDTOs(List<GnItemDTO> gnItemDTOs) {
+    public void setGnItemDTOs(List<ItemDTO> gnItemDTOs) {
         this.gnItemDTOs = gnItemDTOs;
     }
     public List<GoodsOrderDTO> getGoodsOrderDTOs() {
@@ -127,10 +127,10 @@ public class OrderDTO {
     public void setGoodsOrderDTOs(List<GoodsOrderDTO> goodsOrderDTOs) {
         this.goodsOrderDTOs = goodsOrderDTOs;
     }
-    public List<GnItemFileDTO> getGnItemFileDTOs() {
+    public List<ItemFileDTO> getGnItemFileDTOs() {
         return gnItemFileDTOs;
     }
-    public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
+    public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
         this.gnItemFileDTOs = gnItemFileDTOs;
     }
     public String getOrd_memo() {

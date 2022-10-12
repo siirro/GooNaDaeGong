@@ -1,11 +1,11 @@
-package com.gndg.home.gnItem;
+package com.gndg.home.item;
 
 import java.sql.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class GnItemDTO {
+public class ItemDTO {
 	
 	private Long item_num;
 	private String user_id;
@@ -21,7 +21,7 @@ public class GnItemDTO {
 	private Long item_hit;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date item_date;
-	private List<GnItemFileDTO> gnItemFileDTOs;
+	private List<ItemFileDTO> gnItemFileDTOs;
 	
 	public Long getItem_num() {
 		return item_num;
@@ -101,10 +101,10 @@ public class GnItemDTO {
 	public void setItem_date(Date item_date) {
 		this.item_date = item_date;
 	}
-	public List<GnItemFileDTO> getGnItemFileDTOs() {
+	public List<ItemFileDTO> getGnItemFileDTOs() {
 		return gnItemFileDTOs;
 	}
-	public void setGnItemFileDTOs(List<GnItemFileDTO> gnItemFileDTOs) {
+	public void setGnItemFileDTOs(List<ItemFileDTO> gnItemFileDTOs) {
 		this.gnItemFileDTOs = gnItemFileDTOs;
 	}
 }

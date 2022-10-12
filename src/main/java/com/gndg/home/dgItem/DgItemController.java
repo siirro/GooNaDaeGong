@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Category;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
+//import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
 @RequestMapping(value="/dgItem/*")

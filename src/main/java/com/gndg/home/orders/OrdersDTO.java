@@ -6,7 +6,7 @@ import java.util.List;
 import com.gndg.home.cancel.CancelDTO;
 import com.gndg.home.cancel.ExchangeDTO;
 import com.gndg.home.cancel.RefundDTO;
-import com.gndg.home.gnItem.GnItemDTO;
+import com.gndg.home.item.ItemDTO;
 
 public class OrdersDTO {
 	
