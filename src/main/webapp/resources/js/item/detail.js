@@ -15,6 +15,24 @@ const reviewBtn = document.querySelector("#reviewBtn");
 const reviewTop = document.querySelector("#reviewTop");
 const shareBtn = document.querySelector("#shareBtn");
 
+//----------------------------공유하기----------------------------
+function share(sns) {
+    var thisUrl = document.URL;
+    var snsTitle = "2021 웹진 [봄]";
+    if( sns == 'facebook' ) {
+        var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(thisUrl);
+        window.open(url, "", "width=486, height=286");
+    }
+    else if( sns == 'twitter' ) {
+        var url = "http://twitter.com/share?url="+encodeURIComponent(thisUrl)+"&text="+encodeURIComponent(snsTitle);
+        window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
+    }
+    else if( sns == 'band' ) {
+        var url = "http://www.band.us/plugin/share?body="+encodeURIComponent(snsTitle)+"&route="+encodeURIComponent(thisUrl);
+        window.open(url, "shareBand", "width=400, height=500, resizable=yes");
+    } 
+}
+
 //----------------------------리뷰수 조회----------------------------
 // function getReviewCount() {
 //     const xhttp = new XMLHttpRequest();
@@ -58,12 +76,6 @@ function getReview() {
         }
     }
 }
-
-//-----------------------공유하기-----------------------
-shareBtn.addEventListener("click", function(){
-    console.log('ddd');
-})
-
 
 
 //-----------------------수량선택-----------------------

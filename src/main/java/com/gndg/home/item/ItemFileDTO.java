@@ -1,8 +1,8 @@
-package com.gndg.home.gnItem;
+package com.gndg.home.item;
 
 import com.gndg.home.File.FileDTO;
 
-public class GnItemFileDTO extends FileDTO {
+public class ItemFileDTO extends FileDTO {
 
 	private Long item_num;
 

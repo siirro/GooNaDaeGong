@@ -68,12 +68,12 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
-					<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
+					<c:forEach items="${dto.itemFileDTOs }" var="fileDTO">
 
 						<c:choose>
-							<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
+							<c:when test="${fileDTO eq dto.itemFileDTOs[0] }">
 								<div class="carousel-item active" data-bs-interval="5000">
-									<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+									<img src="/resources/upload/item/${fileDTO.fileName }"
 										class="d-block w-100" width="600" height="700" alt="...">
 								</div>
 							</c:when>
@@ -148,15 +148,15 @@
 							<i id="shareBtn" class="bi bi-share-fill" style="font-size: 150%;"></i>
 <ul class="sns">
     <li class="facebook">
-	    <a href="#n" onclick="fn_sendFB('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
+	    <a href="#n" onclick="share('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
 	    <span class="skip">페이스북</span></a>
     </li>
     <li class="twitter">
-	    <a href="#n" onclick="fn_sendFB('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
+	    <a href="#n" onclick="share('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
 	    <span class="skip">트위터</span></a>
     </li>
     <li class="band">
-	    <a href="#n" onclick="fn_sendFB('band');return false;" class="band" target="_self" title="네이버밴드 새창열림">
+	    <a href="#n" onclick="share('band');return false;" class="band" target="_self" title="네이버밴드 새창열림">
 	    <span class="skip">네이버밴드</span></a>
     </li>
 </ul>
@@ -186,11 +186,11 @@
 				<div class="container px-4 px-lg-5 mt-5">
 					<div>${dto.item_contents }</div>
 					<div>
-						<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
-							<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+						<c:forEach items="${dto.itemFileDTOs }" var="fileDTO">
+							<img src="/resources/upload/item/${fileDTO.fileName }"
 								alt="...">
 						</c:forEach>
-						<img src="/resources/upload/gnItem/notice.jpg" alt="...">
+						<img src="/resources/upload/item/notice.jpg" alt="...">
 					</div>
 				</div>
 			</div>
@@ -204,12 +204,11 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
 		crossorigin="anonymous"></script>
-	<script src="/resources/js/gn/detail.js"></script>
+	<script src="/resources/js/item/detail.js"></script>
 	<script>
 		getLikeCount();
 		getCategory();
 		getReview();
-		getReviewCount();
 	</script>
 </body>
 </html>

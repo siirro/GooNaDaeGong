@@ -8,12 +8,15 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gndg.home.AbstractTest;
+import com.gndg.home.item.ItemDAO;
+import com.gndg.home.item.ItemDTO;
+import com.gndg.home.item.ItemFileDTO;
 import com.gndg.home.util.Category;
 
 public class GnItemDAOTest extends AbstractTest {
 
 	@Autowired
-	public GnItemDAO gnItemDAO;
+	public ItemDAO gnItemDAO;
 	
 	//@Test
 	public void getCategoryTest() throws Exception {
@@ -25,7 +28,7 @@ public class GnItemDAOTest extends AbstractTest {
 	public void setAddTest() throws Exception {
 		
 		for(int i=1; i<60; i++) {
-			GnItemDTO gnItemDTO = new GnItemDTO();
+			ItemDTO gnItemDTO = new ItemDTO();
 			gnItemDTO.setCate_num("1234");
 			gnItemDTO.setUser_id("11");
 			gnItemDTO.setItem_name("아이폰"+i+" Pro Max");
@@ -40,7 +43,7 @@ public class GnItemDAOTest extends AbstractTest {
 	
 	//@Test
 	public void setAddFileTest() throws Exception {
-		GnItemFileDTO gnItemFileDTO = new GnItemFileDTO();
+		ItemFileDTO gnItemFileDTO = new ItemFileDTO();
 		gnItemFileDTO.setFileNum(4L);
 		gnItemFileDTO.setItem_num(83L);
 		gnItemFileDTO.setFileName("123456789_img2.jpg");
@@ -51,7 +54,7 @@ public class GnItemDAOTest extends AbstractTest {
 	
 	//@Test
 	public void setUpdateTest() throws Exception {
-		GnItemDTO gnItemDTO = new GnItemDTO();
+		ItemDTO gnItemDTO = new ItemDTO();
 		gnItemDTO.setCate_num("1234");
 		gnItemDTO.setItem_name("test");
 		gnItemDTO.setItem_contents("test");
@@ -65,7 +68,7 @@ public class GnItemDAOTest extends AbstractTest {
 	
 	@Test
 	public void setDeleteTest() throws Exception {
-		GnItemDTO gnItemDTO = new GnItemDTO();
+		ItemDTO gnItemDTO = new ItemDTO();
 		gnItemDTO.setItem_num(489L);
 		int result = gnItemDAO.setDelete(gnItemDTO);
 		assertEquals(1, result);
