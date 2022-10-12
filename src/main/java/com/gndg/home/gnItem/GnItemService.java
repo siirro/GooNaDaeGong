@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
+import com.gndg.home.dgItem.DgItemDTO;
+import com.gndg.home.dgItem.DgItemFileDTO;
 import com.gndg.home.util.Category;
 
 @Service
@@ -20,6 +22,25 @@ public class GnItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	/* 상품 갯수 */
+	public int getCount(Category category) throws Exception {
+		
+		return itemDAO.getCount(category);
+	}
+	
+	/* 통합 검색 */
+	public List<ItemDTO> getSearch(String search) throws Exception {
+		System.out.println("Service search");
+		
+		return itemDAO.getSearch(search); 
+	}
+	
+	/* 최근 본 상품 */
+	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
+		System.out.println("Service product");
+		
+		return itemDAO.getProduct(item_num);
+	}
 	
 	public List<Category> getCategory() throws Exception {
 		return gnItemDAO.getCategory();

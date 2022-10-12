@@ -11,7 +11,7 @@
     <title>상품 등록 페이지</title>
 
     <!-- 상품등록페이지 css -->
-    <link href="/resources/css/dg/add.css" rel="stylesheet">
+    <link href="/resources/css/item/add.css" rel="stylesheet">
 </head>
 
 <body>

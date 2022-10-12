@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Category;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
+//import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
 @RequestMapping(value="/dgItem/*")
@@ -223,16 +223,16 @@ public class DgItemController {
 	}
 	
 	/* 상품 갯수 */
-//	@GetMapping
-//	public String getCount(Category category, Model model) throws Exception {
-//		System.out.println("COUNT GET");
-//		
-//		category = dgItemService.getCount(category);
-//		
-//		
-//		
-//		return "dgItem/list";
-//	}
+	@GetMapping
+	public String getCount(Category category, Model model) throws Exception {
+		System.out.println("COUNT GET");
+		
+		category = dgItemService.getCount(category);
+		
+		
+		
+		return "dgItem/list";
+	}
 	
 	/* 상품목록 */
 	@GetMapping("list")

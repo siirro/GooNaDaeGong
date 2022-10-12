@@ -71,11 +71,11 @@ public class DgItemService {
 	}
 	
 	/* 상품 갯수 */
-//	public int getCount(Category category) throws Exception {
-//		
-//		return dgItemDAO.getCount(category);
-//	}
-//	
+	public int getCount(Category category) throws Exception {
+		
+		return dgItemDAO.getCount(category);
+	}
+	
 	/* 상품목록 */
 	public List<DgItemDTO> getListItem(DgItemDTO dgItemDTO) throws Exception {
 		System.out.println("Service List");

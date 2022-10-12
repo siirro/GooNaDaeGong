@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.gndg.home.dgItem.DgItemDTO;
+import com.gndg.home.dgItem.DgItemFileDTO;
 import com.gndg.home.util.Category;
 
 @Repository
@@ -14,6 +16,21 @@ public class GnItemDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.gnItem.GnItemDAO.";
+	
+	/* 상품 갯수 */
+	public int getCount(Category category) throws Exception {
+		return sqlSession.select(NAMESPACE + "getCount", category);
+	}
+	
+	/* 통합 검색 */
+	public List<ItemDTO> getSearch(String search) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getSearch", search);
+	}
+	
+	/* 최근 본 상품 */
+	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
+	}
 	
 	public List<Category> getCategory() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCategory");

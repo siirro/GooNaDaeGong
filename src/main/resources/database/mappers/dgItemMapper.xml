@@ -73,6 +73,7 @@
 		SELECT
     		I.ITEM_NUM, I.ITEM_NAME, I.CATE_NUM, C.CATE_REF, C.CATE_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_CONTENTS, ITEM_DATE, IF.ITEM_NUM, IF.FILENAME, IF.ORINAME
     			FROM ITEM I
+    			
             		INNER JOIN CATEGORY C 
                 		ON I.CATE_NUM = C.CATE_NUM
             
@@ -116,10 +117,10 @@
 	</delete>
 
 	<!-- 상품 갯수 -->
-<!-- 	<select id="getCount" parameterType="Category" resultType="Category">
+	<select id="getCount" resultType="int">
 		SELECT COUNT(*) as cnt FROM ITEM
     		WHERE cate_num = #{cate_num}
-	</select> -->
+	</select>
 	
 	<!-- 상품목록 -->
 	<select id="getListItem" parameterType="DgItemDTO" resultMap="DgItemDTOResult">
