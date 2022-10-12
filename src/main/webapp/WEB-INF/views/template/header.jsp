@@ -48,7 +48,7 @@
 							</c:if>
 							<c:if test="${member.user_id ne null}">
 								<a  class="text-body px-2" href="../member/logout">로그아웃</a>
-								<a  class="text-body px-2" href="#">마이페이지</a>
+								<a  class="text-body px-2" href="../mypage/mypage">마이페이지</a>
 							</c:if>
 							<a href="#" class="nav-link dropdown-toggle text-body px-2" data-bs-toggle="dropdown">고객센터</a>
 							<div class="dropdown-menu m-0">
