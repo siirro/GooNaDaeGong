@@ -5,6 +5,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.qna.QnaDAO">
 
+<update id="updateQna" parameterType="QnaDTO">
+UPDATE QNA SET QNA_CATE = #{qna_cate}, QNA_TITLE = #{qna_title}, QNA_CONTENTS = #{qna_contents} WHERE QNA_NUM = #{qna_num}
+</update>
+
 <select id="getOrders" parameterType="MemberDTO" resultType="OrdersDTO">
 SELECT * FROM ORDERS WHERE user_id = #{user_id}
 </select>
