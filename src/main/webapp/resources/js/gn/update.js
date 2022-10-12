@@ -1,21 +1,12 @@
 const fileDelete = document.querySelectorAll(".fileDelete");
-const deal = document.querySelectorAll(".deal");
-const item_deal = document.querySelector("#item_deal");
-const condition = document.querySelectorAll(".condition");
-const item_condition = document.querySelector("#item_condition");
+// const deal = document.querySelectorAll(".deal");
+// const item_deal = document.querySelector("#item_deal");
 
-
-deal.forEach(function(e) {
-    if (item_deal.getAttribute('value') == e.value) {
-        e.setAttribute("selected","selected");
-    }
-})
-
-condition.forEach(function(e) {
-    if (item_condition.getAttribute('value') == e.value) {
-        e.setAttribute("selected","selected");
-    }
-})
+// deal.forEach(function(e) {
+//     if (item_deal.getAttribute('value') == e.value) {
+//         e.setAttribute("selected","selected");
+//     }
+// })
 
 
 //----------------------------수정시 이미지파일삭제----------------------------

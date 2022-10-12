@@ -1,5 +1,6 @@
 package com.gndg.home.gnItem;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -110,7 +111,31 @@ public class GnItemService {
 		return gnItemDAO.setHit(gnItemDTO);
 	}
 	
-	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
-		return gnItemDAO.setStateUpdate(gnItemDTO);
+	public int setReviewAdd(GnItemReviewDTO gnItemReviewDTO, MultipartFile multipartFile, ServletContext servletContext) throws Exception {
+		int result = gnItemDAO.setReviewAdd(gnItemReviewDTO);
+		String realPath = servletContext.getRealPath("resources/upload/review");
+		System.out.println("RealPath : "+realPath);
+		File file = new File(realPath);
+		if(!multipartFile.isEmpty()) {
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+			
+			String fileName = fileManager.saveFile(servletContext, realPath, multipartFile);
+			gnItemReviewDTO.setRv_file(fileName);
+			gnItemDAO.setReviewAdd(gnItemReviewDTO);
+		}
+		return result;
 	}
+	
+	public List<GnItemReviewDTO> getReview(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		return gnItemDAO.getReview(gnItemReviewDTO);
+	}
+	
+	
+	
+	public Long getReviewCount(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		return gnItemDAO.getReviewCount(gnItemReviewDTO);
+	}
+	
 }

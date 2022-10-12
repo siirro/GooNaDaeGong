@@ -68,51 +68,26 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
+					<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
 
-					<div id="carouselExampleControls" class="carousel slide"
-						data-bs-ride="carousel">
-						<div class="carousel-inner">
-							<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
-
-								<c:choose>
-									<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
-										<div class="carousel-item active" data-bs-interval="5000">
-											<img src="/resources/upload/gnItem/${fileDTO.fileName }"
-												class="d-block w-100" width="600" height="700" alt="...">
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="carousel-item" data-bs-interval="2000">
-											<img src="/resources/upload/gnItem/${fileDTO.fileName }"
-												class="d-block w-100" width="600" height="700" alt="...">
-										</div>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</div>
-
+						<c:choose>
+							<c:when test="${fileDTO eq dto.gnItemFileDTOs[0] }">
+								<div class="carousel-item active" data-bs-interval="5000">
+									<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+										class="d-block w-100" width="600" height="700" alt="...">
+								</div>
+							</c:when>
+						</c:choose>
+					</c:forEach>
 				</div>
 				<div class="col-md-6">
 					<div id="json" style="display: none;">${json}</div>
-					<input type="hidden" name="item_num" id="item_num" value="${dto.item_num }">
+					<input type="hidden" name="item_num" id="item_num" value="${dto.item_num }"> 
 					<input type="hidden" name="user_id" id="user_id" value="${dto.user_id}">
 
 					<div class="small mb-2">
-						<span id="category1"></span> 
-						<span id="category2"></span> 
-						<span id="category3"></span> 
-						<span id="category4"></span>
+						<span id="category1"></span> <span id="category2"></span> <span
+							id="category3"></span> <span id="category4"></span>
 					</div>
 
 					<div>
@@ -121,31 +96,18 @@
 							<span id="likeUpDown"></span>
 						</span> 
 						<span class=" mx-2"> 
-							<span class="bi bi-eye-fill" style="color: gainsboro; font-size: 20px;"></span>
+							<span class="bi bi-eye-fill" style="color: gainsboro; font-size: 20px;"></span> 
 							<span>${dto.item_hit }</span>
 						</span> 
 						<span class=" mx-2"> 
-							<span class="bi bi-clock-fill" style="color: gainsboro; font-size: 20px;"></span>
+							<span class="bi bi-clock-fill" style="color: gainsboro; font-size: 20px;"></span> 
 							<span id="item_date">${dto.item_date}</span>
 						</span>
 					</div>
 
-					<h1 class="fs-3 mt-5">${dto.item_name }</h1>
+					<h1 class="fs-3 mt-4">${dto.item_title }</h1>
 					<div class="fs-2 mb-5 fw-bolder">${price }원</div>
-					<table class="table table-borderless fs-5">
-						<tbody>
-							<tr>
-								<td style="width: 20%">거래방법</td>
-								<td>${dto.item_deal }</td>
-							</tr>
-							<tr>
-								<td>제품상태</td>
-								<td>${dto.item_condition }</td>
-							</tr>
-						</tbody>
-					</table>
-
-
+					
 					<div class="alert alert-secondary text-center">
 						<div class="fw-bold" style="color: #6667AB;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -160,10 +122,10 @@
 							거래를 자제해 주시고<br> 구디나라 고객센터로 신고해주시기 바랍니다.
 						</div>
 					</div>
-					
+
 					<div>
-						<span>
-							<c:choose>
+						<div class="d-grid gap-2 col-6 mx-auto">
+						<span> <c:choose>
 								<c:when test="${like eq null }">
 									<svg id="likeButton" style="color: black;"
 										xmlns="http://www.w3.org/2000/svg" width="30" height="30"
@@ -183,86 +145,71 @@
 							  </svg>
 								</c:otherwise>
 							</c:choose>
-							</span>
-						<span class="mx-3">
-						<a class="btn" style="background-color: #6667AB; color: white;"
-							href="update?item_num=${dto.item_num }">수정</a> 
-						<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white;"
-						href="delete?item_num=${dto.item_num }">삭제</a>
-						<a class="btn"
-							style="background-color: #6667AB; color: white;" href="list">목록보기</a>
+							<i id="shareBtn" class="bi bi-share-fill" style="font-size: 150%;"></i>
+<ul class="sns">
+    <li class="facebook">
+	    <a href="#n" onclick="fn_sendFB('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
+	    <span class="skip">페이스북</span></a>
+    </li>
+    <li class="twitter">
+	    <a href="#n" onclick="fn_sendFB('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
+	    <span class="skip">트위터</span></a>
+    </li>
+    <li class="band">
+	    <a href="#n" onclick="fn_sendFB('band');return false;" class="band" target="_self" title="네이버밴드 새창열림">
+	    <span class="skip">네이버밴드</span></a>
+    </li>
+</ul>
+							
+						</span> 
+						
+						<span>
+						<button class="btn btn-light" type="button" id="minus">-</button>
+						<input type="text" value="1" id="itemCount">
+						<button class="btn btn-light" type="button"id="plus">+</button>
 						</span>
-						<span class="btn-group" role="group" aria-label="Basic radio toggle button group">
-							<input type="radio" class="btn-check" name="item_state" id="item_state1" value="판매중" autocomplete="off" checked>
-							<label class="btn btn-outline-primary" for="item_state1">판매중</label>
-						  
-							<input type="radio" class="btn-check" name="item_state" id="item_state2" value="예약중" autocomplete="off">
-							<label class="btn btn-outline-primary" for="item_state2">예약중</label>
-						  
-							<input type="radio" class="btn-check" name="item_state" id="item_state3" value="예약완료" autocomplete="off">
-							<label class="btn btn-outline-primary" for="item_state3">판매완료</label>
-						  </span>
+							<button class="btn btn-primary" type="button">바로구매</button>
+							<button class="btn btn-primary" type="button">장바구니</button>
+						</div>
 					</div>
-					<div class="d-grid gap-2 col-6 mx-auto my-3">
-						<button class="btn btn-primary" type="button">채팅하기</button>
-						<button class="btn btn-primary" type="button">구디페이 구매</button>
+					<div class="mt-3 d-grid gap-2 d-md-flex justify-content-md-end">
+						<span class="mx-3"> 
+						<a class="btn" style="background-color: #6667AB; color: white;"
+							href="update?item_num=${dto.item_num }">수정</a>
+						<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white;"
+							href="delete?item_num=${dto.item_num }">삭제</a> 
+						<a class="btn" style="background-color: #6667AB; color: white;" href="list">목록보기</a>
+						</span>
 					</div>
-					
-				</div>
-				<div class="mt-5">${dto.item_contents }</div>
-			</div>
-		</div>
-	</section>
-	<!-- Related items section-->
-	<section class="py-5 bg-light">
-		<div class="container px-4 px-lg-5 mt-5">
-			<h2 class="fw-bolder mb-4">이런 상품은 어때요?</h2>
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-				<div class="col mb-5">
-					<div class="card h-100">
-						<!-- Product image-->
-						<img class="card-img-top"
-							src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
-						<!-- Product details-->
-						<div class="card-body p-4">
-							<div class="text-center">
-								<!-- Product name-->
-								<h5 class="fw-bolder">Popular Item</h5>
-								<!-- Product reviews-->
-								<div
-									class="d-flex justify-content-center small text-warning mb-2">
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-								</div>
-								<!-- Product price-->
-								$40.00
-							</div>
-						</div>
-						<!-- Product actions-->
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-							</div>
-						</div>
+				</div>
+				<div class="container px-4 px-lg-5 mt-5">
+					<div>${dto.item_contents }</div>
+					<div>
+						<c:forEach items="${dto.gnItemFileDTOs }" var="fileDTO">
+							<img src="/resources/upload/gnItem/${fileDTO.fileName }"
+								alt="...">
+						</c:forEach>
+						<img src="/resources/upload/gnItem/notice.jpg" alt="...">
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<section id="reviewContents" class="py-5 bg-light">
+	</section>
+
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
 		crossorigin="anonymous"></script>
 	<script src="/resources/js/gn/detail.js"></script>
-	<script src="/resources/js/gn/state.js"></script>
 	<script>
 		getLikeCount();
 		getCategory();
+		getReview();
+		getReviewCount();
 	</script>
 </body>
 </html>

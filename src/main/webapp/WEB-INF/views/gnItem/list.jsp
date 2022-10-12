@@ -73,11 +73,10 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5>${dto.item_name }</h5>
+                                    <h5>${dto.item_title }</h5>
                                     <!-- Product price-->
                                     <h5 class="fw-bolder">${dto.item_price }원</h5>
                                     <span class="bi bi-heart mx-1" style="color: #868e96; font-size: 15px;"> ${count[i.index]}</span>
-                                	<span class="bi bi-chat mx-1" style="color: #868e96; font-size: 15px;"> 3</span>
                                     <span id="item_date" class="bi bi-clock mx-1" style="color: #868e96; font-size: 15px;"> ${dto.item_date}</span>
                                 </div>
                             </div>

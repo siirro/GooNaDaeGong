@@ -25,7 +25,7 @@ button.addEventListener("click", function () {
     //</div>
     let div = document.createElement("div");
     div.setAttribute("id", "file" + idx);
-    fileAdd.appendChild(div);
+    fileAdd.append(div);
 
     let input = document.createElement("input");
     input.setAttribute("type", "file");

@@ -71,8 +71,18 @@ public class GnItemDAO {
 		return sqlSession.update(NAMESPACE+"setHit", gnItemDTO);
 	}
 	
-	public int setStateUpdate(GnItemDTO gnItemDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setStateUpdate", gnItemDTO);
+	public int setReviewAdd(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReviewAdd", gnItemReviewDTO);
 	}
-
+	
+	public List<GnItemReviewDTO> getReview(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getReview", gnItemReviewDTO);
+	}
+	
+	
+	
+	public Long getReviewCount(GnItemReviewDTO gnItemReviewDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getReviewCount", gnItemReviewDTO);
+	}
+	
 }
