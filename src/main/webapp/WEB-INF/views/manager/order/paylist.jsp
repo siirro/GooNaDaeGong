@@ -73,7 +73,7 @@
                     <!-- 여기가 진짜본문 -->
                     <div class="card shadow mb-4">
                         <div class="card-header">
-                            <button class="m-0 font-weight btn" onClick="location='./order'" style="color: #6667AB; padding: 0px;">결제내역 조회
+                            <button class="m-0 font-weight btn" style="color: #6667AB; padding: 0px;">결제내역 조회
                                 
                             
                             </button>
@@ -173,9 +173,11 @@
                                             <th class="col-2">결제일</th>
                                             <th class="col-2">결제번호</th>
                                             <th class="col-2">주문번호</th>
-                                            <th class="col-2">총결제액</th>
+                                            <th class="col-1">총결제액</th>
                                             <th class="col-1">결제상태</th>
                                             <th class="col-1">결제취소하기</th>
+                                            <th class="col-1">주문상태</th>
+
 
                                         </tr>
                                       </thead>
@@ -185,7 +187,7 @@
                                                 <td><fmt:formatDate value="${nl.pay_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${nl.imp_uid}</td>
                                                 <td>${nl.merchant_uid}</td>
-                                                <td>${nl.pay_total}원</td>
+                                                <td><fmt:formatNumber value="${nl.pay_total}" pattern="#,###" />원</td>
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${nl.pay_result eq 1}">
@@ -205,7 +207,7 @@
                                                     </c:choose>
                                                 </td>
                                                 <td id="cancelbtn" onclick=" cancelPay('${nl.imp_uid}','${nl.merchant_uid}','${nl.pay_total}');" style="cursor: pointer;">취소</td>
-
+                                                <td>${nl.ordersDTO.ord_status}</td>
                                             </tr>
                                             </c:forEach>
                                       </tbody>

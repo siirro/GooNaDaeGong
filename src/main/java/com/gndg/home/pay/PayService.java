@@ -17,6 +17,10 @@ public class PayService {
 		return payDAO.cancelPayment(payDTO);
 	}
 	
+	public int cancelPayment2(PayDTO payDTO)throws Exception{
+		return payDAO.cancelPayment2(payDTO);
+	}
+	
 	public List<PayDTO> getList(OrderPager orderPager)throws Exception{
 		Long totalCount = payDAO.getListCount(orderPager);
 		orderPager.getNum(totalCount);

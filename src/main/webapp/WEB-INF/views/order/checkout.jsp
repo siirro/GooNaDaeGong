@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
 
 
     <div class="css-1ykiyus e146m4rf2">
-        <div class="css-1uom1od e146m4rf0" style="zoom: 0.8;">
+        <div class="css-1uom1od e146m4rf0" style="zoom: 0.9;">
             <h2 class="css-10owlr e146m4rf1">주문</h2>
             
             <!-- 본문 전체박스 -->
@@ -60,7 +61,7 @@
 
                                     <!-- 100 지우고 ${l.itemDTO.item_price} -->
                                     <span class="css-1j31gob e17a7yib3">
-                                        <span class="css-jnogx7 e17a7yib0">${l.itemDTO.item_price}원</span>
+                                        <span class="css-jnogx7 e17a7yib0"><fmt:formatNumber value="${l.itemDTO.item_price*l.item_count}" pattern="#,###" />원</span>
                                     </span>
                                     <input type="hidden" name="item_price" class="item_price" value="${l.itemDTO.item_price}">
                                     <input type="hidden" name="item_num" class="item_num" value="${l.item_num}">
@@ -237,9 +238,9 @@
                                 <!-- 결제버튼 -->
                                 <div class="css-1azakc el0c5j41">
                                     <button onclick="gogogogo()" class="css-1lha8en e4nu7ef3" type="button" width="240" height="56" radius="3">
-                                        <span class="css-ymwvow e4nu7ef1">총금액 
-                                            <span id="total22"></span>
-                                            원 결제하기</span>
+                                        <span class="css-ymwvow e4nu7ef1">
+                                            <strong style="font-size: 19px;"><span id="total22"></span> 원 </strong>
+                                            결제하기</span>
                                     </button>
                                 </div>
 
@@ -406,7 +407,7 @@
          // 배송비 잠시만 1원으로
         let ord_delfree = 0;
         if(ord_total1<30000) {
-            ord_delfree = 1;
+            ord_delfree = 3000;
         } else {
             ord_delfree = 0;
         }
@@ -414,15 +415,19 @@
         // 결제총금액
         let ord_total2 = ord_total1+ord_delfree;
 
+        
 
-        document.getElementById("total1").innerHTML = ord_total1;
-        document.getElementById("delfree").innerHTML = ord_delfree;
-        document.getElementById("total2").innerHTML = ord_total2;
-        document.getElementById("total22").innerHTML = ord_total2;
+
+        document.getElementById("total1").innerHTML = ord_total1.toLocaleString('ko-KR');
+        document.getElementById("delfree").innerHTML = ord_delfree.toLocaleString('ko-KR');
+        document.getElementById("total2").innerHTML = ord_total2.toLocaleString('ko-KR');
+        document.getElementById("total22").innerHTML = ord_total2.toLocaleString('ko-KR');
 
         document.getElementById("ord_total1").value = ord_total1;
         document.getElementById("ord_delfree").value = ord_delfree;
-        document.getElementById("ord_total2").value = ord_total2;
+        //document.getElementById("ord_total2").value = ord_total2;
+        document.getElementById("ord_total2").value = 100;
+
     }
    
         function checkcheck1() {

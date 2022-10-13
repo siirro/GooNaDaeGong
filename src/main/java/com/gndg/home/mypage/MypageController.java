@@ -21,6 +21,7 @@ import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.member.MemberService;
 import com.gndg.home.order.OrderDTO;
+import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.util.MypagePager;
 
@@ -104,14 +105,14 @@ public class MypageController {
 	
 	//내 주문 상세내역
 	@RequestMapping(value="myOrderDetail")
-	public ModelAndView myOrderDetail(OrderDTO orderDTO,HttpSession session,ModelAndView mv)throws Exception{
+	public ModelAndView myOrderDetail(OrdersDTO ordersDTO,HttpSession session,ModelAndView mv)throws Exception{
 	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-	    orderDTO.setUser_id(memberDTO.getUser_id());
-	    orderDTO = mypageService.getMyOrderDetail(orderDTO);
+	    ordersDTO.setUser_id(memberDTO.getUser_id());
+	    ordersDTO = mypageService.getMyOrderDetail(ordersDTO);
 	    
 //	    System.out.println("파일 가져와지나 ===="+orderDTO.getGnItemFileDTOs().get(0).getFileName());
 	    
-	    mv.addObject("detail", orderDTO);
+	    mv.addObject("detail", ordersDTO);
 	    mv.setViewName("/mypage/myOrderDetail");
 	    return mv;
 	}

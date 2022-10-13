@@ -533,6 +533,7 @@ public class ManagerController {
 			System.err.println("환불성공");
 			payDTO.setMerchant_uid(params.getMerchant_uid());
 			int result1 = payService.cancelPayment(payDTO);
+			payService.cancelPayment2(payDTO);
 			jsonResult = "{\"result\":\""+result1+"\"}";
 		}
 		

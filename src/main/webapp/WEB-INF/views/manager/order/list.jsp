@@ -146,7 +146,8 @@
                                             <th class="col-1">주문총액</th>
                                             <th class="col-1">배송비</th>
                                             <th class="col-1">총결제액</th>
-                                            <th class="col-2">주문상태</th>
+                                            <th class="col-1">결제상태</th>
+                                            <th class="col-1">주문상태</th>
                                         </tr>
                                       </thead>
                                       <tbody style="font-size: 12px;">
@@ -155,9 +156,25 @@
                                                 <td><fmt:formatDate value="${nl.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${nl.merchant_uid}</td>
                                                 <td>${nl.user_id}</td>
-                                                <td>${nl.ord_total1}원</td>
-                                                <td>${nl.ord_delfree}원</td>
-                                                <td>${nl.ord_total2}원</td>
+                                                <td><fmt:formatNumber value="${nl.ord_total1}" pattern="#,###" />원</td>
+                                                <td><fmt:formatNumber value="${nl.ord_delfree}" pattern="#,###" />원</td>
+                                                <td><fmt:formatNumber value="${nl.ord_total2}" pattern="#,###" />원</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${nl.ord_payment eq 1}">
+                                                            결제대기
+                                                        </c:when>
+                                                        <c:when test="${nl.ord_payment eq 2}">
+                                                            결제완료
+                                                        </c:when>
+                                                        <c:when test="${nl.ord_payment eq 3}">
+                                                            결제취소
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            오류
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
                                                 <td>${nl.ord_status}</td>
                                             </tr>
                                             </c:forEach>
