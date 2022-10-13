@@ -14,10 +14,17 @@
 	crossorigin="anonymous">
 </head>
 <body>
+ㄴ
 	<section>
 		<form action="add" method="post" enctype="multipart/form-data">
+			
 			<input type="hidden" name="user_id" value="user">
+
+			<section class="container-fluid col-lg-7">
+				<h1>상품등록</h1>
+
 			${sessionScope.member.user_id } 
+
 
 			<div id="category">
 				<select id="category1">
@@ -41,15 +48,10 @@
 				<label>판매가격</label> <input type="text" name="item_price">
 			</div>
 			<div>
-				<label>상품재고</label> <input type="text" name="item_stock">
+				<label>재고</label> <input type="text" name="item_stock">
 			</div>
-			<div>
-				<label>선택</label> <select name="">
-					<option hidden>옵션선택</option>
-					<option value="">블랙</option>
-					<option value="">화이트</option>
-				</select>
-			</div>
+			
+
 			<div>
 				<label>상품설명</label>
 				<textarea class="form-control" id="item_contents"
@@ -61,7 +63,9 @@
 
 			<button type="submit">상품등록</button>
 		</form>
+		</section>
 	</section>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
