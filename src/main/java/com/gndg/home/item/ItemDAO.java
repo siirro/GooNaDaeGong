@@ -20,6 +20,9 @@ public class ItemDAO {
 	
 
 	//카테고리 불러오기
+	public List<Category> getCategory() throws Exception {
+        return sqlSession.selectList(NAMESPACE+"getCategory");
+    }
 
 	//최신글
 	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
@@ -47,11 +50,6 @@ public class ItemDAO {
 	/* 최근 본 상품 */
 	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
-	}
-	
-
-	public List<Category> getCategory() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}
 	
 	//상품 등록
@@ -139,7 +137,7 @@ public class ItemDAO {
 	//후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setReviewDelete", itemReviewDTO);
-
+	}
 //	페이징 작업중 221012
 	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
