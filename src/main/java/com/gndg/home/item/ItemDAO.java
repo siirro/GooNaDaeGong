@@ -26,7 +26,6 @@ public class ItemDAO {
 	//최신글
 	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getNewItemList", itemDTO);
-
 	}
 
 	// 인기글
@@ -34,11 +33,11 @@ public class ItemDAO {
 		return sqlSession.selectList(NAMESPACE + "getPopularItemList", itemDTO);
 	}
 
-	// 인기글 갯수
-	public Long getPopularItemCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getPopularItemCount");
+	//추천글
+	public List<ItemDTO> getRecommendItemList(ItemDTO itemDTO)throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getRecommendItemList", itemDTO);
 	}
-
+	
 	/* 상품 총 개수 */
 	public Long getTotal(ItemDTO itemDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotal", itemDTO);

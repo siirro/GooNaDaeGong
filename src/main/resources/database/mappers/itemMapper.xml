@@ -30,7 +30,7 @@
 		            ITEMFILE F
 		            ON I.ITEM_NUM = F.ITEM_NUM
 		        ORDER BY ITEM_DATE DESC) M)
-		WHERE RN BETWEEN 1 AND 24
+		WHERE RN BETWEEN 1 AND 8
 	</select>
 	<resultMap type="ItemDTO" id="getNewItemListResult">
 		<id column="ITEM_NUM" property="item_num"/>
@@ -61,7 +61,7 @@
 	                    GROUP BY(ITEM_NUM)) K
 	                    ON I.ITEM_NUM = K.ITEM_NUM
 	                    ORDER BY COUNT DESC) M)           
-	 WHERE RN BETWEEN 1 AND 24 AND COUNT >0
+	 WHERE RN BETWEEN 1 AND 8 AND COUNT >0
 	</select>
 	<resultMap type="ItemDTO" id="getPopularItemListResult">
 		<id column="ITEM_NUM" property="item_num"/>
@@ -78,15 +78,33 @@
 			</collection>
 	</resultMap>
 	
-	<!-- 인기글 총 갯수 -->
-	<select id="getPopularItemCount" resultType="Long">
-	SELECT COUNT(*)
+	<!-- 추천글 -->
+	<select id="getRecommendItemList" parameterType="ItemDTO" resultMap="getRecommendItemListResult">
+	SELECT *
 	FROM
-	    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-	    FROM ITEMLIKE
-	    GROUP BY(ITEM_NUM)
-	    ORDER BY C DESC)             
+	(SELECT ROWNUM RN, M.*
+	FROM
+	    (SELECT ITEM_HIT,ITEM_TITLE,ITEM_CONTENTS,ITEM_PRICE,F.FILENAME
+	     FROM 
+	     ITEM I
+	     LEFT JOIN
+	     ITEMFILE F
+	     ON I.ITEM_NUM = F.ITEM_NUM
+	    ORDER BY ITEM_HIT DESC) M)
+	WHERE RN BETWEEN 1 AND 8
 	</select>
+	<resultMap type="ItemDTO" id="getRecommendItemListResult">
+	<id column="ITEM_NUM" property="item_num"/>
+	<result column="ITEM_HIT" property="item_hit"/>
+	<result column="ITEM_TITLE" property="item_title"/>
+	<result column="ITEM_CONTENTS" property="item_contents"/>
+	<result column="ITEM_PRICE" property="item_price"/>
+		<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
 
    <!-- 통합 검색-->
    <select id="getSearch"  parameterType="String" resultMap="getDetailResult">

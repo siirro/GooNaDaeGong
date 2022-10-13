@@ -66,7 +66,7 @@
                                                 </label> -->
                                             <a class="css-3u0haf esoayg810">
                                                 <span class="css-rnzd62 esoayg89">
-                                                    <img src="../resources/upload/gnItem/${list.itemFileDTOs[0].fileName}" alt="" class="css-1oc1pausale e1437c648" value="">
+                                                    <img src="../resources/upload/item/${list.itemFileDTOs[0].fileName}" alt="" class="css-1oc1pausale e1437c648" value="" width="60px">
                                                 </span>
                                             </a>
                                             <div class="css-14sb0pe esoayg88">

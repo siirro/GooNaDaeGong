@@ -25,15 +25,6 @@ const file_check = document.getElementById("file_check");
 const all = document.querySelector("#all");
 const agrees = document.querySelectorAll(".agrees");
 const req = document.getElementsByClassName("req");
-//약관동의 모달창 버튼
-const mymodal1 =document.getElementById("mymodal1");
-const mymodal2 =document.getElementById("mymodal2");
-const mymodal3 =document.getElementById("mymodal3");
-//약관동의 모달창 바디
-const model1 =document.getElementById("modal1");
-const model2 =document.getElementById("modal2");
-const model3 =document.getElementById("modal3");
-
 //중복체크
 const ajaxID = document.getElementById("ajaxID");
 const ajaxEmail = document.getElementById("ajaxEmail");
@@ -72,8 +63,7 @@ user_id.addEventListener("blur",function(){
         idCheck = true;
     }else{
         id_check.innerHTML="5~12자의 영문, 숫자만 사용 가능합니다.";
-        user_id.focus();
-    }
+    }   
 });
 
 //비밀번호
@@ -85,7 +75,7 @@ user_pw.addEventListener("blur",function(){
         pwCheck = true;
     }else{
         pw_check.innerHTML ="4~12자의 숫자 , 문자로만 사용 가능합니다.";
-        user_pw.focus();
+        
     }
 });
 
@@ -98,7 +88,7 @@ user_pw2.addEventListener("blur",function(){
         pw2Check= true;
     }else{
         pw2_check.innerHTML="비밀번호가 일치하지 않습니다.";
-        user_pw.focus();
+        
     }
 });
 
@@ -106,12 +96,12 @@ user_pw2.addEventListener("blur",function(){
 user_name.addEventListener("blur",function(){
     console.log("이름 체크해라");
     nameCheck= false;
-    if(user_name.value.length>2){
+    if(user_name.value.length>1){
         name_check.innerHTML="";
         nameCheck=true;
     }else{
         name_check.innerHTML="이름을 입력해주세요.";
-        user_name.focus();
+        
     }
 });
 
@@ -124,7 +114,7 @@ user_email.addEventListener("blur",function(){
         emailCheck =true;
     }else{
         email_check.innerHTML="이메일 양식을 확인해주세요.";
-        user_email.focus();
+        
     }
 });
 
@@ -137,14 +127,14 @@ user_phone.addEventListener("blur",function(){
         phoneCheck = true;
     }else{
         phone_check.innerHTML="핸드폰 조건식";
-        user_phone.focus();
+        
     }
 });
-
+//우편번호
 user_post.addEventListener("blur",function(){
     console.log("님 우편번호 확인이요");
     postCheck =false;
-    if(user_post.value > 4){
+    if(user_post.value != ""){
         post_check.innerHTML="";
         postCheck = true;
     }else{
@@ -161,8 +151,7 @@ user_addr.addEventListener("blur",function(){
         addrCheck = true;
     }else{
         addr_check.innerHTML="주소검색 버튼을 눌러주세요";
-        user_addr.focus();
-    }
+    }   
 });
 
 //주소2
@@ -174,7 +163,7 @@ user_addr2.addEventListener("blur",function(){
         addr2Check =true;
     }else{
         addr2_check.innerHTML ="상세주소 조건식";
-        user_addr2.focus();
+        
     }
 });
 
@@ -194,7 +183,7 @@ userfile.addEventListener("change",function(){
 all.addEventListener("click",function(){
     const img = document.getElementsByClassName("css-1wfsi82");
     console.log("전체동의 체크 되나?")
-    console.log(all.checked);
+    console.log('전체 체크==',all.checked);
     if(all.checked){
         img[0].setAttribute("src","/resources/images/member/checked.svg")
         for(let x=0; x<agrees.length; x++){
@@ -217,7 +206,7 @@ all.addEventListener("click",function(){
 for(let a=0; a<agrees.length; a++){
     agrees[a].addEventListener("click",function(){
         const img = document.getElementsByClassName("css-1wfsi82");
-        console.log(agrees[a].checked)
+        console.log("a=",agrees[a].checked)
         let checked = {
             open:"/resources/images/member/check.svg",
             close:"/resources/images/member/checked.svg"
@@ -226,7 +215,7 @@ for(let a=0; a<agrees.length; a++){
         agrees[a].checked ?  img[a].setAttribute("src",checked.close) : img[a].setAttribute("src",checked.open)
         let result = true;
         for(let y=0; y<agrees.length; y++){
-            console.log(agrees[y].checked)
+            console.log("y=",agrees[y].checked)
             if(!agrees[y].checked){
                 img[0].setAttribute("src","/resources/images/member/check.svg");
                 result = false;
@@ -240,18 +229,15 @@ for(let a=0; a<agrees.length; a++){
 }
 
 //필수약관만 선택해서 동의
-
-
-
 joinbtn.addEventListener("click",function(){
     for(let i= 0; i<req.length; i++){
         console.log(req.length);
         console.log(req[i].checked);
         if(!req[i].checked){
-            agreeCheck =false;
+            agreeCheck = false;
             break;
         }else{
-            agreeCheck =true;
+            agreeCheck = true;
         }
     }
     if(idCheck&&pwCheck&&pw2Check&&nameCheck&&emailCheck&&phoneCheck&&addrCheck&&addr2Check&&agreeCheck){
