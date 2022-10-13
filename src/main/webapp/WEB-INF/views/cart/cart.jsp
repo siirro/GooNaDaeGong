@@ -109,9 +109,6 @@
                             <h3 class="css-1guaarh e15fcx0p2">배송지</h3>
                             <div class="css-50yi3o e15fcx0p1">
                                 <p class="css-xxfxl7 e1tweaw10">(${cart[0].memberDTO.user_post}) ${cart[0].memberDTO.user_addr}${cart[0].memberDTO.user_addr2}</p>
-                                <button class="css-122i3z7 e4nu7ef3" type="button" height="36" radius="3">
-                                    <span class="css-ymwvow e4nu7ef1">배송지 변경</span>
-                                </button>
                             </div>
                         </div>
                         <div class="css-1t6so8j em21elb0">

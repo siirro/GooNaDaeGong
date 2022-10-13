@@ -304,7 +304,7 @@
     font-family: 'Noto Sans';
     font-weight: 400;
     letter-spacing: 0;
-    display: none;
+    display: block;
     padding: 10px 10px 11px;
     border-top: 1px solid #e3e3e3;
 }

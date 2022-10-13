@@ -10,14 +10,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -205,32 +210,63 @@ public class MemberService {
 	}
 	//이메일쏘기
     public void sendEmail(MemberDTO memberDTO,String fw)throws Exception{
-        System.out.println("이메일 service 1");
-        //Mail Server 설정
-        String charSet = "utf-8";
-        String hostSMTP = "smtp.naver.com";
-
-        String hostSMTPid = ""; // 보내는사람 이메일
-
-        String hostSMTPpw = ""; // 보내는사람 비밀번호
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("quqsue@gmail.com", "");
+            }
+        });
         
-        //보내는 사람 Email/보내는사람 이름/제목/내용
-        String fromEmail = ""; // 보내는 사람 이메일
-        String fromName ="GNDG";
-        String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
-        String msg ="";
-        
-        if(fw.equals("findpw")) {
-            msg += "<div align='center'>";
-            msg += memberDTO.getUser_id()+"님의 임시 비밀번호 입니다.";
-            msg += "<p>임시 비밀번호:"+memberDTO.getUser_pw()+"</p>";
-            msg += "마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
-        }
-        
-        //받는 사람 Email 주소
-        String mail = memberDTO.getUser_email();
+        String receiver = memberDTO.getUser_email(); // 메일 받을 주소
+        String title = "GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
+        String content = "<h2>안녕하세요 GNDG입니다.</h2>"+"<div>"
+                            +"<strong>"+memberDTO.getUser_id()+"님</strong>의 임시 비밀번호 입니다."
+                            +"<p>임시 비밀번호: "+memberDTO.getUser_pw()+"</p>"
+                            +"마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
+        Message message = new MimeMessage(session);
         try {
+            message.setFrom(new InternetAddress("quqsue@gmail.com", "GNDG", "utf-8"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+            message.setSubject(title);
+            message.setContent(content, "text/html; charset=utf-8");
+
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        System.out.println("이메일 service 1");
+//        //Mail Server 설정
+//        String charSet = "utf-8";
+//        String hostSMTP = "smtp.naver.com";
+//
+//        String hostSMTPid = ""; // 보내는사람 이메일
+//
+//        String hostSMTPpw = ""; // 보내는사람 비밀번호
+//        
+//        
+//        //보내는 사람 Email/보내는사람 이름/제목/내용
+//        String fromEmail = ""; // 보내는 사람 이메일
+//        String fromName ="GNDG";
+//        String subject="GooDeeNaraDaeKiGongJu 임시비밀번호 안내 이메일 입니다.";
+//        String msg ="";
+//        
+//        if(fw.equals("findpw")) {
+//            msg += "<div align='center'>";
+//            msg += memberDTO.getUser_id()+"님의 임시 비밀번호 입니다.";
+//            msg += "<p>임시 비밀번호:"+memberDTO.getUser_pw()+"</p>";
+//            msg += "마이페이지에서 비밀번호를 수정하고 사용해주세요."+"</div>";
+//        }
+//        
+//        //받는 사람 Email 주소
+//        String mail = memberDTO.getUser_email();
+//        try {
 //            HtmlEmail email = new HtmlEmail();
 //            email.setDebug(false);
 //            email.setCharset(charSet);  //encoding 타입
@@ -246,23 +282,23 @@ public class MemberService {
 //            email.setSubject(subject);
 //            email.setHtmlMsg(msg);
 //            email.send();
-            Email email = new SimpleEmail();
-            email.setHostName("smtp.naver.com");
-            email.setSmtpPort(587);
-            email.setCharset("UTF-8"); // 인코딩 설정(utf-8, euc-kr)
-            email.setAuthenticator(new DefaultAuthenticator(hostSMTPid, hostSMTPpw));
-            email.setSSL(true);
-            email.setFrom(fromEmail, fromName);
-            email.setSubject(subject);
-            email.setMsg(msg);
-            email.addTo(memberDTO.getUser_email(), memberDTO.getUser_name());
-            email.send();
-
-
-            
-        }catch(Exception e) {
-            System.out.println("메일발송 실패"+ e);
-        }
+//            Email email = new SimpleEmail();
+//            email.setHostName("smtp.naver.com");
+//            email.setSmtpPort(587);
+//            email.setCharset("UTF-8"); // 인코딩 설정(utf-8, euc-kr)
+//            email.setAuthenticator(new DefaultAuthenticator(hostSMTPid, hostSMTPpw));
+//            email.setSSL(true);
+//            email.setFrom(fromEmail, fromName);
+//            email.setSubject(subject);
+//            email.setMsg(msg);
+//            email.addTo(memberDTO.getUser_email(), memberDTO.getUser_name());
+//            email.send();
+//
+//
+//            
+//        }catch(Exception e) {
+//            System.out.println("메일발송 실패"+ e);
+//        }
     }
 	
 	//비밀번호 찾기

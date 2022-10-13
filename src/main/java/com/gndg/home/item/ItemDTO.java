@@ -120,6 +120,12 @@ public class ItemDTO {
     public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
         this.itemFileDTOs = itemFileDTOs;
     }
+    public List<ItemLikeDTO> getItemLikeDTOs() {
+        return itemLikeDTOs;
+    }
+    public void setItemLikeDTOs(List<ItemLikeDTO> itemLikeDTOs) {
+        this.itemLikeDTOs = itemLikeDTOs;
+    }
 	public Category getCategory() {
 		return category;
 	}

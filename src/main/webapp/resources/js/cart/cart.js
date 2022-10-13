@@ -163,7 +163,7 @@ for(let i =0; i<plusbutton.length; i++){
                 let result = xhttp.responseText.trim();
     
                 if(result == 1){
-                    // window.location.reload(); 
+                    window.location.reload(); 
                 }
             }
         }
@@ -195,7 +195,7 @@ for(let i=0; i<minusbutton.length; i++){
                 let result = xhttp.responseText.trim();
     
                 if(result == 1){
-                    // window.location.reload(); 
+                    window.location.reload(); 
                 }
             }
         }
