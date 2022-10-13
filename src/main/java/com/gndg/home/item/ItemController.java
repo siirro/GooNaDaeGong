@@ -2,20 +2,27 @@ package com.gndg.home.item;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Category;
 import com.gndg.home.util.Pager;
 
@@ -25,6 +32,33 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	/* HTML, CSS 테스트 */
+	@GetMapping("add2")
+	public String add2() throws Exception {
+		System.out.println("add2 GET"); 
+		
+		return "item/add2";
+	} 
+	
+	/* 통합 검색 */
+	@GetMapping("search")
+	public String getSearch() throws Exception {
+		
+		return "/item/list";
+	}
+	
+	@PostMapping("search")
+	public String getSearch(String search, Model model, ItemDTO itemDTO) throws Exception {
+		List<ItemDTO> ar = itemService.getSearch(search);
+		
+		model.addAttribute("list", ar);	
+		
+		System.out.println("검색어 : " + search);
+		
+		return "/item/list";
+	}
+	
 
 	//카테고리
 	@GetMapping("category")
@@ -42,6 +76,8 @@ public class ItemController {
 	@PostMapping("add")
 	public ModelAndView setAdd(ItemDTO itemDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		itemDTO.setUser_id(memberDTO.getUser_id());
 		int result = itemService.setAdd(itemDTO, files, session.getServletContext());
 		String message = "등록실패";
 		if (result > 0) {
@@ -55,9 +91,9 @@ public class ItemController {
 
 	//상품리스트
 	@GetMapping("list")
-	public ModelAndView getList(Pager pager) throws Exception {
+	public ModelAndView getList(ItemDTO itemDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ItemDTO> ar = itemService.getList(pager);
+		List<ItemDTO> ar = itemService.getList(itemDTO);
 		
 		//좋아요수
 		ArrayList<Long> counts = new ArrayList<Long>();
@@ -68,6 +104,10 @@ public class ItemController {
 			counts.add(count);
 		}
 		
+		Long total =  itemService.getTotal(itemDTO);
+		
+		mv.addObject("total", total);
+		
 		mv.addObject("list", ar);
 		mv.addObject("count", counts);
 		mv.setViewName("item/list");
@@ -76,7 +116,7 @@ public class ItemController {
 
 	//상세페이지
 	@GetMapping("detail")
-	public ModelAndView getDetail(ItemDTO itemDTO) throws Exception {
+	public ModelAndView getDetail(@RequestParam("item_num")Long item_num, ItemDTO itemDTO, HttpServletRequest request, Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		itemDTO = itemService.getDetail(itemDTO);
 		mv.addObject("dto", itemDTO);
@@ -99,6 +139,41 @@ public class ItemController {
 		mv.addObject("like", itemLikeDTO);
 				
 		mv.setViewName("item/detail");
+		
+		HttpSession session = request.getSession();
+		
+		/* 최근 본 상품 넣기 */
+		List<Long> ar = (List<Long>)session.getAttribute("product");
+		
+		if(ar == null) {
+			ar = new ArrayList<Long>();
+			session.setAttribute("product", ar);
+		} 
+		
+		ar.add(item_num);
+		
+		Set<Long> set = new HashSet<Long>(ar);
+		
+		List<Long> newAr = new ArrayList<Long>(set);	
+				
+		/* 최근 본 상품 가져오기 */
+		List<ItemFileDTO> productList = new ArrayList<ItemFileDTO>();
+		
+		for(Long l : newAr) {
+			List<ItemFileDTO> productListdetail = itemService.getProduct(l);
+			
+			if (productListdetail.size()!= 0) {
+				productList.add(productListdetail.get(0));
+			}
+			
+		}
+		
+		
+		session.setAttribute("productList", productList);
+		
+		model.addAttribute("productList", productList);
+		
+		
 		return mv;
 	}
 

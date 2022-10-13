@@ -1,3 +1,12 @@
+/* *{
+    font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+} */
+
 .lnb {
     text-align: left;
     font-family: 'Noto Sans KR', sans-serif;
@@ -118,9 +127,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    background-image: url('//www.spigen.co.kr/design/spigen/header/hbg_on_arrow.png');
+    /* background-image: url('//www.spigen.co.kr/design/spigen/header/hbg_on_arrow.png'); */
     background-position: 30px 65%;
     background-repeat: no-repeat;
+
+    border: 1px solid red;
 }
 
 .hbg_menu3 {
@@ -136,6 +147,7 @@
     width: 250px;
     line-height: 35px;
     z-index: 999;
+
 }
 
 .hbg_submenu3 {
@@ -146,6 +158,10 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    width: 300px;
+    
+
+    border: 1px solid blue;
 }
 
 .hbg_submenu4 {
@@ -157,6 +173,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+
+    /* margin-left: -10px; */
+
+    border: 1px solid red;
 }
 
 .hbg_menu4 {
@@ -166,14 +187,16 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    position: absolute;
     margin-top: -35px;
-    left: 260px;
-    width: 250px;
     line-height: 35px;
     letter-spacing: -1px;
     z-index: 999;
-    display: none;
+    display: block;
+    height: 400px;
+    position: absolute;
+    left: 260px;
+    width: 250px; 
+
 }
 
 .hbg_bg {
@@ -192,6 +215,24 @@
     display: block;
 }
 
-#hbg ul {
-    display: block;
+/* #hbg ul {
+    display: none;
+
+    
+} */
+
+.hbg_bg {
+    text-align: left;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: #333333;
+    line-height: 160%;
+    position: absolute;
+    width: 100%;
+    height: 480px;
+    background-color: #fff;
+    margin-top: 1px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    z-index: 990;
+    display: none;    
 }

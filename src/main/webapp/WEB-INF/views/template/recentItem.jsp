@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/item/rightItem.css">
+    <link rel="stylesheet" href="/resources/css/index/recentItem.css">
     <title>Document</title>
 </head>
 <body>
@@ -39,7 +39,7 @@
             <ul class="css-8erlkd e1tjwjt94">
                 <c:forEach items="${productList}" var="product">
                     <li class="css-1vgyrcu e1tjwjt93">
-                	    <a href="/dgItem/detail?item_num=${product.item_num}" class="css-10nxrmy e1tjwjt92">
+                	    <a href="/item/detail?item_num=${product.item_num}" class="css-10nxrmy e1tjwjt92">
                 		    <img src="../resources/upload/item/${product.fileName}" class="css-68s41j e1tjwjt90" style="width: 60px; height: 80px;">
                 	    </a>
                     </li>

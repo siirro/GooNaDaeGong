@@ -23,9 +23,9 @@
 						<div class="css-1t8kox4 ew0bivp1">
 							<div class="css-1qoqco8 ew0bivp0">
 								<div class="css-1uonmsi ehtnk5i1" id="container_aTag">
-									<h3 class="css-a43uky ehtnk5i0">카테고리 이름</h3>
+									<h3 class="css-a43uky ehtnk5i0">${list[0].category.cate_name }</h3>
 									<div class="css-1f8etfr eudxpx34">
-										<div class="css-1homcs3 eudxpx33">총 19개</div>
+										<div class="css-1homcs3 eudxpx33">총 ${total}개</div>
 											<!--<ul class="css-1vmfy7j eudxpx32">
 												<li class="css-gvuf2l eudxpx31">
 													<a class="css-50jsy4 eudxpx30">추천순</a> 
@@ -50,13 +50,14 @@
 										</div>
 
 									<div class="css-10xk59j e15gkkfg4">
-										<!-- <input type="hidden" name="cate_num"> -->
 
+										
 										<!-- 반복문 시작부분 -->
 										<c:forEach items="${list}" var="list">
 											<div class="css-i3aepa e1c07x4811">
 												<div class="css-1u8qly9 e1c07x489">
 													<div class="e1c07x4810 css-1qpsnts e3um3060">
+															
 														<a href="/item/detail?item_num=${list.item_num}">
 															<img src="../resources/upload/item/${list.itemFileDTOs[0].fileName}" alt="상품 이미지" loading="lazy">
 															<div>
