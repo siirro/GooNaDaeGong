@@ -30,6 +30,7 @@ public class ItemDAO {
 	//인기글 갯수
 	public Long getPopularItemCount()throws Exception{
 	    return sqlSession.selectOne(NAMESPACE+"getPopularItemCount");
+	}
 	/* 상품 총 개수 */
 	public Long getTotal(ItemDTO itemDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotal", itemDTO);
@@ -57,9 +58,14 @@ public class ItemDAO {
 		return sqlSession.insert(NAMESPACE+"setAddFile", itemFileDTO);
 	}
 	
-	public List<ItemDTO> getList(ItemDTO itemDTO,Pager pager) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList", pager);
-	}
+	public List<ItemDTO> getList(ItemDTO itemDTO, Pager pager) throws Exception {
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      map.put("startRow", pager.getStartRow());
+	      map.put("lastRow", pager.getLastRow());
+	      map.put("cate_num", itemDTO.getCate_num());
+	      
+	      return sqlSession.selectList(NAMESPACE+"getList", map);
+	   }
 	
 	public Long getListCount()throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getListCount", NAMESPACE);

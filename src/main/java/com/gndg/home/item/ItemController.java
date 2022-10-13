@@ -3,11 +3,9 @@ package com.gndg.home.item;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -107,9 +104,9 @@ public class ItemController {
 
 	//상품리스트
 	@GetMapping("list")
-	public ModelAndView getList(ItemDTO itemDTO) throws Exception {
+	public ModelAndView getList(ItemDTO itemDTO,Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ItemDTO> ar = itemService.getList(itemDTO);
+		List<ItemDTO> ar = itemService.getList(itemDTO,pager);
 		
 		//좋아요수
 		ArrayList<Long> counts = new ArrayList<Long>();
@@ -161,7 +158,6 @@ public class ItemController {
 				
 		mv.setViewName("item/detail");
 		
-		HttpSession session = request.getSession();
 		
 		/* 최근 본 상품 넣기 */
 		List<Long> ar = (List<Long>)session.getAttribute("product");
@@ -169,9 +165,9 @@ public class ItemController {
 		if(ar == null) {
 			ar = new ArrayList<Long>();
 			session.setAttribute("product", ar);
+//			ar.add(item_num);
 		} 
 		
-		ar.add(item_num);
 		
 		Set<Long> set = new HashSet<Long>(ar);
 		
@@ -192,7 +188,7 @@ public class ItemController {
 		
 		session.setAttribute("productList", productList);
 		
-		model.addAttribute("productList", productList);
+		mv.addObject("productList", productList);
 		
 		
 		return mv;

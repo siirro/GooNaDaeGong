@@ -122,27 +122,23 @@
 	</insert> 
 	
 
-	<select id="getList" parameterType="Pager" resultType="ItemDTO" resultMap="getListResult">
+	<select id="getList" parameterType="Pager" resultMap="getListResult">
 		SELECT * FROM
-		(SELECT ROWNUM R, I.*
-		FROM
-		(SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
-		FROM ITEM I
-		LEFT JOIN 
-		ITEMFILE F
-    USING (ITEM_NUM)
-
-	<!--	ORDER BY ITEM_NUM DESC, FILENUM ASC) I)
-		WHERE R BETWEEN #{startRow} AND #{lastRow} -->
-
-        <!-- JOIN 
-        CATEGORY C
-        USING(CATE_NUM)
-        <if test="cate_num !=  null">
-        	WHERE CATE_NUM  =  #{cate_num}
-		    </if>
-		ORDER BY ITEM_NUM DESC, FILENUM ASC -->
-
+	      (SELECT ROWNUM R, I.*
+	      FROM
+	      (SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+	      FROM ITEM I
+	      LEFT JOIN 
+	      ITEMFILE F
+	       USING (ITEM_NUM)
+	       JOIN 
+	        CATEGORY C
+	        USING(CATE_NUM)
+	           <if test="cate_num !=  null">
+	           WHERE CATE_NUM  =  #{cate_num}
+	          </if>
+	      ORDER BY ITEM_NUM DESC, FILENUM ASC) I)
+	   WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<resultMap type="ItemDTO" id="getListResult">

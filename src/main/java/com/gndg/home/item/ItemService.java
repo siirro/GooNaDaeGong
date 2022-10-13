@@ -87,7 +87,7 @@ public class ItemService {
 		pager.getRowNum();
 		
 		
-		return itemDAO.getList(pager);
+		return itemDAO.getList(itemDTO,pager);
 
 	}
 	
