@@ -20,6 +20,9 @@ public class ItemDAO {
 	
 
 	//카테고리 불러오기
+	public List<Category> getCategory() throws Exception {
+        return sqlSession.selectList(NAMESPACE+"getCategory");
+    }
 
 	//최신글
 	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
@@ -47,11 +50,6 @@ public class ItemDAO {
 	/* 최근 본 상품 */
 	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
-	}
-	
-
-	public List<Category> getCategory() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}
 	
 	//상품 등록

@@ -1,7 +1,7 @@
 const cartbtn = document.querySelector(".cartbtn");
-const user_id = document.getElementById("user_id");
+let user_id = document.getElementById("user_id");
 const item_num = document.getElementById("item_num");
-const count = document.getElementById("cart_count");
+const count = document.getElementById("itemCount");
 
 cartbtn.addEventListener("click",function(){
     console.log("떼잉 장바구니년!");
