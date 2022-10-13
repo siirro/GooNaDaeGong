@@ -5,6 +5,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.cancel.CancelDAO">
 
+<!-- 이미 CS 처리를 진행중이면 CS버튼을 클릭할 수 없게... 하기 위한 CS 진행 여부 조사 쿼리 -->
+<select id="ableCS" parameterType="OrdersDTO" resultType="Long">
+    SELECT COUNT(MERCHANT_UID) FROM ORDERS 
+    WHERE MERCHANT_UID = #{merchant_uid}
+    AND (ORD_STATUS = '취소신청'
+    OR ORD_STATUS = '취소완료'
+    OR ORD_STATUS = '교환신청' 
+    OR ORD_STATUS = '교환진행'
+    OR ORD_STATUS = '교환완료'
+    OR ORD_STATUS = '반품신청'
+    OR ORD_STATUS = '반품진행'
+    OR ORD_STATUS = '반품완료'
+    )
+</select>
+
 <insert id="addRefund" parameterType="RefundDTO">
 INSERT INTO REFUND VALUES (REFUND_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{ref_memo})
 </insert>
@@ -37,6 +52,8 @@ INSERT INTO REFUND VALUES (REFUND_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{ref_m
 	<result column="USER_ID" property="user_id"/>
 	<result column="ORD_TOTAL2" property="ord_total2"/>
 	<result column="ORD_STATUS" property="ord_status"/>
+	<result column="ORD_PAYMENT" property="ord_payment"/>
+	
 	
 	<association property="refundDTO" javaType="RefundDTO">
 		<id column="REF_NUM" property="ref_num"/>
@@ -110,6 +127,7 @@ INSERT INTO EXCHANGE VALUES (EXCHANGE_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{e
 	<result column="USER_ID" property="user_id"/>
 	<result column="ORD_TOTAL2" property="ord_total2"/>
 	<result column="ORD_STATUS" property="ord_status"/>
+	<result column="ORD_PAYMENT" property="ord_payment"/>
 	
 	<association property="exchangeDTO" javaType="ExchangeDTO">
 		<id column="EXC_NUM" property="exc_num"/>
@@ -184,6 +202,8 @@ INSERT INTO CANCEL VALUES (CANCEL_SEQ.NEXTVAL, #{merchant_uid}, sysdate, #{can_m
 	<result column="USER_ID" property="user_id"/>
 	<result column="ORD_TOTAL2" property="ord_total2"/>
 	<result column="ORD_STATUS" property="ord_status"/>
+	<result column="ORD_PAYMENT" property="ord_payment"/>
+	
 	
 	<association property="cancelDTO" javaType="CancelDTO">
 		<id column="CAN_NUM" property="can_num"/>

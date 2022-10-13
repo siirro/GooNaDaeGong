@@ -82,10 +82,10 @@
                                         </dl> -->
                                         <dl class="css-1ccl3pq e1437c646">
                                             <dt class="css-dzjp62 e1437c645">결제금액</dt>
-                                            <dd class="css-1i58pf4 e1437c644">${order.ord_total2}</dd>
+                                            <dd class="css-1i58pf4 e1437c644"><fmt:formatNumber value="${order.ord_total2}" pattern="#,###" />원</dd>
                                         </dl>
                                         <dl class="css-1ccl3pq e1437c646">
-                                            <dt class="css-dzjp62 e1437c645">배송상태</dt>
+                                            <dt class="css-dzjp62 e1437c645">상태</dt>
                                             <dd class="css-1i58pf4 e1437c644">${order.ord_status}</dd>
                                         </dl>
                                     </div>
@@ -108,6 +108,7 @@
                                         </button>
                                     </div>
                                     <span class="css-1fdt947 e1437c641">
+
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../exchange/inquiry?merchant_uid=${order.merchant_uid}">
@@ -115,11 +116,10 @@
                                                 </a>
                                             </span>
                                         </button>
-                                        <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
+
+                                        <button onclick="location.href='../refund/inquiry?merchant_uid=${order.merchant_uid}'" class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
-                                                <a href="../refund/inquiry?merchant_uid=${order.merchant_uid}">
-                                                환불
-                                                </a>
+                                                반품
                                             </span>
                                         </button>
                                     </span>

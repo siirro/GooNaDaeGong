@@ -19,6 +19,10 @@ public class PayDAO {
 		return sqlsession.update(NAMESPACE+"cancelPayment", payDTO);
 	}
 	
+	public int cancelPayment2(PayDTO payDTO)throws Exception{
+		return sqlsession.update(NAMESPACE+"cancelPayment2", payDTO);
+	}
+	
 	public List<PayDTO> getList(OrderPager orderPager)throws Exception{
 		return sqlsession.selectList(NAMESPACE+"getList", orderPager);
 	}

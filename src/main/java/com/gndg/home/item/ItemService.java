@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Service
 public class ItemService {
@@ -21,7 +22,31 @@ public class ItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+
 	//카테고리 불러오기
+
+	/* 상품 총 개수 */
+	public Long getTotal(ItemDTO itemDTO) throws Exception {
+		System.out.println("Service Total");
+		
+		return itemDAO.getTotal(itemDTO);
+	}
+	
+	/* 통합 검색 */
+	public List<ItemDTO> getSearch(String search) throws Exception {
+		System.out.println("Service Search");
+		
+		return itemDAO.getSearch(search); 
+	}
+	
+	/* 최근 본 상품 */
+	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
+		System.out.println("Service Product");
+		
+		return itemDAO.getProduct(item_num);
+	}
+	
+	
 	public List<Category> getCategory() throws Exception {
 		return itemDAO.getCategory();
 	}
@@ -47,9 +72,16 @@ public class ItemService {
 		return result;
 	}
 	
-	//상품 리스트 조회
-	public List<ItemDTO> getList() throws Exception {
-		return itemDAO.getList();
+
+	public List<ItemDTO> getList(ItemDTO itemDTO,Pager pager) throws Exception {
+		Long totalCount = itemDAO.getListCount();
+		pager.setPerPage(12L);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+		return itemDAO.getList(pager);
+
 	}
 	
 	//상품 상세페이지 조회
@@ -146,9 +178,19 @@ public class ItemService {
 		return result;
 	}
 	
+
 	//후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return itemDAO.setReviewDelete(itemReviewDTO);
+
+	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
+		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+		return itemDAO.getReview(pager, itemReviewDTO);
+
 	}
 	
 	//후기 수정

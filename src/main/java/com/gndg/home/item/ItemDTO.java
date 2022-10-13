@@ -4,6 +4,10 @@ import java.sql.Date;
 import java.util.List;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gndg.home.util.Category;
+
+
 public class ItemDTO {
 	
 	private Long item_num;
@@ -20,7 +24,10 @@ public class ItemDTO {
 	private Long item_hit;
 	private Date item_date;
 	private List<ItemFileDTO> itemFileDTOs;
+
 	private String FileName;
+	private Category category;
+
 	
 	
 	public String getFileName() {
@@ -113,5 +120,11 @@ public class ItemDTO {
     public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
         this.itemFileDTOs = itemFileDTOs;
     }
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }

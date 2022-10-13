@@ -19,9 +19,13 @@
 		<form action="add" method="post" enctype="multipart/form-data">
 			
 			<input type="hidden" name="user_id" value="user">
-			<%-- ${sessionScope.member.user_id } --%>
+
 			<section class="container-fluid col-lg-7">
 				<h1>상품등록</h1>
+
+			${sessionScope.member.user_id } 
+
+
 			<div id="category">
 				<select id="category1">
 					<option hidden>선택</option>

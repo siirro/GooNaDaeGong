@@ -17,6 +17,10 @@ public class CancelDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.cancel.CancelDAO.";
 	
+	public Long ableCS(OrdersDTO ordersDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"ableCS", ordersDTO);
+	}
+	
 	public int addRefund(RefundDTO refundDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addRefund", refundDTO);
 	}

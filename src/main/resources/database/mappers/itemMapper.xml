@@ -4,8 +4,37 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.item.ItemDAO">
+	
+	<!-- 상품 총 개수 -->
+	<select id="getTotal" parameterType="ItemDTO" resultType="Long">
+		SELECT COUNT(*) as cnt 
+		FROM ITEM
+		WHERE cate_num = #{cate_num}
+	</select>
+	
 
 	<!-- 카테고리 불러오기 -->
+
+	<!-- 통합 검색-->
+	<select id="getSearch"  parameterType="String" resultMap="getDetailResult">
+		SELECT *
+		FROM 
+		ITEM I
+		LEFT JOIN
+		ITEMFILE F
+		ON I.ITEM_NUM = F.ITEM_NUM
+		WHERE ITEM_TITLE LIKE '%'||#{search}||'%'
+		ORDER BY ITEM_TITLE ASC
+	</select>
+	
+	<!-- 최근 본 상품 -->
+	<select id="getProduct" parameterType="ItemFileDTO" resultType="ItemFileDTO">
+		SELECT ITEM_NUM, FILENAME 
+		FROM ITEMFILE
+		WHERE ITEM_NUM = #{item_num}
+		ORDER BY ITEM_NUM DESC
+	</select>
+	
 	<select id="getCategory" resultType="Category">
 		SELECT * FROM CATEGORY
 	    ORDER BY CATE_NUM ASC
@@ -25,9 +54,48 @@
 		INSERT INTO ITEMFILE VALUES(ITEMFILE_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
 	</insert> 
 	
-	<!-- 상품 리스트 조회 -->
-	<select id="getList" resultType="ItemDTO" resultMap="getListResult">
-		SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+	<select id="getList" parameterType="Pager" resultType="ItemDTO" resultMap="getListResult">
+		SELECT * FROM
+		(SELECT ROWNUM R, I.*
+		FROM
+		(SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+		FROM ITEM I
+		LEFT JOIN 
+		ITEMFILE F
+    USING (ITEM_NUM)
+
+	<!--	ORDER BY ITEM_NUM DESC, FILENUM ASC) I)
+		WHERE R BETWEEN #{startRow} AND #{lastRow} -->
+
+        <!-- JOIN 
+        CATEGORY C
+        USING(CATE_NUM)
+        <if test="cate_num !=  null">
+        	WHERE CATE_NUM  =  #{cate_num}
+		    </if>
+		ORDER BY ITEM_NUM DESC, FILENUM ASC -->
+
+	</select>
+	
+	<resultMap type="ItemDTO" id="getListResult">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_TITLE" property="item_title"/>
+		<result column="CATE_NUM" property="cate_num"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+		<result column="ITEM_DATE" property="item_date"/>
+		<association property="category" javaType="Category">
+			<id column=" CATE_NUM" property="cate_num"/>
+			<result column="CATE_NAME" property="cate_name"/>
+		</association>
+		<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
+	
+
+	<!-- 상품 상세페이지 조회 -->
+	<select id="getListCount" resultType="Long">
+	SELECT COUNT(ITEM_NUM)
 		FROM ITEM I
 		LEFT JOIN 
 		ITEMFILE F
@@ -35,17 +103,7 @@
 		ORDER BY ITEM_NUM DESC, FILENUM ASC
 	</select>
 	
-	<resultMap type="ItemDTO" id="getListResult">
-		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_TITLE" property="item_title"/>
-		<result column="ITEM_PRICE" property="item_price"/>
-		<result column="ITEM_DATE" property="item_date"/>
-		<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
-			<result column="FILENAME" property="fileName"/>
-		</collection>
-	</resultMap>
 	
-	<!-- 상품 상세페이지 조회 -->
 	<select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">
 		SELECT * 
 		FROM ITEM I
@@ -128,13 +186,17 @@
 	
 	
 	<!-- 후기 조회 -->
-	<select id="getReview" parameterType="ItemReviewDTO" resultType="ItemReviewDTO">
-		SELECT R.*, MF.FILENAME
+	<select id="getReview" parameterType="Map" resultType="ItemReviewDTO">
+		SELECT * FROM
+		(SELECT ROWNUM RR, RRR.*
+		FROM
+		(SELECT R.*, MF.FILENAME
 		FROM REVIEW R
 		LEFT JOIN MEMBERFILE MF
 		ON R.USER_ID = MF.USER_ID
 		WHERE ITEM_NUM=#{item_num}
-		ORDER BY RV_NUM DESC
+		ORDER BY RV_NUM DESC) RRR)
+		WHERE RR BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
 	<!-- 후기 등록 -->
@@ -154,7 +216,7 @@
 	</update>
 	
 	<!-- 후기수 -->
-	<select id="getReviewCount" parameterType="ItemReviewDTO">
+	<select id="getReviewCount" parameterType="ItemReviewDTO" resultType="Long">
 		SELECT COUNT(RV_NUM) FROM REVIEW WHERE ITEM_NUM=#{item_num}
 	</select>
 </mapper>

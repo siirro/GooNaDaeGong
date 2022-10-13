@@ -23,9 +23,9 @@
 						<div class="css-1t8kox4 ew0bivp1">
 							<div class="css-1qoqco8 ew0bivp0">
 								<div class="css-1uonmsi ehtnk5i1" id="container_aTag">
-									<h3 class="css-a43uky ehtnk5i0">카테고리 이름</h3>
+									<h3 class="css-a43uky ehtnk5i0">${list[0].category.cate_name }</h3>
 									<div class="css-1f8etfr eudxpx34">
-										<div class="css-1homcs3 eudxpx33">총 19개</div>
+										<div class="css-1homcs3 eudxpx33">총 ${total}개</div>
 											<!--<ul class="css-1vmfy7j eudxpx32">
 												<li class="css-gvuf2l eudxpx31">
 													<a class="css-50jsy4 eudxpx30">추천순</a> 
@@ -50,13 +50,14 @@
 										</div>
 
 									<div class="css-10xk59j e15gkkfg4">
-										<!-- <input type="hidden" name="cate_num"> -->
 
+										
 										<!-- 반복문 시작부분 -->
 										<c:forEach items="${list}" var="list">
 											<div class="css-i3aepa e1c07x4811">
 												<div class="css-1u8qly9 e1c07x489">
 													<div class="e1c07x4810 css-1qpsnts e3um3060">
+															
 														<a href="/item/detail?item_num=${list.item_num}">
 															<img src="../resources/upload/item/${list.itemFileDTOs[0].fileName}" alt="상품 이미지" loading="lazy">
 															<div>
@@ -85,6 +86,20 @@
 										</c:forEach>
 										<!--반복문 end-->
 									</div>
+
+
+
+									<!-- 페이징 -->
+									<div class="board_pg_area">
+										<a href="./list?page=${pager.startNum-1}" class="cc ${pager.pre?'':'disabledLink'} layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
+										<!-- <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
+										
+										<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+											<a href="./list?page=${i}" class="layout-pagination-button layout-pagination-number">${i}</a>
+										</c:forEach>
+										<a href="./list?page=${pager.lastNum+1}" class="cc ${pager.next?'':'disabledLink'} layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+									</div>
+									<!-- 페이징 -->
 								</div>
 
 							</div>
@@ -96,6 +111,24 @@
 
 				</div>
 				<!-- Wrap End -->
+				<script>
+					const btnbtn = document.getElementsByClassName("disabledLink");
+					for(let i=0;i<btnbtn.length;i++) {
+						console.log(btnbtn[i]);
+						btnbtn[i].removeAttribute('href');
+					}
+
+						// const btn = document.getElementsByClassName("cc");
+						// for(let i =0;i<btn.length;i++) {
+						// 	btn[i].onclick = function(){
+						// 		console.log("눌러보셈");
+						// 		// 버튼을 클릭하면, a태그의 href 속성을 제거
+						// 		document.getElementsByClassName("disableLink").removeAttribute('href');
+						// 	}
+						// }
+					
+
+				</script>
 			</body>
 
 			</html>

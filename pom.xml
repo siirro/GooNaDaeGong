@@ -15,6 +15,14 @@
 	</properties>
 	<dependencies>
 	
+		<!-- 메일보내기 -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+	
+		<!-- json파스 - 결제토큰받아올때 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>

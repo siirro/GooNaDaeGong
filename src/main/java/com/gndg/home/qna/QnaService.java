@@ -43,21 +43,21 @@ public class QnaService {
 	
 	public int updateQna(QnaDTO qnaDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
 		int result = qnaDAO.updateQna(qnaDTO);
-//		String path = "resources/upload/notice";
-//		
-//		for(MultipartFile multipartFile : files) {
-//			if(multipartFile.isEmpty()) {
-//				continue;
-//			}
-//			
-//			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
-//			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
-//			noticeFileDTO.setFileName(fileName);
-//			noticeFileDTO.setOriName(multipartFile.getOriginalFilename());
-//			noticeFileDTO.setNt_num(qnaDTO.getQna_num());
-//			
-//			qnaDAO.addQnaFile(qnaFileDTO);
-//		}
+		String path = "resources/upload/qna";
+		
+		for(MultipartFile multipartFile : files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+			qnaFileDTO.setFileName(fileName);
+			qnaFileDTO.setOriName(multipartFile.getOriginalFilename());
+			qnaFileDTO.setQna_num(qnaDTO.getQna_num());
+			
+			qnaDAO.addQnaFile(qnaFileDTO);
+		}
 
 		
 		return result;
