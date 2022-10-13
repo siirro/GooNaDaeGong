@@ -1,6 +1,5 @@
 package com.gndg.home.item;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -24,6 +23,7 @@ public class ItemService {
 	
 	//최신글
 	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+
 		
 		return itemDAO.getNewItemList(itemDTO);
 	}
@@ -35,6 +35,17 @@ public class ItemService {
 	}
 
 	//카테고리 불러오기
+	
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return itemDAO.getNewItemList(itemDTO);
+	}
+	
+	//인기글
+   public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
+        return itemDAO.getPopularItemList(itemDTO);
+    }
+	
 
 	/* 상품 총 개수 */
 	public Long getTotal(ItemDTO itemDTO) throws Exception {
@@ -85,7 +96,7 @@ public class ItemService {
 	
 
 	public List<ItemDTO> getList(ItemDTO itemDTO,Pager pager) throws Exception {
-		Long totalCount = itemDAO.getListCount();
+		Long totalCount = itemDAO.getListCount(itemDTO);
 		pager.setPerPage(12L);
 		pager.getNum(totalCount);
 		pager.getRowNum();
@@ -193,8 +204,8 @@ public class ItemService {
 	//후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return itemDAO.setReviewDelete(itemReviewDTO);
-	}
-	
+	}	
+
 	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
 		pager.getNum(totalCount);

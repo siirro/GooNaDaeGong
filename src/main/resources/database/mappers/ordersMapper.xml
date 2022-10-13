@@ -121,6 +121,14 @@ WHERE O.MERCHANT_UID=#{merchant_uid}
 	<result column= "ORD_TOTAL2" property="ord_total2"/>
 	<result column= "ORD_PAYMENT" property="ord_payment"/>
 	<result column= "ORD_STATUS" property="ord_status"/>
+	<result column= "ORD_NAME" property="ord_name"/>
+	<result column= "ORD_POST" property="ord_post"/>
+	<result column= "ORD_ADDR" property="ord_addr"/>
+	<result column= "ORD_ADDR2" property="ord_addr2"/>
+	<result column= "ORD_PHONE" property="ord_phone"/>
+	<result column= "ORD_MEMO" property="ord_memo"/>
+	
+	
 	<collection property="goodsOrdersDTOs" javaType="List" ofType="GoodsOrdersDTO">
 		<id column="ITEM_NUM" property="item_num"/>
 		<result column="GO_AMOUNT" property="go_amount" />

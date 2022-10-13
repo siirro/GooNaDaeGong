@@ -25,8 +25,8 @@ a {
 		<!-- Section Start -->
 		<section>
 			<div id="json" style="display: none;">${json}</div>
-			<input type="hidden" name="item_num" id="item_num" value="${dto.item_num }"> 
-			<input type="hidden" name="user_id" id="user_id" value="${dto.user_id}">
+			<input type="hidden" name="item_num" id="item_num" value="${cart.item_num }"> 
+			<input type="hidden" name="user_id" id="user_id" value="${cart.user_id}">
 			<input type="hidden" name="item_price" id="item_price" value="${dto.item_price}">
 			<main class="content_buy">
 				<div class="item_list_area">
@@ -214,7 +214,7 @@ a {
 
 
 																	<div class="item_hello_box_pay item_hello_box_chat_pay mx-2">
-																		<button type="button" class="hello_pay_btn">장바구니</button>
+																		<button type="button" class="hello_pay_btn cartbtn">장바구니</button>
 																	</div>
 																</div>
 															</div>
@@ -328,6 +328,7 @@ a {
 		getCategory();
 		getReview();
 		// share(e);
-	</script>
+		</script>
+		<script src="/resources/js/item/testdetail.js"></script>
 </body>
 </html>
