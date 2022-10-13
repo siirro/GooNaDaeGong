@@ -99,15 +99,17 @@
                                                 </a>
                                             </span>
                                         </button>
+                                        <div class="btnspace"></div>
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../cancel/inquiry?merchant_uid=${order.merchant_uid}">
-                                                취소
+                                                    취소
                                                 </a>
                                             </span>
                                         </button>
                                     </div>
                                     <span class="css-1fdt947 e1437c641">
+                                        <div class="btnspace"></div>
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../exchange/inquiry?merchant_uid=${order.merchant_uid}">
@@ -115,6 +117,7 @@
                                                 </a>
                                             </span>
                                         </button>
+                                        <div class="btnspace"></div>
                                         <button class="css-oyz24n e4nu7ef3" type="button" height="36" radius="3">
                                             <span class="css-ymwvow e4nu7ef1">
                                                 <a href="../refund/inquiry?merchant_uid=${order.merchant_uid}">
@@ -130,35 +133,36 @@
                         <div class="css-bx0kqw e1mkosgq0"></div>
                         <!-- 페이징 처리 -->
                         <div class="css-15jhycr e3tf63e0">
-                                <div class="css-sxxs1g eytury60">
+                            <div class="css-sxxs1g eytury60">
+                            <c:choose>
+                                    <c:when test="${pager.pre}">
+                                        <button  type="button" class="css-rzcdhr e1hbwyso0" onClick="location.href='./myQNA?page=${pager.startNum-1}'">
+                                            <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                            <button type="button" class="css-rzcdhr e1hbwyso0" disabled="">
+                                            <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+                                    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                        <li class="page-item"><a class="page-link" href="./myOrder?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                    </c:forEach>
                                 <c:choose>
-                                        <c:when test="${pager.pre}">
-                                            <button  type="button" class="css-rzcdhr e1hbwyso0" onClick="location.href='./myQNA?page=${pager.startNum-1}'">
-                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
-                                            </button>
-                                        </c:when>
-                                        <c:otherwise>
-                                             <button type="button" class="css-rzcdhr e1hbwyso0" disabled="">
-                                                <div class="css-7qb0sc e1ilyb3p0">이전</div>
-                                            </button>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    
-                                    
-                                    <c:choose>
-                                        <c:when test="${pager.next}">
-                                            <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myQNA?page=${pager.lastNum+1}'">
-                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
-                                        </button>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <button disabled="" type="button" class="css-1jwilit e1pk9060">
-                                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
-                                        </button>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
+                                    <c:when test="${pager.next}">
+                                        <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myQNA?page=${pager.lastNum+1}'">
+                                        <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                    </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button disabled="" type="button" class="css-1jwilit e1pk9060">
+                                        <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                    </button>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
+                        </div>
                     </div>
                 </div>
               </div>
