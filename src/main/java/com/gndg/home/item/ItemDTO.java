@@ -24,9 +24,10 @@ public class ItemDTO {
 	private List<ItemFileDTO> itemFileDTOs;
 	private List<ItemLikeDTO> itemLikeDTOs;
 
+
 	private String FileName;
 	private Category category;
-	private List<ItemLikeDTO> itemLikeDTOs;
+
 	
 	
 	public String getFileName() {

@@ -289,7 +289,7 @@ a {
 														<!-- 대기공주 후기창 -->
 														<!-- 후기 글 펼치는 방법 -->
 														<!-- review.css에서 review_view display : block; 처리 -->
-														<section id="reviewContents"></section>
+														<div id="reviewContents"></div>
 
 														<!-- 구디나라 댓글창 -->
 														<!-- <section class="comment_title">
@@ -326,9 +326,10 @@ a {
 	<script>
 		getLikeCount();
 		getCategory();
-		getReview();
-		// share(e);
-		</script>
+		getReview(1);
+		share();
+	</script>
 		<script src="/resources/js/item/testdetail.js"></script>
+
 </body>
 </html>
