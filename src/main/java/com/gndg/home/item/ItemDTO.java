@@ -23,6 +23,8 @@ public class ItemDTO {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date item_date;
 	private List<ItemFileDTO> itemFileDTOs;
+	private List<ItemLikeDTO> itemLikeDTOs;
+	
 	private Category category;
 	
 	public Long getItem_num() {
@@ -108,6 +110,12 @@ public class ItemDTO {
     }
     public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
         this.itemFileDTOs = itemFileDTOs;
+    }
+    public List<ItemLikeDTO> getItemLikeDTOs() {
+        return itemLikeDTOs;
+    }
+    public void setItemLikeDTOs(List<ItemLikeDTO> itemLikeDTOs) {
+        this.itemLikeDTOs = itemLikeDTOs;
     }
 	public Category getCategory() {
 		return category;

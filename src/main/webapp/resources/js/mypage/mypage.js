@@ -1,6 +1,9 @@
 const delbtn = document.getElementById("delbtn");
 const user_id = document.getElementById("user_id");
 const qnatitle = document.querySelector(".qnatitle");
+const revDel= document.querySelectorAll(".revDel");
+
+
 
 //탈퇴 버튼 
 delbtn.addEventListener("click",function(){
@@ -23,4 +26,12 @@ delbtn.addEventListener("click",function(){
         }
     }
 });
+
+
+
+
+
+
+
+
 

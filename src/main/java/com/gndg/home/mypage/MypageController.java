@@ -132,6 +132,13 @@ public class MypageController {
 		return mv;
 	}
 	
+    //내 QNA삭제
+    @RequestMapping(value="delmyQNA", method = RequestMethod.POST)
+    @ResponseBody
+    public int myQnaDelete(QnaDTO qnaDTO)throws Exception{
+       int result = mypageService.setMyQnaDelete(qnaDTO);
+       return result;
+    }
 	
 	//내 후기내역
 	@RequestMapping(value="myReview")
@@ -154,6 +161,14 @@ public class MypageController {
 	    
 	    
 		return mv;
+	}
+	
+	//내 후기삭제
+	@RequestMapping(value="delmyReview", method = RequestMethod.POST)
+	@ResponseBody
+	public int myReviewDelete(ItemReviewDTO itemReviewDTO)throws Exception{
+	    int result = mypageService.setMyReviewDelete(itemReviewDTO);
+	    return result;
 	}
 	
 	//내 판매내역

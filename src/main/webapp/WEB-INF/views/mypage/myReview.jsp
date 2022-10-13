@@ -68,6 +68,7 @@
                                                 <th class="css-1soyerh e3tf63e4">작성일</th>
                                             </tr>
                                         </thead>
+                                        <input type="hidden" id="user_id" name="user_id" value="${review[0].user_id}">
                                         <!-- 반복문 시작 부분 -->
                                         <c:forEach items="${review}" var="rev">
                                         <tbody class="css-0 e3tf63e3">
@@ -105,9 +106,9 @@
 
                                                         
                                                         <div class="css-c0oq5k eula2qn2">
-                                                            <button type="button" class="css-qv4hdm eula2qn1">수정</button>
+                                                            <button type="button" class="css-qv4hdm" id="revUp" onClick="location.href='#'">수정</button>
                                                             <div class="css-ord49b eula2qn0"></div>
-                                                            <button type="button" class="css-qv4hdm eula2qn1">삭제</button>
+                                                            <button type="button" class="css-qv4hdm revDel" data-rv-num="${rev.rv_num}">삭제</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -130,8 +131,11 @@
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
-                                    
-                                    
+                                    <div style = "display:none">
+                                        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                            <li class="page-item"><a class="page-link" href="./myQNA?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                        </c:forEach>
+                                    </div>
                                     <c:choose>
                                         <c:when test="${pager.next}">
                                             <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myReview?page=${pager.lastNum+1}'">

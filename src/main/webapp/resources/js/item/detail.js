@@ -14,6 +14,12 @@ const reviewContents = document.querySelector("#reviewContents");
 const reviewBtn = document.querySelector("#reviewBtn");
 const reviewTop = document.querySelector("#reviewTop");
 const shareBtn = document.querySelector("#shareBtn");
+const cartbtn = document.querySelector(".cartbtn");
+
+//----------------------------장바구니 추가-----------------------
+cartbtn.addEventListener("click",function(){
+    console.log("장바구니 추가잉");
+});
 
 //----------------------------공유하기----------------------------
 function share(sns) {

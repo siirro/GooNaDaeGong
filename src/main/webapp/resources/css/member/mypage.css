@@ -151,6 +151,7 @@ a {
     text-align: right;
     color: rgb(51, 51, 51);
     margin-right: 20px;
+    margin-left: 10px;
 }
 .css-s5xdrg {
     display: flex;
@@ -1143,6 +1144,9 @@ ul {
     margin-inline-end: 0px;
 }
 /* 주문 */
+.btnspace{
+    padding: 0px 0px 3px 0px;
+}
 .css-1fttcpj {
     display: flex;
     flex-direction: column;

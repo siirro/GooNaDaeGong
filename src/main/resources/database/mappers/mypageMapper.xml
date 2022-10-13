@@ -158,7 +158,13 @@ FROM QNA
 WHERE USER_ID = #{user_id}
 </select>
 
-
+<!-- 문의 삭제 -->
+<delete id="setMyQnaDelete" parameterType="QnaDTO">
+DELETE QNA
+WHERE QNA_NUM= #{qna_num} 
+     AND 
+     USER_ID= #{user_id}
+</delete>
 
 <!-- 주문 상세페이지 -->
 <select id="getMyOrderDetail" parameterType="OrdersDTO" resultMap="getMyOrderDetailResult">
@@ -252,6 +258,13 @@ FROM REVIEW
 WHERE USER_ID= #{user_id}
 </select>
 
+<!--내 후기삭제 -->
+<delete id="setMyReviewDelete" parameterType="ItemReviewDTO">
+DELETE REVIEW
+WHERE RV_NUM = #{rv_num} 
+	  AND 
+	  USER_ID=#{user_id}
+</delete>
 
 <!-- 회원정보 수정 -->
 <update id="setMyUpdate" parameterType="MemberDTO">

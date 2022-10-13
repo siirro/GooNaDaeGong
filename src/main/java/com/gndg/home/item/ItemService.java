@@ -21,6 +21,20 @@ public class ItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return itemDAO.getNewItemList(itemDTO);
+	}
+	
+	//인기글
+	public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
+	   Long totalCount = itemDAO.getPopularItemCount();
+	   
+	   pager.setPerPage(8L);
+	   pager.getNum(totalCount);
+	    
+	    return itemDAO.getPopularItemList(itemDTO);
+	}
 	/* 상품 총 개수 */
 	public Long getTotal(ItemDTO itemDTO) throws Exception {
 		System.out.println("Service Total");

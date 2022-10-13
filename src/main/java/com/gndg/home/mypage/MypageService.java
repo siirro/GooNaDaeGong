@@ -31,6 +31,7 @@ public class MypageService {
 	    //내 주문 글 갯수
 	    Long totalCount = mypageDAO.getMyOrderCount(mypagePager);
 	    
+	    mypagePager.setPerBlock(1L);
 	    mypagePager.getNum(totalCount);
 	    mypagePager.getRowNum();
 	    
@@ -52,6 +53,8 @@ public class MypageService {
 	    //내 좋아요 글 갯수
 	    Long totalCount = mypageDAO.getMyLikeCount(mypagePager);
 	    
+	    mypagePager.setPerPage(9L);
+	    mypagePager.setPerBlock(1L);
 	    mypagePager.getNum(totalCount);
 	    mypagePager.getRowNum();
 	    
@@ -64,20 +67,31 @@ public class MypageService {
 	    //내 문의 글 갯수
 	    Long totalCount = mypageDAO.getMyQnaCount(mypagePager);
 	    
+	    mypagePager.setPerBlock(1L);
 	    mypagePager.getNum(totalCount);
 	    mypagePager.getRowNum();
 	    return mypageDAO.getMyQna(mypagePager);
 	}
+    //내 문의삭제
+    public int setMyQnaDelete(QnaDTO qnaDTO)throws Exception{
+       return mypageDAO.setMyQnaDelete(qnaDTO);
+    }
 	
 	//내 후기 내역
 	public List<ItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
 	    //내 후기 글 갯수
 	    Long totalCount = mypageDAO.getMyReviewCount(mypagePager);
 	    
+	    mypagePager.setPerBlock(1L);
 	    mypagePager.getNum(totalCount);
 	    mypagePager.getRowNum();
 	    
 	    return mypageDAO.getMyReview(mypagePager);
+	}
+	
+	//내 문의 삭제
+	public int setMyReviewDelete(ItemReviewDTO itemReviewDTO)throws Exception{
+	    return mypageDAO.setMyReviewDelete(itemReviewDTO);
 	}
 	
 	//회원정보 수정

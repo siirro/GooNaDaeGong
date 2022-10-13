@@ -29,7 +29,7 @@
 						<div class="breadcrumbs">
 							<div class="container_buy">
 								<div><a href="/">HOME</a></div>
-								<div><a href="../dgItem/list?cate_num="${dgItemDetailDTO.category.cate_num}>&gt; <span class="cate4">${dgItemDetailDTO.category.cate_name}</span></a></div>
+								<!-- <div><a href="../item/list?cate_num="${itemDetailDTO.category.cate_num}>&gt; <span class="cate4">${itemDetailDTO.category.cate_name}</span></a></div> -->
 							</div>
 						</div>
 						<div class="main_area">
@@ -151,7 +151,7 @@
 																	<span class="blind">수량 빼기</span>
 																</button>
 
-																<input type="number" class="bd_2eiJL N=a:pcs.quantity" value="1">
+																<input type="number" class="bd_2eiJL N=a:pcs.quantity" value="1" id="cart_count">
 																
 																<button type="button" class="bd_EZ05h bd_2nJMW N=a:pcs.quantity">
 																	<span class="blind">수량 추가</span>
@@ -203,11 +203,12 @@
 																	<div class="wish_img_box">
 																		<img src="https://ccimage.hellomarket.com/web/2018/item/ico_zzim.png" alt="찜하기이미지" class="wish_icon">
 																	</div>
-
-																	<button type="button"class="hello_talk_btn canpayment_hello_talk_btn">장바구니</button>
+																	<button type="button"class="hello_talk_btn">장바구니</button>
 																</div>
+																<input type="hidden" name="user_id" id="user_id" value="${cart.user_id}">
+																<input type="hidden" name="item_num" id="item_num" value="${cart.item_num}">
 																<div class="item_hello_box_pay item_hello_box_chat_pay">
-																	<button type="button" class="hello_pay_btn">구매</button>
+																	<button type="button" class="hello_pay_btn cartbtn">구매</button>
 																</div>
 															</div>
 														</div>
@@ -691,5 +692,6 @@
 
 	</div>
 	<!-- Wrap End -->
+	<script src="/resources/js/item/testdetail.js"></script>
 </body>
 </html>
