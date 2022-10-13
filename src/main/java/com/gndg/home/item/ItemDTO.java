@@ -24,10 +24,9 @@ public class ItemDTO {
 	private Long item_hit;
 	private Date item_date;
 	private List<ItemFileDTO> itemFileDTOs;
-
+	private List<ItemLikeDTO> itemLikeDTOs;
 	private String FileName;
 	private Category category;
-
 	
 	
 	public String getFileName() {

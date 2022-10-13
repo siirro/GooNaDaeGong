@@ -68,9 +68,10 @@ reviewContents.addEventListener("click", function (event) {
 
 
 //-----------------------리뷰 불러오기-----------------------
-function getReview() {
+function getReview(page) {
+    let item_num = document.getElementById("item_num").value;
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "reviewList?item_num=" + item_num);
+    xhttp.open("GET", "reviewList?item_num="+item_num+"&page="+page);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

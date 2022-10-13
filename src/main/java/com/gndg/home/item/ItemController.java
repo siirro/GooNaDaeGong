@@ -249,10 +249,8 @@ public class ItemController {
 		ModelAndView mv = new ModelAndView();
 		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
 		mv.addObject("list", ar);
-
-		mv.setViewName("item/reviewList");
 		mv.addObject("pager", pager);
-		mv.setViewName("item/review");
+		mv.setViewName("item/reviewList");
 		return mv;
 	}
 
