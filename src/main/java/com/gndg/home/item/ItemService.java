@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gndg.home.File.FileManager;
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Service
 public class ItemService {
@@ -20,6 +21,20 @@ public class ItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return itemDAO.getNewItemList(itemDTO);
+	}
+	
+	//인기글
+	public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
+	   Long totalCount = itemDAO.getPopularItemCount();
+	   
+	   pager.setPerPage(8L);
+	   pager.getNum(totalCount);
+	    
+	    return itemDAO.getPopularItemList(itemDTO);
+	}
 	
 	public List<Category> getCategory() throws Exception {
 		return itemDAO.getCategory();

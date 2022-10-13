@@ -307,3 +307,12 @@ input[type="checkbox" i] {
     border-bottom-right-radius: calc(0.3rem - 1px) !important;
     border-bottom-left-radius: calc(0.3rem - 1px) !important;
 }
+.modal-dialog-scrollable .modal-body {
+    overflow-y: auto !important;
+    height: 464px !important;
+}
+.modal-dialog-scrollable .modal-content {
+    max-height: 100% !important;
+    overflow: hidden !important;
+    margin-top: 100px !important;
+}

@@ -15,6 +15,20 @@ public class ItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.item.ItemDAO.";
 	
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getNewItemList", itemDTO);
+	}
+	
+	//인기글
+	public List<ItemDTO> getPopularItemList(ItemDTO itemDTO)throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getPopularItemList", itemDTO);
+	}
+	//인기글 갯수
+	public Long getPopularItemCount()throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getPopularItemCount");
+	}
+	
 	public List<Category> getCategory() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}

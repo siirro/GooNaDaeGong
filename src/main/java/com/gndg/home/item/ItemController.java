@@ -11,11 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gndg.home.cart.CartDTO;
+import com.gndg.home.cart.CartService;
+import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Category;
 
 @Controller
@@ -24,6 +28,19 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+	@Autowired
+	private CartService cartService;
+	
+    //카트 추가  
+    @RequestMapping(value="AddCart", method = RequestMethod.POST)
+    @ResponseBody
+    public int setAddCart(CartDTO cartDTO, HttpSession session)throws Exception{
+        MemberDTO member =  (MemberDTO)session.getAttribute("member");
+        cartDTO.setUser_id(member.getUser_id());
+        int result = cartService.setAddCart(cartDTO);
+        
+        return result;
+    }
 
 	//카테고리
 	@GetMapping("category")
@@ -75,8 +92,13 @@ public class ItemController {
 
 	//상세페이지
 	@GetMapping("detail")
-	public ModelAndView getDetail(ItemDTO itemDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView getDetail(ItemDTO itemDTO,HttpSession session) throws Exception {
+	    ModelAndView mv = new ModelAndView();
+	    //장바구니
+	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	    itemDTO.setUser_id(memberDTO.getUser_id());
+	    mv.addObject("cart", itemDTO);
+	    
 		itemDTO = itemService.getDetail(itemDTO);
 		mv.addObject("dto", itemDTO);
 
