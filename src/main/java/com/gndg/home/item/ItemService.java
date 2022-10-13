@@ -83,11 +83,13 @@ public class ItemService {
 	}
 
 	public List<ItemDTO> getList(ItemDTO itemDTO, Pager pager) throws Exception {
-		Long totalCount = itemDAO.getListCount();
+		Long totalCount = itemDAO.getListCount(itemDTO);
 
 		pager.setPerPage(12L);
 		pager.getNum(totalCount);
 		pager.getRowNum();
+		System.out.println("startRow는?"+pager.getStartRow());
+		System.out.println("lastRow는?"+pager.getLastRow());
 
 		return itemDAO.getList(itemDTO, pager);
 
