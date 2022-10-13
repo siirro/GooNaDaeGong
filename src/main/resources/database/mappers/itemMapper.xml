@@ -5,11 +5,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.item.ItemDAO">
 
+	<!-- 카테고리 불러오기 -->
 	<select id="getCategory" resultType="Category">
 		SELECT * FROM CATEGORY
 	    ORDER BY CATE_NUM ASC
 	</select>
 	
+	<!-- 상품 등록 -->
 	<insert id="setAdd" parameterType="ItemDTO">
 		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
 			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
@@ -18,10 +20,12 @@
 		VALUES(#{item_num}, #{user_id}, #{cate_num}, #{cate1}, #{cate2}, #{cate3}, #{cate4}, #{item_title}, #{item_contents}, #{item_price}, #{item_stock}, 0, SYSDATE)
 	</insert>
 	
+	<!-- 상품 이미지파일 추가 -->
 	<insert id="setAddFile" parameterType="ItemFileDTO">
 		INSERT INTO ITEMFILE VALUES(ITEMFILE_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
 	</insert> 
 	
+	<!-- 상품 리스트 조회 -->
 	<select id="getList" resultType="ItemDTO" resultMap="getListResult">
 		SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
 		FROM ITEM I
@@ -41,7 +45,7 @@
 		</collection>
 	</resultMap>
 	
-	
+	<!-- 상품 상세페이지 조회 -->
 	<select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">
 		SELECT * 
 		FROM ITEM I
@@ -76,25 +80,26 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 상품 수정 -->
 	<update id="setUpdate" parameterType="ItemDTO">
 		UPDATE ITEM SET 
 		CATE1=#{cate1}, CATE2=#{cate2}, CATE3=#{cate3}, CATE4=#{cate4}, CATE_NUM=#{cate_num}, ITEM_TITLE=#{item_title}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_STOCK=#{item_stock} WHERE ITEM_NUM=#{item_num}
 	</update>
 	
+	<!-- 상품 삭제 -->
 	<delete id="setDelete" parameterType="ItemDTO">
 		DELETE ITEM WHERE ITEM_NUM=#{item_num}
 	</delete>
 	
-	<!-- 글수정할때 이미지파일 삭제 -->
+	<!-- 상품 수정할때 이미지파일 삭제 -->
+	<select id="getFileDetail" parameterType="ItemFileDTO" resultType="ItemFileDTO">
+		SELECT * FROM ITEMFILE WHERE FILENUM=#{fileNum}
+	</select>
 	<delete id="setFileDelete" parameterType="ItemFileDTO">
 		DELETE ITEMFILE WHERE FILENUM=#{fileNum}
 	</delete>
 	
-	<select id="getFileDetail" parameterType="ItemFileDTO" resultType="ItemFileDTO">
-		SELECT * FROM ITEMFILE WHERE FILENUM=#{fileNum}
-	</select>
 
-	
 	<!-- 좋아요 등록 -->
 	<insert id="setLikeAdd" parameterType="ItemLikeDTO">
 		INSERT INTO ITEMLIKE VALUES (LIKE_SEQ.NEXTVAL, #{item_num}, #{user_id})
@@ -105,7 +110,7 @@
 		DELETE ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
 	</delete>
 	
-	<!-- 유저당 해당 상품 좋아요 조회 -->
+	<!-- 회원당 해당 상품 좋아요 확인 -->
 	<select id="getLikeUser" parameterType="ItemLikeDTO" resultType="ItemLikeDTO">
 		SELECT * FROM ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
 	</select>
@@ -114,6 +119,7 @@
 	<select id="getLikeItem" parameterType="ItemLikeDTO" resultType="Long">
 		SELECT COUNT(ITEM_NUM) FROM ITEMLIKE WHERE ITEM_NUM=#{item_num}
 	</select>
+		
 		
 	<!-- 조회수 -->
 	<update id="setHit" parameterType="ItemDTO">
@@ -131,10 +137,10 @@
 		ORDER BY RV_NUM DESC
 	</select>
 
-	<!-- 후기 작성 -->
+	<!-- 후기 등록 -->
 	<insert id="setReviewAdd" parameterType="ItemReviewDTO">
 		INSERT INTO REVIEW 
-		VALUES (REVIEW_SEQ.NEXTVAL, #{item_num}, #{user_id}, #{rv_contents}, SYSDATE, #{rv_start}, #{rv_file)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{item_num}, #{user_id}, #{rv_title}, #{rv_contents}, SYSDATE, #{rv_star}, #{rv_file})
 	</insert>
 	
 	<!-- 후기 삭제 -->
@@ -144,7 +150,7 @@
 	
 	<!-- 후기 수정 -->
 	<update id="setReviewUpdate" parameterType="ItemReviewDTO">
-		UPDATE REVIEW SET RV_CONTENTS=#{rv_contents}, RV_START=#{rv_start}, RV_FILE=#{rv_file)
+		UPDATE REVIEW SET RV_CONTENTS=#{rv_contents}, RV_STAR=#{rv_star}, RV_FILE=#{rv_file})
 	</update>
 	
 	<!-- 후기수 -->

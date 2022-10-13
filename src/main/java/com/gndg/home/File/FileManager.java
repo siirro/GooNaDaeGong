@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManager {
 	
-	//save
+	//이미지파일 저장
 	public String saveFile(ServletContext servletContext, String path, MultipartFile multipartFile) throws Exception {
 		
 		//1.저장할 폴더의 실제 경로 반환(OS기준)
@@ -39,7 +39,7 @@ public class FileManager {
 	}
 	
 	
-	//delete
+	//이미지파일 삭제
 	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO) throws Exception {
 		String realPath = servletContext.getRealPath(path);
 		System.out.println("RealPath : "+realPath);

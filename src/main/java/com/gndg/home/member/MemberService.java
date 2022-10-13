@@ -210,9 +210,9 @@ public class MemberService {
         String charSet = "utf-8";
         String hostSMTP = "smtp.naver.com";
 
-        String hostSMTPid = "keroro3086@naver.com"; // 보내는사람 이메일
+        String hostSMTPid = ""; // 보내는사람 이메일
 
-        String hostSMTPpw = "!!8282gksquf1130"; // 보내는사람 비밀번호
+        String hostSMTPpw = ""; // 보내는사람 비밀번호
         
         
         //보내는 사람 Email/보내는사람 이름/제목/내용

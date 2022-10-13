@@ -75,8 +75,5 @@ public class ItemReviewDTO {
     public void setItemDTO(ItemDTO itemDTO) {
         this.itemDTO = itemDTO;
     }
-
-	
-
 	
 }
