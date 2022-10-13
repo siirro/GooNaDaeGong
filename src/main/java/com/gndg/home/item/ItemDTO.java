@@ -27,7 +27,7 @@ public class ItemDTO {
 
 	private String FileName;
 	private Category category;
-
+	private List<ItemLikeDTO> itemLikeDTOs;
 	
 	
 	public String getFileName() {

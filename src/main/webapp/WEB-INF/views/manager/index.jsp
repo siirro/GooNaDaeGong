@@ -159,7 +159,7 @@
                                 <h6 style="margin: auto 0px;">${qna}건</h6>
                             </div>
                             <!-- Card Body -->
-                            <div class="card-body">
+                            <div class="card-body" style="zoom: 0.9;">
                                  <!-- 부트스트랩표 -->
                                 <div id="qnaList">
                                     <section class="col-lg-12 text-center" style="padding: 0px;">

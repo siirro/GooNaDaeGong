@@ -73,8 +73,8 @@ public class ItemDAO {
 	      return sqlSession.selectList(NAMESPACE+"getList", map);
 	   }
 	
-	public Long getListCount()throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getListCount", NAMESPACE);
+	public Long getListCount(ItemDTO itemDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", itemDTO);
 	}
 	
 	//상품 상세페이지 조회
@@ -139,7 +139,7 @@ public class ItemDAO {
 	//후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setReviewDelete", itemReviewDTO);
-
+	}
 //	페이징 작업중 221012
 	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

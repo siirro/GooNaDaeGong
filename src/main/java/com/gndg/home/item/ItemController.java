@@ -122,6 +122,7 @@ public class ItemController {
 		
 		mv.addObject("list", ar);
 		mv.addObject("count", counts);
+		mv.addObject("cate_num", itemDTO.getCate_num());
 		mv.setViewName("item/list");
 		return mv;
 	}
