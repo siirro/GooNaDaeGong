@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -128,7 +130,7 @@ public class ItemController {
 
 	//상품 상세페이지 조회
 	@GetMapping("detail")
-	public ModelAndView getDetail(ItemDTO itemDTO,HttpSession session) throws Exception {
+	public ModelAndView getDetail(@RequestParam("item_num")Long item_num, ItemDTO itemDTO, HttpServletRequest request, HttpSession session) throws Exception {
 	    ModelAndView mv = new ModelAndView();
 	    //장바구니
 	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -152,16 +154,17 @@ public class ItemController {
 				
 		mv.setViewName("item/detail");
 		
+		session = request.getSession();
 		
 		/* 최근 본 상품 넣기 */
-		List<Long> ar = (List<Long>)session.getAttribute("product");
+		List<Long> ar = (List<Long>)session.getAttribute("product");	
 		
 		if(ar == null) {
 			ar = new ArrayList<Long>();
 			session.setAttribute("product", ar);
-//			ar.add(item_num);
 		} 
-		
+			
+		ar.add(item_num);
 		
 		Set<Long> set = new HashSet<Long>(ar);
 		
