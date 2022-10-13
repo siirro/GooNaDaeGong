@@ -23,13 +23,16 @@ public class ItemService {
 	
 	//최신글
 	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+
+		
 		return itemDAO.getNewItemList(itemDTO);
 	}
-   
+			   
 	//인기글
 	public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
-        return itemDAO.getPopularItemList(itemDTO);
-    }
+		
+		return itemDAO.getPopularItemList(itemDTO);
+	}
 
 	//카테고리 불러오기
 	
@@ -202,7 +205,6 @@ public class ItemService {
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return itemDAO.setReviewDelete(itemReviewDTO);
 	}	
-
 
 	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
