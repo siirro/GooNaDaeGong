@@ -69,7 +69,6 @@
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
 					<c:forEach items="${dto.itemFileDTOs }" var="fileDTO">
-
 						<c:choose>
 							<c:when test="${fileDTO eq dto.itemFileDTOs[0] }">
 								<div class="carousel-item active" data-bs-interval="5000">
@@ -146,20 +145,7 @@
 								</c:otherwise>
 							</c:choose>
 							<i id="shareBtn" class="bi bi-share-fill" style="font-size: 150%;"></i>
-<ul class="sns">
-    <li class="facebook">
-	    <a href="#n" onclick="share('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
-	    <span class="skip">페이스북</span></a>
-    </li>
-    <li class="twitter">
-	    <a href="#n" onclick="share('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
-	    <span class="skip">트위터</span></a>
-    </li>
-    <li class="band">
-	    <a href="#n" onclick="share('band');return false;" class="band" target="_self" title="네이버밴드 새창열림">
-	    <span class="skip">네이버밴드</span></a>
-    </li>
-</ul>
+
 							
 						</span> 
 						
@@ -200,6 +186,7 @@
 	</section>
 
 
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

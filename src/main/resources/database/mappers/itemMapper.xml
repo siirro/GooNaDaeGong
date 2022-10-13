@@ -13,76 +13,7 @@
 	</select>
 	
 
-	<!-- 최신글 -->
-	<select id="getNewItemList" parameterType="ItemDTO" resultMap="getNewItemListResult">
-	SELECT * 
-		FROM 
-		    (SELECT ROWNUM RN, M.*
-		    FROM
-		        (SELECT I.ITEM_NUM,I.ITEM_TITLE,I.ITEM_PRICE,ITEM_DATE,F.FILENAME
-		        FROM ITEM I
-		            LEFT JOIN 
-		            ITEMFILE F
-		            ON I.ITEM_NUM = F.ITEM_NUM
-		        ORDER BY ITEM_DATE DESC) M)
-		WHERE RN BETWEEN 1 AND 24
-	</select>
-	<resultMap type="ItemDTO" id="getNewItemListResult">
-		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_TITLE" property="item_title"/>
-		<result column="ITEM_PRICE" property="item_price"/>
-		<result column="ITEM_DATE" property="item_date"/>
-			<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
-				<id column="FILENUM" property="fileNum"/>
-				<result column="ITEM_NUM" property="item_num"/>
-				<result column="FILENAME" property="fileName"/>
-			</collection>
-	</resultMap>
-	
-	<!-- 인기글 -->
-	<select id="getPopularItemList" parameterType="ItemDTO" resultMap="getPopularItemListResult">
-	 SELECT * 
-	 FROM
-	    (SELECT ROWNUM RN,M.* 
-	    FROM
-	        (SELECT  NVL(K.C,0) COUNT,I.*,F.FILENAME
-	                    FROM ITEM I
-	                    LEFT JOIN
-	                    ITEMFILE F
-	                    ON I.ITEM_NUM = F.ITEM_NUM
-	                    LEFT JOIN
-	                    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-	                    FROM ITEMLIKE
-	                    GROUP BY(ITEM_NUM)) K
-	                    ON I.ITEM_NUM = K.ITEM_NUM
-	                    ORDER BY COUNT DESC) M)           
-	 WHERE RN BETWEEN 1 AND 24 AND COUNT >0
-	</select>
-	<resultMap type="ItemDTO" id="getPopularItemListResult">
-		<id column="ITEM_NUM" property="item_num"/>
-		<result column="ITEM_TITLE" property="item_title"/>
-		<result column="ITEM_PRICE" property="item_price"/>
-			<collection property="itemLikeDTOs" javaType="List" ofType="ItemLikeDTO">
-				<id column="LIKE_NUM" property="like_num"/>
-				<result column="ITEM_NUM" property="item_num"/>
-			</collection>
-			<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
-				<id column="FILENUM" property="fileNum"/>
-				<result column="ITEM_NUM" property="item_num"/>
-				<result column="FILENAME" property="fileName"/>		
-			</collection>
-	</resultMap>
-	
-	<!-- 인기글 총 갯수 -->
-	<select id="getPopularItemCount" resultType="Long">
-	SELECT COUNT(*)
-	FROM
-	    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-	    FROM ITEMLIKE
-	    GROUP BY(ITEM_NUM)
-	    ORDER BY C DESC)             
-	</select>
-
+	<!-- 카테고리 불러오기 -->
 
 	<!-- 통합 검색-->
 	<select id="getSearch"  parameterType="String" resultMap="getDetailResult">
@@ -109,6 +40,7 @@
 	    ORDER BY CATE_NUM ASC
 	</select>
 	
+	<!-- 상품 등록 -->
 	<insert id="setAdd" parameterType="ItemDTO">
 		<selectKey order="BEFORE" keyProperty="item_num" resultType="Long">
 			SELECT ITEM_SEQ.NEXTVAL FROM DUAL
@@ -117,6 +49,7 @@
 		VALUES(#{item_num}, #{user_id}, #{cate_num}, #{cate1}, #{cate2}, #{cate3}, #{cate4}, #{item_title}, #{item_contents}, #{item_price}, #{item_stock}, 0, SYSDATE)
 	</insert>
 	
+	<!-- 상품 이미지파일 추가 -->
 	<insert id="setAddFile" parameterType="ItemFileDTO">
 		INSERT INTO ITEMFILE VALUES(ITEMFILE_SEQ.NEXTVAL,#{item_num},#{fileName},#{oriName})
 	</insert> 
@@ -156,6 +89,8 @@
 		</collection>
 	</resultMap>
 	
+
+	<!-- 상품 상세페이지 조회 -->
 	<select id="getListCount" resultType="Long">
 	SELECT COUNT(ITEM_NUM)
 		FROM ITEM I
@@ -200,25 +135,26 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 상품 수정 -->
 	<update id="setUpdate" parameterType="ItemDTO">
 		UPDATE ITEM SET 
 		CATE1=#{cate1}, CATE2=#{cate2}, CATE3=#{cate3}, CATE4=#{cate4}, CATE_NUM=#{cate_num}, ITEM_TITLE=#{item_title}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_STOCK=#{item_stock} WHERE ITEM_NUM=#{item_num}
 	</update>
 	
+	<!-- 상품 삭제 -->
 	<delete id="setDelete" parameterType="ItemDTO">
 		DELETE ITEM WHERE ITEM_NUM=#{item_num}
 	</delete>
 	
-	<!-- 글수정할때 이미지파일 삭제 -->
+	<!-- 상품 수정할때 이미지파일 삭제 -->
+	<select id="getFileDetail" parameterType="ItemFileDTO" resultType="ItemFileDTO">
+		SELECT * FROM ITEMFILE WHERE FILENUM=#{fileNum}
+	</select>
 	<delete id="setFileDelete" parameterType="ItemFileDTO">
 		DELETE ITEMFILE WHERE FILENUM=#{fileNum}
 	</delete>
 	
-	<select id="getFileDetail" parameterType="ItemFileDTO" resultType="ItemFileDTO">
-		SELECT * FROM ITEMFILE WHERE FILENUM=#{fileNum}
-	</select>
 
-	
 	<!-- 좋아요 등록 -->
 	<insert id="setLikeAdd" parameterType="ItemLikeDTO">
 		INSERT INTO ITEMLIKE VALUES (LIKE_SEQ.NEXTVAL, #{item_num}, #{user_id})
@@ -229,7 +165,7 @@
 		DELETE ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
 	</delete>
 	
-	<!-- 유저당 해당 상품 좋아요 조회 -->
+	<!-- 회원당 해당 상품 좋아요 확인 -->
 	<select id="getLikeUser" parameterType="ItemLikeDTO" resultType="ItemLikeDTO">
 		SELECT * FROM ITEMLIKE WHERE ITEM_NUM=#{item_num} AND USER_ID=#{user_id}
 	</select>
@@ -238,6 +174,7 @@
 	<select id="getLikeItem" parameterType="ItemLikeDTO" resultType="Long">
 		SELECT COUNT(ITEM_NUM) FROM ITEMLIKE WHERE ITEM_NUM=#{item_num}
 	</select>
+		
 		
 	<!-- 조회수 -->
 	<update id="setHit" parameterType="ItemDTO">
@@ -259,10 +196,10 @@
 		WHERE RR BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
-	<!-- 후기 작성 -->
+	<!-- 후기 등록 -->
 	<insert id="setReviewAdd" parameterType="ItemReviewDTO">
 		INSERT INTO REVIEW 
-		VALUES (REVIEW_SEQ.NEXTVAL, #{item_num}, #{user_id}, #{rv_contents}, SYSDATE, #{rv_start}, #{rv_file)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{item_num}, #{user_id}, #{rv_title}, #{rv_contents}, SYSDATE, #{rv_star}, #{rv_file})
 	</insert>
 	
 	<!-- 후기 삭제 -->
@@ -272,7 +209,7 @@
 	
 	<!-- 후기 수정 -->
 	<update id="setReviewUpdate" parameterType="ItemReviewDTO">
-		UPDATE REVIEW SET RV_CONTENTS=#{rv_contents}, RV_START=#{rv_start}, RV_FILE=#{rv_file)
+		UPDATE REVIEW SET RV_CONTENTS=#{rv_contents}, RV_STAR=#{rv_star}, RV_FILE=#{rv_file})
 	</update>
 	
 	<!-- 후기수 -->

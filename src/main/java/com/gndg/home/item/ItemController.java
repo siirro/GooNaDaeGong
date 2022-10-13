@@ -1,6 +1,5 @@
 package com.gndg.home.item;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -73,14 +72,14 @@ public class ItemController {
 	}
 	
 
-	//카테고리
+	//카테고리 불러오기
 	@GetMapping("category")
 	@ResponseBody
 	public List<Category> getCategory() throws Exception {
 		return itemService.getCategory();
 	}
 
-	//상품등록
+	//상품 등록
 	@GetMapping("add")
 	public String setAdd() throws Exception {
 		return "/item/add";
@@ -94,7 +93,7 @@ public class ItemController {
 		int result = itemService.setAdd(itemDTO, files, session.getServletContext());
 		String message = "등록실패";
 		if (result > 0) {
-			message = "글이 등록되었습니다.";
+			message = "등록되었습니다.";
 		}
 		mv.addObject("message", message);
 		mv.addObject("url", "list");
@@ -102,7 +101,7 @@ public class ItemController {
 		return mv;
 	}
 
-	//상품리스트
+	//상품 리스트 조회
 	@GetMapping("list")
 	public ModelAndView getList(ItemDTO itemDTO,Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -127,7 +126,7 @@ public class ItemController {
 		return mv;
 	}
 
-	//상세페이지
+	//상품 상세페이지 조회
 	@GetMapping("detail")
 	public ModelAndView getDetail(ItemDTO itemDTO,HttpSession session) throws Exception {
 	    ModelAndView mv = new ModelAndView();
@@ -143,11 +142,6 @@ public class ItemController {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(itemDTO);
 		mv.addObject("json", json);
-
-		//가격 천단위 콤마
-		DecimalFormat Format = new DecimalFormat("###,###");
-		String price = Format.format(itemDTO.getItem_price());
-		mv.addObject("price", price);
 		
 		//해당 상품 좋아요 컬러
 		ItemLikeDTO itemLikeDTO = new ItemLikeDTO();
@@ -194,7 +188,7 @@ public class ItemController {
 		return mv;
 	}
 
-	//상품수정
+	//상품 수정
 	@GetMapping("update")
 	public ModelAndView setUpdate(ItemDTO itemDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -210,14 +204,14 @@ public class ItemController {
 		return "redirect:detail?item_num=" + itemDTO.getItem_num();
 	}
 
-	//상품삭제
+	//상품 삭제
 	@GetMapping("delete")
 	public String setDelete(ItemDTO itemDTO) throws Exception {
 		int result = itemService.setDelete(itemDTO);
 		return "redirect:list";
 	}
 
-	//상품수정시 파일삭제
+	//상품 수정할때 이미지파일 삭제
 	@PostMapping("fileDelete")
 	@ResponseBody
 	public int setFileDelete(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
@@ -239,7 +233,7 @@ public class ItemController {
 		return result;
 	}
 	
-	//좋아요수 조회
+	//상품당 좋아요수 조회
 	@GetMapping("likeCount")
 	@ResponseBody
 	public Long getLikeItem(ItemLikeDTO itemLikeDTO) throws Exception {
@@ -255,21 +249,41 @@ public class ItemController {
 		ModelAndView mv = new ModelAndView();
 		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
 		mv.addObject("list", ar);
+
+		mv.setViewName("item/reviewList");
 		mv.addObject("pager", pager);
 		mv.setViewName("item/review");
 		return mv;
 	}
 
 	//후기 등록
-	@PostMapping("reviewAdd")
+	@PostMapping("review")
 	@ResponseBody
 	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
+		System.out.println("c1"+itemReviewDTO);
+		System.out.println("c1"+multipartFile);
 		int result = itemService.setReviewAdd(itemReviewDTO, multipartFile, session.getServletContext());
+		System.out.println("c2"+itemReviewDTO);
+		System.out.println("c2"+multipartFile);
 		return result;
+		
 	}
 	
 	//후기 삭제
+	@GetMapping("reviewDelete")
+	@ResponseBody
+	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
+		int result = itemService.setReviewDelete(itemReviewDTO);
+		return result;
+	}
+	
 	//후기 수정
+	@PostMapping("reviewUpdate")
+	@ResponseBody
+	public int setReviewUpdate(ItemReviewDTO itemReviewDTO) throws Exception {
+		int result = itemService.setReviewUpdate(itemReviewDTO);
+		return result;
+	}
 	
 	//후기수
 	@GetMapping("reviewCount")
