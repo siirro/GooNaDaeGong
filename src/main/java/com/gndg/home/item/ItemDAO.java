@@ -18,9 +18,15 @@ public class ItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.item.ItemDAO.";
 
-	// 최신글
-	public List<ItemDTO> getNewItemList(ItemDTO itemDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getNewItemList", itemDTO);
+	//카테고리 불러오기
+	public List<Category> getCategory() throws Exception {
+        return sqlSession.selectList(NAMESPACE+"getCategory");
+    }
+
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getNewItemList", itemDTO);
+
 	}
 
 	// 인기글
@@ -48,12 +54,8 @@ public class ItemDAO {
 		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
 	}
 
-	// 카테고리 불러오기
-	public List<Category> getCategory() throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getCategory");
-	}
-
-	// 상품 등록
+	
+	//상품 등록
 	public int setAdd(ItemDTO itemDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "setAdd", itemDTO);
 	}
@@ -64,19 +66,19 @@ public class ItemDAO {
 	}
 
 	public List<ItemDTO> getList(ItemDTO itemDTO, Pager pager) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("startRow", pager.getStartRow());
-		map.put("lastRow", pager.getLastRow());
-		map.put("cate_num", itemDTO.getCate_num());
-
-		return sqlSession.selectList(NAMESPACE + "getList", map);
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      map.put("startRow", pager.getStartRow());
+	      map.put("lastRow", pager.getLastRow());
+	      map.put("cate_num", itemDTO.getCate_num());
+	      
+	      return sqlSession.selectList(NAMESPACE+"getList", map);
+	   }
+	
+	public Long getListCount(ItemDTO itemDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", itemDTO);
 	}
-
-	public Long getListCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getListCount", NAMESPACE);
-	}
-
-	// 상품 상세페이지 조회
+	
+	//상품 상세페이지 조회
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getDetail", itemDTO);
 	}
@@ -137,6 +139,7 @@ public class ItemDAO {
 
 	// 후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
+
 		return sqlSession.delete(NAMESPACE + "setReviewDelete", itemReviewDTO);
 	}
 

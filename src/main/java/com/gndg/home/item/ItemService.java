@@ -1,6 +1,5 @@
 package com.gndg.home.item;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -22,15 +21,18 @@ public class ItemService {
 	@Autowired
 	private FileManager fileManager;
 
-	// 최신글
-	public List<ItemDTO> getNewItemList(ItemDTO itemDTO) throws Exception {
-		return itemDAO.getNewItemList(itemDTO);
+	
+	
+	//최신글
+	public List<ItemDTO> getNewItemList(ItemDTO itemDTO)throws Exception{
+	    return itemDAO.getNewItemList(itemDTO);
 	}
-
-	// 인기글
-	public List<ItemDTO> getPopularItemList(ItemDTO itemDTO, Pager pager) throws Exception {
-		return itemDAO.getPopularItemList(itemDTO);
-	}
+	
+	//인기글
+   public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
+        return itemDAO.getPopularItemList(itemDTO);
+    }
+	
 
 
 	/* 상품 총 개수 */
@@ -82,6 +84,7 @@ public class ItemService {
 
 	public List<ItemDTO> getList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Long totalCount = itemDAO.getListCount();
+
 		pager.setPerPage(12L);
 		pager.getNum(totalCount);
 		pager.getRowNum();
@@ -189,6 +192,7 @@ public class ItemService {
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return itemDAO.setReviewDelete(itemReviewDTO);
 	}
+
 
 	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);

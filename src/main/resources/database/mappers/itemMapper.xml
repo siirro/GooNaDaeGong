@@ -4,86 +4,89 @@
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gndg.home.item.ItemDAO">
-   
-   <!-- 상품 총 개수 -->
-   <select id="getTotal" parameterType="ItemDTO" resultType="Long">
-      SELECT COUNT(*) as cnt 
-      FROM ITEM
-      WHERE cate_num = #{cate_num}
-   </select>
-   
 
    <!-- 카테고리 불러오기 -->
-   
-   <!-- 최신글 -->
-   <select id="getNewItemList" parameterType="ItemDTO" resultMap="getNewItemListResult">
-   SELECT * 
-      FROM 
-          (SELECT ROWNUM RN, M.*
-          FROM
-              (SELECT I.ITEM_NUM,I.ITEM_TITLE,I.ITEM_PRICE,ITEM_DATE,F.FILENAME
-              FROM ITEM I
-                  LEFT JOIN 
-                  ITEMFILE F
-                  ON I.ITEM_NUM = F.ITEM_NUM
-              ORDER BY ITEM_DATE DESC) M)
-      WHERE RN BETWEEN 1 AND 24
+    <select id="getCategory" resultType="Category">
+      SELECT * FROM CATEGORY
+       ORDER BY CATE_NUM ASC
    </select>
-   <resultMap type="ItemDTO" id="getNewItemListResult">
-      <id column="ITEM_NUM" property="item_num"/>
-      <result column="ITEM_TITLE" property="item_title"/>
-      <result column="ITEM_PRICE" property="item_price"/>
-      <result column="ITEM_DATE" property="item_date"/>
-         <collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
-            <id column="FILENUM" property="fileNum"/>
-            <result column="ITEM_NUM" property="item_num"/>
-            <result column="FILENAME" property="fileName"/>
-         </collection>
-   </resultMap>
-   
-   <!-- 인기글 -->
-   <select id="getPopularItemList" parameterType="ItemDTO" resultMap="getPopularItemListResult">
-    SELECT * 
-    FROM
-       (SELECT ROWNUM RN,M.* 
-       FROM
-           (SELECT  NVL(K.C,0) COUNT,I.*,F.FILENAME
-                       FROM ITEM I
-                       LEFT JOIN
-                       ITEMFILE F
-                       ON I.ITEM_NUM = F.ITEM_NUM
-                       LEFT JOIN
-                       (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-                       FROM ITEMLIKE
-                       GROUP BY(ITEM_NUM)) K
-                       ON I.ITEM_NUM = K.ITEM_NUM
-                       ORDER BY COUNT DESC) M)           
-    WHERE RN BETWEEN 1 AND 24 AND COUNT >0
-   </select>
-   <resultMap type="ItemDTO" id="getPopularItemListResult">
-      <id column="ITEM_NUM" property="item_num"/>
-      <result column="ITEM_TITLE" property="item_title"/>
-      <result column="ITEM_PRICE" property="item_price"/>
-         <collection property="itemLikeDTOs" javaType="List" ofType="ItemLikeDTO">
-            <id column="LIKE_NUM" property="like_num"/>
-            <result column="ITEM_NUM" property="item_num"/>
-         </collection>
-         <collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
-            <id column="FILENUM" property="fileNum"/>
-            <result column="ITEM_NUM" property="item_num"/>
-            <result column="FILENAME" property="fileName"/>      
-         </collection>
-   </resultMap>
-   
-   <!-- 인기글 총 갯수 -->
-   <select id="getPopularItemCount" resultType="Long">
-   SELECT COUNT(*)
-   FROM
-       (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-       FROM ITEMLIKE
-       GROUP BY(ITEM_NUM)
-       ORDER BY C DESC)             
-   </select>
+  
+	<!-- 상품 총 개수 -->
+	<select id="getTotal" parameterType="ItemDTO" resultType="Long">
+		SELECT COUNT(*) as cnt 
+		FROM ITEM
+		WHERE cate_num = #{cate_num}
+	</select>
+	
+	<!-- 최신글 -->
+	<select id="getNewItemList" parameterType="ItemDTO" resultMap="getNewItemListResult">
+	SELECT * 
+		FROM 
+		    (SELECT ROWNUM RN, M.*
+		    FROM
+		        (SELECT I.ITEM_NUM,I.ITEM_TITLE,I.ITEM_PRICE,ITEM_DATE,F.FILENAME
+		        FROM ITEM I
+		            LEFT JOIN 
+		            ITEMFILE F
+		            ON I.ITEM_NUM = F.ITEM_NUM
+		        ORDER BY ITEM_DATE DESC) M)
+		WHERE RN BETWEEN 1 AND 24
+	</select>
+	<resultMap type="ItemDTO" id="getNewItemListResult">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_TITLE" property="item_title"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+		<result column="ITEM_DATE" property="item_date"/>
+			<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="ITEM_NUM" property="item_num"/>
+				<result column="FILENAME" property="fileName"/>
+			</collection>
+	</resultMap>
+	
+	<!-- 인기글 -->
+	<select id="getPopularItemList" parameterType="ItemDTO" resultMap="getPopularItemListResult">
+	 SELECT * 
+	 FROM
+	    (SELECT ROWNUM RN,M.* 
+	    FROM
+	        (SELECT  NVL(K.C,0) COUNT,I.*,F.FILENAME
+	                    FROM ITEM I
+	                    LEFT JOIN
+	                    ITEMFILE F
+	                    ON I.ITEM_NUM = F.ITEM_NUM
+	                    LEFT JOIN
+	                    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
+	                    FROM ITEMLIKE
+	                    GROUP BY(ITEM_NUM)) K
+	                    ON I.ITEM_NUM = K.ITEM_NUM
+	                    ORDER BY COUNT DESC) M)           
+	 WHERE RN BETWEEN 1 AND 24 AND COUNT >0
+	</select>
+	<resultMap type="ItemDTO" id="getPopularItemListResult">
+		<id column="ITEM_NUM" property="item_num"/>
+		<result column="ITEM_TITLE" property="item_title"/>
+		<result column="ITEM_PRICE" property="item_price"/>
+			<collection property="itemLikeDTOs" javaType="List" ofType="ItemLikeDTO">
+				<id column="LIKE_NUM" property="like_num"/>
+				<result column="ITEM_NUM" property="item_num"/>
+			</collection>
+			<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="ITEM_NUM" property="item_num"/>
+				<result column="FILENAME" property="fileName"/>		
+			</collection>
+	</resultMap>
+	
+	<!-- 인기글 총 갯수 -->
+	<select id="getPopularItemCount" resultType="Long">
+	SELECT COUNT(*)
+	FROM
+	    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
+	    FROM ITEMLIKE
+	    GROUP BY(ITEM_NUM)
+	    ORDER BY C DESC)             
+	</select>
 
    <!-- 통합 검색-->
    <select id="getSearch"  parameterType="String" resultMap="getDetailResult">
@@ -103,11 +106,6 @@
       FROM ITEMFILE
       WHERE ITEM_NUM = #{item_num}
       ORDER BY ITEM_NUM DESC
-   </select>
-   
-   <select id="getCategory" resultType="Category">
-      SELECT * FROM CATEGORY
-       ORDER BY CATE_NUM ASC
    </select>
    
    <!-- 상품 등록 -->
@@ -160,6 +158,7 @@
    </resultMap>
    
 
+
    <!-- 상품 상세페이지 조회 -->
    <select id="getListCount" resultType="Long">
    SELECT COUNT(ITEM_NUM)
@@ -170,7 +169,7 @@
       ORDER BY ITEM_NUM DESC, FILENUM ASC
    </select>
    
-   
+   <!--상품디테일-->
    <select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">
       SELECT * 
       FROM ITEM I
@@ -224,6 +223,22 @@
       DELETE ITEMFILE WHERE FILENUM=#{fileNum}
    </delete>
    
+
+	<!-- 상품 리스트 개수 -->
+	<select id="getListCount" parameterType="ItemDTO" resultType="Long">
+	SELECT COUNT(ITEM_NUM)
+		FROM ITEM I
+		LEFT JOIN 
+		ITEMFILE F
+        USING (ITEM_NUM)
+        JOIN 
+	        CATEGORY C
+	        USING(CATE_NUM)
+	           <if test="cate_num !=  null">
+	           WHERE CATE_NUM  =  #{cate_num}
+	          </if>
+		ORDER BY ITEM_NUM DESC, FILENUM ASC
+	</select>
 
    <!-- 좋아요 등록 -->
    <insert id="setLikeAdd" parameterType="ItemLikeDTO">

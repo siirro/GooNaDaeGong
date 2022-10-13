@@ -3,8 +3,6 @@ package com.gndg.home.item;
 import java.sql.Date;
 import java.util.List;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gndg.home.util.Category;
 
 
@@ -25,8 +23,11 @@ public class ItemDTO {
 	private Date item_date;
 	private List<ItemFileDTO> itemFileDTOs;
 	private List<ItemLikeDTO> itemLikeDTOs;
+
+
 	private String FileName;
 	private Category category;
+
 	
 	
 	public String getFileName() {

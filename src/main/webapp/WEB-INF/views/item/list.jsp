@@ -91,13 +91,13 @@
 
 									<!-- 페이징 -->
 									<div class="board_pg_area">
-										<a href="./list?page=${pager.startNum-1}" class="cc ${pager.pre?'':'disabledLink'} layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
+										<a href="./list?cate_num=${cate_num}&page=${pager.startNum-1}" class="cc ${pager.pre?'':'disabledLink'} layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
 										<!-- <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
 										
 										<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-											<a href="./list?page=${i}" class="layout-pagination-button layout-pagination-number">${i}</a>
+											<a href="./list?cate_num=${cate_num}&page=${i}" class="pageActive layout-pagination-button layout-pagination-number" id="${i}">${i}</a>
 										</c:forEach>
-										<a href="./list?page=${pager.lastNum+1}" class="cc ${pager.next?'':'disabledLink'} layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+										<a href="./list?cate_num=${cate_num}&page=${pager.lastNum+1}" class="cc ${pager.next?'':'disabledLink'} layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
 									</div>
 									<!-- 페이징 -->
 								</div>
@@ -118,14 +118,19 @@
 						btnbtn[i].removeAttribute('href');
 					}
 
-						// const btn = document.getElementsByClassName("cc");
-						// for(let i =0;i<btn.length;i++) {
-						// 	btn[i].onclick = function(){
-						// 		console.log("눌러보셈");
-						// 		// 버튼을 클릭하면, a태그의 href 속성을 제거
-						// 		document.getElementsByClassName("disableLink").removeAttribute('href');
-						// 	}
-						// }
+
+					let k = '${param.page}';
+					const pageActive = document.getElementsByClassName('pageActive');
+
+
+					console.log(k);
+					console.log(pageActive[9].id);
+					for(let i=0;i<pageActive.length;i++) {
+						if(k==pageActive[i].id) {
+							pageActive[i].style.color="#ACACD5";
+							break;
+						}
+					}
 					
 
 				</script>
