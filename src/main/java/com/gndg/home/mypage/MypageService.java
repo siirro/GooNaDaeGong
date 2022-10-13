@@ -16,6 +16,7 @@ import com.gndg.home.item.ItemReviewDTO;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.member.MemberFileDTO;
 import com.gndg.home.order.OrderDTO;
+import com.gndg.home.orders.OrdersDTO;
 import com.gndg.home.qna.QnaDTO;
 import com.gndg.home.util.MypagePager;
 
@@ -37,8 +38,8 @@ public class MypageService {
 	}
 	
 	//내 주문 상세페이지
-	public OrderDTO getMyOrderDetail(OrderDTO orderDTO)throws Exception{
-	    return mypageDAO.getMyOrderDetail(orderDTO);
+	public OrdersDTO getMyOrderDetail(OrdersDTO ordersDTO)throws Exception{
+	    return mypageDAO.getMyOrderDetail(ordersDTO);
 	}
 	
 	//내 판매내역

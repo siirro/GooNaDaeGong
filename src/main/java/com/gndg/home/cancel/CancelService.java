@@ -14,6 +14,10 @@ public class CancelService {
 	@Autowired
 	private CancelDAO cancelDAO;
 	
+	public Long ableCS(OrdersDTO ordersDTO)throws Exception{
+		return cancelDAO.ableCS(ordersDTO);
+	}
+	
 	public int addRefund(RefundDTO refundDTO)throws Exception{
 		return cancelDAO.addRefund(refundDTO);
 	}

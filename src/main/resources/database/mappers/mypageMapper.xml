@@ -161,7 +161,7 @@ WHERE USER_ID = #{user_id}
 
 
 <!-- 주문 상세페이지 -->
-<select id="getMyOrderDetail" parameterType="OrderDTO" resultMap="getMyOrderDetailResult">
+<select id="getMyOrderDetail" parameterType="OrdersDTO" resultMap="getMyOrderDetailResult">
 SELECT * 
 FROM ORDERS O
     JOIN 
@@ -207,7 +207,7 @@ WHERE O.MERCHANT_UID= #{merchant_uid} AND O.USER_ID = #{user_id}
 			<result column="ITEM_TITLE" property="item_title"/>
 			<result column="ITEM_PRICE" property="item_price"/>
 		</collection>
-		<collection property="ItemFileDTOs" javaType="List" ofType="ItemFileDTO"> 
+		<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO"> 
 			<id column="FILENUM" property="fileNum"/>
 			<result column="ITEM_NUM" property="item_num"/>
 			<result column="FILENAME" property="fileName"/>

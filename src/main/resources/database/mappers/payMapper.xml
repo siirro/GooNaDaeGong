@@ -9,28 +9,47 @@
 UPDATE PAY SET PAY_RESULT = 3 WHERE MERCHANT_UID = #{merchant_uid}
 </update>
 
-<select id="getList" parameterType="OrderPager" resultType="PayDTO">
+<update id="cancelPayment2" parameterType="PayDTO">
+ UPDATE ORDERS SET ORD_PAYMENT = 3 WHERE MERCHANT_UID = #{merchant_uid}
+</update>
+
+<select id="getList" parameterType="OrderPager" resultType="PayDTO" resultMap="getListResult">
 SELECT * 
 	FROM
 	(SELECT ROWNUM R, P.*
 	FROM
-	(SELECT * FROM PAY P
+	(SELECT * 
+	FROM PAY PP
+	JOIN ORDERS OO
+	ON PP.MERCHANT_UID = OO.MERCHANT_UID
 	WHERE 
 		<choose>
-			<when test="kind == 'merchant_uid'">MERCHANT_UID</when>
-			<when test="kind == 'imp_uid'">IMP_UID</when>
-			<otherwise>PAY_RESULT</otherwise>
+			<when test="kind == 'merchant_uid'">PP.MERCHANT_UID</when>
+			<when test="kind == 'imp_uid'">PP.IMP_UID</when>
+			<otherwise>PP.PAY_RESULT</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%' 
 	<if  test= "searchdate1 != null">
-		AND PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
+		AND PP.PAY_DATE BETWEEN #{searchdate1} AND TO_CHAR(#{searchdate2} + INTERVAL '1' DAY, 'YYYY-MM-DD')
 	</if>
 	<if  test= "payresultSearch != null">
-		AND PAY_RESULT = #{payresultSearch}
+		AND PP.PAY_RESULT = #{payresultSearch}
 	</if>	
-	ORDER BY PAY_DATE DESC) P)
+	ORDER BY PP.PAY_DATE DESC) P)
 	WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
+
+<resultMap type="PayDTO" id="getListResult">
+	<id column="IMP_UID" property="imp_uid"/>
+	<result column="MERCHANT_UID" property="merchant_uid"/>
+	<result column="PAY_TOTAL" property="pay_total"/>
+	<result column="PAY_RESULT" property="pay_result"/>
+	<result column="PAY_DATE" property="pay_date"/>
+	<association property="ordersDTO" javaType="OrdersDTO">
+		<id column="MERCHANT_UID" property="merchant_uid"/>
+		<result column="ORD_STATUS" property="ord_status"/>
+	</association>
+</resultMap>
 
 <select id="getListCount" parameterType="OrderPager" resultType="Long">
 SELECT COUNT(IMP_UID) FROM PAY

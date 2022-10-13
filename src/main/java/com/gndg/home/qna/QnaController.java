@@ -42,7 +42,7 @@ public class QnaController {
 	
 	@PostMapping("inquiryUpdate")
 	public ModelAndView updateQna(QnaDTO qnaDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
-		int result = qnaService.updateQna(qnaDTO);
+		int result = qnaService.updateQna(qnaDTO, multipartFiles, session.getServletContext());
 		
 		ModelAndView mv = new ModelAndView();
 		String message = "문의 수정 실패";

@@ -2,6 +2,7 @@ package com.gndg.home;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gndg.home.orders.OrdersService;
+import com.gndg.home.qna.QnaDTO;
+import com.gndg.home.qna.QnaService;
+import com.gndg.home.util.Pager;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +27,8 @@ public class HomeController {
 	
 	@Autowired
 	private OrdersService ordersService;
+	@Autowired
+	private QnaService qnaService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -46,7 +52,7 @@ public class HomeController {
 	
 	//홈컨트롤러 잠깐 임시로 YR
 	@RequestMapping(value = "/manager", method=RequestMethod.GET)
-	public ModelAndView managerIndex2()throws Exception{
+	public ModelAndView managerIndex2(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		Long orderCount = ordersService.countNewOrder();
 		Long cancelCount = ordersService.countNewCancel();
@@ -59,6 +65,12 @@ public class HomeController {
 		mv.addObject("refund", refundCount);
 		mv.addObject("qna", qnaCount);
 		mv.setViewName("manager/index");
+		String qna_status = "대기";		
+		List<QnaDTO> ar = qnaService.getList(pager, qna_status);
+		mv.addObject("qnalist", ar);
+		
+		mv.addObject("pager", pager);
+		
 		return mv;
 	}
 	

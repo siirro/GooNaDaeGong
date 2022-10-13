@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gndg.home.member.MemberDTO;
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Controller
 @RequestMapping("/item/*")
@@ -233,10 +234,11 @@ public class ItemController {
 	//후기 조회
 	@GetMapping("reviewList")
 	@ResponseBody
-	public ModelAndView getReview(ItemReviewDTO itemReviewDTO) throws Exception {
+	public ModelAndView getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ItemReviewDTO> ar = itemService.getReview(itemReviewDTO);
+		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		mv.setViewName("item/review");
 		return mv;
 	}

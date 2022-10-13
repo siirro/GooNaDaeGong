@@ -59,18 +59,18 @@
                 <div class="css-1bsokvi e1jm6dy15">
                     <h3 class="css-yi2ox5 e1jm6dy14">주문번호 ${detail.merchant_uid}</h3>
                 </div>
-                <c:forEach items="${detail.gnItemDTOs}" var="item"  varStatus="i">
+                <c:forEach items="${detail.itemDTOs}" var="item"  varStatus="i">
                 <div class="css-mrxscg ecmuszp10">
                     <img src="../resources/upload/gnItem/${detail.itemFileDTOs[0].fileName}" alt="" class="css-1ixzt3f ecmuszp9">
                     <div class="css-1t5xcqm ecmuszp8">
-                        <a href="/goods/5095223" class="css-15vlnp ecmuszp7">상품이름${item.item_name}</a>
+                        <a href="/goods/5095223" class="css-15vlnp ecmuszp7">상품이름${item.item_title}</a>
                         <div class="css-s5xdrg ecmuszp5">
                             <span data-testid="goods-price" class="css-1ngn8p4 ecmuszp4">가격
                             <fmt:formatNumber value="${item.item_price}" pattern="###,###"/>원
                             
                              </span>
 								<span class="css-454d5e e149z641"></span>
-                            <span class="css-1ekh7sh ecmuszp2">수량 ${detail.goodsOrderDTOs[i.index].go_amount}개</span>
+                            <span class="css-1ekh7sh ecmuszp2">수량 ${detail.goodsOrdersDTOs[i.index].go_amount}개</span>
                         </div>
                     </div>
                     <div class="css-ojh52s ecmuszp0">

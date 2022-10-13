@@ -1,12 +1,15 @@
 package com.gndg.home.item;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gndg.home.util.Category;
+import com.gndg.home.util.Pager;
 
 @Repository
 public class ItemDAO {
@@ -42,8 +45,12 @@ public class ItemDAO {
 		return sqlSession.insert(NAMESPACE+"setAddFile", itemFileDTO);
 	}
 	
-	public List<ItemDTO> getList(ItemDTO itemDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList",itemDTO);
+	public List<ItemDTO> getList(ItemDTO itemDTO,Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
+	}
+	
+	public Long getListCount()throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", NAMESPACE);
 	}
 	
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {
@@ -90,8 +97,13 @@ public class ItemDAO {
 		return sqlSession.insert(NAMESPACE+"setReviewAdd", itemReviewDTO);
 	}
 	
-	public List<ItemReviewDTO> getReview(ItemReviewDTO itemReviewDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getReview", itemReviewDTO);
+//	페이징 작업중 221012
+	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pager.getStartRow());
+		map.put("lastRow", pager.getLastRow());
+		map.put("item_num", itemReviewDTO.getItem_num());
+		return sqlSession.selectList(NAMESPACE+"getReview", map);
 	}
 		
 	public Long getReviewCount(ItemReviewDTO itemReviewDTO) throws Exception {

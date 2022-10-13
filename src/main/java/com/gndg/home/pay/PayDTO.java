@@ -2,6 +2,8 @@ package com.gndg.home.pay;
 
 import java.sql.Date;
 
+import com.gndg.home.orders.OrdersDTO;
+
 public class PayDTO {
 	
 	private String imp_uid;
@@ -10,6 +12,16 @@ public class PayDTO {
 	private Long pay_result;
 	private Date pay_date;
 	
+	private OrdersDTO ordersDTO;
+	
+	
+	
+	public OrdersDTO getOrdersDTO() {
+		return ordersDTO;
+	}
+	public void setOrdersDTO(OrdersDTO ordersDTO) {
+		this.ordersDTO = ordersDTO;
+	}
 	public String getImp_uid() {
 		return imp_uid;
 	}

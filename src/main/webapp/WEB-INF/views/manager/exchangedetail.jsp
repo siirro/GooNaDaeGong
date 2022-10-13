@@ -152,7 +152,8 @@
                                                 <th class="col-1">주문총액</th>
                                                 <th class="col-1">배송비</th>
                                                 <th class="col-1">총결제액</th>
-                                                <th class="col-2">주문상태</th>
+                                                <th class="col-1">결제상태</th>
+                                                <th class="col-1">주문상태</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size: 12px;">
@@ -160,9 +161,25 @@
                                                 <td><fmt:formatDate value="${ordersDTO.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${ordersDTO.merchant_uid}</td>
                                                 <td>${ordersDTO.user_id}</td>
-                                                <td>${ordersDTO.ord_total1}원</td>
-                                                <td>${ordersDTO.ord_delfree}원</td>
-                                                <td>${ordersDTO.ord_total2}원</td>
+                                                <td><fmt:formatNumber value="${ordersDTO.ord_total1}" pattern="#,###" />원</td>
+                                                <td><fmt:formatNumber value="${ordersDTO.ord_delfree}" pattern="#,###" />원</td>
+                                                <td><fmt:formatNumber value="${ordersDTO.ord_total2}" pattern="#,###" />원</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${ordersDTO.ord_payment eq 1}">
+                                                            결제대기
+                                                        </c:when>
+                                                        <c:when test="${ordersDTO.ord_payment eq 2}">
+                                                            결제완료
+                                                        </c:when>
+                                                        <c:when test="${ordersDTO.ord_payment eq 3}">
+                                                            결제취소
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            오류
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
                                                 <td>${ordersDTO.ord_status}</td>
                                             </tr>
                                         </tbody>
@@ -188,13 +205,13 @@
                                             <c:forEach items="${ordersDTO.goodsOrdersDTOs}" var="nl">
                                                 <tr>
                                                     <td>
-                                                        <img src="../../resources/upload/gnItem/${nl.gnItemDTO.gnItemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
+                                                        <img src="../../resources/upload/item/${nl.itemDTO.itemFileDTOs[0].fileName}" alt="" width="50px" style="cursor: pointer;">
 
                                                     </td>
-                                                    <td>${nl.gnItemDTO.item_title}</td>
-                                                    <td>${nl.gnItemDTO.item_price}원</td>
+                                                    <td>${nl.itemDTO.item_title}</td>
+                                                    <td><fmt:formatNumber value="${nl.itemDTO.item_price}" pattern="#,###" />원</td>
                                                     <td>${nl.go_amount}개</td>
-                                                    <td>${nl.gnItemDTO.item_price*nl.go_amount}원</td>
+                                                    <td><fmt:formatNumber value="${nl.itemDTO.item_price*nl.go_amount}" pattern="#,###" />원</td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
