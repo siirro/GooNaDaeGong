@@ -24,6 +24,7 @@ public class Pager {
 //		this.perBlock=10L;
 //	}
 	
+	
 	// 1. 매퍼에 들어가는 startNum, lastNum을 자동으로 계산하는 getRowNum 메서드
 	public void getRowNum()throws Exception{
 		this.startRow = (this.getPage()-1)*this.getPerPage()+1;
@@ -62,10 +63,14 @@ public class Pager {
 		if(curBlock==totalBlock) {
 			this.lastNum=totalPage;
 		}
+		System.out.println("토탈카운트는?"+totalCount);
+		System.out.println("토탈페이지는?"+totalPage);
+		System.out.println("토탈블럭은?"+totalBlock);
 		
 		//?? 검색결과가 0개면 라스트넘도 0이 되는 식 (제가 임의로 추가한거라 에러뜨면 사용x)
 		if(totalBlock==0) {
 			//this.lastNum=totalPage;
+			
 			this.lastNum=0L;
 		}
 		

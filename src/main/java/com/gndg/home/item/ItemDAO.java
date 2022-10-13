@@ -71,8 +71,8 @@ public class ItemDAO {
 	      return sqlSession.selectList(NAMESPACE+"getList", map);
 	   }
 	
-	public Long getListCount()throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getListCount", NAMESPACE);
+	public Long getListCount(ItemDTO itemDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", itemDTO);
 	}
 	
 	//상품 상세페이지 조회
