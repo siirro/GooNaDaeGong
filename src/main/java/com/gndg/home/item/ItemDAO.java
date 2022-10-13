@@ -15,6 +15,21 @@ public class ItemDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.gndg.home.item.ItemDAO.";
 	
+	/* 상품 총 개수 */
+	public Long getTotal(ItemDTO itemDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotal", itemDTO);
+	}
+	
+	/* 통합 검색 */
+	public List<ItemDTO> getSearch(String search) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getSearch", search);
+	}
+	
+	/* 최근 본 상품 */
+	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getProduct", item_num);
+	}
+	
 	public List<Category> getCategory() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCategory");
 	}
@@ -27,8 +42,8 @@ public class ItemDAO {
 		return sqlSession.insert(NAMESPACE+"setAddFile", itemFileDTO);
 	}
 	
-	public List<ItemDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<ItemDTO> getList(ItemDTO itemDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList",itemDTO);
 	}
 	
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {
