@@ -20,6 +20,27 @@ public class ItemService {
 	@Autowired
 	private FileManager fileManager;
 	
+	/* 상품 총 개수 */
+	public Long getTotal(ItemDTO itemDTO) throws Exception {
+		System.out.println("Service Total");
+		
+		return itemDAO.getTotal(itemDTO);
+	}
+	
+	/* 통합 검색 */
+	public List<ItemDTO> getSearch(String search) throws Exception {
+		System.out.println("Service Search");
+		
+		return itemDAO.getSearch(search); 
+	}
+	
+	/* 최근 본 상품 */
+	public List<ItemFileDTO> getProduct(Long item_num) throws Exception {
+		System.out.println("Service Product");
+		
+		return itemDAO.getProduct(item_num);
+	}
+	
 	
 	public List<Category> getCategory() throws Exception {
 		return itemDAO.getCategory();
@@ -44,8 +65,8 @@ public class ItemService {
 		return result;
 	}
 	
-	public List<ItemDTO> getList() throws Exception {
-		return itemDAO.getList();
+	public List<ItemDTO> getList(ItemDTO itemDTO) throws Exception {
+		return itemDAO.getList(itemDTO);
 	}
 	
 	public ItemDTO getDetail(ItemDTO itemDTO) throws Exception {

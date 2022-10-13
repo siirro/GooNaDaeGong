@@ -17,7 +17,7 @@
 	<section>
 		<form action="add" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="user_id" value="user">
-			<%-- ${sessionScope.member.user_id } --%>
+			${sessionScope.member.user_id } 
 
 			<div id="category">
 				<select id="category1">
