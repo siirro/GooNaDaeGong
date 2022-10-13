@@ -98,7 +98,7 @@ public class ItemController {
 			message = "등록되었습니다.";
 		}
 		mv.addObject("message", message);
-		mv.addObject("url", "list");
+		mv.addObject("url", "list?cate_num="+itemDTO.getCate_num());
 		mv.setViewName("common/result");
 		return mv;
 	}

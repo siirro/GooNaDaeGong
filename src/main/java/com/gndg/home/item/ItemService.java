@@ -83,7 +83,7 @@ public class ItemService {
 	}
 
 	public List<ItemDTO> getList(ItemDTO itemDTO, Pager pager) throws Exception {
-		Long totalCount = itemDAO.getListCount();
+		Long totalCount = itemDAO.getListCount(itemDTO);
 
 		pager.setPerPage(12L);
 		pager.getNum(totalCount);
