@@ -71,6 +71,7 @@
                                             <th class="css-1soyerh e3tf63e4">답변상태</th>
                                         </tr>
                                     </thead>
+                                    <input type="hidden" id="user_id" name="user_id" value="${qna[0].user_id}">
                                     <c:forEach items="${qna}" var="qna">
                                     <tbody class="css-0 e3tf63e3">
                                         <tr class="css-shpvex e1vd1n2i4">
@@ -107,9 +108,9 @@
                                                         </c:forEach>
                                                     <c:if test="${qna.qna_status == '대기'}">
                                                     <div class="css-c0oq5k eula2qn2">
-                                                        <button type="button" class="css-qv4hdm eula2qn1" onClick="location.href='../qna/inquiryUpdate?qna_num=${qna.qna_num}'">수정</button>
+                                                        <button type="button" class="css-qv4hdm" id="qnaUp" onClick="location.href='../qna/inquiryUpdate?qna_num=${qna.qna_num}'">수정</button>
                                                         <div class="css-ord49b eula2qn0"></div>
-                                                        <button type="button" class="css-qv4hdm eula2qn1">삭제</button>
+                                                        <button type="button" class="css-qv4hdm qnaDel" id="qnaDel" data-qna-num ="${qna.qna_num}">삭제</button>
                                                     </div>
                                                     </c:if>
                                                     <!--답변구간-->
@@ -149,8 +150,11 @@
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
-                                    
-                                    
+                                    <div style = "display:none">
+                                        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                            <li class="page-item"><a class="page-link" href="./myQNA?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                        </c:forEach>
+                                    </div>
                                     <c:choose>
                                         <c:when test="${pager.next}">
                                             <button type="button" class="css-1jwilit e1pk9060" onClick="location.href='./myQNA?page=${pager.lastNum+1}'">

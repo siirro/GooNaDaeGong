@@ -61,9 +61,19 @@ public class MypageDAO {
 	    return sqlSession.selectOne(NAMESPACE+"getMyQnaCount", mypagePager);
 	}
 	
+   //내 문의 삭제
+   public int setMyQnaDelete(QnaDTO qnaDTO)throws Exception{
+       return sqlSession.delete(NAMESPACE+"setMyQnaDelete", qnaDTO);
+   }
+	
 	//내 후기 내역
 	public List<ItemReviewDTO> getMyReview(MypagePager mypagePager)throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getMyReview", mypagePager);
+	}
+	
+	//내 후기 삭제
+	public int setMyReviewDelete(ItemReviewDTO itemReviewDTO)throws Exception{
+	    return sqlSession.delete(NAMESPACE+"setMyReviewDelete", itemReviewDTO);
 	}
 	
 	//내 후기 글 갯수
