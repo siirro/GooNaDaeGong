@@ -144,7 +144,7 @@ user_phone.addEventListener("blur",function(){
 user_post.addEventListener("blur",function(){
     console.log("님 우편번호 확인이요");
     postCheck =false;
-    if(user_post.value == 5){
+    if(user_post.value > 4){
         post_check.innerHTML="";
         postCheck = true;
     }else{

@@ -157,7 +157,6 @@
       </collection>
    </resultMap>
    
-   
    <!--상품디테일-->
    <select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">
       SELECT * 
