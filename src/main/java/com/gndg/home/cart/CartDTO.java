@@ -51,9 +51,9 @@ public class CartDTO{
 	}
 	public Long getTotalPrice() {
 		if(this.totalPrice==null) {
-	         this.totalPrice=0L;
-	      }
-	      return totalPrice;
+			this.totalPrice=0L;
+		}
+		return totalPrice;
 	}
 	public void setTotalPrice(Long totalPrice) {
 		this.totalPrice = totalPrice;

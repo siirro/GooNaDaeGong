@@ -123,23 +123,39 @@
    </insert> 
    
 
-   <select id="getList" parameterType="Pager" resultMap="getListResult">
-      SELECT * FROM
-         (SELECT ROWNUM R, I.*
+   <select id="getList" parameterType="Map" resultMap="getListResult">
+       select * from
+      (SELECT ROWNUM R, II.*
          FROM
-         (SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME
+         (SELECT I.ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME, F.FILENUM
          FROM ITEM I
-         LEFT JOIN 
+         LEFT JOIN
          ITEMFILE F
-          USING (ITEM_NUM)
-          JOIN 
+          ON I.ITEM_NUM = F.ITEM_NUM
+          JOIN
            CATEGORY C
-           USING(CATE_NUM)
-              <if test="cate_num !=  null">
-              WHERE CATE_NUM  =  #{cate_num}
-             </if>
-         ORDER BY ITEM_NUM DESC, FILENUM ASC) I)
-      WHERE R BETWEEN #{startRow} AND #{lastRow}
+           ON I.CATE_NUM = C.CATE_NUM
+              WHERE C.CATE_NUM  =  #{cate_num}
+              AND FILENUM IN
+              (
+                    SELECT MIN(FILENUM)
+                    FROM
+                     (SELECT ROWNUM R, II.*
+                     FROM
+                     (SELECT ITEM_NUM, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_DATE, F.FILENAME, F.FILENUM
+                     FROM ITEM I
+                     LEFT JOIN
+                     ITEMFILE F
+                      USING (ITEM_NUM)
+                      JOIN
+                       CATEGORY C
+                       USING(CATE_NUM)
+                        WHERE CATE_NUM  =  1111
+                     ORDER BY ITEM_NUM DESC, FILENUM ASC) II)
+                    GROUP BY ITEM_NUM
+              )
+         ORDER BY ITEM_NUM DESC, FILENUM ASC) II)
+         WHERE R BETWEEN #{startRow} AND #{lastRow}
    </select>
    
    <resultMap type="ItemDTO" id="getListResult">
@@ -217,16 +233,13 @@
 	<select id="getListCount" parameterType="ItemDTO" resultType="Long">
 	SELECT COUNT(ITEM_NUM)
 		FROM ITEM I
-		LEFT JOIN 
-		ITEMFILE F
-        USING (ITEM_NUM)
         JOIN 
 	        CATEGORY C
-	        USING(CATE_NUM)
+	        ON I.CATE_NUM = C.CATE_NUM
 	           <if test="cate_num !=  null">
-	           WHERE CATE_NUM  =  #{cate_num}
+	           WHERE C.CATE_NUM  =  #{cate_num}
 	          </if>
-		ORDER BY ITEM_NUM DESC, FILENUM ASC
+		ORDER BY ITEM_NUM DESC
 	</select>
 
    <!-- 좋아요 등록 -->
