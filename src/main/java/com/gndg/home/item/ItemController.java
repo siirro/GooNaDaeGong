@@ -1,8 +1,10 @@
 package com.gndg.home.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -249,38 +251,29 @@ public class ItemController {
 	//후기 등록
 	@PostMapping("review")
 	@ResponseBody
-	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile [] multipartFile, HttpSession session) throws Exception {
-		return itemService.setReviewAdd(itemReviewDTO, multipartFile, session.getServletContext());
+	public int setReviewAdd(ItemReviewDTO itemReviewDTO, HttpSession session) throws Exception {
+		return itemService.setReviewAdd(itemReviewDTO, session.getServletContext());
 	}
 	
 	//후기 조회
 	@GetMapping("reviewList")
 	@ResponseBody
-	public ModelAndView getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public Map<String, Object> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("item/reviewList");
-		return mv;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", ar);
+		map.put("pager", pager);
+		return map;
 	}
 
 	//후기 수정
 	@PostMapping("reviewUpdate")
 	@ResponseBody
-	public String setReviewUpdate(ItemReviewDTO itemReviewDTO, MultipartFile[] files, HttpSession session) throws Exception {
-		int result = itemService.setReviewUpdate(itemReviewDTO, files, session.getServletContext());
+	public String setReviewUpdate(ItemReviewDTO itemReviewDTO, HttpSession session) throws Exception {
+		int result = itemService.setReviewUpdate(itemReviewDTO, session.getServletContext());
 		return "redirect:detail?item_num=" + itemReviewDTO.getItem_num();
 	}
 	
-
-	//후기 수정할때 이미지파일 삭제
-	@PostMapping("fileReviewDelete")
-	@ResponseBody
-	public int setReviewFileDelete(ItemReviewFileDTO itemReviewFileDTO, HttpSession session) throws Exception {
-		int result = itemService.setReviewFileDelete(itemReviewFileDTO, session.getServletContext());
-		return result;
-	}
 	
 	//상품 삭제
 	@PostMapping("reviewDelete")

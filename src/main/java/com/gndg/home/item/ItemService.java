@@ -167,24 +167,8 @@ public class ItemService {
 
 
 	// 후기 등록
-	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
-		int result = itemDAO.setReviewAdd(itemReviewDTO);
-		String realPath = "resources/upload/review";
-
-		for (MultipartFile multipartFile : files) {
-			if (multipartFile.isEmpty()) {
-				continue; // 비어있으면 다음꺼 실행
-			}
-			
-			//후기이미지파일 추가
-			String fileName = fileManager.saveFile(servletContext, realPath, multipartFile);
-			ItemReviewFileDTO itemReviewFileDTO = new ItemReviewFileDTO();
-			itemReviewFileDTO.setRv_num(itemReviewDTO.getRv_num());
-			itemReviewFileDTO.setFileName(fileName);
-			itemReviewFileDTO.setOriName(multipartFile.getOriginalFilename());
-			itemDAO.setReviewAddFile(itemReviewFileDTO);
-		}
-		return result;
+	public int setReviewAdd(ItemReviewDTO itemReviewDTO, ServletContext servletContext) throws Exception {
+		return itemDAO.setReviewAdd(itemReviewDTO);
 	}
 	
 	//후기 리스트
@@ -202,44 +186,15 @@ public class ItemService {
 	}
 
 	// 후기 수정
-	public int setReviewUpdate(ItemReviewDTO itemReviewDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
+	public int setReviewUpdate(ItemReviewDTO itemReviewDTO, ServletContext servletContext) throws Exception {
 		//수정할 후기글 먼저 조회
 		int result = itemDAO.setReviewUpdate(itemReviewDTO);
 		if(result<1) {
 			return result;
 		}
-		
-		String realPath = "resources/upload/review";
-		for (MultipartFile multipartFile : files) {
-			if (multipartFile.isEmpty()) {
-				continue; // 비어있으면 다음꺼 실행
-			}
-			
-			//후기이미지파일 추가
-			String fileName = fileManager.saveFile(servletContext, realPath, multipartFile);
-			ItemReviewFileDTO itemReviewFileDTO = new ItemReviewFileDTO();
-			itemReviewFileDTO.setRv_num(itemReviewDTO.getRv_num());
-			itemReviewFileDTO.setFileName(fileName);
-			itemReviewFileDTO.setOriName(multipartFile.getOriginalFilename());
-			itemDAO.setReviewAddFile(itemReviewFileDTO);
-		}
 		return result;
 	}
-	
-	// 후기 수정할때 이미지파일 삭제
-		public int setReviewFileDelete(ItemReviewFileDTO itemReviewFileDTO, ServletContext servletContext) throws Exception {
-			// 저장되어 있는 이미지파일을 먼저 불러옴
-			itemReviewFileDTO = itemDAO.getReviewtFileDetail(itemReviewFileDTO);
-			
-			// 이미지파일 삭제
-			int result = itemDAO.setReviewFileDelete(itemReviewFileDTO);
-			String path = "resources/upload/item";
-			if (0 < result) {
-				boolean check = fileManager.deleteFile(servletContext, path, itemReviewFileDTO);
-				System.out.println("fileDelete :" + check);
-			}
-			return result;
-		}
+
 
 	// 후기수
 	public Long getReviewCount(ItemReviewDTO itemReviewDTO) throws Exception {
