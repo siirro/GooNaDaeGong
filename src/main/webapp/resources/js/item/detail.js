@@ -15,45 +15,55 @@ const reviewContents = document.querySelector("#reviewContents");
 const reviewBtn = document.querySelector("#reviewBtn");
 const reviewCount = document.querySelector("#reviewCount");
 //장바구니
-const cartbtn = document.querySelector(".cartbtn");
-const count = document.getElementById("itemCount");
+// const cartbtn = document.querySelectorAll(".cartbtn");
+// const count = document.getElementById("itemCount");
 
-cartbtn.addEventListener("click",function(){
-    console.log("떼잉 장바구니년!");
-    let userID = user_id;
-    let cartCount = count.value;
-    let itemNum = item_num;
-    console.log("시발 아이디",userID);
-    console.log("cartCount==",cartCount);
-    console.log("시발 아이템 넘",itemNum);
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST","/item/AddCart");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("item_num="+itemNum+"&user_id="+userID+"&item_count="+cartCount)
-    xhttp.onreadystatechange=function(){
-        if(xhttp.readyState==4 && xhttp.status==200){
-            console.log(xhttp.responseText);
-            let result = xhttp.responseText.trim();
-            if(result ==1){
-                alert("장바구니에 추가되었습니다.");
-            }else{
-                alert("장바구니에 추가하지못했습니다.")
-            }
-        }
-    }
-});
+// cartbtn.addEventListener("click",function(){
+//     console.log("떼잉 장바구니년!");
+//     let userID = user_id;
+//     let cartCount = count.value;
+//     let itemNum = item_num;
+//     console.log("시발 아이디",userID);
+//     console.log("cartCount==",cartCount);
+//     console.log("시발 아이템 넘",itemNum);
+//     const xhttp = new XMLHttpRequest();
+//     xhttp.open("POST","/item/AddCart");
+//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhttp.send("item_num="+itemNum+"&user_id="+userID+"&item_count="+cartCount)
+//     xhttp.onreadystatechange=function(){
+//         if(xhttp.readyState==4 && xhttp.status==200){
+//             console.log(xhttp.responseText);
+//             let result = xhttp.responseText.trim();
+//             if(result ==1){
+//                 alert("장바구니에 추가되었습니다.");
+//             }else{
+//                 alert("장바구니에 추가하지못했습니다.")
+//             }
+//         }
+//     }
+// });
 
-//상품 리뷰 등록
+
+
+
+
+//----------------------------리뷰등록----------------------------
 reviewContents.addEventListener("click", function (event) {
+    let item_num = document.getElementById("item_num").value;
+    let user_id = document.getElementById("user_id").value;
+    let rv_title = document.getElementById("rv_title").value;
+    let rv_contents = document.getElementById("rv_contents").value;
+    let rv_star = document.getElementById("rv_star").value;
+    let fileName = document.getElementById("fileName").values;
+    
     //modal 등록 버튼 클릭
     if (event.target.classList[0] == "review") {
-        let item_num = document.getElementById("item_num").value;
-        let user_id = document.getElementById("user_id").value;
-        let rv_title = document.getElementById("rv_title").value
-        let rv_contents = document.getElementById("rv_contents").value
-        let rv_star = document.getElementById("rv_star").value
-        let rv_file = document.getElementById("rv_file").value
-        console.log(rv_file)
+        console.log(item_num.value)
+        console.log(user_id.value)
+        console.log(rv_title.value)
+        console.log(rv_contents.value)
+        console.log(rv_star.value)
+        console.log(fileName.value)
 
         //1. XMLHTTPRequest 생성
         const xhttp = new XMLHttpRequest();
@@ -61,9 +71,8 @@ reviewContents.addEventListener("click", function (event) {
         xhttp.open('POST', 'review');
         //3.Enctype(POST일 경우만 header 정보 요청)
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        console.log(rv_file)
         //4. 요청 전송(POST일 경우 파라미터 추가)
-        xhttp.send('item_num='+item_num+'&user_id='+user_id+'&rv_title='+rv_title+'&rv_contents='+rv_contents+'&rv_star='+rv_star+'&rv_file='+rv_file);
+        xhttp.send('item_num='+item_num+'&user_id='+user_id+'&rv_title='+rv_title+'&rv_contents='+rv_contents+'&rv_star='+rv_star+'&fileName='+fileName);
         //5. 응답 처리
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -81,17 +90,18 @@ reviewContents.addEventListener("click", function (event) {
 
 
 //----------------------------리뷰수 조회----------------------------
-//     const xhttp = new XMLHttpRequest();
-//     xhttp.open("GET", "reviewCount?item_num="+item_num);
-//     xhttp.send();
-//     xhttp.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             let count = xhttp.responseText;
-//             console.log(count);
-//             reviewCount.innerHTML = count;
-//         }
-//     }
-// }
+function getReviweCount() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "reviewCount?item_num="+item_num);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let count = xhttp.responseText;
+            console.log(count);
+            reviewCount.innerHTML = count;
+        }
+    }
+}
 
 
 
@@ -111,7 +121,7 @@ function getReview(page) {
 //----------------------------공유하기----------------------------
 function share(sns) {
     var thisUrl = document.URL;
-    var snsTitle = "2021 웹진 [봄]";
+    var snsTitle = "구디나라 대기공주";
     if (sns == 'facebook') {
         var url = "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(thisUrl);
         window.open(url, "", "width=486, height=286");

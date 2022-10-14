@@ -13,8 +13,8 @@ function setCount(c) { //update.jsp
 }
 
 button.addEventListener("click", function () {
-    if (count > 4) {
-        alert('최대 업로드파일 수를 초과 했습니다. 최대업로드 파일 갯수 : 5');
+    if (count > 7) {
+        alert('최대 업로드파일 수를 초과 했습니다. 최대업로드 파일 갯수 : 8');
         return;
     }
 
@@ -23,9 +23,9 @@ button.addEventListener("click", function () {
     //<label for="files0"><img id="files0img" style="width: 120px; height: 90px;" src="></label>
     //<button type="button" class="del" title="0">삭제</button>
     //</div>
-    let div = document.createElement("div");
-    div.setAttribute("id", "file" + idx);
-    fileAdd.append(div);
+    let span = document.createElement("span");
+    span.setAttribute("id", "file" + idx);
+    fileAdd.append(span);
 
     let input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -34,15 +34,15 @@ button.addEventListener("click", function () {
     input.setAttribute("accept", "image/*");
     input.setAttribute("onchange", "thumbnail(this);");
     input.setAttribute("style", "display:none;");
-    div.appendChild(input);
+    span.appendChild(input);
 
     let label = document.createElement("label");
     label.setAttribute("for", "files" + idx);
-    div.appendChild(label);
+    span.appendChild(label);
 
     let img = document.createElement("img");
     img.setAttribute("id", "files" + idx + "img");
-    img.setAttribute("style", "width: 120px; height: 90px;");
+    img.setAttribute("style", "width: 160px; height: 160px;");
     label.appendChild(img);
 
     let btn = document.createElement('button');
@@ -51,7 +51,7 @@ button.addEventListener("click", function () {
     btn.setAttribute("title", idx);
     let btntxt = document.createTextNode('삭제');
     btn.appendChild(btntxt);
-    div.appendChild(btn);
+    span.appendChild(btn);
 
     count++;
     idx++;

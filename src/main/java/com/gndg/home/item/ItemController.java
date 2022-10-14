@@ -98,7 +98,7 @@ public class ItemController {
 			message = "등록되었습니다.";
 		}
 		mv.addObject("message", message);
-		mv.addObject("url", "list");
+		mv.addObject("url", "list?cate_num="+itemDTO.getCate_num());
 		mv.setViewName("common/result");
 		return mv;
 	}
@@ -208,13 +208,6 @@ public class ItemController {
 		return "redirect:detail?item_num=" + itemDTO.getItem_num();
 	}
 
-	//상품 삭제
-	@GetMapping("delete")
-	public String setDelete(ItemDTO itemDTO) throws Exception {
-		int result = itemService.setDelete(itemDTO);
-		return "redirect:list";
-	}
-
 	//상품 수정할때 이미지파일 삭제
 	@PostMapping("fileDelete")
 	@ResponseBody
@@ -222,6 +215,14 @@ public class ItemController {
 		int result = itemService.setFileDelete(itemFileDTO, session.getServletContext());
 		return result;
 	}
+	
+	//상품 삭제
+	@GetMapping("delete")
+	public String setDelete(ItemDTO itemDTO) throws Exception {
+		int result = itemService.setDelete(itemDTO);
+		return "redirect:list";
+	}
+
 	
 	//좋아요 등록&취소
 	@PostMapping("like")
@@ -245,6 +246,12 @@ public class ItemController {
 		return count;
 	}
 	
+	//후기 등록
+	@PostMapping("review")
+	@ResponseBody
+	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile [] multipartFile, HttpSession session) throws Exception {
+		return itemService.setReviewAdd(itemReviewDTO, multipartFile, session.getServletContext());
+	}
 	
 	//후기 조회
 	@GetMapping("reviewList")
@@ -258,34 +265,30 @@ public class ItemController {
 		return mv;
 	}
 
-	//후기 등록
-	@PostMapping("review")
-	@ResponseBody
-	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
-		System.out.println("c1"+itemReviewDTO);
-		System.out.println("c1"+multipartFile);
-		int result = itemService.setReviewAdd(itemReviewDTO, multipartFile, session.getServletContext());
-		System.out.println("c2"+itemReviewDTO);
-		System.out.println("c2"+multipartFile);
-		return result;
-		
-	}
-	
-	//후기 삭제
-	@GetMapping("reviewDelete")
-	@ResponseBody
-	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
-		int result = itemService.setReviewDelete(itemReviewDTO);
-		return result;
-	}
-	
 	//후기 수정
 	@PostMapping("reviewUpdate")
 	@ResponseBody
-	public int setReviewUpdate(ItemReviewDTO itemReviewDTO) throws Exception {
-		int result = itemService.setReviewUpdate(itemReviewDTO);
+	public String setReviewUpdate(ItemReviewDTO itemReviewDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		int result = itemService.setReviewUpdate(itemReviewDTO, files, session.getServletContext());
+		return "redirect:detail?item_num=" + itemReviewDTO.getItem_num();
+	}
+	
+
+	//후기 수정할때 이미지파일 삭제
+	@PostMapping("fileReviewDelete")
+	@ResponseBody
+	public int setReviewFileDelete(ItemReviewFileDTO itemReviewFileDTO, HttpSession session) throws Exception {
+		int result = itemService.setReviewFileDelete(itemReviewFileDTO, session.getServletContext());
 		return result;
 	}
+	
+	//상품 삭제
+	@PostMapping("reviewDelete")
+	@ResponseBody
+	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
+		return itemService.setReviewDelete(itemReviewDTO);
+	}
+	
 	
 	//후기수
 	@GetMapping("reviewCount")

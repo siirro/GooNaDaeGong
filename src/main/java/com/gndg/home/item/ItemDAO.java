@@ -127,19 +127,19 @@ public class ItemDAO {
 		return sqlSession.update(NAMESPACE + "setHit", itemDTO);
 	}
 
-	// 후기 조회
-	public List<ItemReviewDTO> getReview(ItemReviewDTO itemReviewDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getReview", itemReviewDTO);
-	}
 
 	// 후기 등록
 	public int setReviewAdd(ItemReviewDTO itemReviewDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "setReviewAdd", itemReviewDTO);
 	}
 
+	// 후기 이미지파일 추가
+	public int setReviewAddFile(ItemReviewFileDTO itemReviewFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "setReviewAddFile", itemReviewFileDTO);
+	}
+	
 	// 후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
-
 		return sqlSession.delete(NAMESPACE + "setReviewDelete", itemReviewDTO);
 	}
 
@@ -157,6 +157,14 @@ public class ItemDAO {
 		return sqlSession.delete(NAMESPACE + "setReviewUpdate", itemReviewDTO);
 	}
 
+	// 후기 수정할때 이미지파일 삭제
+	public ItemReviewFileDTO getReviewtFileDetail(ItemReviewFileDTO itemReviewFileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getReviewtFileDetail", itemReviewFileDTO);
+	}
+	public int setReviewFileDelete(ItemReviewFileDTO itemReviewFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "setReviewFileDelete", itemReviewFileDTO);
+	}
+	
 	// 후기수
 	public Long getReviewCount(ItemReviewDTO itemReviewDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getReviewCount", itemReviewDTO);
