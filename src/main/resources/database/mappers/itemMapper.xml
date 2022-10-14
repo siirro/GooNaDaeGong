@@ -64,6 +64,7 @@
 	                    ORDER BY COUNT DESC) M)           
 	 WHERE RN BETWEEN 1 AND 8 AND COUNT >0
 	</select>
+	
 	<resultMap type="ItemDTO" id="getPopularItemListResult">
 		<id column="ITEM_NUM" property="item_num" />
 		<result column="ITEM_TITLE" property="item_title" />
@@ -94,6 +95,7 @@
 	     ON I.ITEM_NUM = F.ITEM_NUM
 	    ORDER BY ITEM_HIT DESC) M)
 	WHERE RN BETWEEN 1 AND 8
+	</select>
 
 
 	<!-- 통합 검색 -->
@@ -322,4 +324,5 @@
 	<select id="getReviewCount" parameterType="ItemReviewDTO" resultType="Long">
 		SELECT COUNT(RV_NUM) FROM REVIEW WHERE ITEM_NUM=#{item_num}
 	</select>
+	
 </mapper>
