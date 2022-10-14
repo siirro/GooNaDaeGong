@@ -33,7 +33,7 @@
                 </div>
                 <div class="regist_box">
                     <div class="description">
-                        <dl class="regist_image_dl" id="images_box">
+                        <dl class="regist_image_dl " id="images_box" style="padding-bottom: 200px;">
                             <dt class="Title__TitleWrapper-dmi4ru-0 bgOTQt">
                                 <label class="Title-dmi4ru-1 jttSce">상품 이미지</label>
                                 <div class="Title__EssentialMark-dmi4ru-2 jXKHON">*</div>
@@ -48,7 +48,7 @@
                                     
                                 <!-- 이미지 첨부 시 여기에 올라감 -->
                                 <ul class="image_list">
-                                    <li>
+         <!--                            <li>
                                         <div class="up_img_box">
                                             <img src="https://ccimage.hellomarket.com/img/web/regist/image_delete_x3.png" class="img_delete_icon" alt="상품 썸네일 제거 아이콘">
                                             <img src="https://ccimg.hellomarket.com/upload_temp/kr/item/10/08/7513a5f6-7bfb-40f9-b862-73899f621015_1665225727639.png" class="item_img" alt="상품 썸네일">
@@ -59,7 +59,7 @@
                                             <img src="https://ccimage.hellomarket.com/img/web/regist/image_delete_x3.png" class="img_delete_icon" alt="상품 썸네일 제거 아이콘">
                                             <img src="https://ccimg.hellomarket.com/upload_temp/kr/item/10/08/7513a5f6-7bfb-40f9-b862-73899f621015_1665225727639.png" class="item_img" alt="상품 썸네일">
                                         </div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </dd>
                         </dl>

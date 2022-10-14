@@ -195,7 +195,8 @@
    <!-- 상품 수정 -->
    <update id="setUpdate" parameterType="ItemDTO">
       UPDATE ITEM SET 
-      CATE1=#{cate1}, CATE2=#{cate2}, CATE3=#{cate3}, CATE4=#{cate4}, CATE_NUM=#{cate_num}, ITEM_TITLE=#{item_title}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_STOCK=#{item_stock} WHERE ITEM_NUM=#{item_num}
+      CATE1=#{cate1}, CATE2=#{cate2}, CATE3=#{cate3}, CATE4=#{cate4}, CATE_NUM=#{cate_num}, ITEM_TITLE=#{item_title}, ITEM_CONTENTS=#{item_contents}, ITEM_PRICE=#{item_price}, ITEM_STOCK=#{item_stock} 
+      WHERE ITEM_NUM=#{item_num}
    </update>
    
    <!-- 상품 삭제 -->

@@ -9,6 +9,7 @@ const fileDelete = document.querySelectorAll(".fileDelete");
 // })
 
 
+
 //----------------------------수정시 이미지파일삭제----------------------------
 fileDelete.forEach(function(e) {
     e.addEventListener("click", function () {
