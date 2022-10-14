@@ -220,7 +220,7 @@ public class MemberService {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("quqsue@gmail.com", "");
+                return new PasswordAuthentication("quqsue@gmail.com", "onpwhdloptpwatkd");
             }
         });
         

@@ -172,7 +172,7 @@
 														<li class="category_li"><a href="../item/list?cate_num=1163" class="dropdown-item ">아이폰 XR</a></li>
 													</ul></li>
 
-												<li class="category_li"><a href="../item/list?cate_num=1171" class="dropdown-item ">아이폰 6S/6/5S/5/SE</a></li>
+												<li class="category_li"><a href="../item/list?cate_num=1170" class="dropdown-item ">아이폰 6S/6/5S/5/SE</a></li>
 												
 											</ul></li>
 											
@@ -500,7 +500,7 @@
 	<!-- Nav End -->
 
 		<!-- Mainmenu Start -->
-		<div class="container-fluid sticky-top shadow-sm" style="width: 10px">
+		<div class="container-fluid sticky-top shadow-sm" style="margin-left: 110px;">
 			<div class="container">
 				<nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0" id="nav-main-padding">
 					<a href="../" class="navbar-brand">
