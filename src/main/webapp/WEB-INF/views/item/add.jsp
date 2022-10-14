@@ -11,11 +11,25 @@
 
             <!-- 상품등록페이지 css -->
             <link href="/resources/css/item/add.css" rel="stylesheet">
+            <link href="/resources/css/manager/sb-admin-2.css" rel="stylesheet">
         </head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
         <body>
+            <!-- Page Wrapper -->
+    <div id="wrapper">
+            <!-- 사이드바 임포트 -->
+            <c:import url="../manager/template/sidebar.jsp"></c:import>
+            <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- 탑바 임포트 -->
+                <c:import url="../manager/template/topbar.jsp"></c:import>
+
             <div class="layout__Children-sc-1fg0dfe-2 hmtAob">
                 <section class="content">
                     <div class="regist_main_area">
@@ -139,7 +153,25 @@
                     </div>
                     </form>
                 </section>
+
             </div>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- footer 임포트 -->
+        <c:import url="../manager/template/footer.jsp"></c:import>
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
                 crossorigin="anonymous"></script>
@@ -148,6 +180,17 @@
             <script>
                 getCategory1();
             </script>
+               <!-- Bootstrap core JavaScript-->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <script src="/resources/vendor/managerboot/jquery/jquery.min.js"></script>
+    <script src="/resources/vendor/managerboot/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/vendor/managerboot/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/resources/js/manager/sb-admin-2.min.js"></script>
         </body>
 
         </html>
