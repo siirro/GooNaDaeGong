@@ -65,7 +65,7 @@ public class MemberController {
 		
 		System.out.println("회원가입 controller");
 		
-		return "redirect:/";
+		return "redirect:./login";
 	}
 	
 	//카카오 로그인

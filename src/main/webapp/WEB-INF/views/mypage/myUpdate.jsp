@@ -53,7 +53,7 @@
                     <h3 class="css-1ew6v8c eug5r8l1">개인 정보 수정</h3>
                 </div>
                         <div class="css-ya8of1 e15so55l1">
-                            <form action="myUpdate" method="post" id="frmjoin" enctype="multipart/form-data">
+                            <form action="myUpdate" method="post" id="frmupdate" enctype="multipart/form-data">
                                 <div class="css-y8aj3r eo6ykj40">
                                     <div class="css-1pjgd36 e744wfw6">
                                         <div class="css-1y8737n e744wfw5">
@@ -62,7 +62,7 @@
                                         <div class="css-82a6rk e744wfw3">
                                             <div class="css-jmalg e1uzxhvi6">
                                                 <div class="css-176lya2 e1uzxhvi3">
-                                                    <input data-testid="input-box" id="user_id" name="user_id" placeholder="아이디를 입력해주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="${update.user_id}">
+                                                    <input data-testid="input-box" id="user_id" name="user_id" placeholder="아이디를 입력해주세요" type="text" required="" class="css-1bkd15f e1uzxhvi2" value="${update.user_id}" disabled>
                                                     <div id="id_check"></div>
                                                 </div>
                                             </div>
@@ -216,7 +216,7 @@
                                     <button class="css-ufulao " type="button" id="delbtn">
                                         <span class="css-ymwvow e4nu7ef1">탈퇴하기</span>
                                     </button>
-                                    <button class="css-1qirdbn e4nu7ef3" type="submit">
+                                    <button class="css-1qirdbn e4nu7ef3" type="button" id="upbtn">
                                         <span class="css-ymwvow e4nu7ef1">회원정보수정</span>
                                     </button>
                                 </div>

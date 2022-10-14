@@ -50,7 +50,10 @@ public class CartDTO{
 		this.item_count = item_count;
 	}
 	public Long getTotalPrice() {
-		return totalPrice;
+     if(this.totalPrice==null) {
+         this.totalPrice=0L;
+       }
+       return totalPrice;
 	}
 	public void setTotalPrice(Long totalPrice) {
 		this.totalPrice = totalPrice;

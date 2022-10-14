@@ -217,9 +217,11 @@ public class MypageController {
 	
 	@RequestMapping(value="myUpdate", method = RequestMethod.POST)
 	public String myUpdate(MemberDTO memberDTO, MultipartFile userfile, HttpSession session)throws Exception{
-		mypageService.setMyUpdate(memberDTO, userfile, session.getServletContext());
+		memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO.setUser_id(memberDTO.getUser_id());
+	    mypageService.setMyUpdate(memberDTO, userfile, session.getServletContext());
 		
-		return "/mypage/mypage";
+		return "redirect:./mypage";
 	}
 	
 	//회원정보 탈퇴

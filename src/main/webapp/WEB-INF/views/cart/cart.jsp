@@ -46,9 +46,6 @@
                         </div>
                         </div>
                         <div class="css-2lvxh7 ej77nku0">
-                            	<c:if test="${empty cart}">
-                                    <p class="css-l1lu2l eqymnpn0">장바구니에 담긴 상품이 없습니다 안먹혀 시발..</p>
-                            	</c:if>
                             <div>
                                 <h4 class="css-td54hr e1w1cmkx0">
                                     <span class="css-1nzj0g2 e6yclqm1"></span>
@@ -56,8 +53,13 @@
                                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" class="css-hvzkdq accimg">
                                     </button>
                                 </h4>
-                                    <ul id="cartList">
-                                        <c:forEach items="${cart}" var="list">
+                                <ul id="cartList">
+                                    <c:choose>
+                                    <c:when test="${cart eq null}">
+                                       <p class="css-l1lu2l eqymnpn0">장바구니에 담긴 상품이 없습니다 안먹혀 시발..</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <c:forEach items="${cart}" var="list">
                                             <!-- <input type="hidden" name="cart_num" id="cart_num" value="${list.cart_num}"> -->
                                             <li class="css-1d6kgf6 esoayg811 cartList" data-cart-num="${list.cart_num}">
                                                 <!-- <label class="css-dar8hv e1dcessg1" >
@@ -78,15 +80,13 @@
                                             </div>
                                             
                                             <div class="css-1gueo66 e1cqr3m40">
-                                                <c:choose>
-                                                    <c:when test="${list.item_count eq 1 }">
+                                                    <c:if test="${list.item_count eq 1 }">
                                                         <button type="button" aria-label="수량내리기" disabled class="css-1e90glc minusbutton" id="minusbtn"></button>
-                                                    </c:when>
-                                                    <c:otherwise>
+                                                    </c:if>
                                                         <button type="button" aria-label="수량내리기" class="css-8azp8 minusbutton" data-cart-num="${list.cart_num}"></button>
-                                                    </c:otherwise>
-                                                </c:choose>
+                                                
                                                 <div class="css-6m57y0 e1cqr3m41 data-cartlist=0 count"  data-cart-num="${list.cart_num}">${list.item_count}</div>
+                                                
                                                 <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0 plusbutton" data-cart-num="${list.cart_num}"></button>
                                             </div>
                                             <div class="css-5w3ssu esoayg84">
@@ -99,6 +99,8 @@
                                             </button>
                                             </li>
                                         </c:forEach>
+                                    </c:otherwise>
+                                    </c:choose>
                                     </ul>
                             </div>
                         </div>
