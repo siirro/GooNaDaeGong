@@ -92,7 +92,6 @@ public class ItemService {
 		System.out.println("lastRow는?"+pager.getLastRow());
 
 		return itemDAO.getList(itemDTO, pager);
-
 	}
 
 	// 상품 상세페이지 조회
@@ -168,47 +167,36 @@ public class ItemService {
 		return itemDAO.getLikeItem(itemLikeDTO);
 	}
 
-	// 후기 조회
-	public List<ItemReviewDTO> getReview(ItemReviewDTO itemReviewDTO) throws Exception {
-		return itemDAO.getReview(itemReviewDTO);
-	}
 
 	// 후기 등록
-	public int setReviewAdd(ItemReviewDTO itemReviewDTO,
-			@RequestParam(value = "rv_file", required = false) MultipartFile multipartFile,
-			ServletContext servletContext) throws Exception {
-		int result = itemDAO.setReviewAdd(itemReviewDTO);
-		String realPath = "resources/upload/review";
-
-		String fileName = fileManager.saveFile(servletContext, realPath, multipartFile);
-		ItemFileDTO itemFileDTO = new ItemFileDTO();
-		itemFileDTO.setItem_num(itemReviewDTO.getItem_num());
-		itemFileDTO.setFileName(fileName);
-		itemFileDTO.setOriName(multipartFile.getOriginalFilename());
-		itemDAO.setAddFile(itemFileDTO);
-		System.out.println(fileName);
-		return result;
+	public int setReviewAdd(ItemReviewDTO itemReviewDTO, ServletContext servletContext) throws Exception {
+		return itemDAO.setReviewAdd(itemReviewDTO);
 	}
-
+	
+	//후기 리스트
+	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
+		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		return itemDAO.getReview(pager, itemReviewDTO);
+	}
+	
 	// 후기 삭제
 	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
 		return itemDAO.setReviewDelete(itemReviewDTO);
 	}
 
-
-	public List<ItemReviewDTO> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
-		Long totalCount = itemDAO.getReviewCount(itemReviewDTO);
-		pager.getNum(totalCount);
-		pager.getRowNum();
-
-		return itemDAO.getReview(pager, itemReviewDTO);
-
-	}
-
 	// 후기 수정
-	public int setReviewUpdate(ItemReviewDTO itemReviewDTO) throws Exception {
-		return itemDAO.setReviewUpdate(itemReviewDTO);
+	public int setReviewUpdate(ItemReviewDTO itemReviewDTO, ServletContext servletContext) throws Exception {
+		//수정할 후기글 먼저 조회
+		int result = itemDAO.setReviewUpdate(itemReviewDTO);
+		if(result<1) {
+			return result;
+		}
+		return result;
 	}
+
 
 	// 후기수
 	public Long getReviewCount(ItemReviewDTO itemReviewDTO) throws Exception {

@@ -1,4 +1,4 @@
-const cartbtn = document.querySelector(".cartbtn");
+const cartbtn = document.querySelectorAl(".cartbtn");
 let user_id = document.getElementById("user_id");
 const item_num = document.getElementById("item_num");
 const count = document.getElementById("itemCount");

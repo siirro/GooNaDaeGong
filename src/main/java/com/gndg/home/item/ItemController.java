@@ -1,8 +1,10 @@
 package com.gndg.home.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -219,13 +221,6 @@ public class ItemController {
 		return "redirect:detail?item_num=" + itemDTO.getItem_num();
 	}
 
-	//상품 삭제
-	@GetMapping("delete")
-	public String setDelete(ItemDTO itemDTO) throws Exception {
-		int result = itemService.setDelete(itemDTO);
-		return "redirect:list";
-	}
-
 	//상품 수정할때 이미지파일 삭제
 	@PostMapping("fileDelete")
 	@ResponseBody
@@ -233,6 +228,14 @@ public class ItemController {
 		int result = itemService.setFileDelete(itemFileDTO, session.getServletContext());
 		return result;
 	}
+	
+	//상품 삭제
+	@GetMapping("delete")
+	public String setDelete(ItemDTO itemDTO) throws Exception {
+		int result = itemService.setDelete(itemDTO);
+		return "redirect:list";
+	}
+
 	
 	//좋아요 등록&취소
 	@PostMapping("like")
@@ -256,47 +259,40 @@ public class ItemController {
 		return count;
 	}
 	
+	//후기 등록
+	@PostMapping("review")
+	@ResponseBody
+	public int setReviewAdd(ItemReviewDTO itemReviewDTO, HttpSession session) throws Exception {
+		return itemService.setReviewAdd(itemReviewDTO, session.getServletContext());
+	}
 	
 	//후기 조회
 	@GetMapping("reviewList")
 	@ResponseBody
-	public ModelAndView getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public Map<String, Object> getReview(Pager pager, ItemReviewDTO itemReviewDTO) throws Exception {
 		List<ItemReviewDTO> ar = itemService.getReview(pager, itemReviewDTO);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("item/reviewList");
-		return mv;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", ar);
+		map.put("pager", pager);
+		return map;
 	}
 
-	//후기 등록
-	@PostMapping("review")
-	@ResponseBody
-	public int setReviewAdd(ItemReviewDTO itemReviewDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
-		System.out.println("c1"+itemReviewDTO);
-		System.out.println("c1"+multipartFile);
-		int result = itemService.setReviewAdd(itemReviewDTO, multipartFile, session.getServletContext());
-		System.out.println("c2"+itemReviewDTO);
-		System.out.println("c2"+multipartFile);
-		return result;
-		
-	}
-	
-	//후기 삭제
-	@GetMapping("reviewDelete")
-	@ResponseBody
-	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
-		int result = itemService.setReviewDelete(itemReviewDTO);
-		return result;
-	}
-	
 	//후기 수정
 	@PostMapping("reviewUpdate")
 	@ResponseBody
-	public int setReviewUpdate(ItemReviewDTO itemReviewDTO) throws Exception {
-		int result = itemService.setReviewUpdate(itemReviewDTO);
-		return result;
+	public String setReviewUpdate(ItemReviewDTO itemReviewDTO, HttpSession session) throws Exception {
+		int result = itemService.setReviewUpdate(itemReviewDTO, session.getServletContext());
+		return "redirect:detail?item_num=" + itemReviewDTO.getItem_num();
 	}
+	
+	
+	//상품 삭제
+	@PostMapping("reviewDelete")
+	@ResponseBody
+	public int setReviewDelete(ItemReviewDTO itemReviewDTO) throws Exception {
+		return itemService.setReviewDelete(itemReviewDTO);
+	}
+	
 	
 	//후기수
 	@GetMapping("reviewCount")

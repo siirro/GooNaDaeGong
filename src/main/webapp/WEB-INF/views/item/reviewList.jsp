@@ -21,45 +21,52 @@
         <div class="title_txt">
             <h2 >PRODUCT REVIEW</h2>
         </div>
-        <table class="xans-board-listheader" width="100%"  cellpadding="0" cellspacing="0">
-    <c:forEach items="${list}" var="dto">
-			<div class="d-flex text-muted pt-3 mx-2">
-				<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="50" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-					<image href="/resources/upload/member/${dto.fileName}" width="100%" height="100%"/>
-				</svg>
-			
-				<div class="mx-3 pb-2 small border-bottom w-100">
-					<div class="d-flex justify-content-between">
-					<div>
-					<i class="bi bi-star-fill" style="color: #6667AB; font-size: 15px;"></i>
-					<i class="bi bi-star-fill" style="color: #6667AB; font-size: 15px;"></i>
-					<i class="bi bi-star-fill" style="color: #6667AB; font-size: 15px;"></i>
-					<i class="bi bi-star-fill" style="color: #6667AB; font-size: 15px;"></i>
-					<i class="bi bi-star-fill" style="color: #6667AB; font-size: 15px;"></i>
-						<strong class="mx-2 text-dark" style="font-size: 18px;">${dto.rv_title}</strong>
-					</div>
-						<div>
-							<div><i class="bi bi-hand-thumbs-up"></i> 도움돼요</div>
-							<div><i class="bi bi-hand-thumbs-down"></i> 도움안돼요</div>
-						</div>   123123.00.
-					</div>
-					<span class="d-block" style="font-size: 15px;">${dto.user_id}	|	${dto.rv_date}</span>
-				</div>
-			</div>
-		</c:forEach>
-
-
-
-
-
-
-
-		</table>
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+          <c:forEach items="${list}" var="dto" varStatus="i">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne${i.index}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne${i.index}" aria-expanded="false" aria-controls="flush-collapseOne${i.index}">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-4 rounded" width="40" height="40" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false">
+                      <image href="/resources/upload/member/${dto.fileName}" width="100%" height="100%"/>
+                    </svg>
+                    <div class="d-flex justify-content-between">
+                      <i class="bi bi-star-fill" style="color: #6667AB; font-size: 20px;"></i>
+                      <i class="bi bi-star-fill" style="color: #6667AB; font-size: 20px;"></i>
+                      <i class="bi bi-star-fill" style="color: #6667AB; font-size: 20px;"></i>
+                      <i class="bi bi-star-fill" style="color: #6667AB; font-size: 20px;"></i>
+                      <i class="bi bi-star-fill" style="color: #6667AB; font-size: 20px;"></i>
+                        <strong class="mx-4 text-dark" style="font-size: 18px;">${dto.rv_title}</strong>
+                    </div>
+                    <div style="font-size: 15px; position: absolute; right: 60px;">${dto.user_id} &nbsp | &nbsp ${dto.rv_date}</div>
+                  </button>
+                </h2>
+                <div id="flush-collapseOne${i.index}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne${i.index}" data-bs-parent="#accordionFlushExample">
+                  <svg class="bd-placeholder-img flex-shrink-0 me-4 m-4" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <image href="/resources/upload/member/${dto.rv_file}" width="100%" height="100%"/>
+                  </svg>
+                  <div class="accordion-body">${dto.rv_contents}</div>
+              <div class="mt-3 d-grid gap-2 d-md-flex btn-sm justify-content-md-end">
+                <span class="m-3"> 
+                <a id="update" class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  href="update?item_num=${dto.item_num }">수정</a>
+                <a id="delete" class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  href="delete?item_num=${dto.item_num }">삭제</a> 
+                </span>
+              </div>
+                </div>
+              </div>
+            </div>
+          </c:forEach>
+        </div>
+      </div>
     </form>
-    
+
+
+
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">후기쓰기</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="update" data-bs-whatever="@mdo">수정</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="delete"  data-bs-whatever="@mdo">삭제</button>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -83,13 +90,13 @@
               </div>
               <div class="mb-3">
                 <label for="rv_file" class="col-form-label">사진 첨부</label>
-                <input type="file" name="rv_file" id="rv_file">
+                <input type="file" name="rv_file" id="fileName">
               </div>
             
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-            <button type="button" class="review btn btn-primary" id="reviewBtn">등록하기</button>
+            <button type="submit" class="review btn btn-primary" id="reviewBtn">등록하기</button>
           </div>
         </div>
       </div>
@@ -98,7 +105,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>
-    <script src="/resources/js/item/review.js"></script>
+    <script src="/resources/js/item/detail.js"></script>
 </body>
 </html>
 

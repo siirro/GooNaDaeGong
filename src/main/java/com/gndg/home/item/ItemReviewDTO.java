@@ -10,7 +10,6 @@ public class ItemReviewDTO {
 	private String rv_contents;
 	private Date rv_date;
 	private Long rv_star;
-	private String rv_file;
 	private String fileName;
 	
 	private ItemDTO itemDTO;
@@ -57,12 +56,6 @@ public class ItemReviewDTO {
 	public void setRv_star(Long rv_star) {
 		this.rv_star = rv_star;
 	}
-	public String getRv_file() {
-		return rv_file;
-	}
-	public void setRv_file(String rv_file) {
-		this.rv_file = rv_file;
-	}
 	public String getFileName() {
 		return fileName;
 	}
@@ -74,6 +67,10 @@ public class ItemReviewDTO {
     }
     public void setItemDTO(ItemDTO itemDTO) {
         this.itemDTO = itemDTO;
+    }
+    
+    public void setReviewAddFile(Long item_num) {
+    	this.item_num = item_num;
     }
 	
 }

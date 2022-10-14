@@ -1,3 +1,4 @@
+const category = document.querySelector('#category');
 const category1 = document.querySelector('#category1');
 const category2 = document.querySelector('#category2');
 const category3 = document.querySelector('#category3');
@@ -7,6 +8,7 @@ const cate1 = document.querySelector('#cate1');
 const cate2 = document.querySelector('#cate2');
 const cate3 = document.querySelector('#cate3');
 const cate4 = document.querySelector('#cate4');
+
 
 category1.addEventListener('change', function () {
     let cate2Child = document.getElementsByClassName("cate2Child");

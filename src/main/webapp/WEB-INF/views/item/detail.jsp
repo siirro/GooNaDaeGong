@@ -69,20 +69,12 @@ a {
 													</div>
 												</div>
 												<div class="mt-3 d-grid gap-2 d-md-flex btn-sm justify-content-md-end">
-                        
-													<span class="mx-3">
-													<c:choose>
-														<c:when test="${member.user_grade eq '2'}">
-															<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-																	href="update?item_num=${dto.item_num }">수정</a>
-															<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-																href="delete?item_num=${dto.item_num }">삭제</a>
-															<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
-														</c:when>
-													<c:otherwise>
-														<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
-													</c:otherwise>
-												</c:choose>
+													<span class="mx-3"> 
+													<a class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+														href="update?item_num=${dto.item_num }">수정</a>
+													<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+														href="delete?item_num=${dto.item_num }">삭제</a> 
+													<a class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
 
 													</span>
 												</div>
@@ -242,11 +234,12 @@ a {
 															</h3>
 															<div class="description_text">
 																<span>${dto.item_contents }</span>
-															</div>
 															<c:forEach items="${dto.itemFileDTOs}" var="fileDTO">
 																<img alt=""
 																	src="../resources/upload/item/${fileDTO.fileName}">
 															</c:forEach>
+
+														</div>
 														</section>
 
 
@@ -268,36 +261,7 @@ a {
 															</div>
 														</section>
 
-														<section class="item_user_info mobile_item_user_info">
-															<div class="profile_img">
-																<a href="/s/@16366874"> <img
-																	src="https://ccimage.hellomarket.com/web/tag/img_itemdetail_profile_noimage.png"
-																	alt="상품 상세 회원 프로필 이미지"></a>
-															</div>
-															<div class="nick">
-																<a href="#">판매자 아이디</a>
-															</div>
-															<div class="item_count">
-																<span class="item_count_rating_image"> <img
-																	src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png"
-																	alt="상품 상세 별점 없는 이미지 1"> <img
-																	src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png"
-																	alt="상품 상세 별점 없는 이미지 2"> <img
-																	src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png"
-																	alt="상품 상세 별점 없는 이미지 3"> <img
-																	src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png"
-																	alt="상품 상세 별점 없는 이미지 4"> <img
-																	src="https://ccimage.hellomarket.com/web/2019/member/img_review_star_blank_16x16_x2.png"
-																	alt="상품 상세 별점 없는 이미지 5">
-																</span> <span class="item_count_rating">(0)</span>
-															</div>
-															<span class="item_count_number mw_item_count_number">상품
-																3개</span>
-														</section>
 
-														<!-- 대기공주 후기창 -->
-														<!-- 후기 글 펼치는 방법 -->
-														<!-- review.css에서 review_view display : block; 처리 -->
 														<div id="reviewContents"></div>
 
 														<!-- 구디나라 댓글창 -->
@@ -339,7 +303,6 @@ a {
 		getReview(1);
 		share();
 	</script>
-		<script src="/resources/js/item/testdetail.js"></script>
-
+	<!-- <script src="/resources/js/item/testdetail.js"></script> -->
 </body>
 </html>
