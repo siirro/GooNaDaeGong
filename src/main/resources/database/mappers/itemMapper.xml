@@ -157,18 +157,6 @@
       </collection>
    </resultMap>
    
-
-
-   <!-- 상품 상세페이지 조회 -->
-   <select id="getListCount" resultType="Long">
-   SELECT COUNT(ITEM_NUM)
-      FROM ITEM I
-      LEFT JOIN 
-      ITEMFILE F
-        USING (ITEM_NUM)
-      ORDER BY ITEM_NUM DESC, FILENUM ASC
-   </select>
-   
    <!--상품디테일-->
    <select id="getDetail" parameterType="ItemDTO" resultMap="getDetailResult">
       SELECT * 
