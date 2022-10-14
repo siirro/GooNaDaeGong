@@ -75,6 +75,7 @@ a {
 													<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
 														href="delete?item_num=${dto.item_num }">삭제</a> 
 													<a class="btn" style="background-color: #6667AB; color: white!important; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
+
 													</span>
 												</div>
 												<div class="item_info ">
@@ -295,6 +296,7 @@ a {
 	</div>
 	<!-- Wrap End -->
 	<script src="/resources/js/item/detail.js"></script>
+	
 	<script>
 		getLikeCount();
 		getCategory();

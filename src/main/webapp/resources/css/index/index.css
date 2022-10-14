@@ -39,6 +39,9 @@ body h1 {
     float: left;
     font-size: 16px;
 }
+.product_title {
+	font-size: 14px;
+}
 
 .price {
     margin-top: 4px;

@@ -190,51 +190,32 @@
                             <!-- 주문상세 -->
 
                             <!-- 배송상세 -->
-                            <!-- <div id="qnaList">
+                            <div id="qnaList">
                                 <section class="col-lg-12 text-center" style="padding: 0px;">
                                     <table class="table table-hover" width="100%">
                                         <thead class="table-primary" style="font-size: 14px;">
                                             <tr>
-                                                <th class="col-2">수령자이름</th>
+                                                <th class="col-1">수령자이름</th>
                                                 <th class="col-2">수령자번호</th>
-                                                <th class="col-2">우편번호</th>
-                                                <th class="col-1">주소</th>
-                                                <th class="col-1">주소2</th>
-                                                <th class="col-1">배송메모</th>
-                                                <th class="col-1">결제상태</th>
-                                                <th class="col-1">주문상태</th>
+                                                <th class="col-1">우편번호</th>
+                                                <th class="col-3">주소</th>
+                                                <th class="col-3">주소2</th>
+                                                <th class="col-2">배송메모</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size: 12px;">
                                             <tr>
-                                                <td><fmt:formatDate value="${ordersDTO.ord_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                                <td>${ordersDTO.merchant_uid}</td>
-                                                <td>${ordersDTO.user_id}</td>
-                                                <td><fmt:formatNumber value="${ordersDTO.ord_total1}" pattern="#,###" />원</td>
-                                                <td><fmt:formatNumber value="${ordersDTO.ord_delfree}" pattern="#,###" />원</td>
-                                                <td><fmt:formatNumber value="${ordersDTO.ord_total2}" pattern="#,###" />원</td>
-                                                <td>
-                                                    <c:choose>
-                                                        <c:when test="${ordersDTO.ord_payment eq 1}">
-                                                            결제대기
-                                                        </c:when>
-                                                        <c:when test="${ordersDTO.ord_payment eq 2}">
-                                                            결제완료
-                                                        </c:when>
-                                                        <c:when test="${ordersDTO.ord_payment eq 3}">
-                                                            결제취소
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            오류
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </td>
-                                                <td>${ordersDTO.ord_status}</td>
+                                                <td>${ordersDTO.ord_name}</td>
+                                                <td>${ordersDTO.ord_phone}</td>
+                                                <td>${ordersDTO.ord_post}</td>
+                                                <td>${ordersDTO.ord_addr}</td>
+                                                <td>${ordersDTO.ord_addr2}</td>
+                                                <td>${ordersDTO.ord_memo}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </section>
-                            </div> -->
+                            </div>
                             <!-- 배송상세 -->
 
                             <!-- 상품상세 -->

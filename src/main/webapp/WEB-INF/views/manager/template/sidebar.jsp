@@ -37,10 +37,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">뭘넣어야되지</h6>
-                        <a class="collapse-item" href="../../manager/item/add">상품등록</a>
-                        <a class="collapse-item" href="../../manager/item/list">상품조회</a>
-                        <a class="collapse-item" href="../../manager/item/stock">재고관리</a>
-                        <a class="collapse-item" href="../manager/item/review">리뷰관리</a>
+                        <a class="collapse-item" href="../../item/add">상품등록</a>
+                        
+                        
+                        <!-- <a class="collapse-item" href="../manager/item/review">리뷰관리</a> -->
                     </div>
                 </div>
             </li>
@@ -96,6 +96,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
                     aria-expanded="true" aria-controls="collapseUtilities">

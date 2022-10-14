@@ -10,7 +10,6 @@
 
 </head>
 <body>
-
 	<section>
 		<form action="add" method="post" enctype="multipart/form-data">
 			

@@ -48,24 +48,13 @@
 			</div>
 			<!-- Carousel End -->
 			
-			<div>관리자센터</div>
-			<a href="./manager">관리자센터</a>
-			<hr>
-
-			<div>구디나라 대기공주</div>
-			<a href="./item/add">상품등록</a> <a href="./item/list">상품목록</a>
-			<hr>
-			
-
-			<a href="/member/google">구글 로그인</a><br>
-			
 			<div class="products">
 				<h1>최신 제품</h1>
 				<c:forEach items="${newlist}" var="list">
 				<a href="/item/detail?item_num=${list.item_num}"> 
 					<img src="/resources/upload/item/${list.itemFileDTOs[0].fileName}">
-					<p>${list.item_title}</p>
-					<p class="price">${list.item_price}</p>
+<%-- 					<p class="product_title">${list.item_title}</p>
+					<p class="price">${list.item_price}</p> --%>
 				</a>
 				</c:forEach>
 
@@ -73,7 +62,7 @@
                 <!-- 페이징 처리 -->
                 <div class="css-15jhycr e3tf63e0">
                     <div class="css-sxxs1g eytury60">
-                    <c:choose>
+                   <%--  <c:choose>
                             <c:when test="${pager.pre}">
                                 <button  type="button" class="css-rzcdhr e1hbwyso0" onClick="location.href='./myLike?page=${pager.startNum-1}'">
                                     <div class="css-7qb0sc e1ilyb3p0">이전</div>
@@ -101,18 +90,24 @@
                                 <div class="css-7qb0sc e1ilyb3p0">다음</div>
                             </button>
                             </c:otherwise>
-                        </c:choose>
+                        </c:choose> --%>
                     </div>
                 </div>
 			</div>
 			
-			<div class="products">
-				<h1>인기 상픔</h1>
+			<img alt="" src="//file.spigen.co.kr/_data/old_attach/store/main/main_banner/2022/0809_galaxy_z/mb_ipad_pc.jpg" style="margin-left: 50px;">
+			<img alt="" src="//file.spigen.co.kr/_data/old_attach/store/main/main_banner/2022/0907_apple/mb_apple_watch_pc.jpg">
+			<img alt="" src="//file.spigen.co.kr/_data/old_attach/store/main/main_banner/2022/0809_galaxy_z/mb_airpods_pc.jpg">
+			<img alt="" src="http://file.spigen.co.kr/_data/old_attach/store/main/main_banner/2022/0809_galaxy_z/mb_macsafe_pc.jpg" style="width: 1519px;">
+			<img alt="" src="http://file.spigen.co.kr/_data/old_attach/store/main/main_banner/2022/0809_galaxy_z/mb_galaxy_fold4_pc.jpg" style="width: 1519px;">
+			
+			<div class="products" style="margin-bottom: 250px;">
+				<h1>인기 상품</h1>
 				<c:forEach items="${poplist}" var="pop">
 				<a href="/item/detail?item_num=${pop.item_num}"> 
 					<img src="/resources/upload/item/${pop.itemFileDTOs[0].fileName}">
-					<p>${pop.item_title}</p>
-					<p class="price">${pop.item_price}</p>
+	<%-- 				<p>${pop.item_title}</p>
+					<p class="price">${pop.item_price}</p> --%>
 				</a>
 				</c:forEach>
 				<!-- <a href="#">
@@ -133,7 +128,7 @@
 				<div class="clearfix"></div>
 			</div>
 			
-			<div class="products">
+			<!-- <div class="products">
 				<h1>이거 살려고 가입함ㅅㄱ</h1>
 				<a href="#"> 
 					<img src="/resources/images/sample.jpg">
@@ -156,7 +151,7 @@
 					<p class="price">100,000</p>
 				</a>
 				<div class="clearfix"></div>
-			</div>
+			</div> -->
 			
 		</section>
 

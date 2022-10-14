@@ -88,6 +88,8 @@ public class ItemService {
 		pager.setPerPage(12L);
 		pager.getNum(totalCount);
 		pager.getRowNum();
+		System.out.println("startRow는?"+pager.getStartRow());
+		System.out.println("lastRow는?"+pager.getLastRow());
 
 		return itemDAO.getList(itemDTO, pager);
 	}
