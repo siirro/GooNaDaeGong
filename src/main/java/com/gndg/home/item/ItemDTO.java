@@ -23,8 +23,15 @@ public class ItemDTO {
 	private Date item_date;
 	private List<ItemFileDTO> itemFileDTOs;
 	private List<ItemLikeDTO> itemLikeDTOs;
+	private List<Category> categories;
 
 
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 	private String FileName;
 	private Category category;
 

@@ -69,12 +69,19 @@ a {
 													</div>
 												</div>
 												<div class="mt-3 d-grid gap-2 d-md-flex btn-sm justify-content-md-end">
-													<span class="mx-3"> 
-													<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-														href="update?item_num=${dto.item_num }">수정</a>
-													<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-														href="delete?item_num=${dto.item_num }">삭제</a> 
-													<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list">목록보기</a>
+													<span class="mx-3">
+													<c:choose>
+														<c:when test="${member.user_grade eq '2'}">
+															<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+																	href="update?item_num=${dto.item_num }">수정</a>
+															<a id="deleteButton" class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+																href="delete?item_num=${dto.item_num }">삭제</a>
+															<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
+														</c:when>
+													<c:otherwise>
+														<a class="btn" style="background-color: #6667AB; color: white; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" href="list?cate_num=${dto.cate_num}">목록보기</a>
+													</c:otherwise>
+												</c:choose>
 													</span>
 												</div>
 												<div class="item_info ">
@@ -323,6 +330,7 @@ a {
 	</div>
 	<!-- Wrap End -->
 	<script src="/resources/js/item/detail.js"></script>
+	
 	<script>
 		getLikeCount();
 		getCategory();

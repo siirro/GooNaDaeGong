@@ -55,6 +55,13 @@ public class ItemController {
 		return "item/add2";
 	} 
 	
+	@GetMapping("update2")
+	public String update2() throws Exception {
+		System.out.println("add2 GET"); 
+		
+		return "item/update2";
+	} 
+	
 	/* 통합 검색 */
 	@GetMapping("search")
 	public String getSearch() throws Exception {
@@ -199,12 +206,16 @@ public class ItemController {
 		itemDTO = itemService.getDetail(itemDTO);
 		mv.addObject("dto", itemDTO);
 		mv.setViewName("item/update");
+		
+		System.out.println(itemDTO.getItem_contents());
+		
 		return mv;
 	}
 
 	@PostMapping("update")
 	public String setUpdate(ItemDTO itemDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		int result = itemService.setUpdate(itemDTO, files, session.getServletContext());
+		
 		return "redirect:detail?item_num=" + itemDTO.getItem_num();
 	}
 
