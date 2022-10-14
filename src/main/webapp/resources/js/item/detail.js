@@ -16,10 +16,6 @@ const reviewBtn = document.querySelector("#reviewBtn");
 const reviewCount = document.querySelector("#reviewCount");
 
 
-
-
-
-
 //----------------------------리뷰등록----------------------------
 reviewContents.addEventListener("click", function (event) {
     let item_num = document.getElementById("item_num").value;

@@ -97,7 +97,6 @@
 	WHERE RN BETWEEN 1 AND 8
 	</select>
 
-
 	<!-- 통합 검색 -->
 	<select id="getSearch" parameterType="String" resultMap="getDetailResult">
 		SELECT *
