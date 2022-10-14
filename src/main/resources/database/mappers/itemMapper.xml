@@ -21,16 +21,16 @@
 
 	<!-- 최신글 -->
 	<select id="getNewItemList" parameterType="ItemDTO" resultMap="getNewItemListResult">
-		SELECT *
-		FROM
-		(SELECT ROWNUM RN, M.*
-		FROM
-		(SELECT I.ITEM_NUM,I.ITEM_TITLE,I.ITEM_PRICE,ITEM_DATE,F.FILENAME
-		FROM ITEM I
-		LEFT JOIN
-		ITEMFILE F
-		ON I.ITEM_NUM = F.ITEM_NUM
-		ORDER BY ITEM_DATE DESC) M)
+	SELECT * 
+		FROM 
+		    (SELECT ROWNUM RN, M.*
+		    FROM
+		        (SELECT I.ITEM_NUM,I.ITEM_TITLE,I.ITEM_PRICE,ITEM_DATE,F.FILENAME
+		        FROM ITEM I
+		            LEFT JOIN 
+		            ITEMFILE F
+		            ON I.ITEM_NUM = F.ITEM_NUM
+		        ORDER BY ITEM_DATE DESC) M)
 		WHERE RN BETWEEN 1 AND 8
 	</select>
 	<resultMap type="ItemDTO" id="getNewItemListResult">
@@ -47,22 +47,22 @@
 
 	<!-- 인기글 -->
 	<select id="getPopularItemList" parameterType="ItemDTO" resultMap="getPopularItemListResult">
-		SELECT *
-		FROM
-		(SELECT ROWNUM RN,M.*
-		FROM
-		(SELECT NVL(K.C,0) COUNT,I.*,F.FILENAME
-		FROM ITEM I
-		LEFT JOIN
-		ITEMFILE F
-		ON I.ITEM_NUM = F.ITEM_NUM
-		LEFT JOIN
-		(SELECT COUNT(LIKE_NUM) C,ITEM_NUM
-		FROM ITEMLIKE
-		GROUP BY(ITEM_NUM)) K
-		ON I.ITEM_NUM = K.ITEM_NUM
-		ORDER BY COUNT DESC) M)
-		WHERE RN BETWEEN 1 AND 8 AND COUNT >0
+	 SELECT * 
+	 FROM
+	    (SELECT ROWNUM RN,M.* 
+	    FROM
+	        (SELECT  NVL(K.C,0) COUNT,I.*,F.FILENAME
+	                    FROM ITEM I
+	                    LEFT JOIN
+	                    ITEMFILE F
+	                    ON I.ITEM_NUM = F.ITEM_NUM
+	                    LEFT JOIN
+	                    (SELECT COUNT(LIKE_NUM) C,ITEM_NUM
+	                    FROM ITEMLIKE
+	                    GROUP BY(ITEM_NUM)) K
+	                    ON I.ITEM_NUM = K.ITEM_NUM
+	                    ORDER BY COUNT DESC) M)           
+	 WHERE RN BETWEEN 1 AND 8 AND COUNT >0
 	</select>
 	<resultMap type="ItemDTO" id="getPopularItemListResult">
 		<id column="ITEM_NUM" property="item_num" />
@@ -79,6 +79,21 @@
 			<result column="FILENAME" property="fileName" />
 		</collection>
 	</resultMap>
+	
+	<!-- 추천글 -->
+	<select id="getRecommendItemList" parameterType="ItemDTO" resultMap="getRecommendItemListResult">
+	SELECT *
+	FROM
+	(SELECT ROWNUM RN, M.*
+	FROM
+	    (SELECT ITEM_HIT,ITEM_TITLE,ITEM_CONTENTS,ITEM_PRICE,F.FILENAME
+	     FROM 
+	     ITEM I
+	     LEFT JOIN
+	     ITEMFILE F
+	     ON I.ITEM_NUM = F.ITEM_NUM
+	    ORDER BY ITEM_HIT DESC) M)
+	WHERE RN BETWEEN 1 AND 8
 
 
 	<!-- 통합 검색 -->
@@ -91,6 +106,18 @@
 		WHERE ITEM_TITLE LIKE '%'||#{search}||'%'
 		ORDER BY ITEM_TITLE ASC
 	</select>
+	<resultMap type="ItemDTO" id="getRecommendItemListResult">
+	<id column="ITEM_NUM" property="item_num"/>
+	<result column="ITEM_HIT" property="item_hit"/>
+	<result column="ITEM_TITLE" property="item_title"/>
+	<result column="ITEM_CONTENTS" property="item_contents"/>
+	<result column="ITEM_PRICE" property="item_price"/>
+		<collection property="itemFileDTOs" javaType="List" ofType="ItemFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ITEM_NUM" property="item_num"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
 
 	<!-- 최근 본 상품 -->
 	<select id="getProduct" parameterType="ItemFileDTO" resultType="ItemFileDTO">

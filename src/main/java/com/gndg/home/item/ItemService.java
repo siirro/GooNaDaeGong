@@ -29,9 +29,14 @@ public class ItemService {
 	}
 	
 	//인기글
-   public List<ItemDTO> getPopularItemList(ItemDTO itemDTO,Pager pager)throws Exception{
+   public List<ItemDTO> getPopularItemList(ItemDTO itemDTO)throws Exception{
         return itemDAO.getPopularItemList(itemDTO);
     }
+   
+    //추천글
+   public List<ItemDTO> getRecommendItemList(ItemDTO itemDTO)throws Exception{
+       return itemDAO.getRecommendItemList(itemDTO);
+   }
 	
 
 
