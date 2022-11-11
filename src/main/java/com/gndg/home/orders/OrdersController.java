@@ -30,14 +30,21 @@ public class OrdersController {
 	@GetMapping("checkout")
 	public ModelAndView order(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		List<CartDTO> ar = ordersService.getOrderItem(memberDTO);
 		mv.addObject("cart", ar);
 		mv.addObject("member", memberDTO);
 		mv.setViewName("order/checkout");
 		
+		return mv;
+	}
+	
+	@GetMapping("success")
+	public ModelAndView goSuccess(OrdersDTO ordersDTO, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		ordersDTO = (OrdersDTO)session.getAttribute("ordersDTO");
+		mv.addObject("ordersDTO", ordersDTO);
+		mv.setViewName("order/success");
 		return mv;
 	}
 	
@@ -57,10 +64,8 @@ public class OrdersController {
 	@PostMapping("orders")
 	@ResponseBody
 	public String addOrder(OrdersDTO ordersDTO, HttpSession session)throws Exception{
-		
 		int result = ordersService.addOrders(ordersDTO);
 		session.setAttribute("ordersDTO", ordersDTO);
-
 		String jsonResult = "{\"result\":\""+result+"\"}";
 		return jsonResult;
 	}
@@ -77,13 +82,6 @@ public class OrdersController {
 	}
 	
 	
-	@GetMapping("success")
-	public ModelAndView goSuccess(OrdersDTO ordersDTO, HttpSession session)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		ordersDTO = (OrdersDTO)session.getAttribute("ordersDTO");
-		mv.addObject("ordersDTO", ordersDTO);
-		mv.setViewName("order/success");
-		return mv;
-	}
+
 
 }

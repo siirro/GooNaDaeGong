@@ -60,7 +60,7 @@
                 <!-- 1번째 Content Row -->
                 <div class="row">
 
-                    <!-- 얼마 팔렸어요 Card Example -->
+                    <!-- 새로운 주문 -->
                     <div class="col-xl-3 col-md-6 mb-4" onclick="location.href='./manager/mall/order'" style="cursor: pointer;">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
 
-                    <!-- 일년 얼마팔림 Card Example -->
+                    <!-- 취소 개수 -->
                     <div class="col-xl-3 col-md-6 mb-4" onclick="location.href='./manager/mall/cancel'" style="cursor: pointer;">
                         <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                    <!-- 과제 달성도 Card Example -->
+                    <!-- 교환 개수 -->
                     <div class="col-xl-3 col-md-6 mb-4" onclick="location.href='./manager/mall/exchange'" style="cursor: pointer;">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body">

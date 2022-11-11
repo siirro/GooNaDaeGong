@@ -35,12 +35,10 @@ public class NoticeService {
 	public int updateNotice(NoticeDTO noticeDTO, MultipartFile [] files, ServletContext servletContext)throws Exception{
 		int result = noticeDAO.updateNotice(noticeDTO);
 		String path = "resources/upload/notice";
-		
 		for(MultipartFile multipartFile : files) {
 			if(multipartFile.isEmpty()) {
 				continue;
 			}
-			
 			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
 			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 			noticeFileDTO.setFileName(fileName);
@@ -49,7 +47,6 @@ public class NoticeService {
 			
 			noticeDAO.addNoticeFile(noticeFileDTO);
 		}
-
 		return result;
 	}
 	
@@ -57,16 +54,14 @@ public class NoticeService {
 		NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 		noticeFileDTO.setNt_num(noticeDTO.getNt_num());
 		List<NoticeFileDTO> ar = noticeDAO.detailNoticeFileAll(noticeFileDTO);
-		
 		int result = noticeDAO.deleteNoticeFileAll(noticeFileDTO);
-		//찐파일삭제
+		
 		for(int i=0; i<ar.size();i++) {
 			String path = "resources/upload/notice";
 			if(result>0) {
 				fileManager.deleteFile(servletContext, path, ar.get(i));
 			}
 		}
-
 		return noticeDAO.deleteNotice(noticeDTO);
 	}
 	
@@ -78,18 +73,13 @@ public class NoticeService {
 			if(multipartFile.isEmpty()) {
 				continue;
 			}
-			
 			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
 			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 			noticeFileDTO.setFileName(fileName);
 			noticeFileDTO.setOriName(multipartFile.getOriginalFilename());
 			noticeFileDTO.setNt_num(noticeDTO.getNt_num());
-			
 			noticeDAO.addNoticeFile(noticeFileDTO);
 		}
-		
-		
-		
 		return result;
 	}
 	

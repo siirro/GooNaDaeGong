@@ -53,8 +53,6 @@ public class OrdersDAO {
 		map.put("searchdate2", orderPager.getSearchdate2());
 		}
 
-		
-		
 		return sqlsession.selectList(NAMESPACE+"getList", map);
 	}
 	

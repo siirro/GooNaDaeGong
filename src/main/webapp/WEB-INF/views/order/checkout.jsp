@@ -348,7 +348,6 @@
 
     //===========동의 스크립트
     const normal = document.getElementsByClassName("normal");
-
     document.getElementById("terms-agree").addEventListener("change",function(){
         let allcheck = document.getElementById("terms-agree").checked
             for(let i=0;i<normal.length;i++){
@@ -366,10 +365,7 @@
         });
     };
 
-
-    //===========동의 스크립트
-
-
+    //===========결제버튼 동의체크X시 경고창 스크립트
     function gogogogo() {
         if(document.getElementById("terms-agree").checked) {
             requestPay();
@@ -402,9 +398,7 @@
 
         console.log(ord_total1);
 
-        
-
-         // 배송비 잠시만 1원으로
+         // 배송비 
         let ord_delfree = 0;
         if(ord_total1<30000) {
             ord_delfree = 3000;
@@ -414,9 +408,6 @@
 
         // 결제총금액
         let ord_total2 = ord_total1+ord_delfree;
-
-        
-
 
         document.getElementById("total1").innerHTML = ord_total1.toLocaleString('ko-KR');
         document.getElementById("delfree").innerHTML = ord_delfree.toLocaleString('ko-KR');
@@ -431,7 +422,7 @@
     }
    
         function checkcheck1() {
-            let check1 = confirm("개인정보를 수집");
+            let check1 = confirm("개인정보를 수집함에 대한 동의");
             if(check1==true){
                 document.getElementById("terms-agree-personal-info").checked = true;
             } else {
@@ -440,7 +431,7 @@
         }
 
         function checkcheck2() {
-            let check2 = confirm("개인정보를 판매자에게 제공");
+            let check2 = confirm("개인정보를 판매자에게 제공함에 대한 동의");
             
             if(check2==true){
                 document.getElementById("terms-agree-personal-info-third-party").checked = true;
@@ -450,7 +441,7 @@
         }
 
         function checkcheck3() {
-            let check3 = confirm("결제대행은 이런서비스고 위험하다");
+            let check3 = confirm("결제대행 서비스에 대한 동의");
             
             if(check3==true){
                 document.getElementById("terms-agree-payment-agent").checked = true;

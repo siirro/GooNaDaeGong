@@ -21,6 +21,11 @@ DELETE FROM NOTICEFILE WHERE FILENUM = #{fileNum}
 SELECT * FROM NOTICEFILE WHERE FILENUM = #{fileNum}
 </select>
 
+<insert id="addNoticeFile" parameterType="NoticeFileDTO">
+INSERT INTO NOTICEFILE
+VALUES(NOTICEFILE_SEQ.NEXTVAL, #{nt_num}, #{fileName}, #{oriName})
+</insert>
+
 <update id="updateNotice" parameterType="NoticeDTO">
 UPDATE NOTICE 
 SET NT_TITLE=#{nt_title}, NT_CONTENTS=#{nt_contents}, NT_YN=#{nt_yn} 
@@ -40,10 +45,7 @@ INSERT INTO NOTICE VALUES (#{nt_num},#{user_id},#{nt_title},#{nt_contents},SYSDA
 
 
 
-<insert id="addNoticeFile" parameterType="NoticeFileDTO">
-INSERT INTO NOTICEFILE
-VALUES(NOTICEFILE_SEQ.NEXTVAL, #{nt_num}, #{fileName}, #{oriName})
-</insert>
+
 
 <select id="getList" resultType="NoticeDTO" parameterType="Map">
 	SELECT * FROM

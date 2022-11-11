@@ -102,10 +102,8 @@ public class ManagerController {
 	public ModelAndView managerQnaList(Pager pager, String qna_status)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<QnaDTO> ar = qnaService.getList(pager, qna_status);
-		System.out.println(ar.size());
 		
 		mv.addObject("qnalist", ar);
-		
 		mv.addObject("pager", pager);
 		mv.setViewName("manager/qnalist");
 		return mv;
@@ -121,7 +119,7 @@ public class ManagerController {
 		return mv;
 	}
 	
-	//qna 답변 등록
+	//qna 답변 등록 ajax
 	@PostMapping("qna/comment")
 	@ResponseBody
 	public String updateQnaComment(QnaDTO qnaDTO) throws Exception{
@@ -319,15 +317,11 @@ public class ManagerController {
 		if(result!=0) {
 			message = "주문상태를 변경했습니다.";
 		}
-		
-				
 		mv.addObject("url", "./orderDetail?merchant_uid="+ordersDTO.getMerchant_uid());
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
 		
 		return mv;
-		
-		
 	}
 //	============================= 주문내역 조회 끝 =========================
 
@@ -489,23 +483,18 @@ public class ManagerController {
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수
 	private List<NameValuePair> convertParameter(Map<String,String> paramMap){
 		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
-		
 		Set<Entry<String,String>> entries = paramMap.entrySet();
-		
 		for(Entry<String,String> entry : entries) {
 			paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 		}
 		return paramList;
 	}
 
-	
 	@PostMapping("mall/cancelPayment")
 	@ResponseBody
 	public String cancelPayment(@RequestBody PayDTO params, PayDTO payDTO)throws Exception{
 		String jsonResult = "";
-		
 		// 결제취소
-		
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost("https://api.iamport.kr/payments/cancel");
 		Map<String, String> map = new HashMap<String, String>();
@@ -513,7 +502,6 @@ public class ManagerController {
 		map.put("merchant_uid", params.getMerchant_uid().toString());
 		String asd = "";
 		try {
-			
 			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 			HttpResponse res = client.execute(post);
 			ObjectMapper mapper = new ObjectMapper();
@@ -528,7 +516,6 @@ public class ManagerController {
 			System.err.println("환불실패");
 			int result1 = 0;
 			jsonResult = "{\"result\":\""+result1+"\"}";
-			
 		} else {
 			System.err.println("환불성공");
 			payDTO.setMerchant_uid(params.getMerchant_uid());
@@ -537,7 +524,6 @@ public class ManagerController {
 			jsonResult = "{\"result\":\""+result1+"\"}";
 		}
 		
-
 		return jsonResult;
 	}
 

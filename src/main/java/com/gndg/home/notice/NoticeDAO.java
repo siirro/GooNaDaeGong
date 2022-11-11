@@ -33,6 +33,10 @@ public class NoticeDAO {
 		return sqlSession.selectOne(NAMESPACE+"detailNoticeFile", noticeFileDTO);
 	}
 	
+	public int addNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addNoticeFile", noticeFileDTO);
+	}
+	
 	public int updateNotice(NoticeDTO noticeDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"updateNotice", noticeDTO);
 	}
@@ -41,9 +45,7 @@ public class NoticeDAO {
 		return sqlSession.delete(NAMESPACE+"deleteNotice", noticeDTO);
 	}
 	
-	public int addNoticeFile(NoticeFileDTO noticeFileDTO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"addNoticeFile", noticeFileDTO);
-	}
+
 	
 	public int addNotice(NoticeDTO noticeDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addNotice", noticeDTO);

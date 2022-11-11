@@ -45,29 +45,23 @@ public class NoticeController {
 	
 	@GetMapping("update")
 	public ModelAndView updateNotice(NoticeDTO noticeDTO, ModelAndView mv)throws Exception{
-
 		noticeDTO = noticeService.getDetail(noticeDTO);
 		mv.addObject("detail", noticeDTO);
 		mv.setViewName("notice/update");
 		return mv;
-		
 	}
 	
 	@PostMapping("update")
 	public ModelAndView updateNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = noticeService.updateNotice(noticeDTO, multipartFiles, session.getServletContext());
-		
 		ModelAndView mv = new ModelAndView();
 		String message = "공지사항 수정 실패";
 		if(result!=0) {
 			message = "공지사항 수정 성공";
 		}
-		
-				
 		mv.addObject("url", "./detail?nt_num="+noticeDTO.getNt_num());
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
-		
 		return mv;
 	}
 	
@@ -78,16 +72,12 @@ public class NoticeController {
 		String message = "공지사항 삭제 실패";
 		if(result!=0) {
 			message = "공지사항 삭제 성공";
-		}
-		
-				
+		}	
 		mv.addObject("url", "./list");
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
-		
 		return mv;
 	}
-	
 	
 	@GetMapping("add")
 	public String addNotice()throws Exception{
@@ -98,16 +88,14 @@ public class NoticeController {
 	public ModelAndView addNotice(NoticeDTO noticeDTO, MultipartFile [] multipartFiles, HttpSession session)throws Exception{
 		int result = noticeService.addNotice(noticeDTO, multipartFiles, session.getServletContext());
 		ModelAndView mv = new ModelAndView();
-		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String message = "공지사항 등록 실패";
 		if(result!=0) {
 			message = "공지사항 등록 성공";
 		}
-		
 		mv.addObject("url", "./list");
 		mv.addObject("message", message);
 		mv.setViewName("common/result");
-		
 		return mv;
 	}
 	

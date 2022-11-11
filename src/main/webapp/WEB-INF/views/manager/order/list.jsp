@@ -78,16 +78,12 @@
                             <!-- 카드 본문  -->
 
                             <!-- 내용 Search -->
-                            <form action="./order" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <form action="./order" method="get" class="d-none d-sm-inline-block form-inline mr-auto 
+                            ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="" style="display: flex; margin-bottom: 5px;">
-                                
-                            
                                     <div class="input-group">
-                                        <div class="searchprebox">
-                                            검색
-                                        </div>
+                                        <div class="searchprebox">검색</div>
                                         <div class="search-category" id="search-category">
-                                            
                                             <select name="kind" class="custom-select custom-select-sm form-control form-control-sm">
                                                 <option class="kinds" value="merchant_uid">주문번호</option>
                                                 <option class="kinds" value="user_id">주문자ID</option>
@@ -98,20 +94,15 @@
                                         </div>
                                         <input name="search" value="${param.search}" id="search" type="text" class="form-control bg-light border-0 small" placeholder="Search"
                                             aria-label="Search" aria-describedby="basic-addon2">
-                                        
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
                                     </div>
-                                
                                 </div>
-
                                 <!-- 날짜 Search -->
                                 <div class="" style="justify-content: center; display: flex; margin-bottom: 10px;">
-                                    
-                                
                                     <div class="input-group">
                                         <div class="searchprebox">
                                         주문일자
@@ -122,14 +113,12 @@
                                             aria-label="Search" aria-describedby="basic-addon2" style="margin-right: 4px;">
                                         <input name="searchdate2" value="${param.searchdate2}" id="search" type="date" class="form-control bg-light border-0 small" placeholder="Search"
                                         aria-label="Search" aria-describedby="basic-addon2">
-                                        
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </form>
 

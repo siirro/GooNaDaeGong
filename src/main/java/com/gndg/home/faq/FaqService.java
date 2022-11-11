@@ -103,7 +103,6 @@ public class FaqService {
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
-		
 		List<FaqDTO> ar = faqDAO.getList(pager, faq_cate);
 		return ar;
 	}

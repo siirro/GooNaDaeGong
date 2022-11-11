@@ -49,7 +49,7 @@ public class HomeController {
 //	}
 	
 	
-	//홈컨트롤러 잠깐 임시로 YR
+	//관리자 인덱스
 	@RequestMapping(value = "/manager", method=RequestMethod.GET)
 	public ModelAndView managerIndex2(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -67,7 +67,6 @@ public class HomeController {
 		String qna_status = "대기";		
 		List<QnaDTO> ar = qnaService.getList(pager, qna_status);
 		mv.addObject("qnalist", ar);
-		
 		mv.addObject("pager", pager);
 		
 		return mv;

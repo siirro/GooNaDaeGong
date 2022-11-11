@@ -148,18 +148,15 @@ qnaComment.addEventListener("click",function(){
             if(this.readyState==4 && this.status==200){
                 let result = xhttp.responseText.trim();
                 console.log("답변제출성공result"+result);
-                
                 try {
                     commentList.removeChild(divdiv);
                 }
                 catch {
                 }
-
                 try {
                     commentNull.remove();
                 } catch (error) {
                 }
-
                 getCommentList(qna_num);
                 contents.value="";
 
@@ -190,35 +187,23 @@ qnaComment.addEventListener("click",function(){
 
 
 function getCommentList(qn){
-
-    
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","./commentlist");
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
     xhttp.send("qna_num="+qn);
-
-    //5.응답처리
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200){
             let result = xhttp.responseText.trim();
             console.log("responseText : "+result);
-
-            
             result = result.replace(/\n/gi,"\\r\\n");        
             // str의 모든 \n을 \\r\\n으로 교체한다.JSON.parse(str);
-
-            console.log("responseText 처리후 : "+result);
-
+            
             result = JSON.parse(result)
-            console.log("글내용파스후 : "+result.comment);
             let comment = result.comment;
-
             let cldiv = document.createElement("div");
             let cldivid = document.createAttribute("id");
             cldivid.value="divdiv";
             cldiv.setAttributeNode(cldivid);
-
-
             let cltitle = document.createElement("div");
             let cltitles = document.createAttribute("style");
             cltitles.value="margin-bottom: 10px;"
@@ -230,25 +215,15 @@ function getCommentList(qn){
             let clh3s = document.createAttribute("style");
             clh3s.value="border: 1px solid;";
             clh3.setAttributeNode(clh3s);
-            
             comment = comment.replace(/\r\n/g, "</br>");
-            
-            console.log(comment);
-
             clh3.innerHTML= comment;
-            
             cldiv.appendChild(cltitle);
             cldiv.appendChild(clh3);
-
             if(comment=='null') {
                 console.log("답변없음");
             }else{
                 commentList.appendChild(cldiv);
             }
-
-            
-
-            
         }   
     };
 };

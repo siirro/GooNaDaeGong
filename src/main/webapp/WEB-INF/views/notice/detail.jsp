@@ -72,12 +72,11 @@
                 <div id="contetns" style="border-bottom: 1px solid #D6D6EA; margin-bottom: 30px;">
                     <div id="contentsValue" style="height: auto; margin: 30px 10px 50px 10px; ">
                         <c:forEach items="${detail.noticeFileDTOs}" var="file">
-                        <img src="../../resources/upload/notice/${file.fileName}" alt="" width="auto" style="cursor: pointer;" onclick="location.href='../../resources/upload/notice/${file.fileName}'">
-                        <br></br>
+	                        <img src="../../resources/upload/notice/${file.fileName}" alt="" width="auto" 
+	                        style="cursor: pointer;" onclick="location.href='../../resources/upload/notice/${file.fileName}'">
+	                        <br></br>
                         </c:forEach>
-                        
                         <br>
-                        
                         ${fn:replace(detail.nt_contents, replaceChar, "<br/>")}
                     </div>
                 </div>

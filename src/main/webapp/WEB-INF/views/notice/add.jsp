@@ -52,7 +52,7 @@
                 <form action="add" method="post" enctype="multipart/form-data">
 
                     <!-- 작성자 = ${session.user_id} -->
-                    <input type="hidden" name="user_id" value="1">
+                    <input type="hidden" name="user_id" value="${member.user_id}">
                     <!-- value="${session.user_id}" -->
                     
                             

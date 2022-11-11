@@ -9,24 +9,18 @@ let check2=true;
 let check3=false;
 let check4=false;
 
-
-
-
 qna_cate.addEventListener("change",function(){
     if(qna_cate.value.length>0){
         check2=true;
-        console.log("카테적용.트루");
     } else {
         check2=false;
     }
     qnaSubmit1();
 });
 
-
 qna_title.addEventListener("keyup",function(){
     if(qna_title.value.length>0){
     check3=true;
-    console.log("제목썼음.트루");
     } else {
         check3=false;
     }
@@ -39,39 +33,24 @@ qna_contents.addEventListener("keyup",function(){
         
     } if(qna_contents.value.length=="") {
         check4=false;
-		console.log("내용비엇음.4는false");
 		qnaSubmit.setAttribute("disabled","");
         qnaSubmit.style.backgroundColor = "rgb(221, 221, 221)";
     }
 	if(qna_contents.value.length>5000){
 		check4=false;
-		console.log("글자수초과")
 	}
     qnaSubmit1();
 });
 
-
-
-
-
-
 function qnaSubmit1(){
-
     if(check2&&check3&&check4) {
-            console.log("넷다트루.버튼을 보라색으로");
-            // qnaSubmit.setAttribute("disabled","false");
             qnaSubmit.removeAttribute("disabled");
             qnaSubmit.style.backgroundColor = "#6667AB";
     } else {
-		console.log("False가생겼다");
 		qnaSubmit.setAttribute("disabled","");
         qnaSubmit.style.backgroundColor = "rgb(221, 221, 221)";
 	}
 };
-
-
-
-
 
 
 
